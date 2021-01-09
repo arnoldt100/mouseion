@@ -77,7 +77,7 @@ project(mouseion)
 # Make available the project cmake modules.          -
 #                                                    -
 #-----------------------------------------------------
-include( $ENV{ANANSI_CMAKE_MODULE_PATH}/mouseion_build_prerequisites.cmake )
+include( ${CMAKE_CURRENT_LIST_DIR}/cmake_macros_and_functions/mouseion_build_prerequisites.cmake )
 
 #-----------------------------------------------------
 # Check that key environmental variables are set.    -
@@ -89,9 +89,8 @@ verify_key_environmental_are_set()
 # Here we define some variables.                     -
 # that are critical for building and deploying.      -
 #-----------------------------------------------------
-set(anansi_top_level $ENV{ANANSI_TOP_LEVEL}) 
-set(anansi_cmake_cxx_compiler $ENV{ANANSI_CMAKE_CXX_COMPILER})
-set(anansi_cxx_standard 17)
+set(mouseion_cmake_cxx_compiler $ENV{MOUSEION_CMAKE_CXX_COMPILER})
+set(mouseion_cxx_standard ${})
 set(anansi_cmake_c_compiler $ENV{ANANSI_CMAKE_C_COMPILER})
 set(anansi_install_prefix $ENV{ANANSI_INSTALL_PREFIX})
 set(anansi_install_bin_directory $ENV{ANANSI_INSTALL_BIN_DIRECTORY})
@@ -148,15 +147,6 @@ set(counterclass_install_lib_directory ${anansi_install_lib_directory})
 set(counterclass_install_include_directory ${anansi_install_include_directory})
 set(counterclass_install_bin_directory ${anansi_install_bin_directory} )
 set(counterclass_cxx_standard ${anansi_cxx_standard} )
-
-#-----------------------------------------------------
-# This section permits use to find the header files  -
-# and link against the BOOST library.                -
-#                                                    -
-#-----------------------------------------------------
-enable_boost($ENV{ANANSI_BOOST_TOP_LEVEL}) # The enable_boost macro 
-                                           # sets up the boost library for
-                                           # linking against.
 
 #-----------------------------------------------------
 # Add the subdirectories for the various             -
