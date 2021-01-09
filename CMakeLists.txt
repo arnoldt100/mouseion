@@ -58,7 +58,6 @@ project(mouseion)
 #                                                                 @
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
-    
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -90,19 +89,18 @@ verify_key_environmental_are_set()
 # that are critical for building and deploying.      -
 #-----------------------------------------------------
 set(mouseion_cmake_cxx_compiler $ENV{MOUSEION_CMAKE_CXX_COMPILER})
-set(mouseion_cxx_standard ${})
-set(anansi_cmake_c_compiler $ENV{ANANSI_CMAKE_C_COMPILER})
-set(anansi_install_prefix $ENV{ANANSI_INSTALL_PREFIX})
-set(anansi_install_bin_directory $ENV{ANANSI_INSTALL_BIN_DIRECTORY})
-set(anansi_install_include_directory $ENV{ANANSI_INSTALL_INCLUDE_DIRECTORY})
-set(anansi_install_lib_directory $ENV{ANANSI_INSTALL_LIB_DIRECTORY})
-set(anansi_minimum_cmake_version $ENV{ANANSI_MINIMUM_CMAKE_VERSION})
+set(mouseion_cxx_standard $ENV{MOUSEION_CXX_STANDARD})
+set(mouseion_cmake_c_compiler $ENV{MOUSEION_CMAKE_C_COMPILER})
+set(mouseion_install_prefix $ENV{MOUSEION_INSTALL_PREFIX})
+set(mouseion_install_bin_directory $ENV{MOUSEION_INSTALL_BIN_DIRECTORY})
+set(mouseion_install_include_directory $ENV{MOUSEION_INSTALL_INCLUDE_DIRECTORY})
+set(mouseion_install_lib_directory $ENV{MOUSEION_INSTALL_LIB_DIRECTORY})
 
 #-----------------------------------------------------
 # Define the file to write messages to.              -
 #                                                    -
 #-----------------------------------------------------
-set(anansi_log_file "${anansi_top_level}/anansi_log.txt")
+set(mouseion_log_file $ENV{MOUSEION_LOG_FILE})
 
 #-----------------------------------------------------
 # Here we define variables which indicate where      -
@@ -110,10 +108,10 @@ set(anansi_log_file "${anansi_top_level}/anansi_log.txt")
 # header files, and associated binaries.             -
 #                                                    -
 #-----------------------------------------------------
-set(memory_management_install_lib_directory ${anansi_install_lib_directory})
-set(memory_management_install_include_directory ${anansi_install_include_directory})
-set(memory_management_install_bin_directory ${anansi_install_bin_directory} )
-set(memory_management_cxx_standard ${anansi_cxx_standard} )
+set(memory_management_install_lib_directory ${mouseion_install_lib_directory})
+set(memory_management_install_include_directory ${mouseion_install_include_directory})
+set(memory_management_install_bin_directory ${mouseion_install_bin_directory} )
+set(memory_management_cxx_standard ${mouseion_cxx_standard} )
 
 #-----------------------------------------------------
 # Here we define variables which indicate where      -
@@ -121,10 +119,10 @@ set(memory_management_cxx_standard ${anansi_cxx_standard} )
 # header files, and associated binaries.             -
 #                                                    -
 #-----------------------------------------------------
-set(mpi_communicator_install_lib_directory ${anansi_install_lib_directory})
-set(mpi_communicator_install_include_directory ${anansi_install_include_directory})
-set(mpi_communicator_install_bin_directory ${anansi_install_bin_directory} )
-set(mpi_communicator_cxx_standard ${anansi_cxx_standard} )
+set(mpi_communicator_install_lib_directory ${mouseion_install_lib_directory})
+set(mpi_communicator_install_include_directory ${mouseion_install_include_directory})
+set(mpi_communicator_install_bin_directory ${mouseion_install_bin_directory} )
+set(mpi_communicator_cxx_standard ${mouseion_cxx_standard} )
 
 #-----------------------------------------------------
 # Here we define variables which indicate where      -
@@ -132,10 +130,10 @@ set(mpi_communicator_cxx_standard ${anansi_cxx_standard} )
 # header files, and associated binaries.             -
 #                                                    -
 #-----------------------------------------------------
-set(string_utilities_install_lib_directory ${anansi_install_lib_directory})
-set(string_utilities_install_include_directory ${anansi_install_include_directory})
-set(string_utilities_install_bin_directory ${anansi_install_bin_directory} )
-set(string_utilities_cxx_standard ${anansi_cxx_standard} )
+set(string_utilities_install_lib_directory ${mouseion_install_lib_directory})
+set(string_utilities_install_include_directory ${mouseion_install_include_directory})
+set(string_utilities_install_bin_directory ${mouseion_install_bin_directory} )
+set(string_utilities_cxx_standard ${mouseion_cxx_standard} )
 
 #-----------------------------------------------------
 # Here we define variables which indicate where      -
@@ -143,10 +141,10 @@ set(string_utilities_cxx_standard ${anansi_cxx_standard} )
 # header files, and associated binaries.             -
 #                                                    -
 #-----------------------------------------------------
-set(counterclass_install_lib_directory ${anansi_install_lib_directory})
-set(counterclass_install_include_directory ${anansi_install_include_directory})
-set(counterclass_install_bin_directory ${anansi_install_bin_directory} )
-set(counterclass_cxx_standard ${anansi_cxx_standard} )
+set(counterclass_install_lib_directory ${mouseion_install_lib_directory})
+set(counterclass_install_include_directory ${mouseion_install_include_directory})
+set(counterclass_install_bin_directory ${mouseion_install_bin_directory} )
+set(counterclass_cxx_standard ${mouseion_cxx_standard} )
 
 #-----------------------------------------------------
 # Add the subdirectories for the various             -
