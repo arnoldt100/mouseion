@@ -103,8 +103,8 @@
                            PUBLIC_HEADER "${mpi_communicator_unit_tests_header_files}" )
 
     install(TARGETS ${target}
-            RUNTIME DESTINATION ${anansi_install_bin_directory}
-            PUBLIC_HEADER DESTINATION ${anansi_install_include_directory} )
+            RUNTIME DESTINATION ${mpi_communicator_install_bin_directory}
+            PUBLIC_HEADER DESTINATION ${mpi_communicator_install_include_directory} )
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @

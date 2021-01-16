@@ -189,7 +189,7 @@ target_include_directories(${target}
 # The libraries to use when linking to target.       -
 #                                                    -
 #-----------------------------------------------------
-target_link_libraries( ${my_library_target}
+target_link_libraries( ${target}
                        string_utilities
                        memory_management 
                        counterclass )
