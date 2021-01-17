@@ -16,6 +16,7 @@
 #   mpi_communicator_install_lib_directory
 #   mpi_communicator_install_include_directory
 #   mpi_communicator_install_bin_directory
+#   mpi_communicator_cxx_standard
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
