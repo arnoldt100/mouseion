@@ -48,7 +48,7 @@ public:
     //===== LIFECYCLE ======
     MPICommunicator();
     
-    MPICommunicator(MPICommunicator const & other);
+    MPICommunicator(MPICommunicator const & other)=delete;
 
     MPICommunicator(MPICommunicator && other);
 
@@ -62,7 +62,7 @@ public:
     //
     //===== OPERATORS ======
 
-    MPICommunicator& operator=(MPICommunicator const & other);
+    MPICommunicator& operator=(MPICommunicator const & other)=delete;
 
     MPICommunicator& operator=(MPICommunicator && other);
 
@@ -77,7 +77,7 @@ private:
     int 
 	_getSubCommunicatorRank(const std::string & tag) const final override;
 
-    std::unique_ptr<COMMUNICATOR::Communicator>
+    COMMUNICATOR::Communicator*
     _duplicateCommunicator() const final override;
 
     int

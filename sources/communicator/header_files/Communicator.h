@@ -76,7 +76,7 @@ public:
         return;
     }
 
-    std::unique_ptr<COMMUNICATOR::Communicator> 
+    COMMUNICATOR::Communicator* 
     duplicateCommunicator() const
     {
         return this->_duplicateCommunicator();
@@ -128,7 +128,7 @@ private:
     virtual int 
     _getSubCommunicatorRank(const std::string & tag) const=0;
 
-    virtual std::unique_ptr<COMMUNICATOR::Communicator>
+    virtual COMMUNICATOR::Communicator*
     _duplicateCommunicator() const =0;
 
     virtual char*

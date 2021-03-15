@@ -78,9 +78,8 @@ std::unique_ptr<COMMUNICATOR::Communicator> MPICommunicatorFactory::_createCommu
 std::unique_ptr<COMMUNICATOR::Communicator> 
 MPICommunicatorFactory::_cloneCommunicator(std::unique_ptr<COMMUNICATOR::Communicator> const & otherCommunicator) const
 {
-    COMMUNICATOR::MPICommunicator* tmpMPICommunicator_ptr = dynamic_cast<COMMUNICATOR::MPICommunicator*>(otherCommunicator.get());
-
-    std::unique_ptr<COMMUNICATOR::MPICommunicator> aMPICommunicator(new COMMUNICATOR::MPICommunicator(*tmpMPICommunicator_ptr));
+    auto tmp_mpicommunicator = std::move(otherCommunicator->duplicateCommunicator());
+    std::unique_ptr<COMMUNICATOR::Communicator> aMPICommunicator(tmp_mpicommunicator);
     return aMPICommunicator;
 }
 

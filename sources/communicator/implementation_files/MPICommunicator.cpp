@@ -29,16 +29,17 @@ MPICommunicator::MPICommunicator() :
     return;
 }
 
-MPICommunicator::MPICommunicator(MPICommunicator const & other) :
-    Communicator(),
-    _mpiWorldCommunicator(MPI_COMM_NULL),
-    _hostname(MPICommunicator::HOSTNAME_NOT_DEFINED)
-{
-    if (this != &other)
-    {
-        *this = other;
-    }
-}
+// To Do: This life cycle method is to be deleted.
+// MPICommunicator::MPICommunicator(MPICommunicator const & other) :
+//     Communicator(),
+//     _mpiWorldCommunicator(MPI_COMM_NULL),
+//     _hostname(MPICommunicator::HOSTNAME_NOT_DEFINED)
+// {
+//     if (this != &other)
+//     {
+//         *this = other;
+//     }
+// }
 
 MPICommunicator::MPICommunicator(MPICommunicator && other) :
     _mpiWorldCommunicator(MPI_COMM_NULL)
@@ -110,71 +111,75 @@ MPICommunicator::_freeCommunicator()
 }
 
 //============================= OPERATORS ====================================
-MPICommunicator& 
-MPICommunicator::operator=(MPICommunicator const & other)
-{
-    if (this != &other )
-    {
-        Communicator::operator=(other);  
 
-        try 
-        {
-            if (other._mpiWorldCommunicator == MPI_COMM_NULL)
-            {
-                this->_mpiWorldCommunicator = MPI_COMM_NULL;
-            }
-            else
-            {
-                int mpi_return_code = MPI_Comm_dup(other._mpiWorldCommunicator,
-                                                  &(this->_mpiWorldCommunicator));
-
-                if (mpi_return_code != MPI_SUCCESS)
-                {
-                    throw COMMUNICATOR::MPICommDuplicateException();       
-                }
-            }
-        }
-        catch (COMMUNICATOR::MPICommDuplicateException const & my_mpi_exception)
-        {
-            std::cout << my_mpi_exception.what() << std::endl;
-            std::abort();
-        }
-
-        
-        try 
-        {
-            for (auto const & it : other._mpicommHandles )
-            {
-                auto key = it.first;
-                auto value = it.second;
-
-                if (  value == MPI_COMM_NULL )
-                {
-                    this->_addCommunicator(key,value);
-                }
-                else
-                {
-                    MPI_Comm tmp_comm = MPI_COMM_NULL;
-                    int mpi_return_code = MPI_Comm_dup(value, &(tmp_comm));
-
-                    if (mpi_return_code != MPI_SUCCESS)
-                    {
-                        throw COMMUNICATOR::MPICommDuplicateException();       
-                    }
-
-                    this->_addCommunicator(key,tmp_comm);
-                }
-            }
-        }
-        catch (COMMUNICATOR::MPICommDuplicateException const & my_mpi_exception)
-        {
-        }
-
-        this->_hostname = other._hostname;
-
-    }
-    return *this;
-}
+// To Do: The assignment operator is to be deleted.
+// MPICommunicator& 
+// MPICommunicator::operator=(MPICommunicator const & other)
+// {
+//     if (this != &other )
+//     {
+//         Communicator::operator=(other);  
+// 
+//         try 
+//         {
+//             if (other._mpiWorldCommunicator == MPI_COMM_NULL)
+//             {
+//                 this->_mpiWorldCommunicator = MPI_COMM_NULL;
+//             }
+//             else
+//             {
+//                 int mpi_return_code = MPI_Comm_dup(other._mpiWorldCommunicator,
+//                                                   &(this->_mpiWorldCommunicator));
+// 
+//                 if (mpi_return_code != MPI_SUCCESS)
+//                 {
+//                     throw COMMUNICATOR::MPICommDuplicateException();       
+//                 }
+//             }
+//         }
+//         catch (COMMUNICATOR::MPICommDuplicateException const & my_mpi_exception)
+//         {
+//             std::cout << my_mpi_exception.what() << std::endl;
+//             std::abort();
+//         }
+// 
+//         
+//         try 
+//         {
+//             for (auto const & it : other._mpicommHandles )
+//             {
+//                 auto key = it.first;
+//                 auto value = it.second;
+// 
+//                 if (  value == MPI_COMM_NULL )
+//                 {
+//                     this->_addCommunicator(key,value);
+//                 }
+//                 else
+//                 {
+//                     MPI_Comm tmp_comm = MPI_COMM_NULL;
+//                     int mpi_return_code = MPI_Comm_dup(value, &(tmp_comm));
+// 
+//                     if (mpi_return_code != MPI_SUCCESS)
+//                     {
+//                         throw COMMUNICATOR::MPICommDuplicateException();       
+//                     }
+// 
+//                     this->_addCommunicator(key,tmp_comm);
+//                 }
+//             }
+//         }
+//         catch (COMMUNICATOR::MPICommDuplicateException const & my_mpi_exception)
+//         {
+                std::cout << my_mpi_exception.what() << std::endl;
+                std::abort();
+//         }
+// 
+//         this->_hostname = other._hostname;
+// 
+//     }
+//     return *this;
+// }
 
 MPICommunicator& MPICommunicator::operator=(MPICommunicator && other)
 {
@@ -324,11 +329,38 @@ MPICommunicator::_getSubCommunicatorRank(const std::string & tag) const
    return rank;
 }
 
-std::unique_ptr<COMMUNICATOR::Communicator>
+COMMUNICATOR::Communicator*
 MPICommunicator::_duplicateCommunicator() const 
 {
-    std::unique_ptr<COMMUNICATOR::MPICommunicator> aMPICommunicator
-        = std::make_unique<COMMUNICATOR::MPICommunicator>(*this);
+	// First make a duplicate of the world communicator
+	MPI_Comm mpi_worldcomm_duplicate;
+	int mpi_error = MPI_Comm_dup(_mpiWorldCommunicator,&mpi_worldcomm_duplicate);
+
+	// Duplicate the subcommunicators.
+	SUBCOMMUNICATOR_MAP_T mpi_comm_handles_duplicate;
+
+    try
+    {
+        for ( auto const & [tmp_key,tmp_mpi_comm] : this->_mpicommHandles )
+        {
+            MPI_Comm dup_mpi_comm;
+            mpi_return_code = MPI_Comm_dup(tmp_mpi_comm,&dup_mpi_comm);
+            if (mpi_return_code != MPI_SUCCESS)
+            {
+                throw COMMUNICATOR::MPICommDuplicateException();       
+            }
+            mpi_comm_handles_duplicate[tmp_key] = dup_mpi_comm;
+        }
+    }
+    catch (COMMUNICATOR::MPICommDuplicateException const & my_mpi_exception)
+    {
+        std::cout << my_mpi_exception.what() << std::endl;
+        std::abort();
+    }
+
+    // We now form the new MPICommunicator.
+    MPICommunicator* aMPICommunicator;
+
     return aMPICommunicator;
 }
 
