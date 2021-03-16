@@ -52,6 +52,10 @@ public:
 
     MPICommunicator(MPICommunicator && other);
 
+    MPICommunicator(const MPI_Comm & mpi_world_communicator, 
+                    const std::string & host_name,
+                    const SUBCOMMUNICATOR_MAP_T & subcommunicator_handles );
+
     ~MPICommunicator();
 
     //===== ACCESSORS ======
