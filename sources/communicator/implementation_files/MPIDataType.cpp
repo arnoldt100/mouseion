@@ -45,6 +45,11 @@ MPI_Datatype MPI_DATA_TYPE<char>::value()
 {
     return MPI_CHAR;
 }
+
+MPI_Datatype MPI_DATA_TYPE<bool>::value()
+{
+    return MPI_C_BOOL;
+}
 //============================= MUTATORS =====================================
 
 //============================= OPERATORS ====================================

@@ -540,6 +540,18 @@ MPICommunicator::_gatherInt(const int & data_to_gather,
     return gathered_data; 
 }
 
+bool
+MPICommunicator::_getGlobalStatus(const bool & data_to_reduce) const 
+{
+    std::vector<bool> in_buffer = {data_to_reduce};
+    MPIReductionOperation::reduction_operation_type mpi_op(MPIReductionOperation::logical_and); 
+    const std::vector<bool> my_global_status = 
+        COMMUNICATOR::MPI_ALLREDUCE<bool,MPIReductionOperation::reduction_operation_type>::REDUCE(this->_mpiWorldCommunicator,
+                                                                                                  in_buffer,
+                                                                                                  mpi_op); 
+    return false;
+}
+
 //============================= MUTATORS =====================================
 
 void

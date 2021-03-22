@@ -97,9 +97,15 @@ public:
 
     std::vector<int>
     gatherInt(const int & data_to_gather,
-               const std::size_t task_id_gather_data) const
+              const std::size_t task_id_gather_data) const
     {
         return this->_gatherInt(data_to_gather,task_id_gather_data);
+    }
+
+    bool
+    getGlobalStatus(const bool & data_to_reduce) const
+    {
+        return this->_getGlobalStatus(data_to_reduce);
     }
 
     //===== OPERATORS ======
@@ -163,6 +169,9 @@ private:
     _gatherInt(const int & data_to_gather,
                const std::size_t task_id_gather_data) const=0;
 
+    virtual bool
+    _getGlobalStatus(const bool & data_to_reduce) const=0;
+
     //===== MUTATORS =======
     virtual void
     _initializeWorldCommunicator()=0;
@@ -177,6 +186,17 @@ private:
     static constexpr std::size_t MAX_HOSTNAME_LENGTH=100;
 };
 
+
+// #####   EXPORTED FUNCTION DECLARATIONS   #########################################
+
+// ===  FUNCTION  ======================================================================
+//         Name:  gatherData
+//  Description:  Gathering data to a single rank.
+// 
+//   Parameters: 
+//
+//        Return:
+// =====================================================================================
 template<typename T>
 std::vector<T> gatherData(
        T const & data_to_gather,
@@ -188,12 +208,36 @@ std::vector<std::string> gatherData(
        std::string const & data_to_gather,
        Communicator const  & aCommunicator,
        const std::size_t task_id_gather_data);
+
 template<>
 std::vector<int> gatherData(
        int const & data_to_gather,
        Communicator const  & aCommunicator,
        const std::size_t task_id_gather_data);
 
-} /* namespace MPICOMMUNICATOR */
+
+// ===  FUNCTION  ======================================================================
+//         Name:  getGlobalStatus
+//  Description:  Returns the global status by doing a collective transformation
+//                of the status of each processer to a single value
+//                which is returned to all processors.
+// 
+//   Template Parameters : T The type of data to transform
+//  
+//   Parameters: data_to_transform - The data on this rank which is part of the 
+//                                   collective transformation.
+//               aCommunicator - The communicator used in this data transformation. 
+//
+//        Return: A scalar value of the transformed data.
+// =====================================================================================
+template<typename T>
+T getGlobalStatus( T const & data_to_transform,
+                   Communicator const & aCommunicator)
+{
+    const T out = aCommunicator.getGlobalStatus(data_to_transform);
+    return out;
+}
+
+} // namespace MPICOMMUNICATOR
 
 #endif /* COMMUNICATOR_HEADER_FILES_COMMUNICATOR_H_ */

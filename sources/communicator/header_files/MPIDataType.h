@@ -45,6 +45,17 @@ class MPI_DATA_TYPE<char>
         static MPI_Datatype value();
 };
 
+template<>
+class MPI_DATA_TYPE<bool>
+{
+
+    public:
+        MPI_DATA_TYPE();
+
+        ~MPI_DATA_TYPE();
+
+        static MPI_Datatype value();
+};
 } /* namespace COMMUNICATOR */
 
 #endif /* COMMUNICATOR_MPIDATATYPE_ */

@@ -39,18 +39,19 @@ class MPI_ALLREDUCE
             using vector_size_type = typename std::vector<T>::size_type;
 
         	// Get the the number of elements in the vector.
-            T count = static_cast<T>(send_data.size());
+            auto count1 = static_cast<std::size_t>(send_data.size());
+            auto count2 = static_cast<int>(send_data.size());
 
             // Simply copy the value of comm handle.
             MPI_Comm communicator = comm;
 
             // Create the recv and send buffers.
             T * send_data_ptr = my_array_factory.createPointerArrayFromVector(send_data); 
-            T * recv_data_ptr = my_array_factory.createArray(count); 
+            T * recv_data_ptr = my_array_factory.createArray(count1);
             
             int mpi_errror_code = MPI_Allreduce(send_data_ptr,
                           recv_data_ptr,
-                          count,
+                          count2,
                           COMMUNICATOR::MPI_DATA_TYPE<T>::value(),
                           mpi_operation,
                           communicator);
@@ -61,7 +62,7 @@ class MPI_ALLREDUCE
             }
 
             // Copy the values from the recv_data buffer to the recv_data vector.
-            const vector_size_type nm_elements = static_cast<vector_size_type>(count);
+            const vector_size_type nm_elements = static_cast<vector_size_type>(count2);
             std::vector<T> recv_data(nm_elements);
             for (vector_size_type ip=0; ip < nm_elements; ++ip)
             {

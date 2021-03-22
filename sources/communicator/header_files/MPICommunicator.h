@@ -119,6 +119,9 @@ private:
     _gatherInt(const int & data_to_gather,
                const std::size_t task_id_gather_data) const final override;
 
+    virtual bool
+    _getGlobalStatus(const bool & data_to_reduce) const final override;
+
     //===== MUTATORS =======
     void
     _initializeWorldCommunicator() final override;
