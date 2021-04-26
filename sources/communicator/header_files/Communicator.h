@@ -232,11 +232,11 @@ std::vector<int> gatherData(
 // =====================================================================================
 template<typename T>
 T getGlobalStatus( T const & data_to_transform,
-                   Communicator const & aCommunicator)
-{
-    const T out = aCommunicator.getGlobalStatus(data_to_transform);
-    return out;
-}
+                   Communicator const & aCommunicator);
+
+template<>
+bool getGlobalStatus( bool const & data_to_transform,
+                      Communicator const & aCommunicator);
 
 } // namespace MPICOMMUNICATOR
 

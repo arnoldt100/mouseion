@@ -549,7 +549,7 @@ MPICommunicator::_getGlobalStatus(const bool & data_to_reduce) const
         COMMUNICATOR::MPI_ALLREDUCE<bool,MPIReductionOperation::reduction_operation_type>::REDUCE(this->_mpiWorldCommunicator,
                                                                                                   in_buffer,
                                                                                                   mpi_op); 
-    return false;
+    return my_global_status[0];
 }
 
 //============================= MUTATORS =====================================
