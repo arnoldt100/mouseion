@@ -172,4 +172,19 @@ bool getGlobalStatus( bool const & data_to_transform,
     return out;
 }
 
+template<>
+std::string broadcast(std::string const data_to_broadcast,
+                      Communicator const & aCommunicator)
+{
+    auto const master_task_id = static_cast<int>(MASTER_TASK_ID);
+    if (aCommunicator.sameWorldRank(master_task_id))
+    {
+        std::cout << "Broadcasting data " << data_to_broadcast.c_str() << std::endl;
+    }
+    const auto broadcasted_data = aCommunicator.broadcastStdString(data_to_broadcast);
+
+    return broadcasted_data;
+
+}
+
 } /* namespace COMMUNICATOR */

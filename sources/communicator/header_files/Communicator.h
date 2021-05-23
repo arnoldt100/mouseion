@@ -61,6 +61,32 @@ public:
         return ( aRank == my_world_rank ? true : false);
     }
 
+    std::vector<std::string>
+    gatherString(const std::string & data_to_gather,
+                 const std::size_t task_id_gather_data) const
+    {
+        return this->_gatherString(data_to_gather,task_id_gather_data);
+    }
+
+    std::vector<int>
+    gatherInt(const int & data_to_gather,
+              const std::size_t task_id_gather_data) const
+    {
+        return this->_gatherInt(data_to_gather,task_id_gather_data);
+    }
+
+    bool
+    getGlobalStatus(const bool & data_to_reduce) const
+    {
+        return this->_getGlobalStatus(data_to_reduce);
+    }
+
+    std::string
+    broadcastStdString(const std::string & data_to_broadcast) const
+    {
+        return data_to_broadcast;
+    }
+
     //===== MUTATORS =======
     void
     initializeWorldCommunicator()
@@ -88,25 +114,6 @@ public:
         this->_createSubcommunicator(tag);
     }
 
-    std::vector<std::string>
-    gatherString(const std::string & data_to_gather,
-                 const std::size_t task_id_gather_data) const
-    {
-        return this->_gatherString(data_to_gather,task_id_gather_data);
-    }
-
-    std::vector<int>
-    gatherInt(const int & data_to_gather,
-              const std::size_t task_id_gather_data) const
-    {
-        return this->_gatherInt(data_to_gather,task_id_gather_data);
-    }
-
-    bool
-    getGlobalStatus(const bool & data_to_reduce) const
-    {
-        return this->_getGlobalStatus(data_to_reduce);
-    }
 
     //===== OPERATORS ======
     Communicator& operator=(Communicator const & other);
@@ -234,8 +241,46 @@ template<typename T>
 T getGlobalStatus( T const & data_to_transform,
                    Communicator const & aCommunicator);
 
+// ===  FUNCTION  ======================================================================
+//         Name:  getGlobalStatus
+//  Description:  A specialiaization of boolean type for getGlobalStatus.
+// 
+//   Parameters: data_to_transform - The data on this rank which is part of the 
+//                                   collective transformation.
+//               aCommunicator - The communicator used in this data transformation. 
+//
+//        Return: A boolean value of the transformed data.
+// =====================================================================================
 template<>
 bool getGlobalStatus( bool const & data_to_transform,
+                      Communicator const & aCommunicator);
+
+// ===  FUNCTION  ======================================================================
+//         Name:  broadcast
+//  Description:  Broadcast data to all other ranks in communicator.
+// 
+//   Parameters: data_to_broadcast - The data to broadcast. Only the master rank broadcasts
+//               it's data to the other ranks.
+//               aCommunicator - The communicator used in this broadcast.
+//
+//        Return: The broadcasted data.
+// =====================================================================================
+template<typename T>
+T broadcast(T const data_to_broadcast,
+                   Communicator const & aCommunicator);
+
+// ===  FUNCTION  ======================================================================
+//         Name:  broadcast
+//  Description:  Specialization for broadcasting a std::string.
+// 
+//   Parameters: data_to_broadcast - The data to broadcast. Only the master rank broadcasts
+//               it's data to the other ranks.
+//               aCommunicator - The communicator used in this broadcast.
+//
+//        Return: The broadcasted data.
+// =====================================================================================
+template<>
+std::string broadcast(std::string const data_to_broadcast,
                       Communicator const & aCommunicator);
 
 } // namespace MPICOMMUNICATOR
