@@ -33,7 +33,7 @@ public:
     //===== LIFECYCLE ======
     Communicator();
 
-    virtual ~Communicator();
+    virtual ~Communicator()=0;
 
     Communicator(Communicator const & other);
 
@@ -266,7 +266,7 @@ bool getGlobalStatus( bool const & data_to_transform,
 //        Return: The broadcasted data.
 // =====================================================================================
 template<typename T>
-T broadcast(T const data_to_broadcast,
+T broadcast(T const & data_to_broadcast,
                    Communicator const & aCommunicator);
 
 // ===  FUNCTION  ======================================================================
@@ -280,7 +280,7 @@ T broadcast(T const data_to_broadcast,
 //        Return: The broadcasted data.
 // =====================================================================================
 template<>
-std::string broadcast(std::string const data_to_broadcast,
+std::string broadcast(std::string const & data_to_broadcast,
                       Communicator const & aCommunicator);
 
 } // namespace MPICOMMUNICATOR

@@ -61,19 +61,19 @@ Public Members
 Lifecycle
 ^^^^^^^^^
 
-    .. function:: Communicator()
+    .. function:: Communicator::Communicator()
 
        The default constructor.
 
-    .. function:: Communicator( const Communicator &other )
+    .. function:: Communicator::Communicator( const Communicator &other )
 
         The copy constructor.
 
-    .. function:: Communicator(Communicator && other) 
+    .. function:: Communicator::Communicator(Communicator && other) 
 
         The copy-move constructor.
 
-    .. function:: virtual ~Communicator()=0
+    .. function:: virtual Communicator::~Communicator()=0
 
         The destructor.
 
@@ -87,11 +87,11 @@ Accessors
 Operators
 ^^^^^^^^^
 
-    .. function:: Communicator& operator=( Communicator const & other)
+    .. function:: Communicator& Communicator::operator=( Communicator const & other)
 
         The assignment operator.
 
-    .. function:: Communicator& operator=( Communicator && other)
+    .. function:: Communicator& Communicator::operator=( Communicator && other)
 
         The assignment-move operator.
 
@@ -152,3 +152,31 @@ Private Members
 .. ^^^^^^^^^^^^
 .. Data Members
 .. ^^^^^^^^^^^^
+
+==============================
+EXPORTED FUNCTION DECLARATIONS
+==============================
+
+.. function:: template<typename T> \
+              T broadcast(T const & data_to_broadcast, Communicator const & aCommunicator)
+
+    Broadcasts data from root to other non-root ranks with respect to the communicator aCommunicator.
+
+    This template is not defined and requires the implementation of specialized templates for each
+    data type to be broadcasted.
+
+    :param T data_to_broadcast: The data to be broadcasted.
+    :param  Communicator aCommunicator: The communicator broadcasting the data.
+    :return: The broadcasted data.
+    :rtype: T
+
+.. function:: template<> \
+              std::string broadcast(std::string const & data_to_broadcast, Communicator const & aCommunicator)
+
+    Broadcasts a std:string from root to other non-root ranks with respwect to the communicator aCommunicator.
+
+    :param std::string data_to_broadcast: The data to be broadcasted.
+    :param Communicator aCommunicator: The communicator broadcasting the data.
+    :return: The broadcasted data.
+    :rtype: std::string
+

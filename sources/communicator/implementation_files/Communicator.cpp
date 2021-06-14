@@ -41,6 +41,7 @@ Communicator::Communicator(Communicator&& other)
 {
     *this = std::move(other);
 }
+
 //============================= ACCESSORS ====================================
 
 //============================= MUTATORS =====================================
@@ -173,7 +174,7 @@ bool getGlobalStatus( bool const & data_to_transform,
 }
 
 template<>
-std::string broadcast(std::string const data_to_broadcast,
+std::string broadcast(std::string const & data_to_broadcast,
                       Communicator const & aCommunicator)
 {
     auto const master_task_id = static_cast<int>(MASTER_TASK_ID);
