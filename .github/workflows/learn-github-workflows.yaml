@@ -3,13 +3,13 @@ on: [push]
 jobs:
     check-communicator:
         runs-on: [self-hosted, Linux, X64]
+        env :
+            MOUSEION_TOP_LEVEL=env.GITHUB_WORKSPACE
         defaults: 
             run:
                 shell: bash
         steps:
             - uses: actions/checkout@v2
-            - env :
-                MOUSEION_TOP_LEVEL=env.GITHUB_WORKSPACE
             - run: |
                 echo "Running communicator test: ${MOUSEION_TOP_LEVEL}"
                 module load openmpi/4.0.3
