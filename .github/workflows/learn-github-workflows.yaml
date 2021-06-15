@@ -21,6 +21,7 @@ jobs:
             - run: |
                 module load openmpi/4.0.3
                 module load boost/1.72
+                echo "MOUSEION_BOOST_TOP_LEVEL (3)  = ${BOOST_TOP_LEVEL}" 
             - run: |
                 echo "GITHUB_WORKSPACE = ${GITHUB_WORKSPACE}"
                 echo "MOUSEION_TOP_LEVEL = " ${{ env.MOUSEION_TOP_LEVEL }}
