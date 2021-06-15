@@ -8,4 +8,8 @@ jobs:
                 shell: bash
         steps:
             - uses: actions/checkout@v2
-            - run: echo "Running communicator test."
+            - run: | 
+                echo "Running communicator test." 
+                module load openmpi/4.0.3 
+                module load boost/1.72
+
