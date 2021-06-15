@@ -8,4 +8,4 @@ jobs:
                 shell: bash
         steps:
             - uses: actions/checkout@v2
-            - runs: echo "Running communicator test."
+            - run: echo "Running communicator test."
