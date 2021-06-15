@@ -11,7 +11,7 @@ jobs:
         steps:
             - uses: actions/checkout@v2
             - run: |
-                echo "Running communicator test: ${MOUSEION_TOP_LEVEL}"
+                echo "Running communicator test: env.MOUSEION_TOP_LEVEL"
                 module load openmpi/4.0.3
                 module load boost/1.72
             - run: module list
