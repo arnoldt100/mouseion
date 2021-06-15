@@ -1,10 +1,17 @@
 name: learn-github-actions
 on: [push]
 jobs:
-    check-communicator:
+    build-library:
         runs-on: [self-hosted, Linux, X64]
         env:
             MOUSEION_TOP_LEVEL: ${GITHUB_WORKSPACE}
+            MOUSEION_CMAKE_CXX_COMPILER: mpiCC
+            MOUSEION_CMAKE_C_COMPILER: mpicc
+            MOUSEION_INSTALL_PREFIX: ${GITHUB_WORKSPACE}/sw
+            MOUSEION_INSTALL_BIN_DIRECTORY: ${{ MOUSEION_INSTALL_PREFIX }}/bin
+            MOUSEION_INSTALL_INCLUDE_DIRECTORY: ${{ MOUSEION_INSTALL_PREFIX }}/include
+            MOUSEION_INSTALL_LIB_DIRECTORY: ${{ MOUSEION_INSTALL_PREFIX }}/lib
+            MOUSEION_BOOST_TOP_LEVEL: /opt/sw/boost/boost_1_72_0
         defaults: 
             run:
                 shell: bash
@@ -13,6 +20,13 @@ jobs:
             - run: |
                 echo "GITHUB_WORKSPACE = ${GITHUB_WORKSPACE}"
                 echo "MOUSEION_TOP_LEVEL = " ${{ env.MOUSEION_TOP_LEVEL }}
+                echo "MOUSEION_CMAKE_CXX_COMPILER = " ${{ env.MOUSEION_CMAKE_CXX_COMPILER }}
+                echo "MOUSEION_CMAKE_C_COMPILER = " ${{ env.MOUSEION_CMAKE_C_COMPILER }}
+                echo "MOUSEION_INSTALL_PREFIX = " ${{ env.MOUSEION_INSTALL_PREFIX }}
+                echo "MOUSEION_INSTALL_BIN_DIRECTORY = " ${{ env.MOUSEION_INSTALL_BIN_DIRECTORY }}
+                echo "MOUSEION_INSTALL_INCLUDE_DIRECTORY = " ${{ env.MOUSEION_INSTALL_INCLUDE_DIRECTORY }}
+                echo "MOUSEION_INSTALL_LIB_DIRECTORY = " ${{ env.MOUSEION_INSTALL_LIB_DIRECTORY }}
+                echo "MOUSEION_BOOST_TOP_LEVEL = " ${{ env.MOUSEION_BOOST_TOP_LEVEL }}
                 module load openmpi/4.0.3
                 module load boost/1.72
             - run: module list
