@@ -8,6 +8,4 @@ jobs:
                 shell: bash
         steps:
             - uses: actions/checkout@v2
-            - name: Checkout submodules
-                run: git submodule update --init --recursive
-
+            - runs: echo "Running communicator test."
