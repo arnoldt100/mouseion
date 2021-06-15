@@ -8,8 +8,10 @@ jobs:
                 shell: bash
         steps:
             - uses: actions/checkout@v2
+            - env :
+                MOUSEION_TOP_LEVEL=env.GITHUB_WORKSPACE
             - run: |
-                echo "Running communicator test."
+                echo "Running communicator test: ${MOUSEION_TOP_LEVEL}"
                 module load openmpi/4.0.3
                 module load boost/1.72
             - run: module list
