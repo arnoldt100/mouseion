@@ -12,7 +12,7 @@ jobs:
             - uses: actions/checkout@v2
             - run: |
                 echo "GITHUB_WORKSPACE = ${GITHUB_WORKSPACE}"
-                echo "Running communicator test: env.MOUSEION_TOP_LEVEL"
+                echo "MOUSEION_TOP_LEVEL = ${MOUSEION_TOP_LEVEL}"
                 module load openmpi/4.0.3
                 module load boost/1.72
             - run: module list
