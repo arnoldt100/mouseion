@@ -4,7 +4,7 @@ jobs:
     check-communicator:
         runs-on: [self-hosted, Linux, X64]
         env:
-            MOUSEION_TOP_LEVEL=path1
+            MOUSEION_TOP_LEVEL: $GITHUB_WORKSPACE
         defaults: 
             run:
                 shell: bash
