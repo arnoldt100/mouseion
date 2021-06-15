@@ -1,7 +1,18 @@
 name: learn-github-actions
 on: [push]
 jobs:
+    setup:
+        runs-on: [self-hosted, Linux, X64]
+        defaults: 
+            run:
+                shell: bash
+        steps:
+            - run: |
+                module load openmpi/4.0.3
+                module load boost/1.72
+
     build-library:
+        needs: setup
         runs-on: [self-hosted, Linux, X64]
         env:
             MOUSEION_TOP_LEVEL: ${GITHUB_WORKSPACE}
@@ -27,7 +38,5 @@ jobs:
                 echo "MOUSEION_INSTALL_INCLUDE_DIRECTORY = " ${{ env.MOUSEION_INSTALL_INCLUDE_DIRECTORY }}
                 echo "MOUSEION_INSTALL_LIB_DIRECTORY = " ${{ env.MOUSEION_INSTALL_LIB_DIRECTORY }}
                 echo "MOUSEION_BOOST_TOP_LEVEL = " ${{ env.MOUSEION_BOOST_TOP_LEVEL }}
-                module load openmpi/4.0.3
-                module load boost/1.72
             - run: module list
 
