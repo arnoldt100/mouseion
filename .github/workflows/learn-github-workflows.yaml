@@ -59,4 +59,6 @@ jobs:
             - name: Test communicator library
               id: test_commnunicator_library
               run: |
-                  mpirun -n 1 ./sw/bin/mpi_communicator_unit_tests
+                module load openmpi/4.0.3
+                module load boost/1.72
+                mpirun -n 1 ./sw/bin/mpi_communicator_unit_tests
