@@ -77,6 +77,7 @@ project(mouseion)
 #                                                    -
 #-----------------------------------------------------
 include( ${CMAKE_CURRENT_LIST_DIR}/cmake_macros_and_functions/mouseion_build_prerequisites.cmake )
+include( ${CMAKE_CURRENT_LIST_DIR}/cmake_macros_and_functions/enable_compiler_warnings.cmake )
 
 #-----------------------------------------------------
 # Check that key environmental variables are set.    -
