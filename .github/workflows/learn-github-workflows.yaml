@@ -29,7 +29,7 @@ jobs:
                 module load boost/1.72
 
                 export MOUSEION_BOOST_TOP_LEVEL=${BOOST_TOP_LEVEL} 
-                export MOUSEION_TOP_LEVEL=$${ env.MOUSEION_TOP_LEVEL_ENV }
+                export MOUSEION_TOP_LEVEL=$${ env.MOUSEION_TOP_LEVEL_ENV }}
                 echo "GITHUB_WORKSPACE = ${GITHUB_WORKSPACE}"
                 echo "MOUSEION_TOP_LEVEL = " ${MOUSEION_TOP_LEVEL_ENV}
                 echo "MOUSEION_CMAKE_CXX_COMPILER = " ${{ env.MOUSEION_CMAKE_CXX_COMPILER }}
