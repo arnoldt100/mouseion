@@ -21,6 +21,7 @@ jobs:
             - run: |
                 module load openmpi/4.0.3
                 module load boost/1.72
+                export MOUSEION_BOOST_TOP_LEVEL=${BOOST_TOP_LEVEL} 
                 echo "GITHUB_WORKSPACE = ${GITHUB_WORKSPACE}"
                 echo "MOUSEION_TOP_LEVEL = " ${{ env.MOUSEION_TOP_LEVEL }}
                 echo "MOUSEION_CMAKE_CXX_COMPILER = " ${{ env.MOUSEION_CMAKE_CXX_COMPILER }}
@@ -30,7 +31,6 @@ jobs:
                 echo "MOUSEION_INSTALL_INCLUDE_DIRECTORY = " ${{ env.MOUSEION_INSTALL_INCLUDE_DIRECTORY }}
                 echo "MOUSEION_INSTALL_LIB_DIRECTORY = " ${{ env.MOUSEION_INSTALL_LIB_DIRECTORY }}
                 echo "MOUSEION_BOOST_TOP_LEVEL (1) = " ${{ env.MOUSEION_BOOST_TOP_LEVEL }}
-                echo "MOUSEION_BOOST_TOP_LEVEL (2)  = ${BOOST_TOP_LEVEL}" 
-                echo "MOUSEION_BOOST_TOP_LEVEL (3)  = ${BOOST_TOP_LEVEL}" 
+                echo "MOUSEION_BOOST_TOP_LEVEL (2) = " ${BOOST_TOP_LEVEL}
             - run: module list
 
