@@ -22,8 +22,10 @@ jobs:
                 shell: bash
         steps:
             - name: Clone source
+              id: clone_mouseion_source
               uses: actions/checkout@v2
             - name: Build Mouseion library
+              id: build_mouseion_library
               run: |
                 module load openmpi/4.0.3
                 module load boost/1.72
@@ -54,3 +56,7 @@ jobs:
                 cmake -S ${GITHUB_WORKSPACE} -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON 
                 make 
                 make install 
+            - name: Test communicator library
+              id: test_commnunicator_library
+              run: |
+                  mpirun -n 1 ./sw/bin/mpi_communicator_unit_tests
