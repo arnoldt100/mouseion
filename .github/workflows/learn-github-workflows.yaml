@@ -41,7 +41,7 @@ jobs:
                 mkdir mouseion_cmake_build
                 cd mouseion_cmake_build
                 cmake -S ${GITHUB_WORKSPACE}
-                make -j 2
+                make 
                 make install 
               env:
                   MOUSEION_BOOST_TOP_LEVEL: ${BOOST_TOP_LEVEL} 
