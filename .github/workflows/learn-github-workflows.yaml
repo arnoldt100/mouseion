@@ -40,6 +40,8 @@ jobs:
                 echo "MOUSEION_BOOST_TOP_LEVEL (2) = " ${BOOST_TOP_LEVEL}
                 mkdir mouseion_cmake_build
                 cd mouseion_cmake_build
-                cmake -S ${GITHUB_WORKSPACE} 
+                cmake -S ${GITHUB_WORKSPACE}
+                make -j 2
+                make install 
               env:
                   MOUSEION_BOOST_TOP_LEVEL: ${BOOST_TOP_LEVEL} 
