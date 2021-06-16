@@ -118,8 +118,8 @@ set_target_properties(${target} PROPERTIES
                       PUBLIC_HEADER "${counterclass_header_files}" )
 
 install( TARGETS ${target}
-         ARCHIVE DESTINATION ${counterclass_install_lib_directory} 
-         PUBLIC_HEADER DESTINATION ${counterclass_install_include_directory})
+         ARCHIVE DESTINATION "${counterclass_install_lib_directory}" 
+         PUBLIC_HEADER DESTINATION "${counterclass_install_include_directory}" )
 
 #-----------------------------------------------------
 # Add the subdirectory for creating the unit tests.  -
