@@ -6,7 +6,7 @@ jobs:
         # Set critical environmental variables for CMake
         # configuring.
         env:
-            MOUSEION_TOP_LEVEL: ${{ env.GITHUB_WORKSPACE }}
+            MOUSEION_TOP_LEVEL: ${{ GITHUB_WORKSPACE }}
             MOUSEION_CMAKE_CXX_COMPILER: mpiCC
             MOUSEION_CMAKE_C_COMPILER: mpicc
             MOUSEION_INSTALL_PREFIX: ${GITHUB_WORKSPACE}/sw
