@@ -15,6 +15,7 @@ jobs:
             MOUSEION_INSTALL_LIB_DIRECTORY: ${GITHUB_WORKSPACE}/sw/lib
             MOUSEION_BOOST_TOP_LEVEL: /opt/sw/boost/boost_1_72_0
             MOUSEION_MINIMUM_CMAKE_VERSION: 3.16
+            MOUSEION_CXX_STANDARD: 17
         # We always default to the bash shell. 
         defaults: 
             run:
