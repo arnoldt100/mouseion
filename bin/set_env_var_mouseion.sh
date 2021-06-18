@@ -22,8 +22,8 @@
 #                                                    -
 #-----------------------------------------------------
 
-export MOUSEION=$(pwd)
+export MOUSEION_TOP_LEVEL=$(pwd)
 
-export PATH="${MOUSEION}/bin:${PATH}"
+export PATH="${MOUSEION_TOP_LEVEL}/bin:${PATH}"
 
-export PYTHONPATH="${MOUSEION}/python_packages:${PYTHONPATH}"
+export PYTHONPATH="${MOUSEION_TOP_LEVEL}/python_packages:${PYTHONPATH}"
