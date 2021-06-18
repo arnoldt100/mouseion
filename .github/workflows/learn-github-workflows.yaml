@@ -53,7 +53,8 @@ jobs:
                 echo "MOUSEION_BOOST_TOP_LEVEL (2) = " ${BOOST_TOP_LEVEL}
                 mkdir mouseion_cmake_build
                 cd mouseion_cmake_build
-                cmake -S ${GITHUB_WORKSPACE} -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON 
+                cmake -S ${GITHUB_WORKSPACE} -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON -DCMAKE_CXX_COMPILER=${MOUSEION_CMAKE_CXX_COMPILER} -DCMAKE_C_COMPILER=${MOUSEION_CMAKE_C_COMPILER}
+
                 make 
                 make install 
             - name: Test communicator library
