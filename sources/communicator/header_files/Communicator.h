@@ -43,10 +43,11 @@ public:
 
     //===== ACCESSORS ======
     int 
-    getWorldCommunicatorRank() const
+    getCommunicatorRank() const
     {
-        return this->_getWorldCommunicatorRank();
+        return this->_getCommunicatorRank();
     }
+
 
     int
     getSubCommunicatorRank(const std::string & tag) const
@@ -57,7 +58,7 @@ public:
     bool
     sameWorldRank( const int aRank) const
     {
-        int my_world_rank = this->getWorldCommunicatorRank();
+        int my_world_rank = this->getCommunicatorRank();
         return ( aRank == my_world_rank ? true : false);
     }
 
@@ -136,7 +137,7 @@ private:
     _getMaximum(int const aValue) const=0;
 
     virtual int 
-    _getWorldCommunicatorRank() const=0;
+    _getCommunicatorRank() const=0;
 
     virtual int 
     _getSubCommunicatorRank(const std::string & tag) const=0;

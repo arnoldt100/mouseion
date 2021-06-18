@@ -34,9 +34,9 @@ public:
     //===== DATA MEMBERS ===
 
     //===== ACCESSORS ======
-    std::unique_ptr<COMMUNICATOR::Communicator> createCommunicator() const
+    std::unique_ptr<COMMUNICATOR::Communicator> createWorldCommunicator() const
     {
-        return this->_createCommunicator();
+        return this->_createWorldCommunicator();
     }
 
     std::unique_ptr<COMMUNICATOR::Communicator> 
@@ -69,7 +69,7 @@ private:
 
     //===== ACCESSORS ======
     virtual std::unique_ptr<COMMUNICATOR::Communicator> 
-    _createCommunicator() const=0;
+    _createWorldCommunicator() const=0;
 
     virtual std::unique_ptr<COMMUNICATOR::Communicator> 
     _cloneCommunicator(std::unique_ptr<COMMUNICATOR::Communicator> const & other) const=0;

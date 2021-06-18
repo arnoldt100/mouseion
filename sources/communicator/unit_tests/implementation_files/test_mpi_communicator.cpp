@@ -1,15 +1,29 @@
 #include "test_mpi_communicator.h"
+BOOST_TEST_GLOBAL_FIXTURE( MPICommFixture );
 
 BOOST_AUTO_TEST_SUITE( Test_Suite_MPI_COMMUNICATOR )
 
-BOOST_FIXTURE_TEST_CASE( test_stud_1, MPICommFixture )
+BOOST_AUTO_TEST_CASE( test_creation_and_freeing_mpi_communicator )
 {
-  BOOST_TEST( 2 < 1, "The test test_stud_1 is incorrect" );
+    // Initialize the communicator via its mpi communicator
+    // factory.
+    COMMUNICATOR::MPICommunicatorFactory a_communicator_factory;
+    std::unique_ptr<COMMUNICATOR::Communicator> aMPICommunicator =  a_communicator_factory.createWorldCommunicator();
+    
+    // Now explicitly free the resources used by the communicator.
+    aMPICommunicator->freeCommunicator();
 }
 
-BOOST_FIXTURE_TEST_CASE( test_stud_2, MPICommFixture )
+BOOST_AUTO_TEST_CASE( test_gather_string )
 {
-  BOOST_TEST(2 < 1, "The test test_stud_2 is incorrect.");
+    // Initialize the communicator via its mpi communicator
+    // factory.
+    COMMUNICATOR::MPICommunicatorFactory a_communicator_factory;
+    std::unique_ptr<COMMUNICATOR::Communicator> aMPICommunicator;
+    aMPICommunicator = a_communicator_factory.createWorldCommunicator();
+
+
+    aMPICommunicator->freeCommunicator();
 }
 
 BOOST_AUTO_TEST_SUITE_END()

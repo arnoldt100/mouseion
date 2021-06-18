@@ -66,7 +66,7 @@ MPICommunicatorFactory::operator=(const MPICommunicatorFactory& other)
 //============================= LIFECYCLE ====================================
 
 //============================= ACCESSORS ====================================
-std::unique_ptr<COMMUNICATOR::Communicator> MPICommunicatorFactory::_createCommunicator() const
+std::unique_ptr<COMMUNICATOR::Communicator> MPICommunicatorFactory::_createWorldCommunicator() const
 {
     std::unique_ptr<COMMUNICATOR::Communicator> aCommunicator = 
         std::make_unique<COMMUNICATOR::MPICommunicator>();

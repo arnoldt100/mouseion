@@ -58,7 +58,7 @@ private:
 
     //===== ACCESSORS ======
     std::unique_ptr<COMMUNICATOR::Communicator>
-     _createCommunicator() const override;
+     _createWorldCommunicator() const override;
 
      std::unique_ptr<COMMUNICATOR::Communicator>
      _cloneCommunicator(std::unique_ptr<COMMUNICATOR::Communicator> const & a_communicator) const override;

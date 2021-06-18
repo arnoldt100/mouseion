@@ -76,7 +76,7 @@ private:
     _getSizeofCommunicator(const std::string & id) const final override;
 
     int
-    _getWorldCommunicatorRank() const final override;
+    _getCommunicatorRank() const final override;
 
     int 
 	_getSubCommunicatorRank(const std::string & tag) const final override;
@@ -149,7 +149,7 @@ private:
             int* const & end_offsets_ptr);
 
     //===== DATA MEMBERS ===
-    MPI_Comm _mpiWorldCommunicator;
+    MPI_Comm _mpiCommunicator;
     SUBCOMMUNICATOR_MAP_T _mpicommHandles;
     std::string _hostname;
     static std::string HOSTNAME_NOT_DEFINED;

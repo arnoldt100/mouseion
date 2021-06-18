@@ -23,7 +23,7 @@ std::string MPICommunicator::HOSTNAME_NOT_DEFINED("Hostname not defined");
 
 MPICommunicator::MPICommunicator() : 
     Communicator(),
-    _mpiWorldCommunicator(MPI_COMM_NULL),
+    _mpiCommunicator(MPI_COMM_NULL),
     _hostname(MPICommunicator::HOSTNAME_NOT_DEFINED)
 {
     return;
@@ -31,7 +31,7 @@ MPICommunicator::MPICommunicator() :
 
 
 MPICommunicator::MPICommunicator(MPICommunicator && other) :
-    _mpiWorldCommunicator(MPI_COMM_NULL)
+    _mpiCommunicator(MPI_COMM_NULL)
 {
     *this = std::move(other);
 }
@@ -40,7 +40,7 @@ MPICommunicator::MPICommunicator(const MPI_Comm & mpi_world_communicator,
                 const std::string & host_name,
                 const SUBCOMMUNICATOR_MAP_T & subcommunicator_handles ) :
     Communicator(),
-    _mpiWorldCommunicator(mpi_world_communicator),
+    _mpiCommunicator(mpi_world_communicator),
     _mpicommHandles(subcommunicator_handles),
     _hostname(host_name)
 {
@@ -67,7 +67,7 @@ MPICommunicator::_initializeWorldCommunicator()
     try
     {
         int mpi_return_code = MPI_Comm_dup(MPI_COMM_WORLD,
-                                           &(this->_mpiWorldCommunicator));
+                                           &(this->_mpiCommunicator));
         if (mpi_return_code != MPI_SUCCESS)
         {
             throw COMMUNICATOR::MPICommDuplicateException();       
@@ -89,7 +89,7 @@ void
 MPICommunicator::_freeCommunicator()
 {
     // We now destroy/free all communicators.
-    this->_freeMPICommunicator(this->_mpiWorldCommunicator);
+    this->_freeMPICommunicator(this->_mpiCommunicator);
 
     for (auto const & it : this->_mpicommHandles )
     {
@@ -117,11 +117,11 @@ MPICommunicator& MPICommunicator::operator=(MPICommunicator && other)
 {
     if (this != &other )
     {
-        this->_mpiWorldCommunicator = other._mpiWorldCommunicator;
+        this->_mpiCommunicator = other._mpiCommunicator;
         this->_mpicommHandles = other._mpicommHandles;
         this->_hostname = other._hostname;
 
-        other._mpiWorldCommunicator = MPI_COMM_NULL;
+        other._mpiCommunicator = MPI_COMM_NULL;
         other._mpicommHandles.clear();
         other._hostname = std::string(MPICommunicator::HOSTNAME_NOT_DEFINED);
 
@@ -149,7 +149,7 @@ MPICommunicator::_getSizeofCommunicator(const std::string & id) const
         if (id == "world_communicator")
         {
             int world_comm_group_size;
-            int mpi_return_code = MPI_Comm_size(this->_mpiWorldCommunicator,&world_comm_group_size);
+            int mpi_return_code = MPI_Comm_size(this->_mpiCommunicator,&world_comm_group_size);
 
             if (mpi_return_code != MPI_SUCCESS)
             {
@@ -188,14 +188,14 @@ MPICommunicator::_createSubcommunicator(const std::string & tag)
         COMMUNICATOR::Communicator::formGlobalMap(tag,
                                                   *this);
 
-    // Get the hash for this gloabl tag.
+    // Get the hash for this global tag.
     std::size_t my_hash = aglobaltagmap[tag];
     
     try 
     {
         int mpi_return_code;
         MPI_Comm tmp_mpi_comm=MPI_COMM_NULL;
-        mpi_return_code = MPI_Comm_split(this->_mpiWorldCommunicator,
+        mpi_return_code = MPI_Comm_split(this->_mpiCommunicator,
                                           static_cast<int>(my_hash),
                                           0,
                                           &tmp_mpi_comm);
@@ -217,13 +217,13 @@ MPICommunicator::_createSubcommunicator(const std::string & tag)
 }
 
 int
-MPICommunicator::_getWorldCommunicatorRank() const
+MPICommunicator::_getCommunicatorRank() const
 {
     int rank;
     try
     {
         int mpi_return_code;
-        mpi_return_code = MPI_Comm_rank(this->_mpiWorldCommunicator,&rank);
+        mpi_return_code = MPI_Comm_rank(this->_mpiCommunicator,&rank);
         if (mpi_return_code != MPI_SUCCESS)
         {
             throw COMMUNICATOR::MPIGenericException();
@@ -264,9 +264,9 @@ MPICommunicator::_getSubCommunicatorRank(const std::string & tag) const
 COMMUNICATOR::Communicator*
 MPICommunicator::_duplicateCommunicator() const 
 {
-	// First make a duplicate of the world communicator
-	MPI_Comm mpi_worldcomm_duplicate;
-	auto mpi_return_code = MPI_Comm_dup(_mpiWorldCommunicator,&mpi_worldcomm_duplicate);
+	// First make a duplicate of the communicator
+	MPI_Comm mpi_comm_duplicate;
+	auto mpi_return_code = MPI_Comm_dup(_mpiCommunicator,&mpi_comm_duplicate);
 
 	// Duplicate the subcommunicators.
 	SUBCOMMUNICATOR_MAP_T mpi_comm_handles_duplicate;
@@ -292,7 +292,7 @@ MPICommunicator::_duplicateCommunicator() const
 
     // We now form the new MPICommunicator.
     MPICommunicator* aMPICommunicator = 
-        new MPICommunicator(mpi_worldcomm_duplicate,this->_hostname,mpi_comm_handles_duplicate);
+        new MPICommunicator(mpi_comm_duplicate,this->_hostname,mpi_comm_handles_duplicate);
 
     return aMPICommunicator;
 }
@@ -306,7 +306,7 @@ MPICommunicator::_getMaximum(int const value) const
     try 
     {
       vec_maximum = COMMUNICATOR::MPI_ALLREDUCE<int,COMMUNICATOR::MPIReductionOperation::reduction_operation_type>::REDUCE(
-                                                this->_mpiWorldCommunicator,
+                                                this->_mpiCommunicator,
                                                 vec,
                                                 COMMUNICATOR::MPIReductionOperation::maximum);
     }
@@ -335,7 +335,7 @@ MPICommunicator::_allGather(
 
     try 
     {
-        recv_buffer_ptr = COMMUNICATOR::MPI_ALL_GATHER<char>::allGather(this->_mpiWorldCommunicator,
+        recv_buffer_ptr = COMMUNICATOR::MPI_ALL_GATHER<char>::allGather(this->_mpiCommunicator,
                                                                         offset_size,
                                                                         aCString,
                                                                         aLengthMaximum);
@@ -387,7 +387,7 @@ MPICommunicator::_gather(const std::size_t task_id_to_gather_dat_on,
     try
     {
         recv_buffer_ptr = COMMUNICATOR::MPI_GATHER<char>::Gather(task_id_to_gather_dat_on,
-                                                  this->_mpiWorldCommunicator,
+                                                  this->_mpiCommunicator,
                                                   offset_size,
                                                   aCString,
                                                   aLengthMaximum);
@@ -438,7 +438,7 @@ MPICommunicator::_gather(const std::size_t task_id_to_gather_data_on,
         // Call the MPI_Gather for char arrays.
         char* tmp_recieve_buffer =
             COMMUNICATOR::MPI_GATHER<char>::Gather(task_id_to_gather_data_on,
-                                                   this->_mpiWorldCommunicator,
+                                                   this->_mpiCommunicator,
                                                    offset_size,
                                                    aCString.get(),
                                                    aLengthMaximum);
@@ -477,7 +477,7 @@ MPICommunicator::_gatherString(const std::string & data_to_gather,
     MEMORY_MANAGEMENT::Array1d<char> my_char_array_factory;
 
     const bool my_rank_equals_taskid = 
-        COMMUNICATOR::MPIUtilityFunctions::same_rank(task_id_to_gather_data_on,this->_mpiWorldCommunicator);
+        COMMUNICATOR::MPIUtilityFunctions::same_rank(task_id_to_gather_data_on,this->_mpiCommunicator);
 
     // Get the maximum length of tag with respect to the communicator group.
     const int slength = data_to_gather.length();
@@ -533,7 +533,7 @@ MPICommunicator::_gatherInt(const int & data_to_gather,
 
     std::vector<int> gathered_data = COMMUNICATOR::MPI_GATHER<int>::Gather(
                                                             mpi_task_to_gather_data_on,
-                                                            this->_mpiWorldCommunicator,
+                                                            this->_mpiCommunicator,
                                                             send_buffer.get(),
                                                             send_buffer_count);
      
@@ -546,7 +546,7 @@ MPICommunicator::_getGlobalStatus(const bool & data_to_reduce) const
     std::vector<bool> in_buffer = {data_to_reduce};
     MPIReductionOperation::reduction_operation_type mpi_op(MPIReductionOperation::logical_and); 
     const std::vector<bool> my_global_status = 
-        COMMUNICATOR::MPI_ALLREDUCE<bool,MPIReductionOperation::reduction_operation_type>::REDUCE(this->_mpiWorldCommunicator,
+        COMMUNICATOR::MPI_ALLREDUCE<bool,MPIReductionOperation::reduction_operation_type>::REDUCE(this->_mpiCommunicator,
                                                                                                   in_buffer,
                                                                                                   mpi_op); 
     return my_global_status[0];
