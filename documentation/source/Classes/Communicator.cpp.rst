@@ -81,12 +81,12 @@ Lifecycle
 Accessors
 ^^^^^^^^^
 
-    .. function:: Communicator::broadcastStdString(const std::string & data_to_broadcast, const int bcast_rank) const
+    .. function:: Communicator::broadcastStdString(const std::string & data_to_broadcast, const std::size_t bcast_rank) const
 
         Broadcasts the string data_to_broadcast to all communicator ranks.
 
         :param std::string data_to_broadcast: The data to be broadcasted.
-        :param int bcast_rank: The rank of communicator doing the broadcasting.
+        :param std::size_t bcast_rank: The rank of communicator doing the broadcasting.
         :return: The broadcasted data.
         :rtype: std::string
 
@@ -165,25 +165,27 @@ EXPORTED FUNCTION DECLARATIONS
 ==============================
 
 .. function:: template<typename T> \
-              T broadcast(T const & data_to_broadcast, Communicator const & aCommunicator)
+              T broadcast(T const & data_to_broadcast, Communicator const & aCommunicator,const std::size_t bcast_rank)
 
-    Broadcasts data from root to other non-root ranks with respect to the communicator aCommunicator.
+    Broadcasts data from the communicator with rank *bcast_rank* to other ranks with respect to the communicator aCommunicator.
 
     This template is not defined and requires the implementation of specialized templates for each
     data type to be broadcasted.
 
     :param T data_to_broadcast: The data to be broadcasted.
     :param  Communicator aCommunicator: The communicator broadcasting the data.
+    :param std::size_t bcast_rank: The rank of communicator doing the broadcasting.
     :return: The broadcasted data.
     :rtype: T
 
 .. function:: template<> \
-              std::string broadcast(std::string const & data_to_broadcast, Communicator const & aCommunicator)
+              std::string broadcast(std::string const & data_to_broadcast, Communicator const & aCommunicator,const std::size_t bcast_rank)
 
-    Broadcasts a std:string from root to other non-root ranks with respwect to the communicator aCommunicator.
+    Broadcasts a std:string from the communicator with rank *bcast_rank* to other ranks with respect to the communicator aCommunicator.
 
     :param std::string data_to_broadcast: The data to be broadcasted.
     :param Communicator aCommunicator: The communicator broadcasting the data.
+    :param std::size_t bcast_rank: The rank of communicator doing the broadcasting.
     :return: The broadcasted data.
     :rtype: std::string
 
