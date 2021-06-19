@@ -25,7 +25,7 @@ class MPI_Broadcast<int>
 {
     public:
     static int Broadcast(const int data_to_broadcast,
-                         const MPI_Comm mpi_comm, const int root);
+                         const MPI_Comm mpi_comm, const std::size_t bcast_rank);
 
 }; // -----  end of class MPI_BROADCAST  -----
 

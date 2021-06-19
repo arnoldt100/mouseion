@@ -26,7 +26,7 @@ namespace COMMUNICATOR {
 
 //============================= OPERATORS ====================================
 
-int MPI_Broadcast<int>::Broadcast(const int data_to_broadcast, const MPI_Comm mpi_comm, const int root) 
+int MPI_Broadcast<int>::Broadcast(const int data_to_broadcast, const MPI_Comm mpi_comm, const std::size_t bcast_rank) 
 {
 
     // Create a int array with 1 element.

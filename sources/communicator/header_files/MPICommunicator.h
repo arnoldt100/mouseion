@@ -111,7 +111,7 @@ private:
     _getGlobalStatus(const bool & data_to_reduce) const final override;
 
     std::string
-    _broadcastStdString(const std::string & data_to_broadcast, const int bcast_rank) const final override;
+    _broadcastStdString(const std::string & data_to_broadcast, const std::size_t bcast_rank) const final override;
 
     //===== MUTATORS =======
     void

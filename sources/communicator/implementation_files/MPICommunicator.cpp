@@ -170,7 +170,7 @@ MPICommunicator& MPICommunicator::operator=(MPICommunicator && other)
 
 
 std::string
-MPICommunicator::_broadcastStdString(const std::string & data_to_broadcast, const int bcast_rank) const
+MPICommunicator::_broadcastStdString(const std::string & data_to_broadcast, const std::size_t bcast_rank) const
 {
     // First broadcast the size of the string and don't forget to account 
     // for the null terminated char.
@@ -178,7 +178,7 @@ MPICommunicator::_broadcastStdString(const std::string & data_to_broadcast, cons
     try 
     {
         const int slength2 = COMMUNICATOR::MPI_Broadcast<int>::Broadcast(slength1, 
-                            this->_mpiCommunicator,static_cast<int>(bcast_rank));
+                            this->_mpiCommunicator,bcast_rank);
 
     }
     catch (...)

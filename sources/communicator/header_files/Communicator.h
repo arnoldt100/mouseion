@@ -83,7 +83,7 @@ public:
     }
 
     std::string
-    broadcastStdString(const std::string & data_to_broadcast, const int bcast_rank) const
+    broadcastStdString(const std::string & data_to_broadcast, const std::size_t bcast_rank) const
     {
         return this->_broadcastStdString(data_to_broadcast,bcast_rank);
     }
@@ -181,7 +181,7 @@ private:
     _getGlobalStatus(const bool & data_to_reduce) const=0;
 
     virtual std::string
-    _broadcastStdString(const std::string & data_to_broadcast, const int bcast_rank) const=0;
+    _broadcastStdString(const std::string & data_to_broadcast, const std::size_t bcast_rank) const=0;
 
     //===== MUTATORS =======
     virtual void
