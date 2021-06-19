@@ -18,7 +18,7 @@ MasterSlaveIdentification<Communicator>::MasterSlaveIdentification(
     const int master_mpi_rank) : Identification<Communicator>()
 {
 
-    if ( aCommunicator.sameWorldRank(master_mpi_rank) )
+    if ( aCommunicator.sameCommunicatorRank(master_mpi_rank) )
     {
         this->_myIdentity=MASTER_SLAVE_IDENTITIES::master_mpi_task;
     }

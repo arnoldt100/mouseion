@@ -56,7 +56,7 @@ public:
     }
 
     bool
-    sameWorldRank( const int aRank) const
+    sameCommunicatorRank( const int aRank) const
     {
         int my_world_rank = this->getCommunicatorRank();
         return ( aRank == my_world_rank ? true : false);
@@ -83,9 +83,9 @@ public:
     }
 
     std::string
-    broadcastStdString(const std::string & data_to_broadcast) const
+    broadcastStdString(const std::string & data_to_broadcast, const int bcast_rank) const
     {
-        return this->_broadcastStdString(data_to_broadcast);
+        return this->_broadcastStdString(data_to_broadcast,bcast_rank);
     }
 
     //===== MUTATORS =======
@@ -181,7 +181,7 @@ private:
     _getGlobalStatus(const bool & data_to_reduce) const=0;
 
     virtual std::string
-    _broadcastStdString(const std::string & data_to_broadcast) const=0;
+    _broadcastStdString(const std::string & data_to_broadcast, const int bcast_rank) const=0;
 
     //===== MUTATORS =======
     virtual void
@@ -266,12 +266,14 @@ bool getGlobalStatus( bool const & data_to_transform,
 //   Parameters: data_to_broadcast - The data to broadcast. Only the master rank broadcasts
 //               it's data to the other ranks.
 //               aCommunicator - The communicator used in this broadcast.
+//				 bcast_rank - The rank of the communicator doing the broadcasting.
 //
 //        Return: The broadcasted data.
 // =====================================================================================
 template<typename T>
 T broadcast(T const & data_to_broadcast,
-                   Communicator const & aCommunicator);
+                   Communicator const & aCommunicator,
+				   const std::size_t bcast_rank);
 
 // ===  FUNCTION  ======================================================================
 //         Name:  broadcast
@@ -280,12 +282,14 @@ T broadcast(T const & data_to_broadcast,
 //   Parameters: data_to_broadcast - The data to broadcast. Only the master rank broadcasts
 //               it's data to the other ranks.
 //               aCommunicator - The communicator used in this broadcast.
+//               bcast_rank - The rank of the communicator doing the broadcasting.
 //
 //        Return: The broadcasted data.
 // =====================================================================================
 template<>
 std::string broadcast(std::string const & data_to_broadcast,
-                      Communicator const & aCommunicator);
+                      Communicator const & aCommunicator,
+					  const std::size_t bcast_rank);
 
 } // namespace MPICOMMUNICATOR
 

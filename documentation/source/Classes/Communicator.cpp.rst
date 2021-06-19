@@ -81,11 +81,12 @@ Lifecycle
 Accessors
 ^^^^^^^^^
 
-    .. function:: Communicator::broadcastStdString(const std::string & data_to_broadcast) const
+    .. function:: Communicator::broadcastStdString(const std::string & data_to_broadcast, const int bcast_rank) const
 
         Broadcasts the string data_to_broadcast to all communicator ranks.
 
         :param std::string data_to_broadcast: The data to be broadcasted.
+        :param int bcast_rank: The rank of communicator doing the broadcasting.
         :return: The broadcasted data.
         :rtype: std::string
 

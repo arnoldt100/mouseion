@@ -175,14 +175,15 @@ bool getGlobalStatus( bool const & data_to_transform,
 
 template<>
 std::string broadcast(std::string const & data_to_broadcast,
-                      Communicator const & aCommunicator)
+                      Communicator const & aCommunicator,
+					  const std::size_t bcast_rank)
 {
-    auto const master_task_id = static_cast<int>(MASTER_TASK_ID);
-    if (aCommunicator.sameWorldRank(master_task_id))
+    auto const master_task_id = static_cast<int>(bcast_rank);
+    if (aCommunicator.sameCommunicatorRank(master_task_id))
     {
         std::cout << "Broadcasting data " << data_to_broadcast.c_str() << std::endl;
     }
-    const auto broadcasted_data = aCommunicator.broadcastStdString(data_to_broadcast);
+    const auto broadcasted_data = aCommunicator.broadcastStdString(data_to_broadcast,bcast_rank);
 
     return broadcasted_data;
 
