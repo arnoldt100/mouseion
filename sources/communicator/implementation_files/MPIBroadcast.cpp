@@ -29,11 +29,11 @@ namespace COMMUNICATOR {
 int MPI_Broadcast<int>::Broadcast(const int data_to_broadcast, const MPI_Comm mpi_comm, const std::size_t bcast_rank) 
 {
 
-    // Create a int array with 1 element.
+    // Create an int array with 1 element.
     MEMORY_MANAGEMENT::Array1d<int> my_int_array_factory;
     int* array1 = my_int_array_factory.createArray(1);
 
-    // Delete the mememory associated with the array.
+    // Delete the memory associated with the array.
     my_int_array_factory.destroyArray(array1);
 
     return 0;

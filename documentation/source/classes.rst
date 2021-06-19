@@ -6,3 +6,4 @@ Welcome to Anansi's class documentation!
    :titlesonly:
 
    Classes/Communicator.cpp.rst
+   Classes/MPIBroadcast.cpp.rst
