@@ -81,7 +81,13 @@ Lifecycle
 Accessors
 ^^^^^^^^^
 
-    No public accessors
+    .. function:: Communicator::broadcastStdString(const std::string & data_to_broadcast) const
+
+        Broadcasts the string data_to_broadcast to all communicator ranks.
+
+        :param std::string data_to_broadcast: The data to be broadcasted.
+        :return: The broadcasted data.
+        :rtype: std::string
 
 ^^^^^^^^^
 Operators

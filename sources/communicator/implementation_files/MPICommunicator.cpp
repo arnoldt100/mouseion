@@ -140,6 +140,17 @@ MPICommunicator& MPICommunicator::operator=(MPICommunicator && other)
 //////////////////////////////////////////////////////////////////////////////
 
 //============================= ACCESSORS ====================================
+
+
+std::string
+MPICommunicator::_broadcastStdString(const std::string & data_to_broadcast) const
+{
+    // First broadcast the size of the string and include the null terminated char.
+    const int slength = data_to_broadcast.length() + 1;
+    return data_to_broadcast;
+}
+
+
 std::size_t
 MPICommunicator::_getSizeofCommunicator(const std::string & id) const
 {
@@ -536,7 +547,6 @@ MPICommunicator::_gatherInt(const int & data_to_gather,
                                                             this->_mpiCommunicator,
                                                             send_buffer.get(),
                                                             send_buffer_count);
-     
     return gathered_data; 
 }
 

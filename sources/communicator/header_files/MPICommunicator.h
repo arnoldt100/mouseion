@@ -119,8 +119,11 @@ private:
     _gatherInt(const int & data_to_gather,
                const std::size_t task_id_gather_data) const final override;
 
-    virtual bool
+    bool
     _getGlobalStatus(const bool & data_to_reduce) const final override;
+
+    std::string
+    _broadcastStdString(const std::string & data_to_broadcast) const final override;
 
     //===== MUTATORS =======
     void

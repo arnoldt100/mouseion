@@ -85,7 +85,7 @@ public:
     std::string
     broadcastStdString(const std::string & data_to_broadcast) const
     {
-        return data_to_broadcast;
+        return this->_broadcastStdString(data_to_broadcast);
     }
 
     //===== MUTATORS =======
@@ -179,6 +179,9 @@ private:
 
     virtual bool
     _getGlobalStatus(const bool & data_to_reduce) const=0;
+
+    virtual std::string
+    _broadcastStdString(const std::string & data_to_broadcast) const=0;
 
     //===== MUTATORS =======
     virtual void
