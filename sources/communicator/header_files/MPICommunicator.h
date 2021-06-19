@@ -12,34 +12,22 @@
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
 #include "mpi.h"
-#include <iostream>
 #include <map>
-#include <functional>
-#include <boost/asio.hpp>
+#include <memory>
+#include <string>
 
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "Communicator.h"
-#include "MPIInitException.h"
-#include "MPIGenericException.h"
-#include "MPICommDuplicateException.h"
-#include "MPIFreeException.h"
-#include "MPIAllGatherException.h"
-#include "MPICommSplitException.h"
-#include "MPICommSizeException.h"
-#include "MPIReductionOperation.h"
-#include "MPIReduce.h"
-#include "MPIAllgather.h"
-#include "MPIGather.h"
-
 
 
 namespace COMMUNICATOR
 {
 
-using SUBCOMMUNICATOR_MAP_T = std::map<std::string,MPI_Comm>;
+static constexpr std::size_t DEFAULT_MPI_MASTER_RANK_ID=0;
 
+using SUBCOMMUNICATOR_MAP_T = std::map<std::string,MPI_Comm>;
 
 class MPICommunicator final : public Communicator
 {

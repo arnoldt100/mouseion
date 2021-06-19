@@ -6,8 +6,35 @@
  *      Author: arnoldt
  */
 
+//--------------------------------------------------------//
+//-------------------- System includes -------------------//
+//--------------------------------------------------------//
+#include <iostream>
+#include <functional>
+
+//--------------------------------------------------------//
+//-------------------- External Library Files ------------//
+//--------------------------------------------------------//
+#include <boost/asio.hpp>
+
+//--------------------------------------------------------//
+//--------------------- Package includes -----------------//
+//--------------------------------------------------------//
 #include "MPICommunicator.h"
+#include "MPIInitException.h"
+#include "MPIGenericException.h"
+#include "MPICommDuplicateException.h"
+#include "MPIFreeException.h"
+#include "MPIAllGatherException.h"
+#include "MPICommSplitException.h"
+#include "MPICommSizeException.h"
+#include "MPIReductionOperation.h"
+#include "MPIReduce.h"
+#include "MPIAllgather.h"
+#include "MPIGather.h"
+#include "MPIBroadcast.h"
 #include "convert_sequence_of_chars_to_vector_string.h"
+#include "Array1d.hpp"
 
 namespace COMMUNICATOR
 {
@@ -145,8 +172,21 @@ MPICommunicator& MPICommunicator::operator=(MPICommunicator && other)
 std::string
 MPICommunicator::_broadcastStdString(const std::string & data_to_broadcast) const
 {
-    // First broadcast the size of the string and include the null terminated char.
-    const int slength = data_to_broadcast.length() + 1;
+    // First broadcast the size of the string and don't forget to account 
+    // for the null terminated char.
+    const int slength1 = data_to_broadcast.length() + 1;
+    try 
+    {
+        const int slength2 = COMMUNICATOR::MPI_Broadcast<int>::Broadcast(slength1, 
+                            this->_mpiCommunicator,static_cast<int>(DEFAULT_MPI_MASTER_RANK_ID));
+
+    }
+    catch (...)
+    {
+        std::cout << "Default MPI_Broadcast exception" << std::endl;
+        std::abort();
+    }
+
     return data_to_broadcast;
 }
 
@@ -207,9 +247,9 @@ MPICommunicator::_createSubcommunicator(const std::string & tag)
         int mpi_return_code;
         MPI_Comm tmp_mpi_comm=MPI_COMM_NULL;
         mpi_return_code = MPI_Comm_split(this->_mpiCommunicator,
-                                          static_cast<int>(my_hash),
-                                          0,
-                                          &tmp_mpi_comm);
+                                         static_cast<int>(my_hash),
+                                         static_cast<int>(DEFAULT_MPI_MASTER_RANK_ID),
+                                         &tmp_mpi_comm);
 
         if (mpi_return_code != MPI_SUCCESS)
         {

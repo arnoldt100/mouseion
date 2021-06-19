@@ -109,7 +109,8 @@
          header_files/MPIReduce.h
          header_files/MPIReductionOperation.h
          header_files/MPIUtilityFunctions.h
-         header_files/MPIAllgather.h)
+         header_files/MPIAllgather.h
+         header_files/MPIBroadcast.h)
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -144,7 +145,8 @@
          implementation_files/MPIAllGatherException.cpp
          implementation_files/MPIGatherException.cpp
          implementation_files/MPIUtilityFunctions.cpp
-         implementation_files/MPIAllgather.cpp)
+         implementation_files/MPIAllgather.cpp
+         implementation_files/MPIBroadcast.cpp)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
