@@ -102,27 +102,6 @@ Protected Members
 
 No protected members
 
-.. Commented out. 
-.. ^^^^^^^^^
-.. Lifecycle
-.. ^^^^^^^^^
-..
-.. ^^^^^^^^^
-.. Accessors
-.. ^^^^^^^^^
-.. 
-.. ^^^^^^^^^
-.. Operators
-.. ^^^^^^^^^
-.. 
-.. ^^^^^^^^^
-.. Mutators
-.. ^^^^^^^^^
-.. 
-.. ^^^^^^^^^^^^
-.. Data Members
-.. ^^^^^^^^^^^^
-
 ---------------
 Private Members
 ---------------
