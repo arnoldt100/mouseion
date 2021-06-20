@@ -57,10 +57,12 @@ MPICommunicator::MPICommunicator() :
 }
 
 
-MPICommunicator::MPICommunicator(MPICommunicator && other) :
-    _mpiCommunicator(MPI_COMM_NULL)
+MPICommunicator::MPICommunicator(MPICommunicator && other)
 {
-    *this = std::move(other);
+    if ( this != &other)
+    {
+        *this = std::move(other);
+    }
 }
 
 MPICommunicator::MPICommunicator(const MPI_Comm & mpi_world_communicator, 
@@ -144,6 +146,7 @@ MPICommunicator& MPICommunicator::operator=(MPICommunicator && other)
 {
     if (this != &other )
     {
+        Communicator::operator=(std::move(other));
         this->_mpiCommunicator = other._mpiCommunicator;
         this->_mpicommHandles = other._mpicommHandles;
         this->_hostname = other._hostname;
@@ -151,7 +154,6 @@ MPICommunicator& MPICommunicator::operator=(MPICommunicator && other)
         other._mpiCommunicator = MPI_COMM_NULL;
         other._mpicommHandles.clear();
         other._hostname = std::string(MPICommunicator::HOSTNAME_NOT_DEFINED);
-
     }
     return *this;
 }
