@@ -170,16 +170,24 @@ MPICommunicator& MPICommunicator::operator=(MPICommunicator && other)
 
 
 std::string
-MPICommunicator::_broadcastStdString(const std::string & data_to_broadcast, const std::size_t bcast_rank) const
+MPICommunicator::_broadcastStdString(const std::string & str_to_bcast, const std::size_t bcast_rank) const
 {
-    // First broadcast the size of the string and don't forget to account 
-    // for the null terminated char.
-    const int slength1 = data_to_broadcast.length() + 1;
+    std::string ret_value;
     try 
     {
-        const int slength2 = COMMUNICATOR::MPI_Broadcast<int>::Broadcast(slength1, 
-                            this->_mpiCommunicator,bcast_rank);
+        // First broadcast the length of the string that is to be broadcasted.
+        // The variable str_len1 is only properly defined on the communicator
+        // with rank bcast_rank. 
+        const int str_len1 = str_to_bcast.length();
+        const std::size_t bcast_str_len = COMMUNICATOR::MPI_Broadcast<int>::Broadcast(str_len1, 
+                                                                              this->_mpiCommunicator,
+                                                                              bcast_rank);
 
+        // Broadcast the string to all other ranks.
+        ret_value = COMMUNICATOR::MPI_Broadcast<std::string>::Broadcast(str_to_bcast,
+                                                                        bcast_str_len,
+                                                                        this->_mpiCommunicator,
+                                                                        bcast_rank);
     }
     catch (...)
     {
@@ -187,7 +195,7 @@ MPICommunicator::_broadcastStdString(const std::string & data_to_broadcast, cons
         std::abort();
     }
 
-    return data_to_broadcast;
+    return ret_value;
 }
 
 

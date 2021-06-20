@@ -1,6 +1,7 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <cstring>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -26,17 +27,50 @@ namespace COMMUNICATOR {
 
 //============================= OPERATORS ====================================
 
-int MPI_Broadcast<int>::Broadcast(const int data_to_broadcast, const MPI_Comm mpi_comm, const std::size_t bcast_rank) 
+int MPI_Broadcast<int>::Broadcast(const int int_to_bcast, const MPI_Comm mpi_comm, const std::size_t bcast_rank) 
 {
 
-    // Create an int array with 1 element.
+    // Create an int array with 1 element, and assign the 0th element the data
+    // to be broadcasted.
     MEMORY_MANAGEMENT::Array1d<int> my_int_array_factory;
-    int* array1 = my_int_array_factory.createArray(1);
+    int* array_ptr = my_int_array_factory.createArray(1);
+    array_ptr[0] = int_to_bcast;
+
+    // Brodacast the integer and assign brodcasted value to ret_value.
+    int mpi_error = MPI_Bcast(array_ptr, 1, MPI_INT, static_cast<int>(bcast_rank), mpi_comm);
+
+    const int ret_value = array_ptr[0];
 
     // Delete the memory associated with the array.
-    my_int_array_factory.destroyArray(array1);
+    my_int_array_factory.destroyArray(array_ptr);
 
-    return 0;
+    return ret_value;
+}
+
+std::string MPI_Broadcast<std::string>::Broadcast(const std::string str_to_bcast,
+        const std::size_t bcast_str_len,
+        const MPI_Comm mpi_comm,
+        const std::size_t bcast_rank) 
+{
+    // Copy str_to_bcast to a char* variable char_array_ptr, and use char_array_ptr
+    // to broadcast to all other MPI ranks. Don't forget to account the the last 
+    // '\0' char by adding 1 for the length of char_array_ptr.
+    MEMORY_MANAGEMENT::Array1d<char> my_char_array_factory;
+    const std::size_t char_array_len = bcast_str_len+1;
+    char * char_array_ptr = my_char_array_factory.createArray(char_array_len);
+    std::strcpy(char_array_ptr, str_to_bcast.c_str());
+
+    // Brodacast char_array_ptr and assign broadcasted value to ret_value.
+    int mpi_error = MPI_Bcast(char_array_ptr,
+                              static_cast<int>(char_array_len),
+                              MPI_CHAR,
+                              static_cast<int>(bcast_rank),
+                              mpi_comm);
+    std::string ret_value(char_array_ptr,bcast_str_len); 
+
+    my_char_array_factory.destroyArray(char_array_ptr);
+
+    return ret_value;
 }
 
 //////////////////////////////////////////////////////////////////////////////
