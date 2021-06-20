@@ -10,6 +10,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "Array1dChar.hpp"
 #include "Array1d.hpp"
 #include "MPIBroadcast.h"
 
@@ -52,22 +53,26 @@ std::string MPI_Broadcast<std::string>::Broadcast(const std::string str_to_bcast
         const MPI_Comm mpi_comm,
         const std::size_t bcast_rank) 
 {
-    // Copy str_to_bcast to a char* variable char_array_ptr, and use char_array_ptr
-    // to broadcast to all other MPI ranks. Don't forget to account the the last 
-    // '\0' char by adding 1 for the length of char_array_ptr.
+    // Copy str_to_bcast to a char* variable char_array_ptr, and use
+    // char_array_ptr to broadcast to all other MPI ranks. Don't forget to
+    // account the the last '\0' char by adding 1 for the length of
+    // char_array_ptr.
     MEMORY_MANAGEMENT::Array1d<char> my_char_array_factory;
     const std::size_t char_array_len = bcast_str_len+1;
-    char * char_array_ptr = my_char_array_factory.createArray(char_array_len);
-    std::strcpy(char_array_ptr, str_to_bcast.c_str());
+    char * char_array_ptr = my_char_array_factory.createArray(str_to_bcast,char_array_len);
 
-    // Brodacast char_array_ptr and assign broadcasted value to ret_value.
+    // Brodacast char_array_ptr and assign broadcasted value to variable
+    // ret_value.
     int mpi_error = MPI_Bcast(char_array_ptr,
                               static_cast<int>(char_array_len),
                               MPI_CHAR,
                               static_cast<int>(bcast_rank),
                               mpi_comm);
+    // Copy the broadcasted char_array_ptr to a string. Do not
+    // copy the last '\0' char. 
     std::string ret_value(char_array_ptr,bcast_str_len); 
 
+    // Free memory resources.
     my_char_array_factory.destroyArray(char_array_ptr);
 
     return ret_value;
