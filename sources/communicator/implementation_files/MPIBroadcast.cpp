@@ -67,7 +67,7 @@ std::string MPI_Broadcast<std::string>::Broadcast(const std::string str_to_bcast
     const std::size_t char_array_len = bcast_str_len+1;
     char * char_array_ptr = my_char_array_factory.createArray(str_to_bcast,char_array_len);
 
-    // Brodacast char_array_ptr and assign broadcasted value to variable
+    // Broadcast char_array_ptr and assign broadcasted value to variable
     // ret_value.
     int mpi_error = MPI_Bcast(char_array_ptr,
                               static_cast<int>(char_array_len),
