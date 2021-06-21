@@ -38,7 +38,7 @@ int MPI_Broadcast<int>::Broadcast(const int int_to_bcast, const MPI_Comm mpi_com
     int* array_ptr = my_int_array_factory.createArray(1);
     array_ptr[0] = int_to_bcast;
 
-    // Brodacast the integer and assign brodcasted value to ret_value.
+    // Broadcast the integer and assign broadcasted value to ret_value.
     int mpi_error = MPI_Bcast(array_ptr, 1, MPI_INT, static_cast<int>(bcast_rank), mpi_comm);
 
     if (mpi_error != MPI_SUCCESS)
