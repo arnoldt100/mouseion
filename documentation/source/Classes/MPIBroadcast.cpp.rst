@@ -16,6 +16,8 @@ Interface Header Files
 
 **C++ Include Files**
 
+None
+
 **External Library Files**
 
 * #include "mpi.h"
@@ -30,11 +32,17 @@ Implementaion Header Files
 
 **C++ Include Files**
 
+* #include <cstring>
+
 **External Library Files**
+
+None
 
 **Project Include Files**
 
+* #include "Array1dChar.hpp"
 * #include "Array1d.hpp"
+* #include "ErrorMPIBroadcast.h"
 * #include "MPIBroadcast.h"
 
 ===============================
@@ -76,6 +84,7 @@ Static Functions
         :param std::size_t bcast_rank: The rank of communicator doing the broadcasting.
         :return: The broadcasted data.
         :rtype: int
+        :throw ErrorMPIBroadcast: If broadcast of int fails.
 
 ========================================================
 template<> MPIBroadcast<std::string> Class Documentation
@@ -104,3 +113,4 @@ Static Functions
         :param std::size_t bcast_rank: The rank of communicator doing the broadcasting.
         :return: The broadcasted data.
         :rtype: std::string
+        :throw ErrorMPIBroadcast: If broadcast of std::string fails.

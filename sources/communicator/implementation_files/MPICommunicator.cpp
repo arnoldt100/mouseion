@@ -34,6 +34,7 @@
 #include "MPIGather.h"
 #include "MPIBroadcast.h"
 #include "convert_sequence_of_chars_to_vector_string.h"
+#include "ErrorMPIBroadcast.h"
 #include "Array1d.hpp"
 
 namespace COMMUNICATOR
@@ -191,9 +192,14 @@ MPICommunicator::_broadcastStdString(const std::string & str_to_bcast, const std
                                                                         this->_mpiCommunicator,
                                                                         bcast_rank);
     }
-    catch (...)
+    catch (COMMUNICATOR::ErrorMPIBroadcast<char> const & my_mpi_exception )
     {
-        std::cout << "Default MPI_Broadcast exception" << std::endl;
+        std::cout << my_mpi_exception.what() << std::endl;
+        std::abort();
+    }
+    catch (COMMUNICATOR::ErrorMPIBroadcast<int> const & my_mpi_exception )
+    {
+        std::cout << my_mpi_exception.what() << std::endl;
         std::abort();
     }
 

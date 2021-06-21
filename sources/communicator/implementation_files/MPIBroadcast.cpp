@@ -13,6 +13,7 @@
 #include "Array1dChar.hpp"
 #include "Array1d.hpp"
 #include "MPIBroadcast.h"
+#include "ErrorMPIBroadcast.h"
 
 namespace COMMUNICATOR {
 
@@ -40,6 +41,11 @@ int MPI_Broadcast<int>::Broadcast(const int int_to_bcast, const MPI_Comm mpi_com
     // Brodacast the integer and assign brodcasted value to ret_value.
     int mpi_error = MPI_Bcast(array_ptr, 1, MPI_INT, static_cast<int>(bcast_rank), mpi_comm);
 
+    if (mpi_error != MPI_SUCCESS)
+    {
+        std::string message( "Broadcasting error of int ");
+        throw COMMUNICATOR::ErrorMPIBroadcast<int>(message);
+    }
     const int ret_value = array_ptr[0];
 
     // Delete the memory associated with the array.
@@ -68,6 +74,13 @@ std::string MPI_Broadcast<std::string>::Broadcast(const std::string str_to_bcast
                               MPI_CHAR,
                               static_cast<int>(bcast_rank),
                               mpi_comm);
+
+    if (mpi_error != MPI_SUCCESS)
+    {
+        std::string message( "Broadcasting error of std::string");
+        throw COMMUNICATOR::ErrorMPIBroadcast<std::string>(message);
+    }
+    
     // Copy the broadcasted char_array_ptr to a string. Do not
     // copy the last '\0' char. 
     std::string ret_value(char_array_ptr,bcast_str_len); 
