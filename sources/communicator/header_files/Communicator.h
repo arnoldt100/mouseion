@@ -48,7 +48,6 @@ public:
         return this->_getCommunicatorRank();
     }
 
-
     int
     getSubCommunicatorRank(const std::string & tag) const
     {
@@ -80,6 +79,13 @@ public:
     getGlobalStatus(const bool & data_to_reduce) const
     {
         return this->_getGlobalStatus(data_to_reduce);
+    }
+
+    template<typename T, typename Functor>
+    T getGlobalStatusCustomReduction( T const & data_to_transform,
+                                      Functor const my_functor) const
+    {
+        return this->_getGlobalStatusCustomReduction(data_to_transform,my_functor);
     }
 
     std::string
@@ -180,6 +186,10 @@ private:
     virtual bool
     _getGlobalStatus(const bool & data_to_reduce) const=0;
 
+
+    template<typename T, typename Functor>
+    T _getGlobalStatusCustomReduction( T const & data_to_transform,
+                                       Functor const my_functor) const; 
     virtual std::string
     _broadcastStdString(const std::string & data_to_broadcast, const std::size_t bcast_rank) const=0;
 
@@ -258,6 +268,30 @@ T getGlobalStatus( T const & data_to_transform,
 template<>
 bool getGlobalStatus( bool const & data_to_transform,
                       Communicator const & aCommunicator);
+
+// ===  FUNCTION  ======================================================================
+//         Name:  getGlobalStatusCustomReduction
+//  Description:  Global reduction with a custome reducer.
+// 
+//   Parameters: data_to_transform - The data on this rank which is part of the 
+//                                   collective transformation.
+//
+//               my_functor - A functor that contains the reduction operation.                    
+//
+//               aCommunicator - The communicator used in this data transformation. 
+//
+//        Return: A boolean value of the transformed data.
+// =====================================================================================
+template<typename T, typename Functor>
+T getGlobalStatusCustomReduction( T const & data_to_transform,
+                                  Functor const my_functor, 
+                                  Communicator const & aCommunicator)
+{
+    const T transformed_data = aCommunicator.getGlobalStatusCustomReduction(data_to_transform,
+                                                                            my_functor);
+
+    return transformed_data;
+}
 
 // ===  FUNCTION  ======================================================================
 //         Name:  broadcast
