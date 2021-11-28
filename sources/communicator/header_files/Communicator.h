@@ -263,7 +263,7 @@ T getGlobalStatus( T const & data_to_transform,
 //                                   collective transformation.
 //               aCommunicator - The communicator used in this data transformation. 
 //
-//        Return: A boolean value of the transformed data.
+//        Return: The transformed data
 // =====================================================================================
 template<>
 bool getGlobalStatus( bool const & data_to_transform,
@@ -280,18 +280,31 @@ bool getGlobalStatus( bool const & data_to_transform,
 //
 //               aCommunicator - The communicator used in this data transformation. 
 //
-//        Return: A boolean value of the transformed data.
+//        Return: The transformed data
 // =====================================================================================
 template<typename T, typename Functor>
 T getGlobalStatusCustomReduction( T const & data_to_transform,
                                   Functor const my_functor, 
-                                  Communicator const & aCommunicator)
-{
-    const T transformed_data = aCommunicator.getGlobalStatusCustomReduction(data_to_transform,
-                                                                            my_functor);
+                                  Communicator const & aCommunicator);
 
-    return transformed_data;
-}
+// ===  FUNCTION  ======================================================================
+//         Name:  getGlobalStatusCustomReduction
+//  Description:  A specialiaization for global reduction of MD status, 
+//                type RegistryAnansiMDStatus, with the custom reducer ISEReductionFunctor 
+//
+//   Parameters: data_to_transform - The data on this rank which is part of the 
+//                                   collective transformation.
+//
+//               my_functor - A functor that contains the reduction operation.                    
+//
+//               aCommunicator - The communicator used in this data transformation. 
+//
+//        Return: The transformed data.
+// =====================================================================================
+template<>
+int getGlobalStatusCustomReduction( int const & data_to_transform,
+                                    ISEReductionFunctor const my_functor, 
+                                    Communicator const & aCommunicator);
 
 // ===  FUNCTION  ======================================================================
 //         Name:  broadcast
