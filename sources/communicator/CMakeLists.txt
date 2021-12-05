@@ -111,7 +111,8 @@
          header_files/MPIUtilityFunctions.h
          header_files/MPIAllgather.h
          header_files/MPIBroadcast.h
-         header_files/ErrorMPIBroadcast.h)
+         header_files/ErrorMPIBroadcast.h
+         header_files/RegistryAnansiMDStatus.h)
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -148,7 +149,8 @@
          implementation_files/MPIUtilityFunctions.cpp
          implementation_files/MPIAllgather.cpp
          implementation_files/MPIBroadcast.cpp
-         implementation_files/ErrorMPIBroadcast.cpp)
+         implementation_files/ErrorMPIBroadcast.cpp
+         implementation_files/RegistryAnansiMDStatus.cpp)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
