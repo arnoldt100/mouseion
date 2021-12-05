@@ -192,7 +192,6 @@ std::string broadcast(std::string const & data_to_broadcast,
 
 template<>
 int getGlobalStatusCustomReduction( int const & data_to_transform,
-                                    ISEReductionFunctor const my_functor, 
                                     Communicator const & aCommunicator)
 {
     return RegistryAnansiMDStatus::InitializingSimulationEnvironmentFailed;

@@ -110,9 +110,8 @@ private:
     bool
     _getGlobalStatus(const bool & data_to_reduce) const final override;
 
-    template<typename T, typename Functor>
-    T _getGlobalStatusCustomReduction( T const & data_to_transform,
-                                       Functor const my_functor) const;
+    template<typename T>
+    T _getGlobalStatusCustomReduction( T const & data_to_transform) const;
 
     std::string
     _broadcastStdString(const std::string & data_to_broadcast, const std::size_t bcast_rank) const final override;
@@ -150,9 +149,8 @@ private:
     static std::string HOSTNAME_NOT_DEFINED;
 };
 
-template<typename T, typename Functor>
-T MPICommunicator::_getGlobalStatusCustomReduction( T const & data_to_transform,
-                                                    Functor const my_functor) const 
+template<typename T>
+T MPICommunicator::_getGlobalStatusCustomReduction( T const & data_to_transform) const 
 {
     return data_to_transform;
 }

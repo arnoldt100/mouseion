@@ -81,11 +81,10 @@ public:
         return this->_getGlobalStatus(data_to_reduce);
     }
 
-    template<typename T, typename Functor>
-    T getGlobalStatusCustomReduction( T const & data_to_transform,
-                                      Functor const my_functor) const
+    template<typename T>
+    T getGlobalStatusCustomReduction( T const & data_to_transform) const
     {
-        return this->_getGlobalStatusCustomReduction(data_to_transform,my_functor);
+        return this->_getGlobalStatusCustomReduction(data_to_transform);
     }
 
     std::string
@@ -188,8 +187,8 @@ private:
 
 
     template<typename T, typename Functor>
-    T _getGlobalStatusCustomReduction( T const & data_to_transform,
-                                       Functor const my_functor) const; 
+    T _getGlobalStatusCustomReduction( T const & data_to_transform) const; 
+
     virtual std::string
     _broadcastStdString(const std::string & data_to_broadcast, const std::size_t bcast_rank) const=0;
 
@@ -276,15 +275,12 @@ bool getGlobalStatus( bool const & data_to_transform,
 //   Parameters: data_to_transform - The data on this rank which is part of the 
 //                                   collective transformation.
 //
-//               my_functor - A functor that contains the reduction operation.                    
-//
 //               aCommunicator - The communicator used in this data transformation. 
 //
 //        Return: The transformed data
 // =====================================================================================
-template<typename T, typename Functor>
+template<typename T>
 T getGlobalStatusCustomReduction( T const & data_to_transform,
-                                  Functor const my_functor, 
                                   Communicator const & aCommunicator);
 
 // ===  FUNCTION  ======================================================================
@@ -295,15 +291,12 @@ T getGlobalStatusCustomReduction( T const & data_to_transform,
 //   Parameters: data_to_transform - The data on this rank which is part of the 
 //                                   collective transformation.
 //
-//               my_functor - A functor that contains the reduction operation.                    
-//
 //               aCommunicator - The communicator used in this data transformation. 
 //
 //        Return: The transformed data.
 // =====================================================================================
 template<>
 int getGlobalStatusCustomReduction( int const & data_to_transform,
-                                    ISEReductionFunctor const my_functor, 
                                     Communicator const & aCommunicator);
 
 // ===  FUNCTION  ======================================================================
