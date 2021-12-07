@@ -14,7 +14,7 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 
-namespace ANANSI
+namespace COMMUNICATOR
 {
 
     // =====================================================================================
@@ -51,6 +51,6 @@ namespace ANANSI
                return RegistryAnansiMDStatus::InitializingSimulationEnvironmentFailed;
            };
     };
-}; /* namespace ANANSI */
+}; /* namespace COMMUNICATOR */
 
 #endif   // ----- #ifndef RegistryAnansiMDStatus_INC  ----- 

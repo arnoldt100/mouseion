@@ -22,6 +22,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "RegistryAnansiMDStatus.h"
 
 namespace COMMUNICATOR {
 
@@ -186,7 +187,7 @@ private:
     _getGlobalStatus(const bool & data_to_reduce) const=0;
 
 
-    template<typename T, typename Functor>
+    template<typename T>
     T _getGlobalStatusCustomReduction( T const & data_to_transform) const; 
 
     virtual std::string
