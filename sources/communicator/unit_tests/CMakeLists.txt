@@ -81,7 +81,8 @@
     #                                                    -
     #-----------------------------------------------------
     target_link_libraries( ${target}
-                           PUBLIC mpi_communicator)
+                           PUBLIC mpi_communicator
+                           ${Boost_LIBRARIES} )
 
     #-----------------------------------------------------
     # Set the directories to look for  header_files.     -

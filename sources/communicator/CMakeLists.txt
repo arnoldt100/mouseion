@@ -196,10 +196,10 @@ target_include_directories(${target}
 # The libraries to use when linking to target.       -
 #                                                    -
 #-----------------------------------------------------
-# set(THREADS_PREFER_PTHREAD_FLAG ON)
-# find_package(Threads REQUIRED)
-# PUBLIC Threads::Threads
+set(THREADS_PREFER_PTHREAD_FLAG ON)
+find_package(Threads REQUIRED)
 target_link_libraries( ${target}
+                       PUBLIC Threads::Threads
                        PUBLIC string_utilities
                        PUBLIC memory_management 
                        PUBLIC counterclass)
@@ -221,4 +221,4 @@ install(TARGETS ${target}
 # Add the subdirectory for creating the unit tests.  -
 #                                                    -
 #-----------------------------------------------------
-# add_subdirectory(unit_tests)
+add_subdirectory(unit_tests)
