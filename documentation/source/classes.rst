@@ -8,3 +8,4 @@ Welcome to Anansi's class documentation!
    Classes/Communicator.cpp.rst
    Classes/MPIBroadcast.cpp.rst
    Classes/ErrorMPIBroadcast.cpp.rst
+   Classes/TaskState.cpp.rst
