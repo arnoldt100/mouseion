@@ -2,11 +2,11 @@
 
 .. default-domain:: cpp
 
-.. namespace:: __Namespace__
+.. namespace:: COMMUNICATOR
 
-######################################
+########################
 TaskStatus Documentation
-######################################
+########################
 
 The base class for abstraction of the status of various MD tasks. 
 This class is an interface class.
