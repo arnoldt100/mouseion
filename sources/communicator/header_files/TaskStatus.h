@@ -1,10 +1,10 @@
 #ifndef  Mouseion_TaskStatus_INC
 #define  Mouseion_TaskStatus_INC
 
-
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <string>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -41,7 +41,7 @@ namespace COMMUNICATOR
 
             TaskStatus (TaskStatus && other);   // copy-move constructor
 
-            virtual ~TaskStatus ()=0;  // destructor
+            ~TaskStatus ();  // destructor
 
             // ====================  ACCESSORS     =======================================
 
@@ -53,12 +53,19 @@ namespace COMMUNICATOR
 
             TaskStatus& operator= ( TaskStatus && other ); // assignment-move operator
 
+            // ====================  DATA MEMBERS  =======================================
+
+            using Value = enum struct stateTaskSatus {null, in_progress, failed, successful};
+
         protected:
             // ====================  METHODS       =======================================
 
             // ====================  DATA MEMBERS  =======================================
 
         private:
+            static constexpr auto defaultDescription_ = "No description.";
+            std::string taskDescription_;
+
             // ====================  METHODS       =======================================
 
             // ====================  DATA MEMBERS  =======================================
