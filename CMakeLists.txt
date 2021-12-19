@@ -111,8 +111,8 @@ set(mouseion_log_file $ENV{MOUSEION_LOG_FILE})
 #-----------------------------------------------------
 set(memory_management_install_lib_directory ${mouseion_install_lib_directory})
 set(memory_management_install_include_directory ${mouseion_install_include_directory})
-set(memory_management_install_bin_directory ${mouseion_install_bin_directory} )
-set(memory_management_cxx_standard ${mouseion_cxx_standard} )
+set(memory_management_install_bin_directory ${mouseion_install_bin_directory})
+set(memory_management_cxx_standard ${mouseion_cxx_standard})
 
 #-----------------------------------------------------
 # Here we define variables which indicate where      -
@@ -122,8 +122,8 @@ set(memory_management_cxx_standard ${mouseion_cxx_standard} )
 #-----------------------------------------------------
 set(mpi_communicator_install_lib_directory ${mouseion_install_lib_directory})
 set(mpi_communicator_install_include_directory ${mouseion_install_include_directory})
-set(mpi_communicator_install_bin_directory ${mouseion_install_bin_directory} )
-set(mpi_communicator_cxx_standard ${mouseion_cxx_standard} )
+set(mpi_communicator_install_bin_directory ${mouseion_install_bin_directory})
+set(mpi_communicator_cxx_standard ${mouseion_cxx_standard})
 
 #-----------------------------------------------------
 # Here we define variables which indicate where      -
@@ -133,8 +133,8 @@ set(mpi_communicator_cxx_standard ${mouseion_cxx_standard} )
 #-----------------------------------------------------
 set(string_utilities_install_lib_directory ${mouseion_install_lib_directory})
 set(string_utilities_install_include_directory ${mouseion_install_include_directory})
-set(string_utilities_install_bin_directory ${mouseion_install_bin_directory} )
-set(string_utilities_cxx_standard ${mouseion_cxx_standard} )
+set(string_utilities_install_bin_directory ${mouseion_install_bin_directory})
+set(string_utilities_cxx_standard ${mouseion_cxx_standard})
 
 #-----------------------------------------------------
 # Here we define variables which indicate where      -
@@ -144,8 +144,19 @@ set(string_utilities_cxx_standard ${mouseion_cxx_standard} )
 #-----------------------------------------------------
 set(counterclass_install_lib_directory ${mouseion_install_lib_directory})
 set(counterclass_install_include_directory ${mouseion_install_include_directory})
-set(counterclass_install_bin_directory ${mouseion_install_bin_directory} )
-set(counterclass_cxx_standard ${mouseion_cxx_standard} )
+set(counterclass_install_bin_directory ${mouseion_install_bin_directory})
+set(counterclass_cxx_standard ${mouseion_cxx_standard})
+
+#-----------------------------------------------------
+# Here we define variables which indicate where      -
+# to install the meta_programming_library libraries, -
+# header files, and associated binaries.             -
+#                                                    -
+#-----------------------------------------------------
+set(mpl_install_lib_directory ${mouseion_install_lib_directory})
+set(mpl_install_include_directory ${mouseion_install_include_directory})
+set(mpl_install_bin_directory ${mouseion_install_bin_directory} )
+set(mpl_cxx_standard ${mouseion_cxx_standard})
 
 #-----------------------------------------------------
 # Add the subdirectories for the various             -
@@ -156,3 +167,4 @@ add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/counter_classes)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/CPU_memory_management)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/string_utilities)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/communicator)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/meta_programming_library)
