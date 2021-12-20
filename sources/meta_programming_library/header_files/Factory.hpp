@@ -5,6 +5,7 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <map>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -13,6 +14,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "DefaultFactoryError.hpp"
 
 namespace MPL
 {
@@ -24,8 +26,8 @@ namespace MPL
 template <class AbstractProduct,
           typename IdentifierType,
           typename ProductCreator,      
-          template<typename,class> class FactoryErrorPolicy>
-class Factory
+          template<typename,class> class FactoryErrorPolicy = DefaultFactoryError>
+class Factory : public FactoryErrorPolicy<IdentifierType, AbstractProduct>
 {
     public:
         // ====================  LIFECYCLE     =======================================
@@ -62,6 +64,34 @@ class Factory
         // ====================  ACCESSORS     =======================================
 
         // ====================  MUTATORS      =======================================
+        bool registerFactory(const IdentifierType & id, ProductCreator creator)
+        {
+            auto const element_registered = associations_.insert(AssocMap::value_type(id,creator)).second;
+            return element_registered;
+        }
+
+        bool unregisterFactory(const IdentifierType & id)
+        {
+            auto element_removed = false;
+            auto const nm_elements_removed = associations_.erase(id);
+            if (nm_elements_removed == 1)
+            {
+                element_removed = true;
+            }
+            return element_removed;
+        }
+
+
+        AbstractProduct* createObject (IdentifierType const & id)
+        {
+            typename AssocMap::const_iterator it = associations_.find(id);
+            if ( it != associations_.end())
+            {
+                return it.second();
+            }
+            return OnUnknownType(id);
+        }		// -----  end of method Factory<T>::createObject  ----- 
+
 
         // ====================  OPERATORS     =======================================
 
@@ -90,8 +120,11 @@ class Factory
 
     private:
         // ====================  METHODS       =======================================
+        using AssocMap = std::map<IdentifierType,ProductCreator>;
+        AssocMap associations_;
 
         // ====================  DATA MEMBERS  =======================================
+
 
 }; // -----  end of class Factory  -----
 
