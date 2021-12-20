@@ -20,21 +20,6 @@ namespace MPL {
 
 //============================= LIFECYCLE ====================================
 
-Factory::Factory()
-{
-    return;
-}
-
-Factory::Factory( Factory && other)
-{
-    return;
-}		// -----  end of method Factory::Factory  -----
-
-
-Factory::~Factory()
-{
-    return;
-}
 
 //============================= ACCESSORS ====================================
 
@@ -42,23 +27,6 @@ Factory::~Factory()
 
 //============================= OPERATORS ====================================
 
-Factory& Factory::operator= ( const Factory &other )
-{
-    if (this != &other)
-    {
-
-    }
-    return *this;
-} // assignment operator
-
-Factory& Factory::operator= ( Factory && other )
-{
-    if (this != &other)
-    {
-
-    }
-    return *this;
-} // assignment-move operator
 
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PROTECTED ////////////////////////////////////
@@ -85,4 +53,4 @@ Factory& Factory::operator= ( Factory && other )
 //============================= OPERATORS ====================================
 
 
-} // namespace MPL
+}; // namespace MPL

@@ -17,53 +17,83 @@
 namespace MPL
 {
 
-     // =====================================================================================
-     //        Class:  Factory
-     //  Description:  
-     //  =====================================================================================
-    class Factory
-    {
-        public:
-            // ====================  LIFECYCLE     =======================================
+// =====================================================================================
+//        Class:  Factory
+//  Description:  
+//  =====================================================================================
+template <class AbstractProduct,
+          typename IdentifierType,
+          typename ProductCreator,      
+          template<typename,class> class FactoryErrorPolicy>
+class Factory
+{
+    public:
+        // ====================  LIFECYCLE     =======================================
 
-            //--------------------------------------------------------------------------------------
-            //       Class:  Factory
-            //      Method:  Factory :: Factory
-            // Description:  
-            // 
-            //  Parameters: 
-            //
-            //      Return:
-            //--------------------------------------------------------------------------------------
-            Factory ();   // constructor
+        //--------------------------------------------------------------------------------------
+        //       Class:  Factory
+        //      Method:  Factory :: Factory
+        // Description:  
+        // 
+        //  Parameters: 
+        //
+        //      Return:
+        //--------------------------------------------------------------------------------------
+        Factory ()
+        {
+            return;
+        }   // constructor
 
-            Factory (const Factory & other);   // copy constructor
+        Factory (const Factory & other)   // copy constructor
+        {
+            return;
+        }		// -----  end of method Factory::Factory  -----
 
-            Factory (Factory && other);   // copy-move constructor
+        Factory (Factory && other)   // copy-move constructor
+        {
+            return;
+        }		// -----  end of method Factory::Factory  -----
 
-            ~Factory ();  // destructor
+        ~Factory ()  // destructor
+        {
+            return;
+        }
 
-            // ====================  ACCESSORS     =======================================
+        // ====================  ACCESSORS     =======================================
 
-            // ====================  MUTATORS      =======================================
+        // ====================  MUTATORS      =======================================
 
-            // ====================  OPERATORS     =======================================
+        // ====================  OPERATORS     =======================================
 
-            Factory& operator= ( const Factory &other ); // assignment operator
+        Factory& operator= ( const Factory &other )
+        {
+            if (this != &other)
+            {
 
-            Factory& operator= ( Factory && other ); // assignment-move operator
+            }
+            return *this;
+        } // assignment operator
 
-        protected:
-            // ====================  METHODS       =======================================
+        Factory& operator= ( Factory && other ) // assignment-move operator
+        {
+            if (this != &other)
+            {
 
-            // ====================  DATA MEMBERS  =======================================
+            }
+            return *this;
+        }
 
-        private:
-            // ====================  METHODS       =======================================
+    protected:
+        // ====================  METHODS       =======================================
 
-            // ====================  DATA MEMBERS  =======================================
+        // ====================  DATA MEMBERS  =======================================
 
-    }; // -----  end of class Factory  -----
+    private:
+        // ====================  METHODS       =======================================
+
+        // ====================  DATA MEMBERS  =======================================
+
+}; // -----  end of class Factory  -----
 
 
 }; // namespace MPL
