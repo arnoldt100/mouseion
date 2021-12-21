@@ -104,11 +104,11 @@ class DefaultFactoryError
                 IdentifierType  unknownId_;
         };
 
-    protected:
         static ProductType* OnUnknownType(const IdentifierType& id)
         {
             throw Exception(id);
         }
+    protected:
         // ====================  METHODS       =======================================
 
         // ====================  DATA MEMBERS  =======================================

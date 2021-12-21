@@ -6,6 +6,8 @@
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
 #include <map>
+#include <utility>
+#include <memory>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -25,9 +27,9 @@ namespace MPL
 //  =====================================================================================
 template <class AbstractProduct,
           typename IdentifierType,
-          typename ProductCreator,      
+          typename ProductCreator=AbstractProduct* (*)(),      
           template<typename,class> class FactoryErrorPolicy = DefaultFactoryError>
-class Factory : public FactoryErrorPolicy<IdentifierType, AbstractProduct>
+class Factory 
 {
     public:
         // ====================  LIFECYCLE     =======================================
@@ -41,22 +43,17 @@ class Factory : public FactoryErrorPolicy<IdentifierType, AbstractProduct>
         //
         //      Return:
         //--------------------------------------------------------------------------------------
-        Factory ()
+        Factory() :
+            my_factory_error_policy_(std::make_unique<FactoryErrorPolicy<IdentifierType, AbstractProduct>>())
         {
             return;
         }   // constructor
 
-        Factory (const Factory & other)   // copy constructor
-        {
-            return;
-        }		// -----  end of method Factory::Factory  -----
+        Factory (const Factory & other) = delete;   // copy constructor
 
-        Factory (Factory && other)   // copy-move constructor
-        {
-            return;
-        }		// -----  end of method Factory::Factory  -----
+        Factory (Factory && other) = delete; // copy-move constructor
 
-        ~Factory ()  // destructor
+        ~Factory () // destructor
         {
             return;
         }
@@ -66,7 +63,7 @@ class Factory : public FactoryErrorPolicy<IdentifierType, AbstractProduct>
         // ====================  MUTATORS      =======================================
         bool registerFactory(const IdentifierType & id, ProductCreator creator)
         {
-            auto const element_registered = associations_.insert(AssocMap::value_type(id,creator)).second;
+            auto const element_registered = associations_.insert(typename AssocMap::value_type(id,creator)).second;
             return element_registered;
         }
 
@@ -81,37 +78,22 @@ class Factory : public FactoryErrorPolicy<IdentifierType, AbstractProduct>
             return element_removed;
         }
 
-
         AbstractProduct* createObject (IdentifierType const & id)
         {
             typename AssocMap::const_iterator it = associations_.find(id);
             if ( it != associations_.end())
             {
-                return it.second();
+                return it->second();
             }
-            return OnUnknownType(id);
+            return (*my_factory_error_policy_).OnUnknownType(id);
         }		// -----  end of method Factory<T>::createObject  ----- 
 
 
         // ====================  OPERATORS     =======================================
 
-        Factory& operator= ( const Factory &other )
-        {
-            if (this != &other)
-            {
+        Factory& operator= ( const Factory &other ) = delete;
 
-            }
-            return *this;
-        } // assignment operator
-
-        Factory& operator= ( Factory && other ) // assignment-move operator
-        {
-            if (this != &other)
-            {
-
-            }
-            return *this;
-        }
+        Factory& operator= ( Factory && other ) = delete; // assignment-move operator
 
     protected:
         // ====================  METHODS       =======================================
@@ -122,6 +104,7 @@ class Factory : public FactoryErrorPolicy<IdentifierType, AbstractProduct>
         // ====================  METHODS       =======================================
         using AssocMap = std::map<IdentifierType,ProductCreator>;
         AssocMap associations_;
+        std::unique_ptr<FactoryErrorPolicy<IdentifierType,AbstractProduct>> my_factory_error_policy_; 
 
         // ====================  DATA MEMBERS  =======================================
 
