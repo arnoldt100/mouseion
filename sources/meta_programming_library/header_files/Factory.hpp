@@ -44,7 +44,7 @@ class Factory
         //      Return:
         //--------------------------------------------------------------------------------------
         Factory() :
-            my_factory_error_policy_(std::make_unique<FactoryErrorPolicy<IdentifierType, AbstractProduct>>())
+            factoryErrorPolicy_uptr_(std::make_unique<FactoryErrorPolicy<IdentifierType, AbstractProduct>>())
         {
             return;
         }   // constructor
@@ -85,7 +85,7 @@ class Factory
             {
                 return it->second();
             }
-            return (*my_factory_error_policy_).OnUnknownType(id);
+            return (*factoryErrorPolicy_uptr_).OnUnknownType(id);
         }		// -----  end of method Factory<T>::createObject  ----- 
 
 
@@ -104,7 +104,7 @@ class Factory
         // ====================  METHODS       =======================================
         using AssocMap = std::map<IdentifierType,ProductCreator>;
         AssocMap associations_;
-        std::unique_ptr<FactoryErrorPolicy<IdentifierType,AbstractProduct>> my_factory_error_policy_; 
+        std::unique_ptr<FactoryErrorPolicy<IdentifierType,AbstractProduct>> factoryErrorPolicy_uptr_; 
 
         // ====================  DATA MEMBERS  =======================================
 
