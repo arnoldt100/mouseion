@@ -55,7 +55,8 @@
     #-----------------------------------------------------
     set (mpl_header_files
          header_files/Factory.hpp 
-         header_files/DefaultFactoryError.hpp)
+         header_files/DefaultFactoryError.hpp
+         header_files/Type2Type.hpp)
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -66,7 +67,8 @@
     #-----------------------------------------------------
     set (mpl_implementation_files
          implementation_files/Factory.cpp 
-         implementation_files/DefaultFactoryError.cpp)
+         implementation_files/DefaultFactoryError.cpp
+         implementation_files/Type2Type.cpp)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
