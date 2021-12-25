@@ -53,7 +53,7 @@ class Factory
 
         Factory (Factory && other) = delete; // copy-move constructor
 
-        ~Factory () // destructor
+        virtual ~Factory () // destructor
         {
             return;
         }

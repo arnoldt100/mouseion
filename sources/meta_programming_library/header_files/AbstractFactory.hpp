@@ -1,15 +1,14 @@
-#ifndef  MOUSEION_DefaultFactoryError_INC
-#define  MOUSEION_DefaultFactoryError_INC
-
+#ifndef  MOUSEION_AbstractFactory_INC
+#define  MOUSEION_AbstractFactory_INC
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
-#include <exception>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
 //--------------------------------------------------------//
+#include <boost/mp11.hpp>
 
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
@@ -19,40 +18,39 @@ namespace MPL
 {
 
 // =====================================================================================
-//        Class:  DefaultFactoryError
+//        Class:  AbstractFactory
 //  Description:  
 //  =====================================================================================
-template <typename IdentifierType, typename ProductType>
-class DefaultFactoryError
+class AbstractFactory
 {
     public:
         // ====================  LIFECYCLE     =======================================
 
         //--------------------------------------------------------------------------------------
-        //       Class:  DefaultFactoryError
-        //      Method:  DefaultFactoryError :: DefaultFactoryError
+        //       Class:  AbstractFactory
+        //      Method:  AbstractFactory :: AbstractFactory
         // Description:  
         // 
         //  Parameters: 
         //
         //      Return:
         //--------------------------------------------------------------------------------------
-        DefaultFactoryError() // constructor
+        AbstractFactory () // constructor
         {
             return;
         }
 
-        DefaultFactoryError(DefaultFactoryError const & other) // copy constructor
+        AbstractFactory (const AbstractFactory & other) // copy constructor
         {
             return;
-        }		// -----  end of method DefaultFactoryError::DefaultFactoryError  -----
+        }
 
-        DefaultFactoryError(DefaultFactoryError && other) // copy-move constructor
+        AbstractFactory (AbstractFactory && other)  // copy-move constructor
         {
             return;
-        }		// -----  end of method DefaultFactoryError::DefaultFactoryError  -----
+        }
 
-        virtual ~DefaultFactoryError() // destructor
+        virtual ~AbstractFactory () // destructor
         {
             return;
         }
@@ -63,7 +61,7 @@ class DefaultFactoryError
 
         // ====================  OPERATORS     =======================================
 
-        DefaultFactoryError& operator= ( DefaultFactoryError const & other ) // assignment operator
+        AbstractFactory& operator= ( const AbstractFactory &other ) // assignment operator
         {
             if (this != &other)
             {
@@ -72,7 +70,8 @@ class DefaultFactoryError
             return *this;
         } // assignment operator
 
-        DefaultFactoryError& operator= ( DefaultFactoryError && other ) // assignment-move operator
+
+        AbstractFactory& operator= ( AbstractFactory && other ) // assignment-move operator
         {
             if (this != &other)
             {
@@ -81,33 +80,7 @@ class DefaultFactoryError
             return *this;
         } // assignment operator
 
-        // ====================  NESTED CLASS  =======================================
-        class Exception : public std::exception
-        {
-            public: 
-                Exception(const IdentifierType & unknownId) : unknownId_(unknownId)
-                {
-                    return;
-                }
 
-                virtual const char* what() const noexcept
-                {
-                    return "Unknown object type passed to factory.";
-                }
-
-                IdentifierType const & getId() const noexcept
-                {
-                    return this->unknownId_;
-                }
-
-            private:
-                IdentifierType  unknownId_;
-        };
-
-        static ProductType* OnUnknownType(const IdentifierType& id)
-        {
-            throw Exception(id);
-        }
     protected:
         // ====================  METHODS       =======================================
 
@@ -118,9 +91,9 @@ class DefaultFactoryError
 
         // ====================  DATA MEMBERS  =======================================
 
-}; // -----  end of class DefaultFactoryError  -----
+}; // -----  end of class AbstractFactory  -----
 
 
 }; // namespace MPL
 
-#endif   // ----- #ifndef MOUSEION_DefaultFactoryError_INC  ----- 
+#endif   // ----- #ifndef MOUSEION_AbstractFactory_INC  ----- 
