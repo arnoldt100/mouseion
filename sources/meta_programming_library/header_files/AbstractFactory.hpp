@@ -13,6 +13,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "AbstractFactoryUnit.hpp"
 
 namespace MPL
 {
@@ -21,8 +22,14 @@ namespace MPL
 //        Class:  AbstractFactory
 //  Description:  
 //  =====================================================================================
-class AbstractFactory
+template <typename TList, template<typename> typename unit=AbstractFactoryUnit >
+class AbstractFactory : public boost::mp11::rename<TList,unit>()
 {
+    template<typename T>
+    using Type2Type = boost::mp11::mp_identity<T>; 
+
+    using ProductList= TList;
+
     public:
         // ====================  LIFECYCLE     =======================================
 
@@ -56,6 +63,11 @@ class AbstractFactory
         }
 
         // ====================  ACCESSORS     =======================================
+        template <typename T> T* Create()
+        {
+            Unit <T> & unit = *this;
+            return unit.DoCreate(Type2Type<T>());
+        }
 
         // ====================  MUTATORS      =======================================
 

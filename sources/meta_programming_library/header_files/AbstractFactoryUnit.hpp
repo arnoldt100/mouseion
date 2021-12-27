@@ -8,6 +8,7 @@
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
 //--------------------------------------------------------//
+#include <boost/mp11.hpp>
 
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
@@ -23,6 +24,9 @@ namespace MPL
 template<typename T>
 class AbstractFactoryUnit
 {
+    template<typename T>
+    using Type2Type = boost::mp11::mp_identity<T>; 
+
     public:
         // ====================  LIFECYCLE     =======================================
 
@@ -56,7 +60,7 @@ class AbstractFactoryUnit
         }
 
         // ====================  ACCESSORS     =======================================
-        virtual T* DoCreate()=0;
+        virtual T* DoCreate(Type2Type<T>)=0;
 
         // ====================  MUTATORS      =======================================
 
