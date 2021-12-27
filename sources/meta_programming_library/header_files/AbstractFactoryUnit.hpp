@@ -24,8 +24,8 @@ namespace MPL
 template<typename T>
 class AbstractFactoryUnit
 {
-    template<typename T>
-    using Type2Type = boost::mp11::mp_identity<T>; 
+    template<typename T1>
+    using Type2Type = boost::mp11::mp_identity<T1>; 
 
     public:
         // ====================  LIFECYCLE     =======================================

@@ -22,11 +22,11 @@ namespace MPL
 //        Class:  AbstractFactory
 //  Description:  
 //  =====================================================================================
-template <typename TList, template<typename> typename unit=AbstractFactoryUnit >
-class AbstractFactory : public boost::mp11::rename<TList,unit>()
+template <typename TList, template<typename> typename Unit=AbstractFactoryUnit >
+class AbstractFactory : public boost::mp11::mp_rename<TList,Unit>
 {
-    template<typename T>
-    using Type2Type = boost::mp11::mp_identity<T>; 
+    template<typename T1>
+    using Type2Type = boost::mp11::mp_identity<T1>; 
 
     using ProductList= TList;
 
@@ -63,10 +63,11 @@ class AbstractFactory : public boost::mp11::rename<TList,unit>()
         }
 
         // ====================  ACCESSORS     =======================================
-        template <typename T> T* Create()
+        template <typename T2> 
+        T2* Create()
         {
-            Unit <T> & unit = *this;
-            return unit.DoCreate(Type2Type<T>());
+            Unit<T2> & unit = *this;
+            return unit.DoCreate(Type2Type<T2>());
         }
 
         // ====================  MUTATORS      =======================================
