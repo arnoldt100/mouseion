@@ -18,17 +18,20 @@
 namespace MPL
 {
 
+template <typename TL1, template<class...> class MF1>
+using GenScatterHierarchy = boost::mp11::mp_rename<TL1,MF1>;
+
 // =====================================================================================
 //        Class:  AbstractFactory
 //  Description:  
 //  =====================================================================================
-template <typename TList, template<typename> typename Unit=AbstractFactoryUnit >
-class AbstractFactory : public boost::mp11::mp_rename<TList,Unit>
+template <typename TypeList, template<typename> typename Unit=AbstractFactoryUnit >
+class AbstractFactory : public GenScatterHierarchy<TypeList,Unit>
 {
     template<typename T1>
     using Type2Type = boost::mp11::mp_identity<T1>; 
 
-    using ProductList= TList;
+    using ProductList= TypeList;
 
     public:
         // ====================  LIFECYCLE     =======================================
