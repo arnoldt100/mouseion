@@ -54,10 +54,13 @@
     #                                                    -
     #-----------------------------------------------------
     set (mpl_header_files
+         header_files/EmptyList.h
+         header_files/MPLAliases.hpp
          header_files/DefaultFactoryError.hpp
          header_files/Factory.hpp 
          header_files/AbstractFactoryUnit.hpp
-         header_files/AbstractFactory.hpp)
+         header_files/AbstractFactory.hpp
+         header_files/GenerateScatteredHierarchy.hpp)
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -67,10 +70,13 @@
     #                                                    -
     #-----------------------------------------------------
     set (mpl_implementation_files
+         implementation_files/EmptyList.cpp
+         implementation_files/MPLAliases.cpp
          implementation_files/DefaultFactoryError.cpp
          implementation_files/Factory.cpp 
          implementation_files/AbstractFactoryUnit.cpp
-         implementation_files/AbstractFactory.cpp)
+         implementation_files/AbstractFactory.cpp
+         implementation_files/GenerateScatteredHierarchy.cpp)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
