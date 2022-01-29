@@ -8,30 +8,27 @@
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
 //--------------------------------------------------------//
-#include <boost/mp11.hpp>
 
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "GenerateScatteredHierarchy.hpp"
 #include "AbstractFactoryUnit.hpp"
 
 namespace MPL
 {
 
-template <typename TL1, template<class...> class MF1>
-using GenScatterHierarchy = boost::mp11::mp_rename<TL1,MF1>;
-
 // =====================================================================================
 //        Class:  AbstractFactory
 //  Description:  
 //  =====================================================================================
-template <typename TypeList, template<typename> typename Unit=AbstractFactoryUnit >
-class AbstractFactory : public GenScatterHierarchy<TypeList,Unit>
+template <
+           typename L,
+           template<typename> typename Unit=AbstractFactoryUnit
+         >
+class AbstractFactory : public GenerateScatteredHierarchy<Unit, mpl_size<L>,L>
 {
-    template<typename T1>
-    using Type2Type = boost::mp11::mp_identity<T1>; 
-
-    using ProductList= TypeList;
+    using ProductList= L;
 
     public:
         // ====================  LIFECYCLE     =======================================
@@ -70,7 +67,7 @@ class AbstractFactory : public GenScatterHierarchy<TypeList,Unit>
         T2* Create()
         {
             Unit<T2> & unit = *this;
-            return unit.DoCreate(Type2Type<T2>());
+            return unit.DoCreate(mpl_type2type<T2>());
         }
 
         // ====================  MUTATORS      =======================================
