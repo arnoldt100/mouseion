@@ -13,6 +13,7 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "MPLAliases.hpp"
+#include "EmptyType.h"
 
 namespace MPL
 {
@@ -21,7 +22,9 @@ namespace MPL
 //        Class:  GenerateLinearHHierarchy
 //  Description: The primary template
 //  =====================================================================================
-template<typename TypeList, template<typename> typename Unit>
+template<typename TypeList, 
+         template<typename> typename Unit,
+         class Root = EmpytyType>
 class GenerateLinearHHierarchy; // -----  end of class GenerateLinearHHierarchy  -----
 
 }; // namespace MPL

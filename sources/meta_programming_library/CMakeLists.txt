@@ -55,6 +55,8 @@
     #-----------------------------------------------------
     set (mpl_header_files
          header_files/EmptyList.h
+         header_files/NullType.h
+         header_files/EmptyType.h
          header_files/MPLAliases.hpp
          header_files/DefaultFactoryError.hpp
          header_files/Factory.hpp 
@@ -71,6 +73,8 @@
     #-----------------------------------------------------
     set (mpl_implementation_files
          implementation_files/EmptyList.cpp
+         implementation_files/NullType.cpp
+         implementation_files/EmptyType.cpp
          implementation_files/MPLAliases.cpp
          implementation_files/DefaultFactoryError.cpp
          implementation_files/Factory.cpp 
