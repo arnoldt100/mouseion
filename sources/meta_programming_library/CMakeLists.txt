@@ -59,7 +59,8 @@
          header_files/EmptyType.h
          header_files/MPLAliases.hpp
          header_files/DefaultFactoryError.hpp
-         header_files/Factory.hpp 
+         header_files/Factory.hpp
+         header_files/OpNewFactoryUnit.hpp
          header_files/AbstractFactoryUnit.hpp
          header_files/AbstractFactory.hpp
          header_files/GenerateScatteredHierarchy.hpp)
@@ -78,6 +79,7 @@
          implementation_files/MPLAliases.cpp
          implementation_files/DefaultFactoryError.cpp
          implementation_files/Factory.cpp 
+         implementation_files/OpNewFactoryUnit.cpp
          implementation_files/AbstractFactoryUnit.cpp
          implementation_files/AbstractFactory.cpp
          implementation_files/GenerateScatteredHierarchy.cpp)
