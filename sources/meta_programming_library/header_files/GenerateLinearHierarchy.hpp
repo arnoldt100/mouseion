@@ -25,12 +25,12 @@ namespace MPL
 template<
          template<typename,typename> typename Unit,
          typename TypeListSize,
-         typename L, 
-         class Root = EmpytyType
+         typename TypeList, 
+         class Root = EmptyType
         >
 class GenerateLinearHierarchy : public Unit<
-                                            mpl_front<L>,
-                                            GenerateLinearHierarchy<Unit,mpl_rest_size<L>,mpl_rest<L>,Root>
+                                            mpl_front<TypeList>,
+                                            GenerateLinearHierarchy<Unit,mpl_rest_size<TypeList>,mpl_rest<TypeList>,Root>
                                            > 
 {
 
@@ -44,15 +44,15 @@ class GenerateLinearHierarchy : public Unit<
 //  ====================================================================================
 template<
          template <typename,typename> class Unit,
-         typename L,
+         typename TypeList,
          class Root>
 class GenerateLinearHierarchy <
                                 Unit,
                                 mpl_size_1,
-                                L,
+                                TypeList,
                                 Root
                               > :
-    public Unit<mpl_front<L>,Root>
+    public Unit<mpl_front<TypeList>,Root>
 {
 
 };

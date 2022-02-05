@@ -87,6 +87,14 @@ template<typename L>
 using mpl_front_size = mpl_size< mpl_front<L> >;
 
 
+//-----------------------------------------------------
+// The alias to boost mp11 to reverse the elements
+// of the typelist.
+//-----------------------------------------------------
+template<typename L>
+using mpl_reverse = boost::mp11::mp_reverse<L>;
+
+
 }; // namespace MPL
 
 #endif   // ----- #ifndef MOUSEION_MPLAliases_INC  ----- 

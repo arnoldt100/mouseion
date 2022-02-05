@@ -26,7 +26,7 @@ namespace MPL
     {
 
         public:
-            using AbstractProduct = BaseProductList::Head;
+            using AbstractProduct = mpl_front<typename Base::ProductList>;
 
             // ====================  LIFECYCLE     =======================================
 
@@ -59,7 +59,7 @@ namespace MPL
                 {
 
                 }
-                return *this;
+                return;
             }
 
             virtual ~OpNewFactoryUnit ()  // destructor
@@ -68,7 +68,7 @@ namespace MPL
             }
 
             // ====================  ACCESSORS     =======================================
-            ConcreteProduct* DoCreate(mpl_type2type<AbstractProduct>)
+            ConcreteProduct* DoCreate(mpl_type2type<AbstractProduct>) const
             {
                 return new ConcreteProduct;
             }
@@ -97,12 +97,15 @@ namespace MPL
 
         protected:
 
+            using ProductList = mpl_rest<typename Base::ProductList>;
+
             // ====================  METHODS       =======================================
 
             // ====================  DATA MEMBERS  =======================================
 
         private:
-            using BaseProductList = Base::ProductList
+            using BaseProductList = typename Base::ProductList;
+
             // ====================  METHODS       =======================================
 
             // ====================  DATA MEMBERS  =======================================

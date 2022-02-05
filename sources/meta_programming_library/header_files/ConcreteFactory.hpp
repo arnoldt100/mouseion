@@ -1,5 +1,6 @@
-#ifndef  MOUSEION_AbstractFactoryUnit_INC
-#define  MOUSEION_AbstractFactoryUnit_INC
+#ifndef  MOUSEION_ConcreteFactory_INC
+#define  MOUSEION_ConcreteFactory_INC
+
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
@@ -13,73 +14,92 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "MPLAliases.hpp"
+#include "GenerateLinearHierarchy.hpp"
+#include "OpNewFactoryUnit.hpp"
 
-namespace MPL
-{
+namespace MPL {
 
 // =====================================================================================
-//        Class:  AbstractFactoryUnit
+//        Class:  ConcreteFactory
 //  Description:  
 //  =====================================================================================
-template<typename T>
-class AbstractFactoryUnit
-{
+template< typename AbstractFact,
+          typename TypeList,
+          template <typename,typename> typename Creator = OpNewFactoryUnit
+        >
+class ConcreteFactory : public GenerateLinearHierarchy<Creator,
+                                                       mpl_size<mpl_reverse<TypeList>>,
+                                                       mpl_reverse<TypeList>,
+                                                       AbstractFact>
+{ 
     public:
+        using ProductList = typename AbstractFact::ProductList;
+        using ConcreteProductList = TypeList;
+
         // ====================  LIFECYCLE     =======================================
 
         //--------------------------------------------------------------------------------------
-        //       Class:  AbstractFactoryUnit
-        //      Method:  AbstractFactoryUnit :: AbstractFactoryUnit
+        //       Class:  ConcreteFactory
+        //      Method:  ConcreteFactory :: ConcreteFactory
         // Description:  
         // 
         //  Parameters: 
         //
         //      Return:
         //--------------------------------------------------------------------------------------
-        AbstractFactoryUnit () // constructor
+        ConcreteFactory () // constructor
         {
             return;
         }
 
-        AbstractFactoryUnit (const AbstractFactoryUnit & other) // copy constructor
+        ConcreteFactory (const ConcreteFactory & other) // copy constructor
         {
+            if (this != &other)
+            {
+
+            }
             return;
         }
 
-        AbstractFactoryUnit (AbstractFactoryUnit && other)   // copy-move constructor
+        ConcreteFactory (ConcreteFactory && other) // copy-move constructor
         {
+            if (this != &other)
+            {
+
+            }
             return;
         }
 
-        virtual ~AbstractFactoryUnit () // destructor
+        virtual ~ConcreteFactory () // destructor
         {
-            return;
+           return; 
         }
+
 
         // ====================  ACCESSORS     =======================================
-        virtual T* DoCreate(mpl_type2type<T>) const = 0;
 
         // ====================  MUTATORS      =======================================
 
         // ====================  OPERATORS     =======================================
 
-        AbstractFactoryUnit& operator= ( const AbstractFactoryUnit &other ) // assignment operator
+        ConcreteFactory& operator= ( const ConcreteFactory &other ) // assignment operator
         {
             if (this != &other)
             {
 
             }
             return *this;
-        } // assignment operator
+        }
 
-        AbstractFactoryUnit& operator= ( AbstractFactoryUnit && other ) // assignment-move operator
+
+        ConcreteFactory& operator= ( ConcreteFactory && other ) // assignment-move operator
         {
             if (this != &other)
             {
 
             }
             return *this;
-        } // assignment operator
+        }
 
     protected:
         // ====================  METHODS       =======================================
@@ -91,9 +111,8 @@ class AbstractFactoryUnit
 
         // ====================  DATA MEMBERS  =======================================
 
-}; // -----  end of class AbstractFactoryUnit  -----
-
+}; // -----  end of class ConcreteFactory  -----
 
 }; // namespace MPL
 
-#endif   // ----- #ifndef MOUSEION_AbstractFactoryUnit_INC  ----- 
+#endif   // ----- #ifndef MOUSEION_ConcreteFactory_INC  ----- 
