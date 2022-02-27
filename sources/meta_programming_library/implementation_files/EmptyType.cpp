@@ -24,6 +24,11 @@ EmptyType::EmptyType()
     return;
 }
 
+EmptyType::EmptyType( EmptyType const  & other)
+{
+    return;
+}		// -----  end of method EmptyType::EmptyType  -----
+
 EmptyType::EmptyType( EmptyType && other)
 {
     return;

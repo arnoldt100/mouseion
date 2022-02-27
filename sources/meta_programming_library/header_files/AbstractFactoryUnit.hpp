@@ -43,6 +43,10 @@ class AbstractFactoryUnit
 
         AbstractFactoryUnit (const AbstractFactoryUnit & other) // copy constructor
         {
+            if (this != &other) 
+            {
+
+            }
             return;
         }
 
@@ -57,9 +61,9 @@ class AbstractFactoryUnit
         }
 
         // ====================  ACCESSORS     =======================================
-        virtual T* DoCreate(mpl_type2type<T>) const = 0;
 
         // ====================  MUTATORS      =======================================
+        virtual T* DoCreate(mpl_type2type<T>) = 0;
 
         // ====================  OPERATORS     =======================================
 

@@ -4,8 +4,6 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
-#include <iostream>
-#include <typeinfo>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -27,11 +25,11 @@ namespace MPL
     <
         template<typename> typename Unit, 
         typename TypeListSize,
-        typename L
+        typename TypeList
     >
-    class GenerateScatteredHierarchy : public Unit<mpl_front<L>>,
-                                       public mpl_size<L>,
-                                       public GenerateScatteredHierarchy<Unit,mpl_rest_size<L>,mpl_rest<L>> 
+    class GenerateScatteredHierarchy : public Unit<mpl_front<TypeList>>,
+                                       public mpl_size<TypeList>,
+                                       public GenerateScatteredHierarchy<Unit,mpl_rest_size<TypeList>,mpl_rest<TypeList>> 
     {
         public:
             // ====================  LIFECYCLE     =======================================
@@ -94,23 +92,75 @@ namespace MPL
             // ====================  METHODS       =======================================
 
             // ====================  DATA MEMBERS  =======================================
-            L my_typelist_;
 
     }; // -----  end of class GenerateScatteredHierarchy  -----
 
 
+    // =====================================================================================
+    //        Class:  GenerateScatteredHierarchy
+    //  Description:  Partial specialization wheb TypeList has size 0.
+    //  =====================================================================================
     template
     <
         template<typename> typename Unit, 
-        typename L
+        typename TypeList
     >
-    class GenerateScatteredHierarchy<Unit,mpl_size_0, L> 
+    class GenerateScatteredHierarchy<Unit,mpl_size_0, TypeList> 
     {
         public: 
             GenerateScatteredHierarchy ()
             {
                 return;
             }   // constructor
+            
+            GenerateScatteredHierarchy (const GenerateScatteredHierarchy & other)   // copy constructor
+            {
+                return;
+            }
+
+            GenerateScatteredHierarchy (GenerateScatteredHierarchy && other)   // copy-move constructor
+            {
+                return;
+            }
+
+            virtual ~GenerateScatteredHierarchy ()  // destructor
+            {
+                return;
+            }
+
+            // ====================  ACCESSORS     =======================================
+
+            // ====================  MUTATORS      =======================================
+
+            // ====================  OPERATORS     =======================================
+
+            GenerateScatteredHierarchy& operator= ( const GenerateScatteredHierarchy &other ) // assignment operator
+            {
+                if ( this != &other )
+                {
+
+                }
+                return *this;
+            }
+
+            GenerateScatteredHierarchy& operator= ( GenerateScatteredHierarchy && other ) // assignment-move operator
+            {
+                if ( this != &other )
+                {
+
+                }
+                return *this;
+            }
+
+        protected:
+            // ====================  METHODS       =======================================
+
+            // ====================  DATA MEMBERS  =======================================
+
+        private:
+            // ====================  METHODS       =======================================
+
+            // ====================  DATA MEMBERS  =======================================
 
     };
 

@@ -24,6 +24,11 @@ NullType::NullType()
     return;
 }
 
+NullType::NullType( NullType const & other)
+{
+    return;
+}		// -----  end of method NullType::NullType  -----
+
 NullType::NullType( NullType && other)
 {
     return;

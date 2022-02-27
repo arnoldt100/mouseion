@@ -1,9 +1,13 @@
-#ifndef __filepreprocessordefine__
-#define __filepreprocessordefine__
+#ifndef MOUSEION_OpNewFactoryUnit
+#define MOUSEION_OpNewFactoryUnit
+
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <utility>
+#include <iostream>
+#include <typeinfo>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -22,7 +26,7 @@ namespace MPL
      //  Description:  
      //  =====================================================================================
     template <typename ConcreteProduct, typename Base>
-    class OpNewFactoryUnit : Base
+    class OpNewFactoryUnit : public Base
     {
 
         public:
@@ -44,7 +48,8 @@ namespace MPL
                 return;
             }
 
-            OpNewFactoryUnit (const OpNewFactoryUnit & other)   // copy constructor
+            OpNewFactoryUnit (const OpNewFactoryUnit & other) : // copy constructor
+                Base(other)
             {
                 if (this != &other)
                 {
@@ -53,7 +58,8 @@ namespace MPL
                 return;
             }
 
-            OpNewFactoryUnit (OpNewFactoryUnit && other)   // copy-move constructor
+            OpNewFactoryUnit (OpNewFactoryUnit && other) : // copy-move constructor
+                Base(std::move(other))
             {
                 if (this != &other)
                 {
@@ -68,12 +74,13 @@ namespace MPL
             }
 
             // ====================  ACCESSORS     =======================================
-            ConcreteProduct* DoCreate(mpl_type2type<AbstractProduct>) const
-            {
-                return new ConcreteProduct;
-            }
 
             // ====================  MUTATORS      =======================================
+            ConcreteProduct* DoCreate(mpl_type2type<AbstractProduct>)
+            {
+            	std::cout << "Creating product " << typeid(mpl_type2type<ConcreteProduct>).name() << std::endl;
+                return new ConcreteProduct;
+            }
 
             // ====================  OPERATORS     =======================================
 
@@ -81,7 +88,7 @@ namespace MPL
             {
                 if ( this != &other)
                 {
-
+                    Base::operator=(other);
                 }
                 return *this;
             }
@@ -115,4 +122,4 @@ namespace MPL
 
 }; // namespace MPL
 
-#endif // __filepreprocessordefine__
+#endif // MOUSEION_OpNewFactoryUnit

@@ -24,6 +24,11 @@ EmptyList::EmptyList()
     return;
 }
 
+EmptyList::EmptyList( EmptyList const & other)
+{
+    return;
+}		// -----  end of method EmptyList::EmptyList  -----
+
 EmptyList::EmptyList( EmptyList && other)
 {
     return;

@@ -23,14 +23,15 @@ namespace MPL
 //  Description:  
 //  =====================================================================================
 template <
-           typename L,
+           typename TypeList,
            template<typename> typename Unit=AbstractFactoryUnit
          >
-class AbstractFactory : public GenerateScatteredHierarchy<Unit, mpl_size<L>,L>
+class AbstractFactory : public GenerateScatteredHierarchy<Unit, mpl_size<TypeList>,TypeList>
 {
-    using ProductList = L;
 
     public:
+        using ProductList = TypeList;
+
         // ====================  LIFECYCLE     =======================================
 
         //--------------------------------------------------------------------------------------

@@ -64,7 +64,8 @@
          header_files/OpNewFactoryUnit.hpp
          header_files/AbstractFactoryUnit.hpp
          header_files/AbstractFactory.hpp
-         header_files/GenerateScatteredHierarchy.hpp)
+         header_files/GenerateScatteredHierarchy.hpp
+         header_files/GenerateLinearHierarchy.hpp )
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -84,7 +85,8 @@
          implementation_files/OpNewFactoryUnit.cpp
          implementation_files/AbstractFactoryUnit.cpp
          implementation_files/AbstractFactory.cpp
-         implementation_files/GenerateScatteredHierarchy.cpp)
+         implementation_files/GenerateScatteredHierarchy.cpp
+         implementation_files/GenerateLinearHierarchy.cpp)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -115,7 +117,8 @@ target_sources(${target}
 #                                                    -
 #-----------------------------------------------------
 target_include_directories(${target} 
-                           PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files )
+                           PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files
+                           PRIVATE ${Boost_INCLUDE_DIR} )
 
 #-----------------------------------------------------
 # Enable compile warnings.                           -
@@ -130,7 +133,8 @@ enable_compile_warnings(${target})
 set(THREADS_PREFER_PTHREAD_FLAG ON)
 find_package(Threads REQUIRED)
 target_link_libraries( ${target}
-                       PUBLIC Threads::Threads)
+                       PUBLIC Threads::Threads 
+                       ${Boost_LIBRARIES} )
 
 #-----------------------------------------------------
 # Here we set the properties on target               -
