@@ -48,5 +48,5 @@ macro (enable_building_mouseion top_level
     set(ENV{MOUSEION_INSTALL_LIB_DIRECTORY} ${install_lib_directory})
     set(ENV{MOUSEION_LOG_FILE} "mouseion_log.txt")
     set(ENV{MOUSEION_TOP_LEVEL} ${mouseion_top_level})
-    set(ENV{MOUSEION_BOOST_TOP_LEVEL} $ENV{ANANSI_BOOST_TOP_LEVEL})
+    set(ENV{MOUSEION_BOOST_TOP_LEVEL} ${boost_top_level})
 endmacro()
