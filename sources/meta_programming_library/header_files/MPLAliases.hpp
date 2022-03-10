@@ -4,6 +4,7 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <type_traits>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -29,7 +30,6 @@ namespace MPL
 //-----------------------------------------------------
 template<typename ...T>
 using mpl_typelist = boost::mp11::mp_list<T...>;
-
 
 //-----------------------------------------------------
 // The alias to the the boost mp11 transformation type
@@ -86,13 +86,28 @@ using mpl_front = boost::mp11::mp_front<L>;
 template<typename L>
 using mpl_front_size = mpl_size< mpl_front<L> >;
 
-
 //-----------------------------------------------------
 // The alias to boost mp11 to reverse the elements
 // of the typelist.
 //-----------------------------------------------------
 template<typename L>
 using mpl_reverse = boost::mp11::mp_reverse<L>;
+
+
+
+
+template<typename L, template <class...> typename P >
+using mpl_find_if = boost::mp11::mp_find_if<L,P>;
+
+template<class Base,class Derived>
+using M_mpl_is_base_of = std::is_base_of<Base,Derived>;
+
+template <typename Base_TL, typename Derived>
+struct Q_mpl_is_base_of 
+{
+    public :
+            using fn = M_mpl_is_base_of<Base_TL,Derived>;
+}; 
 
 
 }; // namespace MPL

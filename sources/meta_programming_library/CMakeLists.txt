@@ -30,6 +30,16 @@
     #-----------------------------------------------------
     set(target ${my_project_name})
 
+	#-----------------------------------------------------
+    # This library needs access to the following header  -
+    # files:                                             -
+    #                                                    -
+    #   memory_management target header files            -
+    #                                                    -
+    # We get the path to the above header files.         -
+    #-----------------------------------------------------
+	get_target_property(mm_include_dir memory_management memory_management_include)
+	
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
 # End of CMake preamble section.                                  @
@@ -118,6 +128,7 @@ target_sources(${target}
 #-----------------------------------------------------
 target_include_directories(${target} 
                            PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files
+                           PRIVATE ${mm_include_dir}
                            PRIVATE ${Boost_INCLUDE_DIR} )
 
 #-----------------------------------------------------
@@ -133,7 +144,8 @@ enable_compile_warnings(${target})
 set(THREADS_PREFER_PTHREAD_FLAG ON)
 find_package(Threads REQUIRED)
 target_link_libraries( ${target}
-                       PUBLIC Threads::Threads 
+                       PUBLIC Threads::Threads
+                       PUBLIC memory_management
                        ${Boost_LIBRARIES} )
 
 #-----------------------------------------------------

@@ -17,6 +17,7 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "MPLAliases.hpp"
+#include "Pointer.hpp"
 
 namespace MPL
 {
