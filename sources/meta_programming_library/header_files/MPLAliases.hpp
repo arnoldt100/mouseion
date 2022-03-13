@@ -93,22 +93,21 @@ using mpl_front_size = mpl_size< mpl_front<L> >;
 template<typename L>
 using mpl_reverse = boost::mp11::mp_reverse<L>;
 
-
-
+// ----------------------------------------------------
+// The alias to boost mp11 to return the I-th element
+// of L, zero-based.
+// ----------------------------------------------------
+template <typename L,std::size_t I>
+using mpl_at_c = boost::mp11::mp_at_c<L,I>;
 
 template<typename L, template <class...> typename P >
 using mpl_find_if = boost::mp11::mp_find_if<L,P>;
 
+template<typename L, typename Q >
+using mpl_find_if_q = boost::mp11::mp_find_if_q<L,Q>;
+
 template<class Base,class Derived>
 using M_mpl_is_base_of = std::is_base_of<Base,Derived>;
-
-template <typename Base_TL, typename Derived>
-struct Q_mpl_is_base_of 
-{
-    public :
-            using fn = M_mpl_is_base_of<Base_TL,Derived>;
-}; 
-
 
 }; // namespace MPL
 
