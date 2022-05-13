@@ -5,16 +5,15 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
-#include "mpi.h"
-#include <iostream>
-#include <cstdlib>
+
+//--------------------------------------------------------//
+//-------------------- External Library Files ------------//
+//--------------------------------------------------------//
+
 
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "MPIInitException.h"
-#include "MPIInitializedException.h"
-#include "MPIFinalizedException.h"
 #include "ClassInstanceLimiter.hpp"
 
 namespace COMMUNICATOR
@@ -27,13 +26,15 @@ class MPIEnvironment final : private COUNTERCLASSES::ClassInstanceLimiter<MPIEnv
     public:
         /* ====================  LIFECYCLE     ======================================= */
 
+        MPIEnvironment(); /* constructor */
+
         MPIEnvironment(int const & argc, char const * const * const & argv); /* constructor */
 
         MPIEnvironment(const MPIEnvironment &other)=delete; /* copy constructor */
 
         MPIEnvironment (MPIEnvironment && other)= delete;
 
-        virtual ~MPIEnvironment(); /* destructor */
+        ~MPIEnvironment(); /* destructor */
 
         /* ====================  ACCESSORS     ======================================= */
 
