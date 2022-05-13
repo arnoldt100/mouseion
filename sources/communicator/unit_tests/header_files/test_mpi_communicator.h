@@ -19,7 +19,7 @@ class MPICommFixture
         MPICommFixture() :
             argc(utf::framework::master_test_suite().argc),
             argv(utf::framework::master_test_suite().argv),
-            aMPIEnvironment(std::make_unique<COMMUNICATOR::MPIEnvironment>(argc,argv))
+            aMPIEnvironment(std::make_unique<COMMUNICATOR::MPIEnvironment>())
         {
             return; 
         }
@@ -31,11 +31,13 @@ class MPICommFixture
 
         void setup()
         {
+            aMPIEnvironment->enable();
             std::cout << "setup of MPICommFixture." << std::endl;
         }
 
         void teardown()
         {
+            aMPIEnvironment->disable();
             std::cout << "teardown of MPICommFixture." << std::endl;
         }
 

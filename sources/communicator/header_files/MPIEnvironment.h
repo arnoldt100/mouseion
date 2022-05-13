@@ -28,8 +28,6 @@ class MPIEnvironment final : private COUNTERCLASSES::ClassInstanceLimiter<MPIEnv
 
         MPIEnvironment(); /* constructor */
 
-        MPIEnvironment(int const & argc, char const * const * const & argv); /* constructor */
-
         MPIEnvironment(const MPIEnvironment &other)=delete; /* copy constructor */
 
         MPIEnvironment (MPIEnvironment && other)= delete;
@@ -39,6 +37,12 @@ class MPIEnvironment final : private COUNTERCLASSES::ClassInstanceLimiter<MPIEnv
         /* ====================  ACCESSORS     ======================================= */
 
         /* ====================  MUTATORS      ======================================= */
+        void enable(int const & argc, char const * const * const & argv) const;
+
+        void enable() const;
+
+        void disable() const;
+
 
         /* ====================  OPERATORS     ======================================= */
 

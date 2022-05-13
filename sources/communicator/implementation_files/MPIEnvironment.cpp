@@ -30,44 +30,23 @@ namespace COMMUNICATOR {
 MPIEnvironment::MPIEnvironment() : 
     COUNTERCLASSES::ClassInstanceLimiter<MPIEnvironment,MAX_MPIENVIRONMENT_INSTANCES>()
 {
-    // Verify that the MPI environment is not already initialized. If
-    // the MPI environment is not initialized, the call MPI_Init.
-    try
-    {
-        int flag;
-        int mpi_return_code = MPI_Initialized( &flag ); 
-        if (flag)
-        {
-            throw COMMUNICATOR::MPIInitializedException();       
-        }
-    
-        int tmp_argc = 0;
-        char** tmp_argv = nullptr;
+    return;
+}
 
-        mpi_return_code = MPI_Init(&tmp_argc,&tmp_argv);
-
-        if (mpi_return_code != MPI_SUCCESS)
-        {
-            throw COMMUNICATOR::MPIInitException();       
-        }
-    }
-    catch(COMMUNICATOR::MPIInitializedException const & my_mpi_exception)
-    {
-        std::cout << my_mpi_exception.what() << std::endl;
-        std::abort();
-    }
-    catch (COMMUNICATOR::MPIInitException const & my_mpi_exception)
-    {
-        std::cout << my_mpi_exception.what() << std::endl;
-        std::abort();
-    }
+MPIEnvironment::~MPIEnvironment()
+{
     return;
 }
 
 
-MPIEnvironment::MPIEnvironment(int const & argc, char const * const * const & argv) :
-    COUNTERCLASSES::ClassInstanceLimiter<MPIEnvironment,MAX_MPIENVIRONMENT_INSTANCES>()
+
+//============================= ACCESSORS ====================================
+
+//============================= MUTATORS =====================================
+
+void MPIEnvironment::enable(int const & argc, char const * const * const & argv) const
 {
+
     // Verify that the MPI environment is not already initialized. If
     // the MPI environment is not initialized, the call MPI_Init.
     try
@@ -103,7 +82,44 @@ MPIEnvironment::MPIEnvironment(int const & argc, char const * const * const & ar
     return;
 }
 
-MPIEnvironment::~MPIEnvironment()
+void MPIEnvironment::enable() const
+{
+
+    // Verify that the MPI environment is not already initialized. If
+    // the MPI environment is not initialized, the call MPI_Init.
+    try
+    {
+        int flag;
+        int mpi_return_code = MPI_Initialized( &flag ); 
+        if (flag)
+        {
+            throw COMMUNICATOR::MPIInitializedException();       
+        }
+    
+        int tmp_argc = 0;
+        char** tmp_argv = nullptr;
+
+        mpi_return_code = MPI_Init(&tmp_argc,&tmp_argv);
+
+        if (mpi_return_code != MPI_SUCCESS)
+        {
+            throw COMMUNICATOR::MPIInitException();       
+        }
+    }
+    catch(COMMUNICATOR::MPIInitializedException const & my_mpi_exception)
+    {
+        std::cout << my_mpi_exception.what() << std::endl;
+        std::abort();
+    }
+    catch (COMMUNICATOR::MPIInitException const & my_mpi_exception)
+    {
+        std::cout << my_mpi_exception.what() << std::endl;
+        std::abort();
+    }
+    return;
+}
+
+void MPIEnvironment::disable() const
 {
     try 
     {
@@ -120,10 +136,6 @@ MPIEnvironment::~MPIEnvironment()
     }
     return;
 }
-
-//============================= ACCESSORS ====================================
-
-//============================= MUTATORS =====================================
 
 //============================= OPERATORS ====================================
 
