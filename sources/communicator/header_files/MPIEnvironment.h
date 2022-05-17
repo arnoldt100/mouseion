@@ -5,6 +5,7 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <memory>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -14,6 +15,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "NullMPIEnvironment.h"
 #include "ClassInstanceLimiter.hpp"
 
 namespace COMMUNICATOR
@@ -46,7 +48,7 @@ class MPIEnvironment final : private COUNTERCLASSES::ClassInstanceLimiter<MPIEnv
 
         /* ====================  OPERATORS     ======================================= */
 
-        MPIEnvironment& 
+        MPIEnvironment&
         operator=(const MPIEnvironment &other)=delete; /* assignment operator */
 
         MPIEnvironment&
@@ -63,6 +65,8 @@ class MPIEnvironment final : private COUNTERCLASSES::ClassInstanceLimiter<MPIEnv
         /* ====================  METHODS       ======================================= */
 
         /* ====================  DATA MEMBERS  ======================================= */
+        std::shared_ptr<COMMUNICATOR::NullMPIEnvironment> nullmpistate_;
+        std::shared_ptr<COMMUNICATOR::MPIEnvironmentState> mpistate_;
 
 }; /* -----  end of class MPIEnvironment  ----- */
 

@@ -27,9 +27,11 @@ namespace COMMUNICATOR {
 
 //============================= LIFECYCLE ====================================
 
-MPIEnvironment::MPIEnvironment() : 
+MPIEnvironment::MPIEnvironment() :
     COUNTERCLASSES::ClassInstanceLimiter<MPIEnvironment,MAX_MPIENVIRONMENT_INSTANCES>()
 {
+    this->nullmpistate_ = std::make_shared<COMMUNICATOR::NullMPIEnvironment>();
+    this->mpistate_ = this->nullmpistate_;
     return;
 }
 
@@ -37,8 +39,6 @@ MPIEnvironment::~MPIEnvironment()
 {
     return;
 }
-
-
 
 //============================= ACCESSORS ====================================
 
@@ -52,12 +52,12 @@ void MPIEnvironment::enable(int const & argc, char const * const * const & argv)
     try
     {
         int flag;
-        int mpi_return_code = MPI_Initialized( &flag ); 
+        int mpi_return_code = MPI_Initialized( &flag );
         if (flag)
         {
-            throw COMMUNICATOR::MPIInitializedException();       
+            throw COMMUNICATOR::MPIInitializedException();
         }
-    
+
         int tmp_argc = argc;
         char** tmp_argv = nullptr;
 
@@ -66,7 +66,7 @@ void MPIEnvironment::enable(int const & argc, char const * const * const & argv)
 
         if (mpi_return_code != MPI_SUCCESS)
         {
-            throw COMMUNICATOR::MPIInitException();       
+            throw COMMUNICATOR::MPIInitException();
         }
     }
     catch(COMMUNICATOR::MPIInitializedException const & my_mpi_exception)
@@ -90,12 +90,12 @@ void MPIEnvironment::enable() const
     try
     {
         int flag;
-        int mpi_return_code = MPI_Initialized( &flag ); 
+        int mpi_return_code = MPI_Initialized( &flag );
         if (flag)
         {
-            throw COMMUNICATOR::MPIInitializedException();       
+            throw COMMUNICATOR::MPIInitializedException();
         }
-    
+
         int tmp_argc = 0;
         char** tmp_argv = nullptr;
 
@@ -103,7 +103,7 @@ void MPIEnvironment::enable() const
 
         if (mpi_return_code != MPI_SUCCESS)
         {
-            throw COMMUNICATOR::MPIInitException();       
+            throw COMMUNICATOR::MPIInitException();
         }
     }
     catch(COMMUNICATOR::MPIInitializedException const & my_mpi_exception)
@@ -156,7 +156,7 @@ void MPIEnvironment::disable() const
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PRIVATE //////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////
-    
+
 //============================= LIFECYCLE ====================================
 
 //============================= ACCESSORS ====================================
