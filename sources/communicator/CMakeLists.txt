@@ -106,6 +106,7 @@
          header_files/MPIInitException.h
          header_files/MPIInitializedException.h
          header_files/MPIEnvironment.h
+         header_files/MPIEnvironmentState.h
          header_files/MPIReduce.h
          header_files/MPIReductionOperation.h
          header_files/MPIUtilityFunctions.h
@@ -144,6 +145,7 @@
          implementation_files/MPIInitException.cpp
          implementation_files/MPIReductionOperation.cpp
          implementation_files/MPIEnvironment.cpp
+         implementation_files/MPIEnvironmentState.cpp
          implementation_files/MPICommDuplicateException.cpp
          implementation_files/MPIAllGatherException.cpp
          implementation_files/MPIGatherException.cpp
