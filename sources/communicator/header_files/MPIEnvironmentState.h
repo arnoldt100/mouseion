@@ -13,8 +13,19 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 
+//--------------------------------------------------------//
+//--------------------- Forward Declarations -------------//
+//--------------------------------------------------------//
 namespace COMMUNICATOR
 {
+
+class MPIEnvironment; 
+
+}
+
+namespace COMMUNICATOR
+{
+
 
 // =====================================================================================
 //        Class:  MPIEnvironmentState
@@ -45,7 +56,9 @@ class MPIEnvironmentState
         // ====================  ACCESSORS     =======================================
 
         // ====================  MUTATORS      =======================================
-        void enable();
+        void enable(MPIEnvironment* const mpi_environment);
+
+        void enable(MPIEnvironment* const mpi_environment,int const & argc, char const * const * const & argv );
 
         void disable();
 
@@ -62,7 +75,9 @@ class MPIEnvironmentState
 
     private:
         // ====================  MUTATORS      =======================================
-        virtual void enable_();
+        virtual void enable_(MPIEnvironment* const mpi_environment);
+
+        virtual void enable_(MPIEnvironment* const mpi_environment, int const & argc, char const * const * const & argv);
 
         virtual void disable_();
 

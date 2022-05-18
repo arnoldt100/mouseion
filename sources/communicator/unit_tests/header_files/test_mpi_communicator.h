@@ -31,13 +31,13 @@ class MPICommFixture
 
         void setup()
         {
-            aMPIEnvironment->enable();
+            aMPIEnvironment->enableEnvironment();
             std::cout << "setup of MPICommFixture." << std::endl;
         }
 
         void teardown()
         {
-            aMPIEnvironment->disable();
+            aMPIEnvironment->disableEnvironment();
             std::cout << "teardown of MPICommFixture." << std::endl;
         }
 

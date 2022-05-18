@@ -11,6 +11,7 @@
 //--------------------------------------------------------//
 #include "NullMPIEnvironment.h"
 #include "EnabledMPIEnvironment.h"
+#include "DisabledMPIEnvironment.h"
 #include "MPIEnvironment.h"
 
 namespace COMMUNICATOR {
@@ -21,12 +22,12 @@ namespace COMMUNICATOR {
 
 //============================= LIFECYCLE ====================================
 
-NullMPIEnvironment::NullMPIEnvironment()
+DisabledMPIEnvironment::DisabledMPIEnvironment()
 {
     return;
 }
 
-NullMPIEnvironment::NullMPIEnvironment( NullMPIEnvironment const & other) :
+DisabledMPIEnvironment::DisabledMPIEnvironment( DisabledMPIEnvironment const & other) :
     MPIEnvironmentState(other)
 {
     if (this != &other)
@@ -36,7 +37,7 @@ NullMPIEnvironment::NullMPIEnvironment( NullMPIEnvironment const & other) :
     return;
 }
 
-NullMPIEnvironment::NullMPIEnvironment( NullMPIEnvironment && other) :
+DisabledMPIEnvironment::DisabledMPIEnvironment( DisabledMPIEnvironment && other) :
     MPIEnvironmentState(std::move(other))
 {
     if (this != &other)
@@ -44,10 +45,10 @@ NullMPIEnvironment::NullMPIEnvironment( NullMPIEnvironment && other) :
 
     }
     return;
-}		// -----  end of method NullMPIEnvironment::NullMPIEnvironment  -----
+}		// -----  end of method DisabledMPIEnvironment::DisabledMPIEnvironment  -----
 
 
-NullMPIEnvironment::~NullMPIEnvironment()
+DisabledMPIEnvironment::~DisabledMPIEnvironment()
 {
     return;
 }
@@ -58,7 +59,7 @@ NullMPIEnvironment::~NullMPIEnvironment()
 
 //============================= OPERATORS ====================================
 
-NullMPIEnvironment& NullMPIEnvironment::operator= ( const NullMPIEnvironment &other )
+DisabledMPIEnvironment& DisabledMPIEnvironment::operator= ( const DisabledMPIEnvironment &other )
 {
     if (this != &other)
     {
@@ -67,7 +68,7 @@ NullMPIEnvironment& NullMPIEnvironment::operator= ( const NullMPIEnvironment &ot
     return *this;
 } // assignment operator
 
-NullMPIEnvironment& NullMPIEnvironment::operator= ( NullMPIEnvironment && other )
+DisabledMPIEnvironment& DisabledMPIEnvironment::operator= ( DisabledMPIEnvironment && other )
 {
     if (this != &other)
     {
@@ -98,17 +99,15 @@ NullMPIEnvironment& NullMPIEnvironment::operator= ( NullMPIEnvironment && other 
 
 //============================= MUTATORS =====================================
 
-void NullMPIEnvironment::enable_(MPIEnvironment* const mpi_environment)
+void DisabledMPIEnvironment::enable_(MPIEnvironment* const mpi_environment)
 {
-    mpi_environment->enable_();
-    mpi_environment->changeMPIState_<COMMUNICATOR::EnabledMPIEnvironment>();
+ /* :TODO:05/18/2022 05:34:55 PM:: Throw an error here. */
     return;
 }
 
-void NullMPIEnvironment::enable_(MPIEnvironment* const mpi_environment, int const & argc, char const * const * const & argv)
+void DisabledMPIEnvironment::enable_(MPIEnvironment* const mpi_environment, int const & argc, char const * const * const & argv)
 {
-    mpi_environment->enable_(argc,argv);
-    mpi_environment->changeMPIState_<COMMUNICATOR::EnabledMPIEnvironment>();
+ /* :TODO:05/18/2022 05:35:26 PM:: Throw an error here. */
     return;
 }
 

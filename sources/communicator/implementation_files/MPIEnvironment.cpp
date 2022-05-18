@@ -30,8 +30,7 @@ namespace COMMUNICATOR {
 MPIEnvironment::MPIEnvironment() :
     COUNTERCLASSES::ClassInstanceLimiter<MPIEnvironment,MAX_MPIENVIRONMENT_INSTANCES>()
 {
-    this->nullmpistate_ = std::make_shared<COMMUNICATOR::NullMPIEnvironment>();
-    this->mpistate_ = this->nullmpistate_;
+    this->changeMPIState_<COMMUNICATOR::NullMPIEnvironment>();
     return;
 }
 
@@ -44,7 +43,49 @@ MPIEnvironment::~MPIEnvironment()
 
 //============================= MUTATORS =====================================
 
-void MPIEnvironment::enable(int const & argc, char const * const * const & argv) const
+void MPIEnvironment::enableEnvironment() 
+{
+    this->mpistate_->enable(this);
+    return;
+}
+
+void MPIEnvironment::enableEnvironment(int const & argc, char const * const * const & argv) 
+{
+    this->mpistate_->enable(this,argc,argv);
+    return;
+}
+
+void MPIEnvironment::disableEnvironment() 
+{
+    this->mpistate_->disable();
+    return;
+}
+//============================= OPERATORS ====================================
+
+//============================= STATIC =======================================
+
+//////////////////////////////////////////////////////////////////////////////
+/////////////////////////////// PROTECTED ////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
+
+//============================= LIFECYCLE ====================================
+
+//============================= ACCESSORS ====================================
+
+//============================= MUTATORS =====================================
+
+//============================= OPERATORS ====================================
+
+//////////////////////////////////////////////////////////////////////////////
+/////////////////////////////// PRIVATE //////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
+
+//============================= LIFECYCLE ====================================
+
+//============================= ACCESSORS ====================================
+
+//============================= MUTATORS =====================================
+void MPIEnvironment::enable_(int const & argc, char const * const * const & argv) 
 {
 
     // Verify that the MPI environment is not already initialized. If
@@ -82,7 +123,25 @@ void MPIEnvironment::enable(int const & argc, char const * const * const & argv)
     return;
 }
 
-void MPIEnvironment::enable() const
+void MPIEnvironment::disable_()
+{
+    try 
+    {
+        int mpi_return_code = MPI_Finalize();
+        if (mpi_return_code != MPI_SUCCESS)
+        {
+            throw COMMUNICATOR::MPIFinalizedException();
+        }
+    }
+    catch(COMMUNICATOR::MPIFinalizedException const & my_mpi_exception)
+    {
+        std::cout << my_mpi_exception.what() << std::endl;
+        std::abort();
+    }
+    return;
+}
+
+void MPIEnvironment::enable_()
 {
 
     // Verify that the MPI environment is not already initialized. If
@@ -119,61 +178,6 @@ void MPIEnvironment::enable() const
     return;
 }
 
-void MPIEnvironment::enableEnvironment() const
-{
-    this->mpistate_->enable();
-    return;
-}
-
-void MPIEnvironment::enableEnvironment(int const & argc, char const * const * const & argv) const
-{
-    this->mpistate_->enable();
-    return;
-}
-
-void MPIEnvironment::disable() const
-{
-    try 
-    {
-        int mpi_return_code = MPI_Finalize();
-        if (mpi_return_code != MPI_SUCCESS)
-        {
-            throw COMMUNICATOR::MPIFinalizedException();
-        }
-    }
-    catch(COMMUNICATOR::MPIFinalizedException const & my_mpi_exception)
-    {
-        std::cout << my_mpi_exception.what() << std::endl;
-        std::abort();
-    }
-    return;
-}
-
-//============================= OPERATORS ====================================
-
-//============================= STATIC =======================================
-
-//////////////////////////////////////////////////////////////////////////////
-/////////////////////////////// PROTECTED ////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////
-
-//============================= LIFECYCLE ====================================
-
-//============================= ACCESSORS ====================================
-
-//============================= MUTATORS =====================================
-
-//============================= OPERATORS ====================================
-
-//////////////////////////////////////////////////////////////////////////////
-/////////////////////////////// PRIVATE //////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////
-
-//============================= LIFECYCLE ====================================
-
-//============================= ACCESSORS ====================================
-
-//============================= MUTATORS =====================================
 
 //============================= OPERATORS ====================================
 

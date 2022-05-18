@@ -1,5 +1,5 @@
-#ifndef  COMMUNICATOR_NullMPIEnvironment_INC
-#define  COMMUNICATOR_NullMPIEnvironment_INC
+#ifndef  COMMUNICATOR_DisabledMPIEnvironment_INC
+#define  COMMUNICATOR_DisabledMPIEnvironment_INC
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
@@ -19,21 +19,21 @@ namespace COMMUNICATOR
 {
 
 // =====================================================================================
-//        Class:  NullMPIEnvironment
+//        Class:  DisabledMPIEnvironment
 //  Description:  
 //  =====================================================================================
-class NullMPIEnvironment : public MPIEnvironmentState
+class DisabledMPIEnvironment : public MPIEnvironmentState
 {
     public:
         // ====================  LIFECYCLE     =======================================
 
-        NullMPIEnvironment ();   // constructor
+        DisabledMPIEnvironment ();   // constructor
 
-        NullMPIEnvironment (const NullMPIEnvironment & other);   // copy constructor
+        DisabledMPIEnvironment (const DisabledMPIEnvironment & other);   // copy constructor
 
-        NullMPIEnvironment (NullMPIEnvironment && other);   // copy-move constructor
+        DisabledMPIEnvironment (DisabledMPIEnvironment && other);   // copy-move constructor
 
-        ~NullMPIEnvironment ();  // destructor
+        ~DisabledMPIEnvironment ();  // destructor
 
         // ====================  ACCESSORS     =======================================
 
@@ -41,9 +41,9 @@ class NullMPIEnvironment : public MPIEnvironmentState
 
         // ====================  OPERATORS     =======================================
 
-        NullMPIEnvironment& operator= ( const NullMPIEnvironment &other ); // assignment operator
+        DisabledMPIEnvironment& operator= ( const DisabledMPIEnvironment &other ); // assignment operator
 
-        NullMPIEnvironment& operator= ( NullMPIEnvironment && other ); // assignment-move operator
+        DisabledMPIEnvironment& operator= ( DisabledMPIEnvironment && other ); // assignment-move operator
 
     protected:
         // ====================  METHODS       =======================================
@@ -59,9 +59,9 @@ class NullMPIEnvironment : public MPIEnvironmentState
 
         // ====================  DATA MEMBERS  =======================================
 
-}; // -----  end of class NullMPIEnvironment  -----
+}; // -----  end of class DisabledMPIEnvironment  -----
 
 
 }; // namespace COMMUNICATOR
 
-#endif   /* ----- #ifndef COMMUNICATOR_NullMPIEnvironment_INC  ----- */
+#endif   /* ----- #ifndef COMMUNICATOR_DisabledMPIEnvironment_INC  ----- */
