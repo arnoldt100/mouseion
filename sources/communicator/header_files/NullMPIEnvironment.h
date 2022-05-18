@@ -41,7 +41,7 @@ class NullMPIEnvironment : public MPIEnvironmentState
 
         NullMPIEnvironment (NullMPIEnvironment && other);   // copy-move constructor
 
-        virtual ~NullMPIEnvironment ();  // destructor
+        ~NullMPIEnvironment ();  // destructor
 
         // ====================  ACCESSORS     =======================================
 
