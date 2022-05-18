@@ -1,6 +1,7 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <memory>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -19,18 +20,29 @@ namespace COMMUNICATOR {
 
 //============================= LIFECYCLE ====================================
 
-NullMPIEnvironment::NullMPIEnvironment()
+NullMPIEnvironment::NullMPIEnvironment() :
+    MPIEnvironmentState()
 {
     return;
 }
 
-NullMPIEnvironment::NullMPIEnvironment( NullMPIEnvironment const & other)
+NullMPIEnvironment::NullMPIEnvironment( NullMPIEnvironment const & other) :
+    MPIEnvironmentState(other)
 {
+    if (this != &other)
+    {
+
+    }
     return;
 }
 
-NullMPIEnvironment::NullMPIEnvironment( NullMPIEnvironment && other)
+NullMPIEnvironment::NullMPIEnvironment( NullMPIEnvironment && other) :
+    MPIEnvironmentState(std::move(other))
 {
+    if (this != &other)
+    {
+
+    }
     return;
 }		// -----  end of method NullMPIEnvironment::NullMPIEnvironment  -----
 
@@ -46,20 +58,20 @@ NullMPIEnvironment::~NullMPIEnvironment()
 
 //============================= OPERATORS ====================================
 
-NullMPIEnvironment& NullMPIEnvironment::operator= ( const NullMPIEnvironment &other )
+NullMPIEnvironment& NullMPIEnvironment::operator=( const NullMPIEnvironment &other )
 {
     if (this != &other)
     {
-
+        MPIEnvironmentState::operator=(other);
     }
     return *this;
 } // assignment operator
 
-NullMPIEnvironment& NullMPIEnvironment::operator= ( NullMPIEnvironment && other )
+NullMPIEnvironment& NullMPIEnvironment::operator=( NullMPIEnvironment && other )
 {
     if (this != &other)
     {
-
+        MPIEnvironmentState::operator=(std::move(other));
     }
     return *this;
 } // assignment-move operator
@@ -100,4 +112,4 @@ void NullMPIEnvironment::disable_()
 //============================= OPERATORS ====================================
 
 
-} // namespace __NAMESPACE__
+} // namespace COMMUNICATOR
