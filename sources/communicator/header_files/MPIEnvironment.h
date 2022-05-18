@@ -43,6 +43,10 @@ class MPIEnvironment final : private COUNTERCLASSES::ClassInstanceLimiter<MPIEnv
 
         void enable() const;
 
+        void enableEnvironment(int const & argc, char const * const * const & argv) const;
+
+        void enableEnvironment() const;
+
         void disable() const;
 
 

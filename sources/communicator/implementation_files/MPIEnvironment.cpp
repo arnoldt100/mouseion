@@ -119,6 +119,18 @@ void MPIEnvironment::enable() const
     return;
 }
 
+void MPIEnvironment::enableEnvironment() const
+{
+    this->mpistate_->enable();
+    return;
+}
+
+void MPIEnvironment::enableEnvironment(int const & argc, char const * const * const & argv) const
+{
+    this->mpistate_->enable();
+    return;
+}
+
 void MPIEnvironment::disable() const
 {
     try 
