@@ -4,6 +4,7 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <memory>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -26,15 +27,6 @@ class NullMPIEnvironment : public MPIEnvironmentState
     public:
         // ====================  LIFECYCLE     =======================================
 
-        //--------------------------------------------------------------------------------------
-        //       Class:  NullMPIEnvironment
-        //      Method:  NullMPIEnvironment :: NullMPIEnvironment
-        // Description:  
-        // 
-        //  Parameters: 
-        //
-        //      Return:
-        //--------------------------------------------------------------------------------------
         NullMPIEnvironment ();   // constructor
 
         NullMPIEnvironment (const NullMPIEnvironment & other);   // copy constructor

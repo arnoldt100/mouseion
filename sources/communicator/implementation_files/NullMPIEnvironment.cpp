@@ -24,13 +24,23 @@ NullMPIEnvironment::NullMPIEnvironment()
     return;
 }
 
-NullMPIEnvironment::NullMPIEnvironment( NullMPIEnvironment const & other)
+NullMPIEnvironment::NullMPIEnvironment( NullMPIEnvironment const & other) :
+    MPIEnvironmentState(other)
 {
+    if (this != &other)
+    {
+
+    }
     return;
 }
 
-NullMPIEnvironment::NullMPIEnvironment( NullMPIEnvironment && other)
+NullMPIEnvironment::NullMPIEnvironment( NullMPIEnvironment && other) :
+    MPIEnvironmentState(std::move(other))
 {
+    if (this != &other)
+    {
+
+    }
     return;
 }		// -----  end of method NullMPIEnvironment::NullMPIEnvironment  -----
 
@@ -100,4 +110,4 @@ void NullMPIEnvironment::disable_()
 //============================= OPERATORS ====================================
 
 
-} // namespace __NAMESPACE__
+} // namespace COMMUNICATOR
