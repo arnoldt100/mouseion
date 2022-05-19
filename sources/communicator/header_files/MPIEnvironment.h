@@ -1,4 +1,3 @@
-
 #ifndef  MPIEnvironment_INC
 #define  MPIEnvironment_INC
 
@@ -15,9 +14,10 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "NullMPIEnvironment.h"
-#include "EnabledMPIEnvironment.h"
-#include "DisabledMPIEnvironment.h"
+// #include "NullMPIEnvironment.h"
+// #include "EnabledMPIEnvironment.h"
+// #include "DisabledMPIEnvironment.h"
+#include "MPIEnvironmentState.h"
 #include "ClassInstanceLimiter.hpp"
 
 namespace COMMUNICATOR

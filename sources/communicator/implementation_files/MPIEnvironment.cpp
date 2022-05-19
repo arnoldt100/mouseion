@@ -16,6 +16,9 @@
 #include "MPIInitializedException.h"
 #include "MPIFinalizedException.h"
 #include "MPIEnvironment.h"
+#include "NullMPIEnvironment.h"
+#include "EnabledMPIEnvironment.h"
+#include "DisabledMPIEnvironment.h"
 #include "Pointer2d.hpp"
 #include "copy_2d_char_array.h"
 

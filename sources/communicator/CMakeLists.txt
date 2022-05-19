@@ -110,6 +110,7 @@
          header_files/NullMPIEnvironment.h
          header_files/EnabledMPIEnvironment.h
          header_files/DisabledMPIEnvironment.h
+         header_files/ErrorInvalidMPIEnvironmentChange.h
          header_files/MPIReduce.h
          header_files/MPIReductionOperation.h
          header_files/MPIUtilityFunctions.h
@@ -152,6 +153,7 @@
          implementation_files/NullMPIEnvironment.cpp
          implementation_files/DisabledMPIEnvironment.cpp
          implementation_files/EnabledMPIEnvironment.cpp
+         implementation_files/ErrorInvalidMPIEnvironmentChange.cpp
          implementation_files/MPICommDuplicateException.cpp
          implementation_files/MPIAllGatherException.cpp
          implementation_files/MPIGatherException.cpp
