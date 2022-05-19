@@ -60,7 +60,7 @@ class MPIEnvironmentState
 
         void enable(MPIEnvironment* const mpi_environment,int const & argc, char const * const * const & argv );
 
-        void disable();
+        void disable(MPIEnvironment* const mpi_environment);
 
         // ====================  OPERATORS     =======================================
 
@@ -79,7 +79,7 @@ class MPIEnvironmentState
 
         virtual void enable_(MPIEnvironment* const mpi_environment, int const & argc, char const * const * const & argv);
 
-        virtual void disable_();
+        virtual void disable_(MPIEnvironment* const mpi_environment);
 
         // ====================  METHODS       =======================================
 

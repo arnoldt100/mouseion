@@ -55,9 +55,9 @@ void MPIEnvironmentState::enable(MPIEnvironment* const mpi_environment, int cons
     return;
 }
 
-void MPIEnvironmentState::disable()
+void MPIEnvironmentState::disable(MPIEnvironment* const mpi_environment)
 {
-    this->disable_();
+    this->disable_(mpi_environment);
     return;
 }
 
@@ -114,7 +114,7 @@ void MPIEnvironmentState::enable_(MPIEnvironment* const mpi_environment, int con
     return;
 }
 
-void MPIEnvironmentState::disable_()
+void MPIEnvironmentState::disable_(MPIEnvironment* const mpi_environment)
 {
     return;
 }

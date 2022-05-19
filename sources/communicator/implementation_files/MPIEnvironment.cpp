@@ -57,7 +57,7 @@ void MPIEnvironment::enableEnvironment(int const & argc, char const * const * co
 
 void MPIEnvironment::disableEnvironment() 
 {
-    this->mpistate_->disable();
+    this->mpistate_->disable(this);
     return;
 }
 //============================= OPERATORS ====================================

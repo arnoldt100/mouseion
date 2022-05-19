@@ -53,7 +53,7 @@ class EnabledMPIEnvironment : public MPIEnvironmentState
     private:
         // ====================  MUTATORS      =======================================
 
-        void disable_() override;
+        void disable_(MPIEnvironment* const mpi_environment) override;
 
         // ====================  DATA MEMBERS  =======================================
 

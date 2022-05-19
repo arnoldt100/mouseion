@@ -101,7 +101,7 @@ EnabledMPIEnvironment& EnabledMPIEnvironment::operator= ( EnabledMPIEnvironment 
 
 void EnabledMPIEnvironment::disable_(MPIEnvironment* const mpi_environment)
 {
-    mpi_environment->disable_(argc,argv);
+    mpi_environment->disable_();
     mpi_environment->changeMPIState_<COMMUNICATOR::DisabledMPIEnvironment>();
     return;
 }
