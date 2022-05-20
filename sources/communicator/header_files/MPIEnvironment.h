@@ -1,4 +1,3 @@
-
 #ifndef  MPIEnvironment_INC
 #define  MPIEnvironment_INC
 
@@ -15,7 +14,10 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "NullMPIEnvironment.h"
+// #include "NullMPIEnvironment.h"
+// #include "EnabledMPIEnvironment.h"
+// #include "DisabledMPIEnvironment.h"
+#include "MPIEnvironmentState.h"
 #include "ClassInstanceLimiter.hpp"
 
 namespace COMMUNICATOR
@@ -39,11 +41,11 @@ class MPIEnvironment final : private COUNTERCLASSES::ClassInstanceLimiter<MPIEnv
         /* ====================  ACCESSORS     ======================================= */
 
         /* ====================  MUTATORS      ======================================= */
-        void enable(int const & argc, char const * const * const & argv) const;
+        void enableEnvironment(int const & argc, char const * const * const & argv);
 
-        void enable() const;
+        void enableEnvironment();
 
-        void disable() const;
+        void disableEnvironment();
 
 
         /* ====================  OPERATORS     ======================================= */
@@ -54,7 +56,10 @@ class MPIEnvironment final : private COUNTERCLASSES::ClassInstanceLimiter<MPIEnv
         MPIEnvironment&
 		operator=(MPIEnvironment &&other)=delete;
 
-        /* ====================  STATIC        ======================================= */
+        /* ====================  FRIENDS       ======================================= */
+        friend class NullMPIEnvironment;
+        friend class EnabledMPIEnvironment;
+        friend class DisbledMPIEnvironment;
 
     protected:
         /* ====================  METHODS       ======================================= */
@@ -62,10 +67,20 @@ class MPIEnvironment final : private COUNTERCLASSES::ClassInstanceLimiter<MPIEnv
         /* ====================  DATA MEMBERS  ======================================= */
 
     private:
-        /* ====================  METHODS       ======================================= */
+        /* ====================  MUTATORS      ======================================= */
+        void enable_(int const & argc, char const * const * const & argv);
+
+        void enable_();
+
+        void disable_();
+
+        template<class T>
+        void changeMPIState_()
+        {
+            this->mpistate_ = std::make_shared<T>();
+        }
 
         /* ====================  DATA MEMBERS  ======================================= */
-        std::shared_ptr<COMMUNICATOR::NullMPIEnvironment> nullmpistate_;
         std::shared_ptr<COMMUNICATOR::MPIEnvironmentState> mpistate_;
 
 }; /* -----  end of class MPIEnvironment  ----- */

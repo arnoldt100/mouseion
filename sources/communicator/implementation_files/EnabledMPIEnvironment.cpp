@@ -9,7 +9,10 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "MPIEnvironmentState.h"
+#include "DisabledMPIEnvironment.h"
+#include "EnabledMPIEnvironment.h"
+#include "NullMPIEnvironment.h"
+#include "MPIEnvironment.h"
 
 namespace COMMUNICATOR {
 
@@ -19,23 +22,33 @@ namespace COMMUNICATOR {
 
 //============================= LIFECYCLE ====================================
 
-MPIEnvironmentState::MPIEnvironmentState()
+EnabledMPIEnvironment::EnabledMPIEnvironment()
 {
     return;
 }
 
-MPIEnvironmentState::MPIEnvironmentState( MPIEnvironmentState const & other)
+EnabledMPIEnvironment::EnabledMPIEnvironment( EnabledMPIEnvironment const & other) :
+    MPIEnvironmentState(other)
 {
+    if (this != &other)
+    {
+
+    }
     return;
 }
 
-MPIEnvironmentState::MPIEnvironmentState( MPIEnvironmentState && other)
+EnabledMPIEnvironment::EnabledMPIEnvironment( EnabledMPIEnvironment && other) :
+    MPIEnvironmentState(std::move(other))
 {
+    if (this != &other)
+    {
+
+    }
     return;
-}		// -----  end of method MPIEnvironmentState::MPIEnvironmentState  -----
+}		// -----  end of method EnabledMPIEnvironment::EnabledMPIEnvironment  -----
 
 
-MPIEnvironmentState::~MPIEnvironmentState()
+EnabledMPIEnvironment::~EnabledMPIEnvironment()
 {
     return;
 }
@@ -43,28 +56,10 @@ MPIEnvironmentState::~MPIEnvironmentState()
 //============================= ACCESSORS ====================================
 
 //============================= MUTATORS =====================================
-void MPIEnvironmentState::enable(MPIEnvironment* const mpi_environment)
-{
-    this->enable_(mpi_environment);
-    return;
-}
-
-void MPIEnvironmentState::enable(MPIEnvironment* const mpi_environment, int const & argc, char const * const * const & argv)
-{
-    this->enable_(mpi_environment,argc,argv);
-    return;
-}
-
-void MPIEnvironmentState::disable(MPIEnvironment* const mpi_environment)
-{
-    this->disable_(mpi_environment);
-    return;
-}
-
 
 //============================= OPERATORS ====================================
 
-MPIEnvironmentState& MPIEnvironmentState::operator= ( const MPIEnvironmentState &other )
+EnabledMPIEnvironment& EnabledMPIEnvironment::operator= ( const EnabledMPIEnvironment &other )
 {
     if (this != &other)
     {
@@ -73,7 +68,7 @@ MPIEnvironmentState& MPIEnvironmentState::operator= ( const MPIEnvironmentState 
     return *this;
 } // assignment operator
 
-MPIEnvironmentState& MPIEnvironmentState::operator= ( MPIEnvironmentState && other )
+EnabledMPIEnvironment& EnabledMPIEnvironment::operator= ( EnabledMPIEnvironment && other )
 {
     if (this != &other)
     {
@@ -104,22 +99,12 @@ MPIEnvironmentState& MPIEnvironmentState::operator= ( MPIEnvironmentState && oth
 
 //============================= MUTATORS =====================================
 
-void MPIEnvironmentState::enable_(MPIEnvironment* const mpi_environment)
+void EnabledMPIEnvironment::disable_(MPIEnvironment* const mpi_environment)
 {
+    mpi_environment->disable_();
+    mpi_environment->changeMPIState_<COMMUNICATOR::DisabledMPIEnvironment>();
     return;
 }
-
-void MPIEnvironmentState::enable_(MPIEnvironment* const mpi_environment, int const & argc, char const * const * const & argv)
-{
-    return;
-}
-
-void MPIEnvironmentState::disable_(MPIEnvironment* const mpi_environment)
-{
-    return;
-}
-
-
 //============================= OPERATORS ====================================
 
 

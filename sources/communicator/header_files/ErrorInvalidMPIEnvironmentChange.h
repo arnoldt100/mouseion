@@ -1,10 +1,11 @@
-#ifndef  COMMUNICATOR_NullMPIEnvironment_INC
-#define  COMMUNICATOR_NullMPIEnvironment_INC
+#ifndef  MOUSEION_ErrorInvalidMPIEnvironmentChange_INC
+#define MOUSEION_ErrorInvalidMPIEnvironmentChange_INC
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
-#include <memory>
+
+#include <exception>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -13,37 +14,37 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "MPIEnvironmentState.h"
 
 namespace COMMUNICATOR
 {
 
 // =====================================================================================
-//        Class:  NullMPIEnvironment
+//        Class:  ErrorInvalidMPIEnvironmentChange
 //  Description:  
 //  =====================================================================================
-class NullMPIEnvironment : public MPIEnvironmentState
+class ErrorInvalidMPIEnvironmentChange : public std::exception
 {
     public:
         // ====================  LIFECYCLE     =======================================
 
-        NullMPIEnvironment ();   // constructor
+        ErrorInvalidMPIEnvironmentChange ();   // constructor
 
-        NullMPIEnvironment (const NullMPIEnvironment & other);   // copy constructor
+        ErrorInvalidMPIEnvironmentChange (const ErrorInvalidMPIEnvironmentChange & other);   // copy constructor
 
-        NullMPIEnvironment (NullMPIEnvironment && other);   // copy-move constructor
+        ErrorInvalidMPIEnvironmentChange (ErrorInvalidMPIEnvironmentChange && other);   // copy-move constructor
 
-        ~NullMPIEnvironment ();  // destructor
+        ~ErrorInvalidMPIEnvironmentChange ();  // destructor
 
         // ====================  ACCESSORS     =======================================
 
         // ====================  MUTATORS      =======================================
+        virtual const char* what() noexcept(true);
 
         // ====================  OPERATORS     =======================================
 
-        NullMPIEnvironment& operator= ( const NullMPIEnvironment &other ); // assignment operator
+        ErrorInvalidMPIEnvironmentChange& operator= ( const ErrorInvalidMPIEnvironmentChange &other ); // assignment operator
 
-        NullMPIEnvironment& operator= ( NullMPIEnvironment && other ); // assignment-move operator
+        ErrorInvalidMPIEnvironmentChange& operator= ( ErrorInvalidMPIEnvironmentChange && other ); // assignment-move operator
 
     protected:
         // ====================  METHODS       =======================================
@@ -51,17 +52,13 @@ class NullMPIEnvironment : public MPIEnvironmentState
         // ====================  DATA MEMBERS  =======================================
 
     private:
-        // ====================  MUTATORS      =======================================
-
-        void enable_(MPIEnvironment* const mpi_environment) override;
-
-        void enable_(MPIEnvironment* const mpi_environment, int const & argc, char const * const * const & argv) override;
+        // ====================  METHODS       =======================================
 
         // ====================  DATA MEMBERS  =======================================
 
-}; // -----  end of class NullMPIEnvironment  -----
+}; // -----  end of class ErrorInvalidMPIEnvironmentChange  -----
 
 
 }; // namespace COMMUNICATOR
 
-#endif   /* ----- #ifndef COMMUNICATOR_NullMPIEnvironment_INC  ----- */
+#endif   /* ----- #ifndef MOUSEION_ErrorInvalidMPIEnvironmentChange_INC  ----- */

@@ -9,7 +9,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "MPIEnvironmentState.h"
+#include "ErrorInvalidMPIEnvironmentChange.h"
 
 namespace COMMUNICATOR {
 
@@ -19,23 +19,31 @@ namespace COMMUNICATOR {
 
 //============================= LIFECYCLE ====================================
 
-MPIEnvironmentState::MPIEnvironmentState()
+ErrorInvalidMPIEnvironmentChange::ErrorInvalidMPIEnvironmentChange()
 {
     return;
 }
 
-MPIEnvironmentState::MPIEnvironmentState( MPIEnvironmentState const & other)
+ErrorInvalidMPIEnvironmentChange::ErrorInvalidMPIEnvironmentChange( ErrorInvalidMPIEnvironmentChange const & other)
 {
+    if (this != &other)
+    {
+        
+    }
     return;
 }
 
-MPIEnvironmentState::MPIEnvironmentState( MPIEnvironmentState && other)
+ErrorInvalidMPIEnvironmentChange::ErrorInvalidMPIEnvironmentChange( ErrorInvalidMPIEnvironmentChange && other)
 {
+    if (this != &other)
+    {
+        
+    }
     return;
-}		// -----  end of method MPIEnvironmentState::MPIEnvironmentState  -----
+}		// -----  end of method ErrorInvalidMPIEnvironmentChange::ErrorInvalidMPIEnvironmentChange  -----
 
 
-MPIEnvironmentState::~MPIEnvironmentState()
+ErrorInvalidMPIEnvironmentChange::~ErrorInvalidMPIEnvironmentChange()
 {
     return;
 }
@@ -43,28 +51,15 @@ MPIEnvironmentState::~MPIEnvironmentState()
 //============================= ACCESSORS ====================================
 
 //============================= MUTATORS =====================================
-void MPIEnvironmentState::enable(MPIEnvironment* const mpi_environment)
+const char* ErrorInvalidMPIEnvironmentChange::what() noexcept(true)
 {
-    this->enable_(mpi_environment);
-    return;
-}
-
-void MPIEnvironmentState::enable(MPIEnvironment* const mpi_environment, int const & argc, char const * const * const & argv)
-{
-    this->enable_(mpi_environment,argc,argv);
-    return;
-}
-
-void MPIEnvironmentState::disable(MPIEnvironment* const mpi_environment)
-{
-    this->disable_(mpi_environment);
-    return;
+    return "Invalid change of MPIEnviromentState.";
 }
 
 
 //============================= OPERATORS ====================================
 
-MPIEnvironmentState& MPIEnvironmentState::operator= ( const MPIEnvironmentState &other )
+ErrorInvalidMPIEnvironmentChange& ErrorInvalidMPIEnvironmentChange::operator= ( const ErrorInvalidMPIEnvironmentChange &other )
 {
     if (this != &other)
     {
@@ -73,7 +68,7 @@ MPIEnvironmentState& MPIEnvironmentState::operator= ( const MPIEnvironmentState 
     return *this;
 } // assignment operator
 
-MPIEnvironmentState& MPIEnvironmentState::operator= ( MPIEnvironmentState && other )
+ErrorInvalidMPIEnvironmentChange& ErrorInvalidMPIEnvironmentChange::operator= ( ErrorInvalidMPIEnvironmentChange && other )
 {
     if (this != &other)
     {
@@ -97,28 +92,12 @@ MPIEnvironmentState& MPIEnvironmentState::operator= ( MPIEnvironmentState && oth
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PRIVATE //////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////
-
+    
 //============================= LIFECYCLE ====================================
 
 //============================= ACCESSORS ====================================
 
 //============================= MUTATORS =====================================
-
-void MPIEnvironmentState::enable_(MPIEnvironment* const mpi_environment)
-{
-    return;
-}
-
-void MPIEnvironmentState::enable_(MPIEnvironment* const mpi_environment, int const & argc, char const * const * const & argv)
-{
-    return;
-}
-
-void MPIEnvironmentState::disable_(MPIEnvironment* const mpi_environment)
-{
-    return;
-}
-
 
 //============================= OPERATORS ====================================
 

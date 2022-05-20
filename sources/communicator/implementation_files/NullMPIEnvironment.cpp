@@ -11,6 +11,8 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "NullMPIEnvironment.h"
+#include "EnabledMPIEnvironment.h"
+#include "MPIEnvironment.h"
 
 namespace COMMUNICATOR {
 
@@ -98,16 +100,19 @@ NullMPIEnvironment& NullMPIEnvironment::operator=( NullMPIEnvironment && other )
 
 //============================= MUTATORS =====================================
 
-void NullMPIEnvironment::enable_()
+void NullMPIEnvironment::enable_(MPIEnvironment* const mpi_environment)
 {
+    mpi_environment->enable_();
+    mpi_environment->changeMPIState_<COMMUNICATOR::EnabledMPIEnvironment>();
     return;
 }
 
-void NullMPIEnvironment::disable_()
+void NullMPIEnvironment::enable_(MPIEnvironment* const mpi_environment, int const & argc, char const * const * const & argv)
 {
+    mpi_environment->enable_(argc,argv);
+    mpi_environment->changeMPIState_<COMMUNICATOR::EnabledMPIEnvironment>();
     return;
 }
-
 
 //============================= OPERATORS ====================================
 
