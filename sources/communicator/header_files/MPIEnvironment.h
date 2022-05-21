@@ -14,9 +14,6 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-// #include "NullMPIEnvironment.h"
-// #include "EnabledMPIEnvironment.h"
-// #include "DisabledMPIEnvironment.h"
 #include "MPIEnvironmentState.h"
 #include "ClassInstanceLimiter.hpp"
 
@@ -57,6 +54,7 @@ class MPIEnvironment final : private COUNTERCLASSES::ClassInstanceLimiter<MPIEnv
 		operator=(MPIEnvironment &&other)=delete;
 
         /* ====================  FRIENDS       ======================================= */
+
         friend class NullMPIEnvironment;
         friend class EnabledMPIEnvironment;
         friend class DisbledMPIEnvironment;

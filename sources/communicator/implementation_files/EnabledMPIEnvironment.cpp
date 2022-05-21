@@ -11,7 +11,6 @@
 //--------------------------------------------------------//
 #include "DisabledMPIEnvironment.h"
 #include "EnabledMPIEnvironment.h"
-#include "NullMPIEnvironment.h"
 #include "MPIEnvironment.h"
 
 namespace COMMUNICATOR {
