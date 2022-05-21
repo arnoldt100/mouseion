@@ -27,8 +27,6 @@ namespace COMMUNICATOR
 
 static constexpr std::size_t DEFAULT_MPI_MASTER_RANK_ID=0;
 
-using SUBCOMMUNICATOR_MAP_T = std::map<std::string,MPI_Comm>;
-
 class MPICommunicator final : public Communicator
 {
 public:
@@ -41,8 +39,7 @@ public:
     MPICommunicator(MPICommunicator && other);
 
     MPICommunicator(const MPI_Comm & mpi_world_communicator, 
-                    const std::string & host_name,
-                    const SUBCOMMUNICATOR_MAP_T & subcommunicator_handles );
+                    const std::string & host_name);
 
     ~MPICommunicator();
 
@@ -51,7 +48,7 @@ public:
     //===== STATIC METHODS ======
 
     //===== MUTATORS =======
-    //
+
     //===== OPERATORS ======
 
     MPICommunicator& operator=(MPICommunicator const & other)=delete;
@@ -65,9 +62,6 @@ private:
 
     int
     _getCommunicatorRank() const final override;
-
-    int 
-	_getSubCommunicatorRank(const std::string & tag) const final override;
 
     COMMUNICATOR::Communicator*
     _duplicateCommunicator() const final override;
@@ -123,9 +117,6 @@ private:
     void _freeCommunicator() final override;
    
     void
-    _addCommunicator(std::string const & key, MPI_Comm const & my_mpi_comm);
-
-    void
     _eraseCommunicator(std::string const & key);
 
     void 
@@ -144,7 +135,6 @@ private:
 
     //===== DATA MEMBERS ===
     MPI_Comm _mpiCommunicator;
-    SUBCOMMUNICATOR_MAP_T _mpicommHandles;
     std::string _hostname;
     static std::string HOSTNAME_NOT_DEFINED;
 };

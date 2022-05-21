@@ -49,12 +49,6 @@ public:
         return this->_getCommunicatorRank();
     }
 
-    int
-    getSubCommunicatorRank(const std::string & tag) const
-    {
-        return this->_getSubCommunicatorRank(tag);
-    }
-
     bool
     sameCommunicatorRank( const int aRank) const
     {
@@ -144,9 +138,6 @@ private:
 
     virtual int 
     _getCommunicatorRank() const=0;
-
-    virtual int 
-    _getSubCommunicatorRank(const std::string & tag) const=0;
 
     virtual COMMUNICATOR::Communicator*
     _duplicateCommunicator() const =0;

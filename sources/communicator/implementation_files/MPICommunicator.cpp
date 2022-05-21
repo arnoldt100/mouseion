@@ -67,11 +67,9 @@ MPICommunicator::MPICommunicator(MPICommunicator && other)
 }
 
 MPICommunicator::MPICommunicator(const MPI_Comm & mpi_world_communicator, 
-                const std::string & host_name,
-                const SUBCOMMUNICATOR_MAP_T & subcommunicator_handles ) :
+                const std::string & host_name) :
     Communicator(),
     _mpiCommunicator(mpi_world_communicator),
-    _mpicommHandles(subcommunicator_handles),
     _hostname(host_name)
 {
     return;
@@ -121,22 +119,6 @@ MPICommunicator::_freeCommunicator()
     // We now destroy/free all communicators.
     this->_freeMPICommunicator(this->_mpiCommunicator);
 
-    for (auto const & it : this->_mpicommHandles )
-    {
-        auto key = it.first;
-        auto value = it.second;
-
-        if (  value == MPI_COMM_NULL )
-        {
-            this->_eraseCommunicator(key);
-        }
-        else
-        {
-            this->_freeMPICommunicator(value);
-            this->_eraseCommunicator(key);
-        }
-    }
-
     return;
 }
 
@@ -149,11 +131,9 @@ MPICommunicator& MPICommunicator::operator=(MPICommunicator && other)
     {
         Communicator::operator=(std::move(other));
         this->_mpiCommunicator = other._mpiCommunicator;
-        this->_mpicommHandles = other._mpicommHandles;
         this->_hostname = other._hostname;
 
         other._mpiCommunicator = MPI_COMM_NULL;
-        other._mpicommHandles.clear();
         other._hostname = std::string(MPICommunicator::HOSTNAME_NOT_DEFINED);
     }
     return *this;
@@ -222,22 +202,7 @@ MPICommunicator::_getSizeofCommunicator(const std::string & id) const
             {
                 throw COMMUNICATOR::MPICommSizeException();
             }
-
             my_size = static_cast<std::size_t>(world_comm_group_size);
-        }
-        else
-        {
-            int sub_comm_group_size;
-            int mpi_return_code = MPI_Comm_size( (this->_mpicommHandles).at(id),
-                                                  &sub_comm_group_size);
-
-            if (mpi_return_code != MPI_SUCCESS)
-            {
-                throw COMMUNICATOR::MPICommSizeException();
-            }
-
-            my_size = static_cast<std::size_t>(sub_comm_group_size);
-             
         }
     }
     catch (COMMUNICATOR::MPICommSizeException const & my_mpi_exception)
@@ -271,9 +236,6 @@ MPICommunicator::_createSubcommunicator(const std::string & tag)
         {
             throw COMMUNICATOR::MPICommSplitException();
         }
-
-        this->_addCommunicator(tag,tmp_mpi_comm);
-
     }
     catch ( COMMUNICATOR::MPICommSplitException const  & my_mpi_exception )
     {
@@ -305,29 +267,6 @@ MPICommunicator::_getCommunicatorRank() const
    return rank;
 }
 
-int 
-MPICommunicator::_getSubCommunicatorRank(const std::string & tag) const
-{
-    int rank;
-    try
-    {
-        int mpi_return_code;
-        MPI_Comm my_comm_handle = (this->_mpicommHandles).at(tag);
-        mpi_return_code = MPI_Comm_rank(my_comm_handle,&rank);
-        if (mpi_return_code != MPI_SUCCESS)
-        {
-            throw COMMUNICATOR::MPIGenericException();
-        }
-    }
-    catch ( COMMUNICATOR::MPIGenericException const & my_mpi_exception )
-    {
-        std::cout << my_mpi_exception.what() << std::endl;
-        std::abort();
-    }
-
-   return rank;
-}
-
 COMMUNICATOR::Communicator*
 MPICommunicator::_duplicateCommunicator() const 
 {
@@ -335,31 +274,9 @@ MPICommunicator::_duplicateCommunicator() const
 	MPI_Comm mpi_comm_duplicate;
 	auto mpi_return_code = MPI_Comm_dup(_mpiCommunicator,&mpi_comm_duplicate);
 
-	// Duplicate the subcommunicators.
-	SUBCOMMUNICATOR_MAP_T mpi_comm_handles_duplicate;
-
-    try
-    {
-        for ( auto const & [tmp_key,tmp_mpi_comm] : this->_mpicommHandles )
-        {
-            MPI_Comm dup_mpi_comm;
-            mpi_return_code = MPI_Comm_dup(tmp_mpi_comm,&dup_mpi_comm);
-            if (mpi_return_code != MPI_SUCCESS)
-            {
-                throw COMMUNICATOR::MPICommDuplicateException();       
-            }
-            mpi_comm_handles_duplicate[tmp_key] = dup_mpi_comm;
-        }
-    }
-    catch (COMMUNICATOR::MPICommDuplicateException const & my_mpi_exception)
-    {
-        std::cout << my_mpi_exception.what() << std::endl;
-        std::abort();
-    }
-
     // We now form the new MPICommunicator.
     MPICommunicator* aMPICommunicator = 
-        new MPICommunicator(mpi_comm_duplicate,this->_hostname,mpi_comm_handles_duplicate);
+        new MPICommunicator(mpi_comm_duplicate,this->_hostname);
 
     return aMPICommunicator;
 }
@@ -620,17 +537,10 @@ MPICommunicator::_getGlobalStatus(const bool & data_to_reduce) const
 
 //============================= MUTATORS =====================================
 
-void
-MPICommunicator::_addCommunicator(std::string const & key, MPI_Comm const & my_mpi_comm)
-{
-    this->_mpicommHandles[key] = my_mpi_comm;
-    return;
-}
-
+// :TODO:05/21/2022 01:52:48 PM:: MPICommunicator::_eraseCommunicator to be removed.
 void
 MPICommunicator::_eraseCommunicator(std::string const & key)
 {
-    (this->_mpicommHandles).erase(key);
     return;
 }
 
