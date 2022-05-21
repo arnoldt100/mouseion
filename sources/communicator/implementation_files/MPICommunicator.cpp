@@ -537,13 +537,6 @@ MPICommunicator::_getGlobalStatus(const bool & data_to_reduce) const
 
 //============================= MUTATORS =====================================
 
-// :TODO:05/21/2022 01:52:48 PM:: MPICommunicator::_eraseCommunicator to be removed.
-void
-MPICommunicator::_eraseCommunicator(std::string const & key)
-{
-    return;
-}
-
 //============================= STATIC =======================================
 
 void

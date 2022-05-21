@@ -116,9 +116,6 @@ private:
 
     void _freeCommunicator() final override;
    
-    void
-    _eraseCommunicator(std::string const & key);
-
     void 
     _createSubcommunicator(const std::string & tag) final override;
 
