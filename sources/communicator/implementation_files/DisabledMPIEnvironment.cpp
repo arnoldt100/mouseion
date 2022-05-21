@@ -9,8 +9,6 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "NullMPIEnvironment.h"
-#include "EnabledMPIEnvironment.h"
 #include "DisabledMPIEnvironment.h"
 #include "MPIEnvironment.h"
 #include "ErrorInvalidMPIEnvironmentChange.h"
