@@ -36,9 +36,9 @@ class ErrorInvalidMPIEnvironmentChange : public std::exception
         ~ErrorInvalidMPIEnvironmentChange ();  // destructor
 
         // ====================  ACCESSORS     =======================================
+        const char* what() const noexcept override;
 
         // ====================  MUTATORS      =======================================
-        virtual const char* what() noexcept(true);
 
         // ====================  OPERATORS     =======================================
 

@@ -50,12 +50,13 @@ ErrorInvalidMPIEnvironmentChange::~ErrorInvalidMPIEnvironmentChange()
 
 //============================= ACCESSORS ====================================
 
-//============================= MUTATORS =====================================
-const char* ErrorInvalidMPIEnvironmentChange::what() noexcept(true)
+const char* ErrorInvalidMPIEnvironmentChange::what() const noexcept
 {
     return "Invalid change of MPIEnviromentState.";
 }
 
+
+//============================= MUTATORS =====================================
 
 //============================= OPERATORS ====================================
 
