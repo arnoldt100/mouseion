@@ -16,7 +16,7 @@
 #   communicator_install_lib_directory
 #   communicator_install_include_directory
 #   communicator_install_bin_directory
-#   mpi_communicator_cxx_standard
+#   communicator_cxx_standard
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -222,7 +222,7 @@ target_link_libraries( ${target}
 #-----------------------------------------------------
 set_target_properties(${target} PROPERTIES
                       communicator_include ${CMAKE_CURRENT_SOURCE_DIR}/header_files
-                      CXX_STANDARD ${mpi_communicator_cxx_standard}
+                      CXX_STANDARD ${communicator_cxx_standard}
                       PUBLIC_HEADER "${mpi_communicator_header_files}" )
 
 install(TARGETS ${target}

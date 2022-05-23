@@ -123,7 +123,7 @@ set(memory_management_cxx_standard ${mouseion_cxx_standard})
 set(communicator_install_lib_directory ${mouseion_install_lib_directory})
 set(communicator_install_include_directory ${mouseion_install_include_directory})
 set(communicator_install_bin_directory ${mouseion_install_bin_directory})
-set(mpi_communicator_cxx_standard ${mouseion_cxx_standard})
+set(communicator_cxx_standard ${mouseion_cxx_standard})
 
 #-----------------------------------------------------
 # Here we define variables which indicate where      -
