@@ -105,7 +105,7 @@
 
     install(TARGETS ${target}
             RUNTIME DESTINATION ${mpi_communicator_install_bin_directory}
-            PUBLIC_HEADER DESTINATION ${mpi_communicator_install_include_directory} )
+            PUBLIC_HEADER DESTINATION ${communicator_install_include_directory} )
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @

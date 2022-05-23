@@ -116,12 +116,12 @@ set(memory_management_cxx_standard ${mouseion_cxx_standard})
 
 #-----------------------------------------------------
 # Here we define variables which indicate where      -
-# to install the mpi_communicator libraries,         -
+# to install the communicator libraries,             -
 # header files, and associated binaries.             -
 #                                                    -
 #-----------------------------------------------------
 set(communicator_install_lib_directory ${mouseion_install_lib_directory})
-set(mpi_communicator_install_include_directory ${mouseion_install_include_directory})
+set(communicator_install_include_directory ${mouseion_install_include_directory})
 set(mpi_communicator_install_bin_directory ${mouseion_install_bin_directory})
 set(mpi_communicator_cxx_standard ${mouseion_cxx_standard})
 
