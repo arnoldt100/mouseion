@@ -104,7 +104,7 @@
                            PUBLIC_HEADER "${mpi_communicator_unit_tests_header_files}" )
 
     install(TARGETS ${target}
-            RUNTIME DESTINATION ${mpi_communicator_install_bin_directory}
+            RUNTIME DESTINATION ${communicator_install_bin_directory}
             PUBLIC_HEADER DESTINATION ${communicator_install_include_directory} )
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@

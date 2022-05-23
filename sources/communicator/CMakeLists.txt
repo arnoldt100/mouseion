@@ -15,7 +15,7 @@
 # install the library archive, header files, and unit tests:
 #   communicator_install_lib_directory
 #   communicator_install_include_directory
-#   mpi_communicator_install_bin_directory
+#   communicator_install_bin_directory
 #   mpi_communicator_cxx_standard
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
