@@ -45,5 +45,17 @@ function(verify_key_environmental_are_set)
         variable defines the directory to install the header files for mpi_communicator." )
     endif()
 
+    #-----------------------------------------------------
+    # Verify environmental variable                      -
+    # mpi_communicator_cxx_standard                      -
+    # defined.                                           -
+    #-----------------------------------------------------
+    if(DEFINED mpi_communicator_cxx_standard)
+        set(log_message "mpi_communicator_cxx_standard=${mpi_communicator_cxx_standard}\n")
+        file(APPEND ${mouseion_log_file} "${log_message}")
+    else()
+        message( FATAL_ERROR "The variable mpi_communicator_cxx_standard is not defined. This \
+        variable defines the c++ standard." )
+    endif()
 
 endfunction()
