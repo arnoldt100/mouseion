@@ -13,7 +13,7 @@
 #
 # The build will abort unless the following variables are defined to
 # install the library archive, header files, and unit tests:
-#   mpi_communicator_install_lib_directory
+#   communicator_install_lib_directory
 #   mpi_communicator_install_include_directory
 #   mpi_communicator_install_bin_directory
 #   mpi_communicator_cxx_standard
@@ -226,7 +226,7 @@ set_target_properties(${target} PROPERTIES
                       PUBLIC_HEADER "${mpi_communicator_header_files}" )
 
 install(TARGETS ${target}
-        ARCHIVE DESTINATION ${mpi_communicator_install_lib_directory}
+        ARCHIVE DESTINATION ${communicator_install_lib_directory}
         PUBLIC_HEADER DESTINATION ${mpi_communicator_install_include_directory} )
 
 #-----------------------------------------------------
