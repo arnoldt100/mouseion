@@ -1,15 +1,15 @@
 # This CMakeLists.txt file creates the library libmpi_communicator.a
 # and its unit tests. To add source files, simply append the appropiate variable
-# mpi_communicator_header_files or mpi_communicator_implementation_files.
+# communicator_header_files or communicator_implementation_files.
 #
-# The target for the library is mpi_communicator.
+# The target for the library is communicator.
 #
 # The following properties are set for the target :
 #
 #   Property                            Value                                               Description
 #----------------------------------------------------------------------------------------------------------------------------
 #   communicator_include                ${CMAKE_CURRENT_SOURCE_DIR}/header_files            The location of the header files.
-#   PUBLIC_HEADER                       ${mpi_communicator_header_files}                    The list of headers files associated with this librarry.
+#   PUBLIC_HEADER                       ${communicator_header_files}                        The list of headers files associated with this librarry.
 #
 # The build will abort unless the following variables are defined to
 # install the library archive, header files, and unit tests:
@@ -77,12 +77,12 @@
 
     #-----------------------------------------------------
     # Here we define the variable                        -
-    # mpi_communicator_header_files.                     -
+    # communicator_header_files.                         -
     # A list of header files is stored in                -
     # this variable.                                     -
     #                                                    -
     #-----------------------------------------------------
-    set (mpi_communicator_header_files
+    set (communicator_header_files
          header_files/CommunicatorFactory.h
          header_files/Communicator.h
          header_files/Identification.h
@@ -122,12 +122,12 @@
 
     #-----------------------------------------------------
     # Here we define the variable                        -
-    # mpi_communicator_implementation_files.             -
+    # communicator_implementation_files.                 -
     # A list of implementation files is stored in this   -
     # variable.                                          -
     #                                                    -
     #-----------------------------------------------------
-    set (mpi_communicator_implementation_files
+    set (communicator_implementation_files
          implementation_files/CommunicatorFactory.cpp
          implementation_files/Identification.cpp
          implementation_files/MasterSlaveIdentification.cpp
@@ -167,13 +167,13 @@
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
 # End of defining the sources and header files associated         @
-# with the mpi_communicator targets.                              @
+# with the communicator targets.                                  @
 #                                                                 @
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 #-----------------------------------------------------
 # Add the library associated with target             -
-# mpi_communicator.                                  -
+# communicator.                                      -
 #                                                    -
 #-----------------------------------------------------
 add_library( ${target} STATIC 
@@ -191,7 +191,7 @@ enable_compile_warnings(${target})
 #                                                    -
 #-----------------------------------------------------
 target_sources(${target}
-               PRIVATE ${mpi_communicator_header_files} ${mpi_communicator_implementation_files} )
+               PRIVATE ${communicator_header_files} ${communicator_implementation_files} )
 
 #-----------------------------------------------------
 # Add the directory header_files to search for       -
@@ -223,7 +223,7 @@ target_link_libraries( ${target}
 set_target_properties(${target} PROPERTIES
                       communicator_include ${CMAKE_CURRENT_SOURCE_DIR}/header_files
                       CXX_STANDARD ${communicator_cxx_standard}
-                      PUBLIC_HEADER "${mpi_communicator_header_files}" )
+                      PUBLIC_HEADER "${communicator_header_files}" )
 
 install(TARGETS ${target}
         ARCHIVE DESTINATION ${communicator_install_lib_directory}

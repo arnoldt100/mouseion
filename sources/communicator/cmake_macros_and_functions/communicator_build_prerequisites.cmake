@@ -16,7 +16,7 @@ function(verify_key_environmental_are_set)
         file(APPEND ${mouseion_log_file} "${log_message}")
     else()
         message( FATAL_ERROR "The variable communicator_install_lib_directory is not defined. This \
-        variable defines the directory to install the library mpi_communicator." )
+        variable defines the directory to install the library communicator." )
     endif()
 
     #-----------------------------------------------------
@@ -29,7 +29,7 @@ function(verify_key_environmental_are_set)
         file(APPEND ${mouseion_log_file} "${log_message}")
     else()
         message( FATAL_ERROR "The variable communicator_install_include_directory is not defined. This \
-        variable defines the directory to install the header files for mpi_communicator." )
+        variable defines the directory to install the header files for communicator." )
     endif()
 
     #-----------------------------------------------------
@@ -42,7 +42,7 @@ function(verify_key_environmental_are_set)
         file(APPEND ${mouseion_log_file} "${log_message}")
     else()
         message( FATAL_ERROR "The variable communicator_install_bin_directory is not defined. This \
-        variable defines the directory to install the header files for mpi_communicator." )
+        variable defines the directory to install the header files for communicator." )
     endif()
 
     #-----------------------------------------------------
