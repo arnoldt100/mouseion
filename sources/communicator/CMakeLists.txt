@@ -8,7 +8,7 @@
 #
 #   Property                            Value                                               Description
 #----------------------------------------------------------------------------------------------------------------------------
-#   mpi_communicator_include            ${CMAKE_CURRENT_SOURCE_DIR}/header_files            The location of the header files.
+#   communicator_include                ${CMAKE_CURRENT_SOURCE_DIR}/header_files            The location of the header files.
 #   PUBLIC_HEADER                       ${mpi_communicator_header_files}                    The list of headers files associated with this librarry.
 #
 # The build will abort unless the following variables are defined to
@@ -28,7 +28,7 @@
     # Define the project.                                -
     #                                                    -
     #-----------------------------------------------------
-    set(my_project_name "mpi_communicator")
+    set(my_project_name "communicator")
     project(${my_project_name})
 
     #-----------------------------------------------------
@@ -221,7 +221,7 @@ target_link_libraries( ${target}
 #                                                    -
 #-----------------------------------------------------
 set_target_properties(${target} PROPERTIES
-                      mpi_communicator_include ${CMAKE_CURRENT_SOURCE_DIR}/header_files
+                      communicator_include ${CMAKE_CURRENT_SOURCE_DIR}/header_files
                       CXX_STANDARD ${mpi_communicator_cxx_standard}
                       PUBLIC_HEADER "${mpi_communicator_header_files}" )
 
@@ -233,4 +233,4 @@ install(TARGETS ${target}
 # Add the subdirectory for creating the unit tests.  -
 #                                                    -
 #-----------------------------------------------------
-add_subdirectory(unit_tests)
+# add_subdirectory(unit_tests)

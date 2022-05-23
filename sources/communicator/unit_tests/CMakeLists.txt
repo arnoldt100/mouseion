@@ -81,14 +81,14 @@
     #                                                    -
     #-----------------------------------------------------
     target_link_libraries( ${target}
-                           PUBLIC mpi_communicator
+                           PUBLIC communicator
                            ${Boost_LIBRARIES} )
 
     #-----------------------------------------------------
     # Set the directories to look for  header_files.     -
     #                                                    -
     #-----------------------------------------------------
-    get_target_property( mpicomm_include_dir mpi_communicator mpi_communicator_include )
+    get_target_property( mpicomm_include_dir mpi_communicator communicator_include )
     target_include_directories(${target} 
                                PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/header_files
                                PRIVATE ${mpicomm_include_dir}
