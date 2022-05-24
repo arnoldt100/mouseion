@@ -85,10 +85,6 @@
     set (communicator_header_files
          header_files/CommunicatorFactory.h
          header_files/Communicator.h
-         header_files/Identification.h
-         header_files/MasterSlaveIdentification.h
-         header_files/MasterSlaveIdentification_Specialization_0.h
-         header_files/MasterSlaveIdentification_Specialization_1.h
          header_files/MPIGather.h
          header_files/MPIAllgather.h
          header_files/MPIAllGatherException.h
@@ -122,11 +118,6 @@
     #-----------------------------------------------------
     set (communicator_implementation_files
          implementation_files/CommunicatorFactory.cpp
-         implementation_files/Identification.cpp
-         implementation_files/MasterSlaveIdentification.cpp
-         implementation_files/MasterSlaveIdentification_Specialization_0.cpp
-         implementation_files/MasterSlaveIdentification_Specialization_1.cpp
-         implementation_files/MasterSlaveIdentification.cpp
          implementation_files/MPICommunicatorFactory.cpp 
          implementation_files/Communicator.cpp 
          implementation_files/MPIGather.cpp
