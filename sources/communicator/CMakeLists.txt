@@ -103,10 +103,7 @@
          header_files/MPIFreeException.h
          header_files/MPICommSizeException.h
          header_files/MPIGenericException.h
-         header_files/MPIInitException.h
          header_files/MPIInitializedException.h
-         header_files/MPIEnvironment.h
-         header_files/MPIEnvironmentState.h
          header_files/NullMPIEnvironment.h
          header_files/EnabledMPIEnvironment.h
          header_files/DisabledMPIEnvironment.h
@@ -146,10 +143,7 @@
          implementation_files/MPICommSplitException.cpp
          implementation_files/MPIAllReduceException.cpp
          implementation_files/MPIFinalizedException.cpp
-         implementation_files/MPIInitException.cpp
          implementation_files/MPIReductionOperation.cpp
-         implementation_files/MPIEnvironment.cpp
-         implementation_files/MPIEnvironmentState.cpp
          implementation_files/NullMPIEnvironment.cpp
          implementation_files/DisabledMPIEnvironment.cpp
          implementation_files/EnabledMPIEnvironment.cpp
