@@ -84,7 +84,6 @@
     #-----------------------------------------------------
     set (communicator_header_files
          header_files/Communicator.h
-         header_files/MPIGather.h
          header_files/MPIAllgather.h
          header_files/MPIAllGatherException.h
          header_files/MPIGatherException.h
@@ -116,7 +115,6 @@
     set (communicator_implementation_files
          implementation_files/CommunicatorFactory.cpp
          implementation_files/Communicator.cpp 
-         implementation_files/MPIGather.cpp
          implementation_files/MPIDataType.cpp
          implementation_files/MPIInitializedException.cpp
          implementation_files/MPICommSizeException.cpp
