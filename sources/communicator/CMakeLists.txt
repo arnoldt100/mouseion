@@ -91,7 +91,6 @@
          header_files/MPIAllReduceException.h
          header_files/MPICommDuplicateException.h
          header_files/MPICommSplitException.h
-         header_files/MPICommunicatorFactory.h
          header_files/MPIDataType.h
          header_files/MPIFinalizedException.h
          header_files/MPIFreeException.h
