@@ -97,7 +97,6 @@
          header_files/MPICommDuplicateException.h
          header_files/MPICommSplitException.h
          header_files/MPICommunicatorFactory.h
-         header_files/MPICommunicator.h
          header_files/MPIDataType.h
          header_files/MPIFinalizedException.h
          header_files/MPIFreeException.h
@@ -132,7 +131,6 @@
          implementation_files/Communicator.cpp 
          implementation_files/MPIGather.cpp
          implementation_files/MPIDataType.cpp
-         implementation_files/MPICommunicator.cpp
          implementation_files/MPIInitializedException.cpp
          implementation_files/MPICommSizeException.cpp
          implementation_files/MPIGenericException.cpp
