@@ -83,7 +83,6 @@
     #                                                    -
     #-----------------------------------------------------
     set (communicator_header_files
-         header_files/CommunicatorFactory.h
          header_files/Communicator.h
          header_files/MPIGather.h
          header_files/MPIAllgather.h
@@ -118,7 +117,6 @@
     #-----------------------------------------------------
     set (communicator_implementation_files
          implementation_files/CommunicatorFactory.cpp
-         implementation_files/MPICommunicatorFactory.cpp 
          implementation_files/Communicator.cpp 
          implementation_files/MPIGather.cpp
          implementation_files/MPIDataType.cpp
