@@ -127,7 +127,7 @@ set(communicator_cxx_standard ${mouseion_cxx_standard})
 
 #-----------------------------------------------------
 # Here we define variables which indicate where      -
-# to install the mpi_communicator libraries,         -
+# to install the string_utilities libraries,         -
 # header files, and associated binaries.             -
 #                                                    -
 #-----------------------------------------------------
