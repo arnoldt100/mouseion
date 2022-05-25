@@ -84,7 +84,6 @@
     #-----------------------------------------------------
     set (communicator_header_files
          header_files/Communicator.h
-         header_files/MPIAllGatherException.h
          header_files/MPIAllReduceException.h
          header_files/MPICommDuplicateException.h
          header_files/MPICommSplitException.h
@@ -115,7 +114,6 @@
          implementation_files/MPIReductionOperation.cpp
          implementation_files/ErrorInvalidMPIEnvironmentChange.cpp
          implementation_files/MPICommDuplicateException.cpp
-         implementation_files/MPIAllGatherException.cpp
          implementation_files/MPIBroadcast.cpp
          implementation_files/ErrorMPIBroadcast.cpp
          implementation_files/RegistryAnansiMDStatus.cpp
