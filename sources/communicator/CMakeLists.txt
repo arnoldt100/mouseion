@@ -92,7 +92,6 @@
          header_files/MPICommSplitException.h
          header_files/MPIDataType.h
          header_files/MPIFreeException.h
-         header_files/MPICommSizeException.h
          header_files/MPIGenericException.h
          header_files/ErrorInvalidMPIEnvironmentChange.h
          header_files/MPIReduce.h
@@ -114,7 +113,6 @@
          implementation_files/CommunicatorFactory.cpp
          implementation_files/Communicator.cpp 
          implementation_files/MPIDataType.cpp
-         implementation_files/MPICommSizeException.cpp
          implementation_files/MPIGenericException.cpp
          implementation_files/MPIFreeException.cpp
          implementation_files/MPICommSplitException.cpp
