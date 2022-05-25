@@ -95,7 +95,6 @@
          header_files/ErrorInvalidMPIEnvironmentChange.h
          header_files/MPIReduce.h
          header_files/MPIReductionOperation.h
-         header_files/MPIAllgather.h
          header_files/MPIBroadcast.h
          header_files/ErrorMPIBroadcast.h
          header_files/RegistryAnansiMDStatus.h
