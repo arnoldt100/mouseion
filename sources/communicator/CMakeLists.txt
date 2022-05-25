@@ -84,7 +84,6 @@
     #-----------------------------------------------------
     set (communicator_header_files
          header_files/Communicator.h
-         header_files/MPIAllgather.h
          header_files/MPIAllGatherException.h
          header_files/MPIGatherException.h
          header_files/MPIAllReduceException.h
@@ -122,7 +121,6 @@
          implementation_files/MPICommDuplicateException.cpp
          implementation_files/MPIAllGatherException.cpp
          implementation_files/MPIGatherException.cpp
-         implementation_files/MPIAllgather.cpp
          implementation_files/MPIBroadcast.cpp
          implementation_files/ErrorMPIBroadcast.cpp
          implementation_files/RegistryAnansiMDStatus.cpp
