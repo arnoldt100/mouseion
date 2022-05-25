@@ -95,7 +95,6 @@
          header_files/MPIFreeException.h
          header_files/MPICommSizeException.h
          header_files/MPIGenericException.h
-         header_files/MPIInitializedException.h
          header_files/ErrorInvalidMPIEnvironmentChange.h
          header_files/MPIReduce.h
          header_files/MPIReductionOperation.h
@@ -116,7 +115,6 @@
          implementation_files/CommunicatorFactory.cpp
          implementation_files/Communicator.cpp 
          implementation_files/MPIDataType.cpp
-         implementation_files/MPIInitializedException.cpp
          implementation_files/MPICommSizeException.cpp
          implementation_files/MPIGenericException.cpp
          implementation_files/MPIFreeException.cpp
