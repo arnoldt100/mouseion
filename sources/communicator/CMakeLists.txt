@@ -91,7 +91,6 @@
          header_files/MPICommDuplicateException.h
          header_files/MPICommSplitException.h
          header_files/MPIDataType.h
-         header_files/MPIFinalizedException.h
          header_files/MPIFreeException.h
          header_files/MPICommSizeException.h
          header_files/MPIGenericException.h
@@ -120,7 +119,6 @@
          implementation_files/MPIFreeException.cpp
          implementation_files/MPICommSplitException.cpp
          implementation_files/MPIAllReduceException.cpp
-         implementation_files/MPIFinalizedException.cpp
          implementation_files/MPIReductionOperation.cpp
          implementation_files/ErrorInvalidMPIEnvironmentChange.cpp
          implementation_files/MPICommDuplicateException.cpp
