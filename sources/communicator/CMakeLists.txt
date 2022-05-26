@@ -88,7 +88,6 @@
          header_files/MPICommDuplicateException.h
          header_files/MPICommSplitException.h
          header_files/MPIFreeException.h
-         header_files/ErrorInvalidMPIEnvironmentChange.h
          header_files/MPIReduce.h
          header_files/MPIReductionOperation.h
          header_files/MPIBroadcast.h
@@ -110,7 +109,6 @@
          implementation_files/MPICommSplitException.cpp
          implementation_files/MPIAllReduceException.cpp
          implementation_files/MPIReductionOperation.cpp
-         implementation_files/ErrorInvalidMPIEnvironmentChange.cpp
          implementation_files/MPICommDuplicateException.cpp
          implementation_files/MPIBroadcast.cpp
          implementation_files/ErrorMPIBroadcast.cpp
