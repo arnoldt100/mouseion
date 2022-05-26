@@ -101,9 +101,9 @@
     set (communicator_implementation_files
          implementation_files/CommunicatorFactory.cpp
          implementation_files/Communicator.cpp 
+         implementation_files/MPICommSplitException.cpp
          implementation_files/MPIFreeException.cpp
          implementation_files/MPIReductionOperation.cpp
-         implementation_files/ErrorMPIBroadcast.cpp
          implementation_files/RegistryAnansiMDStatus.cpp
          implementation_files/TaskStatus.cpp)
 
