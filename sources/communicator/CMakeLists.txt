@@ -88,7 +88,6 @@
          header_files/MPICommSplitException.h
          header_files/MPIFreeException.h
          header_files/MPIReductionOperation.h
-         header_files/MPIBroadcast.h
          header_files/ErrorMPIBroadcast.h
          header_files/RegistryAnansiMDStatus.h
          header_files/TaskStatus.h)
@@ -106,7 +105,6 @@
          implementation_files/MPICommSplitException.cpp
          implementation_files/MPIFreeException.cpp
          implementation_files/MPIReductionOperation.cpp
-         implementation_files/MPIBroadcast.cpp
          implementation_files/ErrorMPIBroadcast.cpp
          implementation_files/RegistryAnansiMDStatus.cpp
          implementation_files/TaskStatus.cpp)
