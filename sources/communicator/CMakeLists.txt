@@ -88,7 +88,6 @@
          header_files/MPICommDuplicateException.h
          header_files/MPICommSplitException.h
          header_files/MPIFreeException.h
-         header_files/MPIReduce.h
          header_files/MPIReductionOperation.h
          header_files/MPIBroadcast.h
          header_files/ErrorMPIBroadcast.h
@@ -98,7 +97,7 @@
     #-----------------------------------------------------
     # Here we define the variable                        -
     # communicator_implementation_files.                 -
-    # A list of implementation files is stored in this   -
+   # A list of implementation files is stored in this   -
     # variable.                                          -
     #                                                    -
     #-----------------------------------------------------
