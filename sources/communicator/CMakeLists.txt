@@ -85,7 +85,6 @@
     set (communicator_header_files
          header_files/CommunicatorFactory.h
          header_files/Communicator.h
-         header_files/MPIFreeException.h
          header_files/RegistryAnansiMDStatus.h
          header_files/TaskStatus.h)
 
@@ -99,7 +98,6 @@
     set (communicator_implementation_files
          implementation_files/CommunicatorFactory.cpp
          implementation_files/Communicator.cpp 
-         implementation_files/MPIFreeException.cpp
          implementation_files/RegistryAnansiMDStatus.cpp
          implementation_files/TaskStatus.cpp)
 
