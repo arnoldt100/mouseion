@@ -88,7 +88,6 @@
          header_files/MPICommSplitException.h
          header_files/MPIFreeException.h
          header_files/MPIReductionOperation.h
-         header_files/ErrorMPIBroadcast.h
          header_files/RegistryAnansiMDStatus.h
          header_files/TaskStatus.h)
 
@@ -102,7 +101,6 @@
     set (communicator_implementation_files
          implementation_files/CommunicatorFactory.cpp
          implementation_files/Communicator.cpp 
-         implementation_files/MPICommSplitException.cpp
          implementation_files/MPIFreeException.cpp
          implementation_files/MPIReductionOperation.cpp
          implementation_files/ErrorMPIBroadcast.cpp
