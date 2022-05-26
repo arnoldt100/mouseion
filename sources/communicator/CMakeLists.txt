@@ -86,7 +86,6 @@
          header_files/CommunicatorFactory.h
          header_files/Communicator.h
          header_files/MPIFreeException.h
-         header_files/MPIReductionOperation.h
          header_files/RegistryAnansiMDStatus.h
          header_files/TaskStatus.h)
 
@@ -101,7 +100,6 @@
          implementation_files/CommunicatorFactory.cpp
          implementation_files/Communicator.cpp 
          implementation_files/MPIFreeException.cpp
-         implementation_files/MPIReductionOperation.cpp
          implementation_files/RegistryAnansiMDStatus.cpp
          implementation_files/TaskStatus.cpp)
 
