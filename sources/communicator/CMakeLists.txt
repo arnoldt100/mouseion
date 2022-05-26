@@ -84,7 +84,6 @@
     #-----------------------------------------------------
     set (communicator_header_files
          header_files/Communicator.h
-         header_files/MPIAllReduceException.h
          header_files/MPICommDuplicateException.h
          header_files/MPICommSplitException.h
          header_files/MPIFreeException.h
@@ -106,7 +105,6 @@
          implementation_files/Communicator.cpp 
          implementation_files/MPIFreeException.cpp
          implementation_files/MPICommSplitException.cpp
-         implementation_files/MPIAllReduceException.cpp
          implementation_files/MPIReductionOperation.cpp
          implementation_files/MPICommDuplicateException.cpp
          implementation_files/MPIBroadcast.cpp
