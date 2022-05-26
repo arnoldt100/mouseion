@@ -88,7 +88,6 @@
          header_files/MPICommDuplicateException.h
          header_files/MPICommSplitException.h
          header_files/MPIFreeException.h
-         header_files/MPIGenericException.h
          header_files/ErrorInvalidMPIEnvironmentChange.h
          header_files/MPIReduce.h
          header_files/MPIReductionOperation.h
@@ -107,7 +106,6 @@
     set (communicator_implementation_files
          implementation_files/CommunicatorFactory.cpp
          implementation_files/Communicator.cpp 
-         implementation_files/MPIGenericException.cpp
          implementation_files/MPIFreeException.cpp
          implementation_files/MPICommSplitException.cpp
          implementation_files/MPIAllReduceException.cpp
