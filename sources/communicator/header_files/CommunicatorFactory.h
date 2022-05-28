@@ -14,6 +14,10 @@
 #include <memory>
 
 //--------------------------------------------------------//
+//-------------------- External Library Files ------------//
+//--------------------------------------------------------//
+
+//--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "Communicator.h"
@@ -27,30 +31,25 @@ public:
     //===== LIFECYCLE ======
     CommunicatorFactory();
 
-    virtual ~CommunicatorFactory()=0;
-
     CommunicatorFactory(const CommunicatorFactory& other);
 
-    //===== DATA MEMBERS ===
+    CommunicatorFactory(CommunicatorFactory && other); 
+
+    virtual ~CommunicatorFactory()=0;
 
     //===== ACCESSORS ======
-    std::unique_ptr<COMMUNICATOR::Communicator> createWorldCommunicator() const
-    {
-        return this->_createWorldCommunicator();
-    }
+    std::unique_ptr<COMMUNICATOR::Communicator> createWorldCommunicator() const;
 
     std::unique_ptr<COMMUNICATOR::Communicator> 
-    cloneCommunicator(std::unique_ptr<COMMUNICATOR::Communicator> const & other) const
-    {
-        return this->_cloneCommunicator(other);
-    }
+    cloneCommunicator(std::unique_ptr<COMMUNICATOR::Communicator> const & other) const;
 
     //===== MUTATORS =======
 
     //===== OPERATORS ======
     CommunicatorFactory& operator=(CommunicatorFactory const & other);
 
-    
+    CommunicatorFactory& operator=(CommunicatorFactory && other);
+
 protected:
     //===== LIFECYCLE ======
 
@@ -69,10 +68,10 @@ private:
 
     //===== ACCESSORS ======
     virtual std::unique_ptr<COMMUNICATOR::Communicator> 
-    _createWorldCommunicator() const=0;
+    createWorldCommunicator_() const=0;
 
     virtual std::unique_ptr<COMMUNICATOR::Communicator> 
-    _cloneCommunicator(std::unique_ptr<COMMUNICATOR::Communicator> const & other) const=0;
+    cloneCommunicator_(std::unique_ptr<COMMUNICATOR::Communicator> const & other) const=0;
 
     //===== MUTATORS =======
 

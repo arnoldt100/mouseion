@@ -1,10 +1,14 @@
-/*
- * CommunicatorFactory.cpp
- *
- *  Created on: 12/05/18
- *      Authors: Arnold Tharrington
- */
+//--------------------------------------------------------//
+//-------------------- System includes -------------------//
+//--------------------------------------------------------//
 
+//--------------------------------------------------------//
+//-------------------- External Library Files ------------//
+//--------------------------------------------------------//
+
+//--------------------------------------------------------//
+//--------------------- Package includes -----------------//
+//--------------------------------------------------------//
 #include "CommunicatorFactory.h"
 
 namespace COMMUNICATOR {
@@ -15,28 +19,63 @@ namespace COMMUNICATOR {
 
 //============================= LIFECYCLE ====================================
 
-CommunicatorFactory::CommunicatorFactory() {
-    return;
-}
-
-CommunicatorFactory::~CommunicatorFactory() {
-    return;
-}
-
-CommunicatorFactory::CommunicatorFactory(const CommunicatorFactory& other)
+CommunicatorFactory::CommunicatorFactory()
 {
-    if (this != &other)
+    return;
+}
+
+CommunicatorFactory::CommunicatorFactory(const CommunicatorFactory & other)
+{
+    if (  this != &other ) 
     {
+
     }
     return;
 }
+
+CommunicatorFactory::CommunicatorFactory(CommunicatorFactory && other)
+{
+    if (  this != &other ) 
+    {
+
+    }
+    return;
+}
+
+CommunicatorFactory::~CommunicatorFactory() 
+{
+    return;
+}
+
 //============================= ACCESSORS ====================================
 
+std::unique_ptr<COMMUNICATOR::Communicator> 
+CommunicatorFactory::createWorldCommunicator() const
+{
+    return this->createWorldCommunicator_();
+}
+
+std::unique_ptr<COMMUNICATOR::Communicator> 
+CommunicatorFactory::cloneCommunicator(std::unique_ptr<COMMUNICATOR::Communicator> const & other) const
+{
+    return this->cloneCommunicator_(other);
+}
 //============================= MUTATORS =====================================
 
 //============================= OPERATORS ====================================
+
 CommunicatorFactory& 
 CommunicatorFactory::operator=(const CommunicatorFactory& other)
+{
+    if (this != &other)
+    {
+
+    }
+    return *this;
+}
+
+CommunicatorFactory& 
+CommunicatorFactory::operator=(CommunicatorFactory&& other)
 {
     if (this != &other)
     {
@@ -70,4 +109,4 @@ CommunicatorFactory::operator=(const CommunicatorFactory& other)
 //============================= OPERATORS ====================================
 
 
-} /* namespace COMMUNICATOR */
+} // namespace COMMUNICATOR
