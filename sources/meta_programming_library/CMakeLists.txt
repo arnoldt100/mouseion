@@ -30,7 +30,7 @@
     #-----------------------------------------------------
     set(target ${my_project_name})
 
-	#-----------------------------------------------------
+    #-----------------------------------------------------
     # This library needs access to the following header  -
     # files:                                             -
     #                                                    -
@@ -38,8 +38,8 @@
     #                                                    -
     # We get the path to the above header files.         -
     #-----------------------------------------------------
-	get_target_property(mm_include_dir memory_management memory_management_include)
-	
+    get_target_property(mm_include_dir memory_management memory_management_include)
+
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
 # End of CMake preamble section.                                  @
@@ -82,6 +82,7 @@
          header_files/DefineVisitableMacro.h
          header_files/ErrorUnknownVisitor.h
          header_files/Visitor.hpp
+         header_files/RegisterObjectFactories.hpp
          header_files/Command.hpp )
 
     #-----------------------------------------------------
@@ -110,6 +111,7 @@
          implementation_files/DefineVisitableMacro.cpp
          implementation_files/ErrorUnknownVisitor.cpp
          implementation_files/Visitor.cpp
+         implementation_files/RegisterObjectFactories.cpp
          implementation_files/Command.cpp )
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
