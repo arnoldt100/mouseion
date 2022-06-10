@@ -23,12 +23,32 @@ template<template<typename,typename> class F, typename baseclass, typename class
 class RegisterObjectFactories 
 {
     public :
-
-        void operator()(F<baseclass,classID> & arg1)
+        RegisterObjectFactories(const int nm=0) :
+            number_objects_registered_(nm) 
         {
-            std::cout << "Size of typelist is " << MPL::mpl_size<TList>::value << std::endl;
             return;
         }
+
+        void operator()(F<baseclass,classID> & obj_factory)
+        {
+
+            if (  this->number_objects_registered_ <  MPL::mpl_size<TList>::value )
+            {
+                std::cout << "Size of typelist is " << MPL::mpl_size<TList>::value << std::endl;
+
+                // The index of the next type to be registerd is this->number_objects_registered_ 
+                constexpr int idx = MPL::mpl_size<TList>::value;
+
+                // The class ID is this->number_objects_registered_ + 1
+                constexpr int id = this->number_objects_registered_ + 1;
+
+                obj_factory.registerFactory(id, MPL::mpl_at_c<TList,idx>::create);
+            }
+            return;
+        }
+
+    private:
+        int number_objects_registered_;
 };
 
 template<template<typename,typename> class F, typename baseclass, typename classID>
@@ -38,7 +58,7 @@ class RegisterObjectFactories< F,
                                mpl_typelist<> > 
 {
     public :
-        void operator()(F<baseclass,classID> & arg1)
+        void operator()(F<baseclass,classID> & obj_factory)
         {
             return;
         }
