@@ -78,6 +78,7 @@ project(mouseion)
 #-----------------------------------------------------
 include( ${CMAKE_CURRENT_LIST_DIR}/cmake_macros_and_functions/mouseion_build_prerequisites.cmake )
 include( ${CMAKE_CURRENT_LIST_DIR}/cmake_macros_and_functions/enable_compile_warnings.cmake )
+include (${CMAKE_CURRENT_LIST_DIR}/sources/meta_programming_library/cmake_macros_and_functions/mpl.cmake)
 
 #-----------------------------------------------------
 # Check that key environmental variables are set.    -
@@ -96,12 +97,26 @@ set(mouseion_install_prefix $ENV{MOUSEION_INSTALL_PREFIX})
 set(mouseion_install_bin_directory $ENV{MOUSEION_INSTALL_BIN_DIRECTORY})
 set(mouseion_install_include_directory $ENV{MOUSEION_INSTALL_INCLUDE_DIRECTORY})
 set(mouseion_install_lib_directory $ENV{MOUSEION_INSTALL_LIB_DIRECTORY})
+set(mouseion_boost_top_level $ENV{MOUSEION_INSTALL_LIB_DIRECTORY})
+set(mouseion_log_file $ENV{MOUSEION_LOG_FILE})
 
 #-----------------------------------------------------
-# Define the file to write messages to.              -
+# Here we define variables which indicate where      -
+# to install the memory_management libraries,        -
+# header files, and associated binaries.             -
 #                                                    -
 #-----------------------------------------------------
-set(mouseion_log_file $ENV{MOUSEION_LOG_FILE})
+enable_building_mpl(
+                    "${mouseion_minimum_cmake_version}" 
+                    "${mouseion_cxx_standard}"
+                    "${mouseion_cmake_c_compiler}" 
+                    "${mouseion_cmake_cxx_compiler}" 
+                    "${mouseion_install_prefix}"
+                    "${mouseion_install_bin_directory}"
+                    "${mouseion_install_include_directory}"
+                    "${mouseion_install_lib_directory}"
+                    "${CMAKE_CURRENT_LIST_DIR}/sources/mouseion/sources/meta_programming_library"
+                    "${mouseion_boost_top_level}" )
 
 #-----------------------------------------------------
 # Here we define variables which indicate where      -

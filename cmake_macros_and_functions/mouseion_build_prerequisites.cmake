@@ -95,4 +95,14 @@ function(verify_key_environmental_are_set)
         variable defines the location to BOOST top level." )
     endif()
 
+    #-----------------------------------------------------
+    # Verify environment variable                        -
+    # MOUSEION_LOG_FILE is defined.                      -
+    #-----------------------------------------------------
+    if( DEFINED ENV{MOUSEION_LOG_FILE})
+        message("MOUSEION_LOG_FILE=$ENV{MOUSEION_LOG_FILE}")
+    else()
+        message( FATAL_ERROR "The environmental MOUSEION_LOG_FILE is not defined. This \
+        variable defines the file location where MOUSEION CMAKE log files are written." )
+    endif()
 endfunction()

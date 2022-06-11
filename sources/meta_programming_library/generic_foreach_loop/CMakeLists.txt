@@ -1,10 +1,10 @@
-# This CMakeLists.txt file creates the library libmpl.a
+# This CMakeLists.txt file creates the library libgeneric_foreach_loop.a
 # and its unit tests. To add source files, simply append the appropiate variable
-# mpl_header_files or mpl_implementation_files.
+# generic_foreach_loop_header_files or generic_foreach_loop_implementation_files.
 #
-# The target for the library is mpl.
+# The target for the library is generic_foreach_loop.
 #
-# The following properties are set for the target mpl.
+# The following properties are set for the target generic_foreach_loop.
 #
 #   Property                            Value                                               Description
 #----------------------------------------------------------------------------------------------------------------------------
@@ -21,7 +21,7 @@
     # Define the project.                                -
     #                                                    -
     #-----------------------------------------------------
-    set(my_project_name "mpl")
+    set(my_project_name "generic_foreach_loop")
     project(${my_project_name})
 
     #-----------------------------------------------------
@@ -30,16 +30,6 @@
     #-----------------------------------------------------
     set(target ${my_project_name})
 
-    #-----------------------------------------------------
-    # This library needs access to the following header  -
-    # files:                                             -
-    #                                                    -
-    #   memory_management target header files            -
-    #                                                    -
-    # We get the path to the above header files.         -
-    #-----------------------------------------------------
-    get_target_property(mm_include_dir memory_management memory_management_include)
-
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
 # End of CMake preamble section.                                  @
@@ -47,26 +37,6 @@
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 
-#-----------------------------------------------------
-# Make available the project cmake modules.          -
-#                                                    -
-#-----------------------------------------------------
-include( ${CMAKE_CURRENT_LIST_DIR}/cmake_macros_and_functions/mpl_build_prerequisites.cmake )
-include( ${CMAKE_CURRENT_LIST_DIR}/generic_foreach_loop/cmake_macros_and_functions/foreach_loop.cmake)
-
-
-#-----------------------------------------------------
-# Here we define some variables.                     -
-# that are critical for building and deploying.      -
-#-----------------------------------------------------
-set(mouseion_cmake_cxx_compiler $ENV{MOUSEION_CMAKE_CXX_COMPILER})
-set(mouseion_cxx_standard $ENV{MOUSEION_CXX_STANDARD})
-set(mouseion_cmake_c_compiler $ENV{MOUSEION_CMAKE_C_COMPILER})
-set(mouseion_install_prefix $ENV{MOUSEION_INSTALL_PREFIX})
-set(mouseion_install_bin_directory $ENV{MOUSEION_INSTALL_BIN_DIRECTORY})
-set(mouseion_install_include_directory $ENV{MOUSEION_INSTALL_INCLUDE_DIRECTORY})
-set(mouseion_install_lib_directory $ENV{MOUSEION_INSTALL_LIB_DIRECTORY})
-set(mouseion_boost_top_level $ENV{MOUSEION_BOOST_TOP_LEVEL}  )
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -83,27 +53,8 @@ set(mouseion_boost_top_level $ENV{MOUSEION_BOOST_TOP_LEVEL}  )
     # this variable.                                     -
     #                                                    -
     #-----------------------------------------------------
-    set (mpl_header_files
-         header_files/EmptyList.h
-         header_files/NullType.h
-         header_files/EmptyType.h
-         header_files/MPLAliases.hpp
-         header_files/DefaultFactoryError.hpp
-         header_files/Factory.hpp
-         header_files/ConcreteFactory.hpp
-         header_files/OpNewFactoryUnit.hpp
-         header_files/AbstractFactoryUnit.hpp
-         header_files/AbstractFactory.hpp
-         header_files/GenerateScatteredHierarchy.hpp
-         header_files/GenerateLinearHierarchy.hpp
-         header_files/BaseVisitable.hpp
-         header_files/BaseVisitor.h
-         header_files/DefaultCatchAll.hpp
-         header_files/DefineVisitableMacro.h
-         header_files/ErrorUnknownVisitor.h
-         header_files/Visitor.hpp
-         header_files/RegisterObjectFactories.hpp
-         header_files/Command.hpp )
+    set (generic_foreach_loop_header_files
+         header_files/ForLoop.hpp )
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -112,27 +63,8 @@ set(mouseion_boost_top_level $ENV{MOUSEION_BOOST_TOP_LEVEL}  )
     # variable.                                          -
     #                                                    -
     #-----------------------------------------------------
-    set (mpl_implementation_files
-         implementation_files/EmptyList.cpp
-         implementation_files/NullType.cpp
-         implementation_files/EmptyType.cpp
-         implementation_files/MPLAliases.cpp
-         implementation_files/DefaultFactoryError.cpp
-         implementation_files/Factory.cpp 
-         implementation_files/ConcreteFactory.cpp
-         implementation_files/OpNewFactoryUnit.cpp
-         implementation_files/AbstractFactoryUnit.cpp
-         implementation_files/AbstractFactory.cpp
-         implementation_files/GenerateScatteredHierarchy.cpp
-         implementation_files/GenerateLinearHierarchy.cpp
-         implementation_files/BaseVisitable.cpp
-         implementation_files/BaseVisitor.cpp
-         implementation_files/DefaultCatchAll.cpp
-         implementation_files/DefineVisitableMacro.cpp
-         implementation_files/ErrorUnknownVisitor.cpp
-         implementation_files/Visitor.cpp
-         implementation_files/RegisterObjectFactories.cpp
-         implementation_files/Command.cpp )
+    set (generic_foreach_loop_implementation_files
+         implementation_files/ForLoop.cpp )
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -155,7 +87,7 @@ add_library( ${target} STATIC
 #                                                    -
 #-----------------------------------------------------
 target_sources(${target}
-    PRIVATE ${mpl_header_files} ${mpl_implementation_files} )
+               PRIVATE ${generic_foreach_loop_header_files} ${generic_foreach_loop_implementation_files} )
 
 #-----------------------------------------------------
 # Add the directory header_files to search for       -
@@ -163,9 +95,7 @@ target_sources(${target}
 #                                                    -
 #-----------------------------------------------------
 target_include_directories(${target} 
-                           PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files
-                           PRIVATE ${mm_include_dir}
-                           PRIVATE ${Boost_INCLUDE_DIR} )
+                           PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files )
 
 #-----------------------------------------------------
 # Enable compile warnings.                           -
@@ -180,9 +110,7 @@ enable_compile_warnings(${target})
 set(THREADS_PREFER_PTHREAD_FLAG ON)
 find_package(Threads REQUIRED)
 target_link_libraries( ${target}
-                       PUBLIC Threads::Threads
-                       PUBLIC memory_management
-                       ${Boost_LIBRARIES} )
+                       PUBLIC Threads::Threads )
 
 #-----------------------------------------------------
 # Here we set the properties on target               -
@@ -190,33 +118,12 @@ target_link_libraries( ${target}
 #-----------------------------------------------------
 set_target_properties(${target} PROPERTIES
                       CXX_STANDARD ${mpl_cxx_standard}
-                      mpl_include ${CMAKE_CURRENT_SOURCE_DIR}/header_files
-                      PUBLIC_HEADER "${mpl_header_files}" )
+                      generic_foreach_loop_include ${CMAKE_CURRENT_SOURCE_DIR}/header_files
+                      PUBLIC_HEADER "${generic_foreach_loop_header_files}" )
 
 install( TARGETS ${target}
          ARCHIVE DESTINATION ${mpl_install_lib_directory} 
          PUBLIC_HEADER DESTINATION ${mpl_install_include_directory} )
-
-
-# ----------------------------------------------------
-# Here we define variables which indicate where
-# to install the foreach_loop libraries,
-# header files, and associated binariers.
-# 
-# ----------------------------------------------------
-enable_building_foreach_loop_library("${mouseion_install_lib_directory}"
-                                     "${mouseion_install_include_directory}"
-                                     "${mouseion_install_lib_directory}"
-                                     "${mouseion_install_bin_directory}"
-                                     "${mouseion_cmake_c_compiler}"
-                                     "${mouseion_cmake_cxx_compiler}"
-                                     "${mouseion_cxx_standard}")
-
-#-----------------------------------------------------
-# Add the subdirectory for creating the unit tests.  -
-#                                                    -
-#-----------------------------------------------------
-add_subdirectory(generic_foreach_loop)
 
 #-----------------------------------------------------
 # Add the subdirectory for creating the unit tests.  -
