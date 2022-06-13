@@ -8,7 +8,8 @@
 #
 #   Property                            Value                                               Description
 #----------------------------------------------------------------------------------------------------------------------------
-#
+# generic_object_factory_include        The location of the header files.
+
 
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -54,7 +55,8 @@
     #                                                    -
     #-----------------------------------------------------
     set (generic_object_factory_header_files
-         <list of header files> )
+         header_files/Factory.hpp
+         header_files/RegisterObjectFactories.hpp )
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -64,7 +66,8 @@
     #                                                    -
     #-----------------------------------------------------
     set (generic_object_factory_implementation_files
-         <list of implementation files> )
+         implementation_files/Factory.cpp
+         implementation_files/RegisterObjectFactories.hpp )
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -104,19 +107,29 @@ target_include_directories(${target}
 enable_compile_warnings(${target})
 
 #-----------------------------------------------------
+# The libraries to use when linking to target.       -
+#                                                    -
+#-----------------------------------------------------
+set(THREADS_PREFER_PTHREAD_FLAG ON)
+find_package(Threads REQUIRED)
+target_link_libraries( ${target}
+                       PUBLIC Threads::Threads )
+
+#-----------------------------------------------------
 # Here we set the properties on target               -
 #                                                    -
 #-----------------------------------------------------
 set_target_properties(${target} PROPERTIES
+                      CXX_STANDARD ${mpl_cxx_standard}
                       generic_object_factory_include ${CMAKE_CURRENT_SOURCE_DIR}/header_files
                       PUBLIC_HEADER "${generic_object_factory_header_files}" )
 
 install( TARGETS ${target}
-         ARCHIVE DESTINATION <where to install library> 
-         PUBLIC_HEADER DESTINATION <where to install headers> )
+         ARCHIVE DESTINATION ${mpl_install_lib_directory} 
+         PUBLIC_HEADER DESTINATION ${mpl_install_include_directory} )
 
 #-----------------------------------------------------
 # Add the subdirectory for creating the unit tests.  -
 #                                                    -
 #-----------------------------------------------------
-add_subdirectory(unit_tests)
+# add_subdirectory(unit_tests)
