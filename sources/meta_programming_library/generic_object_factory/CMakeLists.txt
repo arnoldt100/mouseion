@@ -31,6 +31,13 @@
     #-----------------------------------------------------
     set(target ${my_project_name})
 
+    # ----------------------------------------------------
+    # Include the cmake macros and function needed to 
+    # verify key variables are set.
+    # ----------------------------------------------------
+    include( ${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_functions/generic_object_factory_build_prerequisites.cmake )
+    verify_generic_object_factory_build_prerequisites_are_set()
+
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
 # End of CMake preamble section.                                  @
@@ -120,13 +127,13 @@ target_link_libraries( ${target}
 #                                                    -
 #-----------------------------------------------------
 set_target_properties(${target} PROPERTIES
-                      CXX_STANDARD ${mpl_cxx_standard}
+                      CXX_STANDARD ${generic_object_factory_cxx_standard}
                       generic_object_factory_include ${CMAKE_CURRENT_SOURCE_DIR}/header_files
                       PUBLIC_HEADER "${generic_object_factory_header_files}" )
 
 install( TARGETS ${target}
-         ARCHIVE DESTINATION ${mpl_install_lib_directory} 
-         PUBLIC_HEADER DESTINATION ${mpl_install_include_directory} )
+         ARCHIVE DESTINATION ${generic_object_factory_install_lib_directory} 
+         PUBLIC_HEADER DESTINATION ${generic_object_factory_install_include_directory} )
 
 #-----------------------------------------------------
 # Add the subdirectory for creating the unit tests.  -

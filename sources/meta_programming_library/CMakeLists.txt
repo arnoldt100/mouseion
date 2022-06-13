@@ -53,7 +53,7 @@
 #-----------------------------------------------------
 include( ${CMAKE_CURRENT_LIST_DIR}/cmake_macros_and_functions/mpl_build_prerequisites.cmake )
 include( ${CMAKE_CURRENT_LIST_DIR}/generic_foreach_loop/cmake_macros_and_functions/generic_foreach_loop.cmake)
-
+include( ${CMAKE_CURRENT_LIST_DIR}/generic_object_factory/cmake_macros_and_functions/generic_object_factory.cmake)
 
 #-----------------------------------------------------
 # Here we define some variables.                     -
@@ -211,6 +211,14 @@ enable_building_generic_foreach_loop_library("${mouseion_install_lib_directory}"
                                              "${mouseion_cmake_c_compiler}"
                                              "${mouseion_cmake_cxx_compiler}"
                                              "${mouseion_cxx_standard}")
+
+enable_building_generic_object_factory_library("${mouseion_install_lib_directory}"
+                                               "${mouseion_install_include_directory}"
+                                               "${mouseion_install_lib_directory}"
+                                               "${mouseion_install_bin_directory}"
+                                               "${mouseion_cmake_c_compiler}"
+                                               "${mouseion_cmake_cxx_compiler}"
+                                               "${mouseion_cxx_standard}")
 
 #-----------------------------------------------------
 # Add the subdirectory for creating the unit tests.  -
