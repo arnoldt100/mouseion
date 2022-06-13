@@ -30,6 +30,12 @@
     #-----------------------------------------------------
     set(target ${my_project_name})
 
+    # ----------------------------------------------------
+    #  Verify that key variables are set.
+    # 
+    # ----------------------------------------------------
+    include( ${CMAKE_CURRENT_LIST_DIR}/cmake_macros_and_functions/generic_foreach_loop_build_prerequisites.cmake)
+
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
 # End of CMake preamble section.                                  @
@@ -117,13 +123,13 @@ target_link_libraries( ${target}
 #                                                    -
 #-----------------------------------------------------
 set_target_properties(${target} PROPERTIES
-                      CXX_STANDARD ${mpl_cxx_standard}
+                      CXX_STANDARD ${foreach_loop_cxx_standard}
                       generic_foreach_loop_include ${CMAKE_CURRENT_SOURCE_DIR}/header_files
                       PUBLIC_HEADER "${generic_foreach_loop_header_files}" )
 
 install( TARGETS ${target}
-         ARCHIVE DESTINATION ${mpl_install_lib_directory} 
-         PUBLIC_HEADER DESTINATION ${mpl_install_include_directory} )
+         ARCHIVE DESTINATION ${foreach_loop_install_lib_directory} 
+         PUBLIC_HEADER DESTINATION ${foreach_loop_install_include_directory} )
 
 #-----------------------------------------------------
 # Add the subdirectory for creating the unit tests.  -
