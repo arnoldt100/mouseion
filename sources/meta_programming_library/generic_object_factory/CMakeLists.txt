@@ -31,6 +31,16 @@
     #-----------------------------------------------------
     set(target ${my_project_name})
 
+    #-----------------------------------------------------
+    # This library needs access to the following header  -
+    # files:                                             -
+    #                                                    -
+    #   mpl target header files                          -
+    #                                                    -
+    # We get the path to the above header files.         -
+    #-----------------------------------------------------
+    get_target_property(my_mpl_include_dir mpl mpl_include)
+
     # ----------------------------------------------------
     # Include the cmake macros and function needed to 
     # verify key variables are set.
@@ -107,7 +117,8 @@ target_sources(${target}
 #                                                    -
 #-----------------------------------------------------
 target_include_directories(${target} 
-                           PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files )
+                           PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files
+                           PRIVATE ${my_mpl_include_dir} )
 
 #-----------------------------------------------------
 # Enable compile warnings.                           -
@@ -122,7 +133,8 @@ enable_compile_warnings(${target})
 set(THREADS_PREFER_PTHREAD_FLAG ON)
 find_package(Threads REQUIRED)
 target_link_libraries( ${target}
-                       PUBLIC Threads::Threads )
+                       PUBLIC Threads::Threads
+                       mpl )
 
 #-----------------------------------------------------
 # Here we set the properties on target               -

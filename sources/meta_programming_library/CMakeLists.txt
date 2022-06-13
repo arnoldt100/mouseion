@@ -8,7 +8,7 @@
 #
 #   Property                            Value                                               Description
 #----------------------------------------------------------------------------------------------------------------------------
-#
+# mpl_include                           ${CMAKE_CURRENT_SOURCE_DIR}/header_files            The location of the mpl header files.
 
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
