@@ -4,7 +4,7 @@
 #                                                    -
 #                                                    -
 #-----------------------------------------------------
-function(verify_key_environmental_are_set)
+function(verify_generic_foreach_loop_build_prerequisites_are_set)
 
 
     #-----------------------------------------------------

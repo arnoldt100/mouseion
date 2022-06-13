@@ -62,6 +62,7 @@
     #                                                    -
     #-----------------------------------------------------
     set (generic_object_factory_header_files
+         header_files/DefaultFactoryError.hpp
          header_files/Factory.hpp
          header_files/RegisterObjectFactories.hpp )
 
@@ -73,8 +74,9 @@
     #                                                    -
     #-----------------------------------------------------
     set (generic_object_factory_implementation_files
+         implementation_files/DefaultFactoryError.cpp
          implementation_files/Factory.cpp
-         implementation_files/RegisterObjectFactories.hpp )
+         implementation_files/RegisterObjectFactories.cpp )
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @

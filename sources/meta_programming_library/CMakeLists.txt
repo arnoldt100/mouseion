@@ -88,8 +88,6 @@ set(mouseion_boost_top_level $ENV{MOUSEION_BOOST_TOP_LEVEL}  )
          header_files/NullType.h
          header_files/EmptyType.h
          header_files/MPLAliases.hpp
-         header_files/DefaultFactoryError.hpp
-         header_files/Factory.hpp
          header_files/ConcreteFactory.hpp
          header_files/OpNewFactoryUnit.hpp
          header_files/AbstractFactoryUnit.hpp
@@ -102,7 +100,6 @@ set(mouseion_boost_top_level $ENV{MOUSEION_BOOST_TOP_LEVEL}  )
          header_files/DefineVisitableMacro.h
          header_files/ErrorUnknownVisitor.h
          header_files/Visitor.hpp
-         header_files/RegisterObjectFactories.hpp
          header_files/Command.hpp )
 
     #-----------------------------------------------------
@@ -117,8 +114,6 @@ set(mouseion_boost_top_level $ENV{MOUSEION_BOOST_TOP_LEVEL}  )
          implementation_files/NullType.cpp
          implementation_files/EmptyType.cpp
          implementation_files/MPLAliases.cpp
-         implementation_files/DefaultFactoryError.cpp
-         implementation_files/Factory.cpp 
          implementation_files/ConcreteFactory.cpp
          implementation_files/OpNewFactoryUnit.cpp
          implementation_files/AbstractFactoryUnit.cpp
@@ -131,7 +126,6 @@ set(mouseion_boost_top_level $ENV{MOUSEION_BOOST_TOP_LEVEL}  )
          implementation_files/DefineVisitableMacro.cpp
          implementation_files/ErrorUnknownVisitor.cpp
          implementation_files/Visitor.cpp
-         implementation_files/RegisterObjectFactories.cpp
          implementation_files/Command.cpp )
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -206,7 +200,6 @@ install( TARGETS ${target}
 # ----------------------------------------------------
 enable_building_generic_foreach_loop_library("${mouseion_install_lib_directory}"
                                              "${mouseion_install_include_directory}"
-                                             "${mouseion_install_lib_directory}"
                                              "${mouseion_install_bin_directory}"
                                              "${mouseion_cmake_c_compiler}"
                                              "${mouseion_cmake_cxx_compiler}"
@@ -214,7 +207,6 @@ enable_building_generic_foreach_loop_library("${mouseion_install_lib_directory}"
 
 enable_building_generic_object_factory_library("${mouseion_install_lib_directory}"
                                                "${mouseion_install_include_directory}"
-                                               "${mouseion_install_lib_directory}"
                                                "${mouseion_install_bin_directory}"
                                                "${mouseion_cmake_c_compiler}"
                                                "${mouseion_cmake_cxx_compiler}"
