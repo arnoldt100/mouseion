@@ -1,14 +1,14 @@
-# This CMakeLists.txt file creates the library libgeneric_foreach_loop.a
+# This CMakeLists.txt file creates the library libgeneric_object_factory.a
 # and its unit tests. To add source files, simply append the appropiate variable
-# generic_foreach_loop_header_files or generic_foreach_loop_implementation_files.
+# generic_object_factory_header_files or generic_object_factory_implementation_files.
 #
-# The target for the library is generic_foreach_loop.
+# The target for the library is generic_object_factory.
 #
-# The following properties are set for the target generic_foreach_loop.
+# The following properties are set for the target generic_object_factory.
 #
 #   Property                            Value                                               Description
 #----------------------------------------------------------------------------------------------------------------------------
-# generic_foreach_loop_include          The location of the header files.
+#
 
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -21,7 +21,7 @@
     # Define the project.                                -
     #                                                    -
     #-----------------------------------------------------
-    set(my_project_name "generic_foreach_loop")
+    set(my_project_name "generic_object_factory")
     project(${my_project_name})
 
     #-----------------------------------------------------
@@ -53,8 +53,8 @@
     # this variable.                                     -
     #                                                    -
     #-----------------------------------------------------
-    set (generic_foreach_loop_header_files
-         header_files/ForLoop.hpp )
+    set (generic_object_factory_header_files
+         <list of header files> )
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -63,8 +63,8 @@
     # variable.                                          -
     #                                                    -
     #-----------------------------------------------------
-    set (generic_foreach_loop_implementation_files
-         implementation_files/ForLoop.cpp )
+    set (generic_object_factory_implementation_files
+         <list of implementation files> )
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -87,7 +87,7 @@ add_library( ${target} STATIC
 #                                                    -
 #-----------------------------------------------------
 target_sources(${target}
-               PRIVATE ${generic_foreach_loop_header_files} ${generic_foreach_loop_implementation_files} )
+    PRIVATE ${generic_object_factory_header_files} ${generic_object_factory_implementation_files} )
 
 #-----------------------------------------------------
 # Add the directory header_files to search for       -
@@ -104,29 +104,19 @@ target_include_directories(${target}
 enable_compile_warnings(${target})
 
 #-----------------------------------------------------
-# The libraries to use when linking to target.       -
-#                                                    -
-#-----------------------------------------------------
-set(THREADS_PREFER_PTHREAD_FLAG ON)
-find_package(Threads REQUIRED)
-target_link_libraries( ${target}
-                       PUBLIC Threads::Threads )
-
-#-----------------------------------------------------
 # Here we set the properties on target               -
 #                                                    -
 #-----------------------------------------------------
 set_target_properties(${target} PROPERTIES
-                      CXX_STANDARD ${mpl_cxx_standard}
-                      generic_foreach_loop_include ${CMAKE_CURRENT_SOURCE_DIR}/header_files
-                      PUBLIC_HEADER "${generic_foreach_loop_header_files}" )
+                      generic_object_factory_include ${CMAKE_CURRENT_SOURCE_DIR}/header_files
+                      PUBLIC_HEADER "${generic_object_factory_header_files}" )
 
 install( TARGETS ${target}
-         ARCHIVE DESTINATION ${mpl_install_lib_directory} 
-         PUBLIC_HEADER DESTINATION ${mpl_install_include_directory} )
+         ARCHIVE DESTINATION <where to install library> 
+         PUBLIC_HEADER DESTINATION <where to install headers> )
 
 #-----------------------------------------------------
 # Add the subdirectory for creating the unit tests.  -
 #                                                    -
 #-----------------------------------------------------
-# add_subdirectory(unit_tests)
+add_subdirectory(unit_tests)

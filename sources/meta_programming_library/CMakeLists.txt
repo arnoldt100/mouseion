@@ -217,6 +217,7 @@ enable_building_foreach_loop_library("${mouseion_install_lib_directory}"
 #                                                    -
 #-----------------------------------------------------
 add_subdirectory(generic_foreach_loop)
+add_subdirectory(generic_object_factory)
 
 #-----------------------------------------------------
 # Add the subdirectory for creating the unit tests.  -
