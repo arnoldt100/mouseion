@@ -8,22 +8,11 @@ function(verify_typelist_aliases_build_prerequisites)
 
     #-----------------------------------------------------
     # Verify environmental variable
-    # typelist_aliases_minimum_cmake_version is defined.
-    #-----------------------------------------------------
-    if (DEFINED typelist_aliases_minimum_cmake_version)
-        message("typelist_aliases_minimum_cmake_version=${typelist_aliases_minimum_cmake_version}")
-    else()
-        message( FATAL_ERROR "The variable typelist_aliases_minimum_cmake_version is not defined. This \
-        variable defines the minimum cmake version for compiling typelist_aliases." )
-    endif()
-
-    #-----------------------------------------------------
-    # Verify environmental variable
     # typelist_aliases_cxx_standard is defined.
     #-----------------------------------------------------
     if (DEFINED typelist_aliases_cxx_standard)
         message("typelist_aliases_minimum_cmake_version=${typelist_aliases_cxx_standard}")
-    else(typelist_aliases_cxx_standard
+    else()
         message( FATAL_ERROR "The variable typelist_aliases_cxx_standard is not defined. This \
         variable defines the cxx standard for compiling typelist_aliases." )
     endif()
@@ -54,7 +43,7 @@ function(verify_typelist_aliases_build_prerequisites)
     # Verify environmental variable
     # typelist_aliases_install_bin_directory is defined.
     #-----------------------------------------------------
-    if (DEFINED {typelist_aliases_install_bin_directory})
+    if (DEFINED typelist_aliases_install_bin_directory)
         message("typelist_aliases_install_bin_directory=${typelist_aliases_install_bin_directory}")
     else()
         message( FATAL_ERROR "The variable typelist_aliases_install_bin_directory is not defined. This \

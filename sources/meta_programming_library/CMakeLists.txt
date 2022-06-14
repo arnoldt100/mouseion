@@ -220,8 +220,8 @@ enable_building_typelist_aliases_library("${mouseion_install_lib_directory}"
                                          "${mouseion_boost_top_level}" )
 
 #-----------------------------------------------------
-# Add the subdirectory for creating the unit tests.  -
-#                                                    -
+# Add the subdirectory for creating the unit tests.
+# 
 #-----------------------------------------------------
 add_subdirectory(generic_foreach_loop)
 add_subdirectory(generic_object_factory)

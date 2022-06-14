@@ -125,8 +125,8 @@ set_target_properties(${target} PROPERTIES
                       PUBLIC_HEADER "${typelist_aliases_header_files}" )
 
 install( TARGETS ${target}
-         ARCHIVE DESTINATION <where to install library> 
-         PUBLIC_HEADER DESTINATION <where to install headers> )
+         ARCHIVE DESTINATION typelist_aliases_install_lib_directory  
+         PUBLIC_HEADER DESTINATION typelist_aliases_install_include_directory )
 
 #-----------------------------------------------------
 # Add the subdirectory for creating the unit tests.  -

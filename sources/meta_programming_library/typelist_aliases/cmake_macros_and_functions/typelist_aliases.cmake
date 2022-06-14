@@ -25,13 +25,13 @@
 #             install_lib_directory - The location to install the actual library
 #             boost_top_level - The top level of the boost package
 # =====================================================================================
-macro (enable_building_typelist_aliases_library minimum_cmake_version
-       cxx_standard
+macro (enable_building_typelist_aliases_library 
+       install_lib_directory
+       install_include_directory
+       install_bin_directory
        cmake_c_compiler 
        cmake_cxx_compiler
-       install_bin_directory
-       install_include_directory
-       install_lib_directory
+       cxx_standard
        boost_top_level)
 
     set(typelist_aliases_minimum_cmake_version ${minimum_cmake_version}) 
