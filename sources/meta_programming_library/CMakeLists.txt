@@ -88,7 +88,6 @@ set(mouseion_boost_top_level $ENV{MOUSEION_BOOST_TOP_LEVEL}  )
          header_files/EmptyList.h
          header_files/NullType.h
          header_files/EmptyType.h
-         header_files/MPLAliases.hpp
          header_files/ConcreteFactory.hpp
          header_files/OpNewFactoryUnit.hpp
          header_files/AbstractFactoryUnit.hpp
@@ -114,7 +113,6 @@ set(mouseion_boost_top_level $ENV{MOUSEION_BOOST_TOP_LEVEL}  )
          implementation_files/EmptyList.cpp
          implementation_files/NullType.cpp
          implementation_files/EmptyType.cpp
-         implementation_files/MPLAliases.cpp
          implementation_files/ConcreteFactory.cpp
          implementation_files/OpNewFactoryUnit.cpp
          implementation_files/AbstractFactoryUnit.cpp
