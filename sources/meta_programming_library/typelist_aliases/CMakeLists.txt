@@ -34,7 +34,7 @@
     # Include all macros and functions. 
     # 
     # ----------------------------------------------------
-    include(${CMAKE_CURRENT_SOURCE_DIR/cmake_macros_and_functions/typelist_aliases_build_prerequisites.cmake})
+    include(${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_functions/typelist_aliases_build_prerequisites.cmake)
 
     # ----------------------------------------------------
     #  Verify that all build prerequisites are met for
