@@ -33,7 +33,7 @@ include( ${CMAKE_CURRENT_LIST_DIR}/generic_object_factory/cmake_macros_and_funct
 include( ${CMAKE_CURRENT_LIST_DIR}/typelist_aliases/cmake_macros_and_functions/typelist_aliases.cmake)
 include( ${CMAKE_CURRENT_LIST_DIR}/generic_class_generation/cmake_macros_and_functions/generic_class_generation.cmake)
 include( ${CMAKE_CURRENT_LIST_DIR}/primitives/cmake_macros_and_functions/primitives.cmake)
-include( ${CMAKE_CURRENT_LIST_DIR}/primitives/cmake_macros_and_functions/generic_visitor.cmake)
+include( ${CMAKE_CURRENT_LIST_DIR}/generic_visitor/cmake_macros_and_functions/generic_visitor.cmake)
 
 # ----------------------------------------------------
 # Here we define variables which indicate where
