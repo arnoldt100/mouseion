@@ -108,6 +108,7 @@ add_subdirectory(generic_class_generation)
     #-----------------------------------------------------
     get_target_property(mm_include_dir memory_management memory_management_include)
     get_target_property(my_typelist_aliases_include_dir typelist_aliases typelist_aliases_include)
+    get_target_property(my_generic_class_generation_include_dir generic_class_generation generic_class_generation_include)
 
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -205,6 +206,7 @@ target_include_directories(${target}
                            PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files
                            PRIVATE ${mm_include_dir}
                            PRIVATE ${my_typelist_aliases_include_dir}
+                           PRIVATE ${my_generic_class_generation_include_dir}
                            PRIVATE ${Boost_INCLUDE_DIR} )
 
 #-----------------------------------------------------
@@ -223,6 +225,7 @@ target_link_libraries( ${target}
                        PUBLIC Threads::Threads
                        PUBLIC memory_management
                        PUBLIC typelist_aliases
+                       PUBLIC generic_class_generation
                        ${Boost_LIBRARIES} )
 
 #-----------------------------------------------------
