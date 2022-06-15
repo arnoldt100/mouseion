@@ -158,12 +158,6 @@ add_subdirectory(generic_class_generation)
          header_files/OpNewFactoryUnit.hpp
          header_files/AbstractFactoryUnit.hpp
          header_files/AbstractFactory.hpp
-         header_files/BaseVisitable.hpp
-         header_files/BaseVisitor.h
-         header_files/DefaultCatchAll.hpp
-         header_files/DefineVisitableMacro.h
-         header_files/ErrorUnknownVisitor.h
-         header_files/Visitor.hpp
          header_files/Command.hpp )
 
     #-----------------------------------------------------
@@ -179,12 +173,6 @@ add_subdirectory(generic_class_generation)
          implementation_files/OpNewFactoryUnit.cpp
          implementation_files/AbstractFactoryUnit.cpp
          implementation_files/AbstractFactory.cpp
-         implementation_files/BaseVisitable.cpp
-         implementation_files/BaseVisitor.cpp
-         implementation_files/DefaultCatchAll.cpp
-         implementation_files/DefineVisitableMacro.cpp
-         implementation_files/ErrorUnknownVisitor.cpp
-         implementation_files/Visitor.cpp
          implementation_files/Command.cpp )
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -208,7 +196,7 @@ add_library( ${target} STATIC
 #                                                    -
 #-----------------------------------------------------
 target_sources(${target}
-    PRIVATE ${mpl_header_files} ${mpl_implementation_files} )
+               PRIVATE ${mpl_header_files} ${mpl_implementation_files} )
 
 #-----------------------------------------------------
 # Add the directory header_files to search for       -

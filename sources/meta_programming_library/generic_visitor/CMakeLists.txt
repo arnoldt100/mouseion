@@ -75,7 +75,12 @@
     #                                                    -
     #-----------------------------------------------------
     set (generic_visitor_header_files
-         <list of header files> )
+         header_files/BaseVisitable.hpp
+         header_files/BaseVisitor.h
+         header_files/DefaultCatchAll.hpp
+         header_files/DefineVisitableMacro.h
+         header_files/ErrorUnknownVisitor.h
+         header_files/Visitor.hpp )
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -85,7 +90,12 @@
     #                                                    -
     #-----------------------------------------------------
     set (generic_visitor_implementation_files
-         <list of implementation files> )
+         implementation_files/BaseVisitable.cpp
+         implementation_files/BaseVisitor.cpp
+         implementation_files/DefaultCatchAll.cpp
+         implementation_files/DefineVisitableMacro.cpp
+         implementation_files/ErrorUnknownVisitor.cpp
+         implementation_files/Visitor.cpp)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
