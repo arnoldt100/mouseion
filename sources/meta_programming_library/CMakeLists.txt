@@ -33,6 +33,7 @@ include( ${CMAKE_CURRENT_LIST_DIR}/generic_object_factory/cmake_macros_and_funct
 include( ${CMAKE_CURRENT_LIST_DIR}/typelist_aliases/cmake_macros_and_functions/typelist_aliases.cmake)
 include( ${CMAKE_CURRENT_LIST_DIR}/generic_class_generation/cmake_macros_and_functions/generic_class_generation.cmake)
 include( ${CMAKE_CURRENT_LIST_DIR}/primitives/cmake_macros_and_functions/primitives.cmake)
+include( ${CMAKE_CURRENT_LIST_DIR}/primitives/cmake_macros_and_functions/generic_visitor.cmake)
 
 # ----------------------------------------------------
 # Here we define variables which indicate where
@@ -76,6 +77,13 @@ enable_building_primitives_library("${mouseion_install_lib_directory}"
                                     "${mouseion_cmake_cxx_compiler}"
                                     "${mouseion_cxx_standard}")
 
+enable_building_generic_visitor_library("${mouseion_install_lib_directory}"
+                                        "${mouseion_install_include_directory}"
+                                        "${mouseion_install_bin_directory}"
+                                        "${mouseion_cmake_c_compiler}"
+                                        "${mouseion_cmake_cxx_compiler}"
+                                        "${mouseion_cxx_standard}")
+
 #-----------------------------------------------------
 # Add the subdirectory for creating the unit tests.
 # 
@@ -83,6 +91,7 @@ enable_building_primitives_library("${mouseion_install_lib_directory}"
 add_subdirectory(primitives)
 add_subdirectory(typelist_aliases)
 add_subdirectory(generic_foreach_loop)
+add_subdirectory(generic_visitor)
 add_subdirectory(generic_object_factory)
 add_subdirectory(generic_class_generation)
 
