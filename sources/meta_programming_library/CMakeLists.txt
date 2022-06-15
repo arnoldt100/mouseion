@@ -31,6 +31,7 @@ include( ${CMAKE_CURRENT_LIST_DIR}/cmake_macros_and_functions/mpl_build_prerequi
 include( ${CMAKE_CURRENT_LIST_DIR}/generic_foreach_loop/cmake_macros_and_functions/generic_foreach_loop.cmake)
 include( ${CMAKE_CURRENT_LIST_DIR}/generic_object_factory/cmake_macros_and_functions/generic_object_factory.cmake)
 include( ${CMAKE_CURRENT_LIST_DIR}/typelist_aliases/cmake_macros_and_functions/typelist_aliases.cmake)
+include( ${CMAKE_CURRENT_LIST_DIR}/generic_class_generation/cmake_macros_and_functions/generic_class_generation.cmake)
 
 # ----------------------------------------------------
 # Here we define variables which indicate where
@@ -60,6 +61,13 @@ enable_building_typelist_aliases_library("${mouseion_install_lib_directory}"
                                          "${mouseion_cxx_standard}"
                                          "${mouseion_boost_top_level}" )
 
+enable_building_generic_class_generation_library("${mouseion_install_lib_directory}"
+                                                 "${mouseion_install_include_directory}"
+                                                 "${mouseion_install_bin_directory}"
+                                                 "${mouseion_cmake_c_compiler}"
+                                                 "${mouseion_cmake_cxx_compiler}"
+                                                 "${mouseion_cxx_standard}")
+
 #-----------------------------------------------------
 # Add the subdirectory for creating the unit tests.
 # 
@@ -67,6 +75,7 @@ enable_building_typelist_aliases_library("${mouseion_install_lib_directory}"
 add_subdirectory(generic_foreach_loop)
 add_subdirectory(typelist_aliases)
 add_subdirectory(generic_object_factory)
+add_subdirectory(generic_class_generation)
 
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -93,6 +102,7 @@ add_subdirectory(generic_object_factory)
     # files:                                             -
     #                                                    -
     #   memory_management target header files            -
+    #   typelist_aliases  target header files.           -
     #                                                    -
     # We get the path to the above header files.         -
     #-----------------------------------------------------
@@ -132,8 +142,6 @@ add_subdirectory(generic_object_factory)
          header_files/OpNewFactoryUnit.hpp
          header_files/AbstractFactoryUnit.hpp
          header_files/AbstractFactory.hpp
-         header_files/GenerateScatteredHierarchy.hpp
-         header_files/GenerateLinearHierarchy.hpp
          header_files/BaseVisitable.hpp
          header_files/BaseVisitor.h
          header_files/DefaultCatchAll.hpp
@@ -157,8 +165,6 @@ add_subdirectory(generic_object_factory)
          implementation_files/OpNewFactoryUnit.cpp
          implementation_files/AbstractFactoryUnit.cpp
          implementation_files/AbstractFactory.cpp
-         implementation_files/GenerateScatteredHierarchy.cpp
-         implementation_files/GenerateLinearHierarchy.cpp
          implementation_files/BaseVisitable.cpp
          implementation_files/BaseVisitor.cpp
          implementation_files/DefaultCatchAll.cpp
