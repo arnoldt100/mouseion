@@ -153,7 +153,6 @@ add_subdirectory(generic_class_generation)
     #                                                    -
     #-----------------------------------------------------
     set (mpl_header_files
-         header_files/EmptyList.h
          header_files/ConcreteFactory.hpp
          header_files/OpNewFactoryUnit.hpp
          header_files/AbstractFactoryUnit.hpp
@@ -168,7 +167,6 @@ add_subdirectory(generic_class_generation)
     #                                                    -
     #-----------------------------------------------------
     set (mpl_implementation_files
-         implementation_files/EmptyList.cpp
          implementation_files/ConcreteFactory.cpp
          implementation_files/OpNewFactoryUnit.cpp
          implementation_files/AbstractFactoryUnit.cpp
