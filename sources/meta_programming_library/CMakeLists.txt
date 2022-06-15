@@ -32,6 +32,7 @@ include( ${CMAKE_CURRENT_LIST_DIR}/generic_foreach_loop/cmake_macros_and_functio
 include( ${CMAKE_CURRENT_LIST_DIR}/generic_object_factory/cmake_macros_and_functions/generic_object_factory.cmake)
 include( ${CMAKE_CURRENT_LIST_DIR}/typelist_aliases/cmake_macros_and_functions/typelist_aliases.cmake)
 include( ${CMAKE_CURRENT_LIST_DIR}/generic_class_generation/cmake_macros_and_functions/generic_class_generation.cmake)
+include( ${CMAKE_CURRENT_LIST_DIR}/primitives/cmake_macros_and_functions/primitives.cmake)
 
 # ----------------------------------------------------
 # Here we define variables which indicate where
@@ -79,11 +80,11 @@ enable_building_primitives_library("${mouseion_install_lib_directory}"
 # Add the subdirectory for creating the unit tests.
 # 
 #-----------------------------------------------------
-add_subdirectory(generic_foreach_loop)
+add_subdirectory(primitives)
 add_subdirectory(typelist_aliases)
+add_subdirectory(generic_foreach_loop)
 add_subdirectory(generic_object_factory)
 add_subdirectory(generic_class_generation)
-add_subdirectory(primitives)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -144,8 +145,6 @@ add_subdirectory(primitives)
     #-----------------------------------------------------
     set (mpl_header_files
          header_files/EmptyList.h
-         header_files/NullType.h
-         header_files/EmptyType.h
          header_files/ConcreteFactory.hpp
          header_files/OpNewFactoryUnit.hpp
          header_files/AbstractFactoryUnit.hpp
@@ -167,8 +166,6 @@ add_subdirectory(primitives)
     #-----------------------------------------------------
     set (mpl_implementation_files
          implementation_files/EmptyList.cpp
-         implementation_files/NullType.cpp
-         implementation_files/EmptyType.cpp
          implementation_files/ConcreteFactory.cpp
          implementation_files/OpNewFactoryUnit.cpp
          implementation_files/AbstractFactoryUnit.cpp

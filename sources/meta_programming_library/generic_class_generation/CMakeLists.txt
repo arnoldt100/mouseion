@@ -39,7 +39,7 @@
     # We get the path to the above header files.         -
     #-----------------------------------------------------
     get_target_property(my_typelist_aliases_include_dir typelist_aliases typelist_aliases_include)
-    get_target_property(my_mpl_include_dir mpl mpl_include)
+    get_target_property(my_primitives_include_dir primitives primitives_include)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -109,7 +109,7 @@ target_sources(${target}
 #-----------------------------------------------------
 target_include_directories(${target} 
                            PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files
-                           PRIVATE ${my_mpl_include_dir}
+                           PRIVATE ${my_primitives_include_dir}
                            PRIVATE ${my_typelist_aliases_include_dir} )
 
 #-----------------------------------------------------
@@ -124,7 +124,7 @@ enable_compile_warnings(${target})
 #-----------------------------------------------------
 target_link_libraries( ${target}
                        PUBLIC typelist_aliases
-                       PUBLIC mpl)
+                       PUBLIC primitives)
 
 #-----------------------------------------------------
 # Here we set the properties on target               -

@@ -34,7 +34,7 @@
     # Include primitives macros and functions.
     #
     # ----------------------------------------------------
-    include("${CMAKE_CURRENT_SOURCE_DIR/cmake_macros_and_functions/primitives_build_prerequisites.cmake}")
+    include("${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_functions/primitives_build_prerequisites.cmake")
 
     # ----------------------------------------------------
     # Verify that build prerequisites are met for building
@@ -67,7 +67,7 @@
     #-----------------------------------------------------
     set (primitives_header_files
          header_files/NullType.h
-         implementation_files/EmptyType.h )
+         header_files/EmptyType.h )
 
     #-----------------------------------------------------
     # Here we define the variable                        -

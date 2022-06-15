@@ -1,40 +1,68 @@
-# =====================================================================================
-# 
-#        Filename:  primitives.cmake
-# 
-#     Description:  
-# 
-#          Author:  Arnold N. Tharrington (), arnoldt@ornl.gov
-#    Organization:  ORNL-National Center of Computational Sciences
-# 
-#  =====================================================================================
+#-----------------------------------------------------
+# This function verifies the key environmental       -
+# variables are set.                                 -
+#                                                    -
+#-----------------------------------------------------
+function(verify_primitives_build_prerequisites_are_set)
 
+    #-----------------------------------------------------
+    # Verify environmental variable                      -
+    # primitives_cmake_cxx_compiler is                   -
+    # defined.                                           -
+    #-----------------------------------------------------
+    if (DEFINED primitives_cmake_cxx_compiler)
+        message("primitives_cmake_cxx_compiler=${primitives_cmake_cxx_compiler}")
+    else()
+        message( FATAL_ERROR "The variable primitives_cmake_cxx_compiler is not defined. This \
+        variable defines the C++ compiler for compiling the primitives library." )
+    endif()
 
-# ===  MACRO     ======================================================================
-#         Name:  enable_building_primitives_library
-#  Description:  Defines key variables enabling the
-#                building of the primitives library.
-# 
-#  Arguments: 
-#             install_lib_directory - The location to install the actual library
-#             install_include_directory - The location to install header files
-#             install_bin_directory - The location to install binaraies
-#             cmake_c_compiler - The c compiler to build the library
-#             cmake_cxx_compiler - The c++ compiler to build the library
-#             cxx_standard - The C++ standard to build the library and binaries
-# =====================================================================================
-macro ( enable_building_primitives_library install_lib_directory
-        install_include_directory
-        install_bin_directory
-        cmake_c_compiler 
-        cmake_cxx_compiler 
-        cxx_standard)
+    #-----------------------------------------------------
+    # Verify environmental variable                      -
+    # primitives_cmake_c_compiler is defined.            -
+    #-----------------------------------------------------
+    if (DEFINED primitives_cmake_c_compiler)
+        message("primitives_cmake_c_compiler=${primitives_cmake_c_compiler}")
+    else()
+        message( FATAL_ERROR "The variable primitives_cmake_c_compiler is not defined. This \
+        variable defines the c compiler for compiling primitives library." )
+    endif()
 
-    set(primitives_install_lib_directory ${install_lib_directory})
-    set(primitives_install_include_directory ${install_include_directory})
-    set(primitives_install_bin_directory ${install_bin_directory})
-    set(primitives_cmake_cxx_compiler ${cmake_cxx_compiler})
-    set(primitives_cmake_c_compiler ${cmake_c_compiler})
-    set(primitives_cxx_standard ${cxx_standard})
-endmacro()
+    #-----------------------------------------------------
+    # Verify environmental variable                      -
+    # primitives_install_bin_directory is                -
+    # defined.                                           -
+    #-----------------------------------------------------
+    if (DEFINED primitives_install_bin_directory)
+        message("primitives_install_bin_directory=${primitives_install_bin_directory}")
+    else()
+        message( FATAL_ERROR "The variable primitives_install_bin_directory is not defined. This \
+        variable defines the location to install primitives binaries." )
+    endif()
+
+    #-----------------------------------------------------
+    # Verify environmental variable                      -
+    # primitives_install_include_directory is            -
+    # defined.                                           -
+    #-----------------------------------------------------
+    if ( DEFINED primitives_install_include_directory )
+        message("primitives_install_include_directory=${primitives_install_include_directory}")
+    else()
+        message( FATAL_ERROR "The variable primitives_install_include_directory is not defined. This \
+        variable defines the location to install primitives header files." )
+    endif()
+
+    #-----------------------------------------------------
+    # Verify environmental variable                      -
+    # primitives_install_lib_directory is                -
+    # defined.                                           -
+    #-----------------------------------------------------
+    if ( DEFINED primitives_install_lib_directory )
+        message("primitives_install_lib_directory=${primitives_install_lib_directory}")
+    else()
+        message( FATAL_ERROR "The variable primitives_install_lib_directory is not defined. This \
+        variable defines the location to install primitives libraries." )
+    endif()
+
+endfunction()
 
