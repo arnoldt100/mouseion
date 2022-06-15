@@ -68,6 +68,13 @@ enable_building_generic_class_generation_library("${mouseion_install_lib_directo
                                                  "${mouseion_cmake_cxx_compiler}"
                                                  "${mouseion_cxx_standard}")
 
+enable_building_primitives_library("${mouseion_install_lib_directory}"
+                                    "${mouseion_install_include_directory}"
+                                    "${mouseion_install_bin_directory}"
+                                    "${mouseion_cmake_c_compiler}"
+                                    "${mouseion_cmake_cxx_compiler}"
+                                    "${mouseion_cxx_standard}")
+
 #-----------------------------------------------------
 # Add the subdirectory for creating the unit tests.
 # 
@@ -76,7 +83,7 @@ add_subdirectory(generic_foreach_loop)
 add_subdirectory(typelist_aliases)
 add_subdirectory(generic_object_factory)
 add_subdirectory(generic_class_generation)
-
+add_subdirectory(primitives)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
