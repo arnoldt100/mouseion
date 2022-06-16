@@ -134,7 +134,7 @@ set(THREADS_PREFER_PTHREAD_FLAG ON)
 find_package(Threads REQUIRED)
 target_link_libraries( ${target}
                        PUBLIC Threads::Threads
-                       mpl )
+                       typelist_aliases )
 
 #-----------------------------------------------------
 # Here we set the properties on target               -
