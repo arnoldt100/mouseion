@@ -15,13 +15,13 @@ set(mouseion_boost_top_level $ENV{MOUSEION_BOOST_TOP_LEVEL}  )
 # Make available the project cmake modules.          -
 #                                                    -
 #-----------------------------------------------------
-include( ${CMAKE_CURRENT_LIST_DIR}/cmake_macros_and_functions/mpl_build_prerequisites.cmake )
 include( ${CMAKE_CURRENT_LIST_DIR}/generic_foreach_loop/cmake_macros_and_functions/generic_foreach_loop.cmake)
 include( ${CMAKE_CURRENT_LIST_DIR}/generic_object_factory/cmake_macros_and_functions/generic_object_factory.cmake)
 include( ${CMAKE_CURRENT_LIST_DIR}/typelist_aliases/cmake_macros_and_functions/typelist_aliases.cmake)
 include( ${CMAKE_CURRENT_LIST_DIR}/generic_class_generation/cmake_macros_and_functions/generic_class_generation.cmake)
 include( ${CMAKE_CURRENT_LIST_DIR}/primitives/cmake_macros_and_functions/primitives.cmake)
 include( ${CMAKE_CURRENT_LIST_DIR}/generic_visitor/cmake_macros_and_functions/generic_visitor.cmake)
+include( ${CMAKE_CURRENT_LIST_DIR}/generic_abstract_factory/cmake_macros_and_functions/generic_abstract_factory.cmake)
 
 # ----------------------------------------------------
 # Here we define variables which indicate where
@@ -49,7 +49,7 @@ enable_building_typelist_aliases_library("${mouseion_install_lib_directory}"
                                          "${mouseion_cmake_c_compiler}"
                                          "${mouseion_cmake_cxx_compiler}"
                                          "${mouseion_cxx_standard}"
-                                         "${mouseion_boost_top_level}" )
+                                         "${mouseion_boost_top_level}")
 
 enable_building_generic_class_generation_library("${mouseion_install_lib_directory}"
                                                  "${mouseion_install_include_directory}"
