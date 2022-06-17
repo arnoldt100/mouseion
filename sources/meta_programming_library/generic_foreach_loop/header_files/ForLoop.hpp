@@ -1,5 +1,5 @@
-#ifndef __filepreprocessordefine__
-#define __filepreprocessordefine__
+#ifndef  MPL_ForLoop_INC
+#define  MPL_ForLoop_INC
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
@@ -105,4 +105,4 @@ class ForLoop
 
 }; // namespace MPL
 
-#endif // __filepreprocessordefine__
+#endif   /* ----- #ifndef MPL_ForLoop_INC  ----- */
