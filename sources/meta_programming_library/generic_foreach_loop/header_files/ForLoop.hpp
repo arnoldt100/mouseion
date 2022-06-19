@@ -17,178 +17,66 @@
 namespace MPL
 {
 
+
+
 // =====================================================================================
 //        Class:  ForLoop
 //  Description:  
 // =====================================================================================
-template< int N_initial, int N_final, int N, int delta_N, template<int I> class Wrapper>
-class ForLoop
+
+template<int N_initial, int N_final, int N, typename TypeList, template<int I> class Wrapper>
+class ForLoopOverTypeListNext
 {
     public:
-        // ====================  LIFECYCLE     =======================================
-
-        ForLoop () // constructor
-        {
-            return;
-        }
-
-        ForLoop (const ForLoop & other) // copy constructor
-        {
-            if ( this != &other)
-            {
-            }
-            return;
-        }
-
-        ForLoop (ForLoop && other)   // copy-move constructor
-        {
-            if ( this != &other)
-            {
-            }
-            return;
-        }
-
-        ~ForLoop ()  // destructor
-        {
-            return;
-        }
-
-        // ====================  ACCESSORS     =======================================
-
-        // ====================  MUTATORS      =======================================
-
-        // ====================  OPERATORS     =======================================
-
-        ForLoop& operator= ( const ForLoop &other ) // assignment operator
-        {
-            if ( this != &other)
-            {
-            }
-            return *this;
-        }
-
-        ForLoop& operator= ( ForLoop && other ) // assignment-move operator
-        {
-            if ( this != &other)
-            {
-            }
-            return *this;
-        }
 
         void operator()()
         {
             if constexpr ( (N_initial <= N) && (N <= N_final )  )
             {
                 // Instantiate an instance of the Wrapper for the N'th iteration
-                // and do operation.
+                // and do functor call.
                 Wrapper<N> member;
                 member();
-                
-                // Call ForLoop for next ieration.
-                ForLoop<N_initial,N_final,N+delta_N,delta_N,Wrapper> a_forloop;
+               
+                // Compute the increment.
+                constexpr auto dN = ( N_initial <= N_final ) ? 1 : -1;
+
+                // Call ForLoopOverTypeList for next ieration.
+                ForLoopOverTypeListNext<N_initial,N_final,N+dN,TypeList,Wrapper> a_forloop;
                 a_forloop();
             }
+            return;
         }
+}; // -----  end of class ForLoopOverTypeListNext  -----
 
-
-    protected:
-        // ====================  METHODS       =======================================
-
-        // ====================  DATA MEMBERS  =======================================
-
-    private:
-        // ====================  METHODS       =======================================
-
-        // ====================  DATA MEMBERS  =======================================
-
-}; // -----  end of class ForLoop  -----
-
-
-// =====================================================================================
-//        Class:  ForLoop
-//  Description:  
-// =====================================================================================
-template<int N_initial, int N_final, int N, typename TypeList, template<int I> class Wrapper>
+template<int N_initial, int N_final, typename TypeList, template<int I> class Wrapper>
 class ForLoopOverTypeList
 {
     public:
-        // ====================  LIFECYCLE     =======================================
-
-        ForLoopOverTypeList () // constructor
-        {
-            return;
-        }
-
-        ForLoopOverTypeList (const ForLoopOverTypeList & other) // copy constructor
-        {
-            if ( this != &other)
-            {
-            }
-            return;
-        }
-
-        ForLoopOverTypeList (ForLoopOverTypeList && other)   // copy-move constructor
-        {
-            if ( this != &other)
-            {
-            }
-            return;
-        }
-
-        ~ForLoopOverTypeList ()  // destructor
-        {
-            return;
-        }
-
-        // ====================  ACCESSORS     =======================================
-
-        // ====================  MUTATORS      =======================================
-
-        // ====================  OPERATORS     =======================================
-
-        ForLoopOverTypeList& operator= ( const ForLoopOverTypeList &other ) // assignment operator
-        {
-            if ( this != &other)
-            {
-            }
-            return *this;
-        }
-
-        ForLoopOverTypeList& operator= ( ForLoopOverTypeList && other ) // assignment-move operator
-        {
-            if ( this != &other)
-            {
-            }
-            return *this;
-        }
 
         void operator()()
         {
+            // Compute the index for the wrapper functor call.
+            constexpr auto N = ( N_initial <= N_final ) ? N_initial : N_final;
+
             if constexpr ( (N_initial <= N) && (N <= N_final )  )
             {
+                // Compute the increment.
+                constexpr auto dN = ( N_initial <= N_final ) ? 1 : -1;
+
                 // Instantiate an instance of the Wrapper for the N'th iteration
-                // and do operation.
+                // and do functor call.
                 Wrapper<N> member;
                 member();
-                
-                // Call ForLoopOverTypeList for next ieration.
-                ForLoopOverTypeList<N_initial,N_final,N+1,TypeList,Wrapper> a_forloop;
+
+                // Call ForLoopOverTypeListNext for next ieration.
+                ForLoopOverTypeListNext<N_initial,N_final,N+dN,TypeList,Wrapper> a_forloop;
                 a_forloop();
             }
+            return;
         }
 
-
-    protected:
-        // ====================  METHODS       =======================================
-
-        // ====================  DATA MEMBERS  =======================================
-
-    private:
-        // ====================  METHODS       =======================================
-
-        // ====================  DATA MEMBERS  =======================================
-
-}; // -----  end of class ForLoop  -----
+}; // -----  end of class ForLoopOverTypeList  -----
 
 
 
