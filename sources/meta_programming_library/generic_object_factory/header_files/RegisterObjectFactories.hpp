@@ -19,7 +19,7 @@ namespace MPL
 {
 
 
-template<template<typename,typename> class F, typename baseclass, typename classID, class TList>
+template<template<typename,typename> class F, typename AbstractProduct, typename IdentifierType, class TList>
 class RegisterObjectFactories 
 {
     public :
@@ -29,7 +29,7 @@ class RegisterObjectFactories
             return;
         }
 
-        void operator()(F<baseclass,classID> & obj_factory)
+        void operator()(F<AbstractProduct,IdentifierType> & obj_factory)
         {
             return;
         }
