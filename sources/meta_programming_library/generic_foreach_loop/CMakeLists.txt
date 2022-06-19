@@ -73,6 +73,16 @@
     set (generic_foreach_loop_implementation_files
          implementation_files/ForLoop.cpp )
 
+    #-----------------------------------------------------
+    # This library needs access to the following header
+    # files:
+    # 
+    #   typelist_aliases target header files
+    #
+    # We get the path to the above header files.
+    #----------------------------------------------------- 
+    get_target_property(my_typelist_aliases_include_dir typelist_aliases typelist_aliases_include)
+
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
 # End of defining the sources and header files associated         @
@@ -102,7 +112,8 @@ target_sources(${target}
 #                                                    -
 #-----------------------------------------------------
 target_include_directories(${target} 
-                           PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files )
+                           PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files
+                           PRIVATE ${my_typelist_aliases_include_dir} )
 
 #-----------------------------------------------------
 # Enable compile warnings.                           -
@@ -117,7 +128,8 @@ enable_compile_warnings(${target})
 set(THREADS_PREFER_PTHREAD_FLAG ON)
 find_package(Threads REQUIRED)
 target_link_libraries( ${target}
-                       PUBLIC Threads::Threads )
+                       PUBLIC Threads::Threads
+                       typelist_aliases )
 
 #-----------------------------------------------------
 # Here we set the properties on target               -
