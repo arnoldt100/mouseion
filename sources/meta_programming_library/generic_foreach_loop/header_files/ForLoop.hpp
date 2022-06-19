@@ -56,6 +56,13 @@ class ForLoopOverTypeList
 
         void operator()()
         {
+            // The values of N_initial or N_final can't be negative for it will
+            // break the indexing of TypeList
+            if constexpr ( ( N_initial < 0 ) || (N_final < 0) )
+            {
+                return; 
+            }
+
             // Compute the index for the wrapper functor call.
             constexpr auto N = ( N_initial <= N_final ) ? N_initial : N_final;
 
