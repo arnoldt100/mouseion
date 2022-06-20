@@ -25,7 +25,7 @@ namespace MPL
 //  Description:  
 // =====================================================================================
 
-template<int N_initial, int N_final, int N, typename TypeList, template<int I> class Wrapper>
+template<int N_initial, int N_final, int N, typename TypeList, class Wrapper>
 class ForLoopOverTypeListNext
 {
     public:
@@ -36,8 +36,8 @@ class ForLoopOverTypeListNext
             {
                 // Instantiate an instance of the Wrapper for the N'th iteration
                 // and do functor call.
-                Wrapper<N> member;
-                member();
+                Wrapper member;
+                member .template operator()<N>();
                
                 // Compute the increment.
                 constexpr auto dN = ( N_initial <= N_final ) ? 1 : -1;
@@ -48,12 +48,20 @@ class ForLoopOverTypeListNext
             }
             return;
         }
+
+        std::shared_ptr<Wrapper> wrapper_; 
+
 }; // -----  end of class ForLoopOverTypeListNext  -----
 
-template<typename TypeList, template<int I> class Wrapper>
+template<typename TypeList, class Wrapper >
 class ForLoopOverTypeList
 {
     public:
+
+        ForLoopOverTypeList()
+        {
+            return;
+        }
 
         void operator()()
         {
@@ -76,8 +84,8 @@ class ForLoopOverTypeList
             {
                 // Instantiate an instance of the Wrapper for the N'th iteration
                 // and do functor call.
-                Wrapper<N> member;
-                member();
+                Wrapper member;
+                member .template operator()<N>();
 
                 // Compute the increment.
                 constexpr auto dN = ( N_initial <= N_final ) ? 1 : -1;
@@ -87,6 +95,9 @@ class ForLoopOverTypeList
                 a_forloop();
             }
             return;
+
+            std::shared_ptr<Wrapper> wrapper_; 
+
         }
 
 }; // -----  end of class ForLoopOverTypeList  -----

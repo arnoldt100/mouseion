@@ -5,9 +5,11 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <iostream>
 #include <map>
 #include <utility>
 #include <memory>
+#include <typeinfo>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -65,6 +67,7 @@ class Factory
         bool registerFactory(const IdentifierType & id, ProductCreator creator)
         {
             auto const element_registered = associations_.insert(typename AssocMap::value_type(id,creator)).second;
+            std::cout << "Registered product " << id << " : " << typeid(associations_.at(id)).name() << std::endl;
             return element_registered;
         }
 
