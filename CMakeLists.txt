@@ -76,8 +76,8 @@ project(mouseion)
 # Make available the project cmake modules.          -
 #                                                    -
 #-----------------------------------------------------
-include( ${CMAKE_CURRENT_LIST_DIR}/cmake_macros_and_functions/mouseion_build_prerequisites.cmake )
-include( ${CMAKE_CURRENT_LIST_DIR}/cmake_macros_and_functions/enable_compile_warnings.cmake )
+include( ${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_functions/mouseion_build_prerequisites.cmake )
+include( ${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_functions/enable_compile_warnings.cmake )
 
 #-----------------------------------------------------
 # Check that key environmental variables are set.    -
