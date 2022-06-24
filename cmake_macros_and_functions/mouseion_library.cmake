@@ -15,8 +15,7 @@
 #  Description:  Defines key environmental variables enabalng the
 #                building of the mouseion library.
 # 
-#  Arguments: top_level - The top level of the main CmakeLists.txt file.
-#             minimum_cmake_version - The minumum cmake version for building mouseion
+#  Arguments: minimum_cmake_version - The minumum cmake version for building mouseion
 #             cmake_c_compiler - The C compiler for building c sources
 #             cmake_cxx_compiler - The C++ compiler for building C++ sources
 #             install_prefix - The root location to install the library.
@@ -26,7 +25,7 @@
 #             mouseion_top_level - The top level of the mouseion package
 #             boost_top_level - The top level of the boost package
 # =====================================================================================
-macro (enable_building_mouseion top_level
+macro (enable_building_mouseion 
        minimum_cmake_version
        cxx_standard
        cmake_c_compiler 
