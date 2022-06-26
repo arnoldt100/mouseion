@@ -35,7 +35,8 @@ macro (enable_building_mouseion
        install_include_directory
        install_lib_directory
        mouseion_top_level
-       boost_top_level)
+       boost_top_level
+       logfilepath)
 
     set(ENV{MOUSEION_MINIMUM_CMAKE_VERSION} ${minimum_cmake_version}) 
     set(ENV{MOUSEION_CXX_STANDARD} ${cxx_standard})
@@ -45,7 +46,7 @@ macro (enable_building_mouseion
     set(ENV{MOUSEION_INSTALL_BIN_DIRECTORY} ${install_bin_directory}) 
     set(ENV{MOUSEION_INSTALL_INCLUDE_DIRECTORY} ${install_include_directory})
     set(ENV{MOUSEION_INSTALL_LIB_DIRECTORY} ${install_lib_directory})
-    set(ENV{MOUSEION_LOG_FILE} "mouseion_log.txt")
+    set(ENV{MOUSEION_LOG_FILE} logfilepath)
     set(ENV{MOUSEION_TOP_LEVEL} ${mouseion_top_level})
     set(ENV{MOUSEION_BOOST_TOP_LEVEL} ${boost_top_level})
 endmacro()
