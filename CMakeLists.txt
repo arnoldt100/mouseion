@@ -83,7 +83,7 @@ include( ${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_functions/enable_compile_w
 # Check that key environmental variables are set.    -
 #                                                    -
 #-----------------------------------------------------
-verify_key_environmental_are_set()
+verify_mouseion_build_prerequisites_are_met()
 
 #-----------------------------------------------------
 # Here we define some variables.                     -
