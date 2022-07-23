@@ -99,7 +99,7 @@ public:
     void 
     freeCommunicator()
     {
-        this->_freeCommunicator();
+        this->freeCommunicator_();
         return;
     }
 
@@ -194,7 +194,7 @@ private:
     _createSubcommunicator(const std::string & tag)=0;
 
     virtual void 
-    _freeCommunicator()=0;
+    freeCommunicator_()=0;
 
     //===== STATIC =======
     static constexpr std::size_t MAX_HOSTNAME_LENGTH=100;
