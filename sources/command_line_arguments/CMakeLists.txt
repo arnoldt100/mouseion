@@ -132,7 +132,7 @@ target_include_directories(${target}
 #                                                    -
 #-----------------------------------------------------
 target_link_libraries( ${target}
-                       memory_management )
+                       PUBLIC memory_management )
 
 #-----------------------------------------------------
 # Enable compile warnings.                           -
