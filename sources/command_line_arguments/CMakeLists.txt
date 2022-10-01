@@ -103,6 +103,13 @@
 add_library( ${target} STATIC 
              "")
 
+# ----------------------------------------------------
+# Add dependencies on other targets.
+# 
+# ----------------------------------------------------
+add_dependencies(${target} 
+                 memory_management)
+
 #-----------------------------------------------------
 #                                                    -
 # We associate the source files with the target.     -
