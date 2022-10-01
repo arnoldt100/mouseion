@@ -143,6 +143,20 @@ set(counterclass_install_include_directory ${mouseion_install_include_directory}
 set(counterclass_install_bin_directory ${mouseion_install_bin_directory})
 set(counterclass_cxx_standard ${mouseion_cxx_standard})
 
+
+#-----------------------------------------------------
+# Call the macro that enables building of command    -
+# line arguments target.                             -
+#                                                    -
+#-----------------------------------------------------
+include( ${CMAKE_CURRENT_SOURCE_DIR}/command_line_arguments/cmake_macros_and_functions/command_line_arguments.cmake)
+enable_building_command_line_arguments_library( "${mouseion_install_lib_directory}"
+                                                "${mouseion_install_include_directory}"
+                                                "${mouseion_install_bin_directory}" 
+                                                "${mouseion_cxx_standard}"
+                                                "${mouseion_log_file}")
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/command_line_arguments)
+
 #-----------------------------------------------------
 # Add the subdirectories for the various             -
 # libraries.                                         -

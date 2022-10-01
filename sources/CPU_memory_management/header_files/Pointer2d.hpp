@@ -74,6 +74,10 @@ namespace MEMORY_MANAGEMENT
             } 
 
             /* ====================  SATATIC       ======================================= */
+            static void copyPointer2d(std::size_t const & argc, T* const *const & in_ptr)
+            {
+            }
+
             static void destroyPointer2d(std::size_t const & argc, T** & in_ptr)
             {
                 const Array1d<T> array_factory_1d;
