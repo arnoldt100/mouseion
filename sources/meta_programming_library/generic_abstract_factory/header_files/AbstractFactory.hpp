@@ -64,11 +64,11 @@ class AbstractFactory : public GenerateScatteredHierarchy<Unit, mpl_size<TypeLis
         }
 
         // ====================  ACCESSORS     =======================================
-        template <typename T2> 
-        T2* Create()
+        template <typename AbstractProduct> 
+        AbstractProduct* Create()
         {
-            Unit<T2> & unit = *this;
-            return unit.DoCreate(mpl_type2type<T2>());
+            Unit<AbstractProduct> & unit = *this;
+            return unit.DoCreate(mpl_type2type<AbstractProduct>());
         }
 
         // ====================  MUTATORS      =======================================
