@@ -16,7 +16,7 @@
 std::size_t STRING_UTILITIES::get_maximum_width_of_vector_string(std::vector<std::string> & someStrings)
 {
     std::size_t maximum_string_width = 0;
-    for (const auto tmp_string : someStrings)
+    for (const auto & tmp_string : someStrings)
     {
         std::size_t string_size = tmp_string.size();
         maximum_string_width = ( string_size > maximum_string_width ? string_size : maximum_string_width );
