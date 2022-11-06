@@ -7,7 +7,7 @@ BOOST_AUTO_TEST_CASE( test_creation_and_freeing_mpi_communicator )
 {
     // Initialize the communicator via its mpi communicator
     // factory.
-    COMMUNICATOR::MPICommunicatorFactory a_communicator_factory;
+    ANANSI::MPICommunicatorFactory a_communicator_factory;
     std::unique_ptr<COMMUNICATOR::Communicator> aMPICommunicator =  a_communicator_factory.createWorldCommunicator();
     
     // Now explicitly free the resources used by the communicator.
@@ -18,7 +18,7 @@ BOOST_AUTO_TEST_CASE( test_gather_string )
 {
     // Initialize the communicator via its mpi communicator
     // factory.
-    COMMUNICATOR::MPICommunicatorFactory a_communicator_factory;
+    ANANSI::MPICommunicatorFactory a_communicator_factory;
     std::unique_ptr<COMMUNICATOR::Communicator> aMPICommunicator;
     aMPICommunicator = a_communicator_factory.createWorldCommunicator();
 
