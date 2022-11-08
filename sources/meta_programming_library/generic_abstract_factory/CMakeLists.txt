@@ -77,7 +77,8 @@
          header_files/ConcreteFactory.hpp
          header_files/OpNewFactoryUnit.hpp
          header_files/AbstractFactoryUnit.hpp
-         header_files/AbstractFactory.hpp)
+         header_files/AbstractFactory.hpp
+         header_files/AbstractFactoryUtilities.hpp)
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -90,7 +91,8 @@
          implementation_files/ConcreteFactory.cpp
          implementation_files/OpNewFactoryUnit.cpp
          implementation_files/AbstractFactoryUnit.cpp
-         implementation_files/AbstractFactory.cpp)
+         implementation_files/AbstractFactory.cpp
+         implementation_files/AbstractFactoryUtilities.cpp)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
