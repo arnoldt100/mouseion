@@ -38,26 +38,18 @@ class AbstractFactoryUtilities
             return;
         }
 
-    private:
-
-        template<class Base,class Derived>
-        using my_is_base_of_ = typename MPL::mpl_bool<MPL::mpl_is_base_of<Base,Derived>::value>;
 
     public:
 
-        template <typename T>
+        template <typename abstract_product_t>
         static constexpr std::size_t findIndex()
         {
-            using list_base = MPL::mpl_repeat_c<MPL::mpl_typelist<T>, 
+            using list_base = MPL::mpl_repeat_c<MPL::mpl_typelist<abstract_product_t>, 
             MPL::mpl_size<AbstractProductsTypeList>::value>;
-
             using R = MPL::mpl_transform<my_is_base_of_,AbstractProductsTypeList,list_base>;
-                                                                            
             using my_index = MPL::mpl_find<R,MPL::mpl_true_type>;
-
             return my_index::value;
         } 
-
 
         // ====================  ACCESSORS     =======================================
 
@@ -65,13 +57,20 @@ class AbstractFactoryUtilities
 
         // ====================  OPERATORS     =======================================
 
-
     protected:
         // ====================  METHODS       =======================================
 
         // ====================  DATA MEMBERS  =======================================
 
     private:
+        template<class Base,class Derived>
+        using my_is_base_of_ = typename MPL::mpl_bool<MPL::mpl_is_base_of<Base,Derived>::value>;
+
+    public:
+
+        template <typename abstract_product_t>
+        using corresponding_concrete_task = MPL::mpl_at_c<ConcreteProductsTypeList,findIndex<abstract_product_t>()>;
+
         // ====================  METHODS       =======================================
 
         // ====================  DATA MEMBERS  =======================================
