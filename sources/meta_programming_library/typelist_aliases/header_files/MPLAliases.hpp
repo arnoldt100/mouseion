@@ -143,6 +143,12 @@ using mpl_transform = boost::mp11::mp_transform<F,L...>;
 template<typename L, typename V>
 using mpl_find = boost::mp11::mp_find<L,V>;
 
+// ----------------------------------------------------
+// mpl_size_type is the template parameter type used in
+//  std::integral_constant<mpl_size_type,N> for MP11.
+// ----------------------------------------------------
+using mpl_size_type = mpl_size_1::value_type; 
+
 }; // namespace MPL
 
 #endif   // ----- #ifndef MOUSEION_MPLAliases_INC  ----- 
