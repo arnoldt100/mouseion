@@ -36,7 +36,7 @@ public:
 
     virtual ~Communicator()=0;
 
-    Communicator(Communicator const & other);
+    Communicator(Communicator const & other) = delete;
 
     Communicator(Communicator&& other);
 
@@ -96,6 +96,13 @@ public:
         return;
     }
 
+    void
+    resetName(const std::string & name)
+    {
+        this->resetName_(name);
+        return;
+    }
+
     void 
     freeCommunicator()
     {
@@ -118,9 +125,9 @@ public:
 
 
     //===== OPERATORS ======
-    Communicator& operator=(Communicator const & other);
+    Communicator& operator=(Communicator const & other) = delete;
 
-    Communicator& operator=(Communicator && other);
+    virtual Communicator& operator=(Communicator && other)=0;
 
     //===== STATIC FUNCTIONS ======
     static std::map<std::string, std::size_t>
@@ -195,6 +202,9 @@ private:
 
     virtual void 
     freeCommunicator_()=0;
+
+    virtual void
+    resetName_(const std::string & name)=0;
 
     //===== STATIC =======
     static constexpr std::size_t MAX_HOSTNAME_LENGTH=100;
@@ -324,6 +334,23 @@ template<>
 std::string broadcast(std::string const & data_to_broadcast,
                       Communicator const & aCommunicator,
 					  const std::size_t bcast_rank);
+
+
+// ===  FUNCTION  ======================================================================
+//         Name:  resetHostName
+//  Description:  Resets the hostname of the communicator.
+// 
+// =====================================================================================
+template<typename T>
+void resetHostName(T & aCommunicator, std::string const & name);
+
+// ===  FUNCTION  ======================================================================
+//         Name:  resetHostName
+//  Description:  Specialization for std::shared_ptr<Communicator>.
+// 
+// =====================================================================================
+template<>
+void resetHostName(std::shared_ptr<Communicator> & aCommunicator, std::string const & name);
 
 } // namespace MPICOMMUNICATOR
 

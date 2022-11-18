@@ -29,14 +29,6 @@ Communicator::~Communicator()
     return;
 }
 
-Communicator::Communicator(Communicator const & other)
-{
-    if ( this != &other)
-    {
-        *this = other;
-    }
-}
-
 Communicator::Communicator(Communicator&& other)
 {
     *this = std::move(other);
@@ -47,14 +39,6 @@ Communicator::Communicator(Communicator&& other)
 //============================= MUTATORS =====================================
 
 //============================= OPERATORS ====================================
-Communicator& Communicator::operator=(Communicator const  & other)
-{
-    if (this != &other)
-    {
-        
-    }
-    return *this;
-}
 
 Communicator& Communicator::operator=(Communicator && other)
 {
@@ -196,5 +180,13 @@ RegistryAnansiMDStatus getGlobalStatusCustomReduction( RegistryAnansiMDStatus co
 {
     return RegistryAnansiMDStatus::InitializingSimulationEnvironmentFailed;
 }
+
+template<>
+void resetHostName(std::shared_ptr<Communicator> & aCommunicator, std::string const & name)
+{
+    aCommunicator->resetName(name);
+    return;
+}
+
 
 } /* namespace COMMUNICATOR */
