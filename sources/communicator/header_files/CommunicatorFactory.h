@@ -40,6 +40,8 @@ public:
     //===== ACCESSORS ======
     std::unique_ptr<COMMUNICATOR::Communicator> createWorldCommunicator() const;
 
+    std::unique_ptr<COMMUNICATOR::Communicator> createNullWorldCommunicator() const;
+
     std::unique_ptr<COMMUNICATOR::Communicator> 
     cloneCommunicator(std::unique_ptr<COMMUNICATOR::Communicator> const & other) const;
 
@@ -69,6 +71,9 @@ private:
     //===== ACCESSORS ======
     virtual std::unique_ptr<COMMUNICATOR::Communicator> 
     createWorldCommunicator_() const=0;
+
+    virtual std::unique_ptr<COMMUNICATOR::Communicator> 
+    createNullWorldCommunicator_() const=0;
 
     virtual std::unique_ptr<COMMUNICATOR::Communicator> 
     cloneCommunicator_(std::unique_ptr<COMMUNICATOR::Communicator> const & other) const=0;

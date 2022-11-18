@@ -56,6 +56,12 @@ CommunicatorFactory::createWorldCommunicator() const
 }
 
 std::unique_ptr<COMMUNICATOR::Communicator> 
+CommunicatorFactory::createNullWorldCommunicator() const
+{
+    return this->createNullWorldCommunicator_();
+}
+
+std::unique_ptr<COMMUNICATOR::Communicator> 
 CommunicatorFactory::cloneCommunicator(std::unique_ptr<COMMUNICATOR::Communicator> const & other) const
 {
     return this->cloneCommunicator_(other);
