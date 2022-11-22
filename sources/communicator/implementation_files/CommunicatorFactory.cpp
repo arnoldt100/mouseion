@@ -66,6 +66,12 @@ CommunicatorFactory::cloneCommunicator(std::unique_ptr<COMMUNICATOR::Communicato
 {
     return this->cloneCommunicator_(other);
 }
+
+std::unique_ptr<COMMUNICATOR::Communicator> 
+CommunicatorFactory::cloneCommunicator(std::shared_ptr<COMMUNICATOR::Communicator> const & other) const
+{
+    return this->cloneCommunicator_(other);
+}
 //============================= MUTATORS =====================================
 
 //============================= OPERATORS ====================================

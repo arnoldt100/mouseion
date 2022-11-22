@@ -45,6 +45,9 @@ public:
     std::unique_ptr<COMMUNICATOR::Communicator> 
     cloneCommunicator(std::unique_ptr<COMMUNICATOR::Communicator> const & other) const;
 
+    std::unique_ptr<COMMUNICATOR::Communicator> 
+    cloneCommunicator(std::shared_ptr<COMMUNICATOR::Communicator> const & other) const;
+
     //===== MUTATORS =======
 
     //===== OPERATORS ======
@@ -77,6 +80,9 @@ private:
 
     virtual std::unique_ptr<COMMUNICATOR::Communicator> 
     cloneCommunicator_(std::unique_ptr<COMMUNICATOR::Communicator> const & other) const=0;
+
+    virtual std::unique_ptr<COMMUNICATOR::Communicator> 
+    cloneCommunicator_(std::shared_ptr<COMMUNICATOR::Communicator> const & other) const=0;
 
     //===== MUTATORS =======
 
