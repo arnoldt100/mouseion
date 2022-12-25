@@ -50,11 +50,11 @@ class Array1d<char>
 {
     public:
         // ====================  LIFECYCLE     =======================================
-        Array1d<char>(); /* constructor      */
+        Array1d(); /* constructor      */
 
-        Array1d<char>( const Array1d<char> &other )=delete; /* copy constructor */
+        Array1d( const Array1d<char> &other )=delete; /* copy constructor */
 
-        ~Array1d<char> (); /* destructor       */
+        ~Array1d(); /* destructor       */
 
         /* ====================  ACCESSORS     ======================================= */
         
