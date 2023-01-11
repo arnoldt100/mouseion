@@ -137,17 +137,25 @@ using mpl_transform = boost::mp11::mp_transform<F,L...>;
 
 // ----------------------------------------------------
 // mpl_find<L, V> returns the index at which the type V is located in the list
-// L. If L does not contain V, mpl_find<L, V> is
-// mpl_size<L>.
+// L.  It’s an alias for boost::mp_size_t<I>. If L does not contain V,
+// mpl_find<L, V> is mpl_size<L>.
 // ----------------------------------------------------
 template<typename L, typename V>
 using mpl_find = boost::mp11::mp_find<L,V>;
 
-// ----------------------------------------------------
+// --------------------------------------------------G--
 // mpl_size_type is the template parameter type used in
 //  std::integral_constant<mpl_size_type,N> for MP11.
 // ----------------------------------------------------
 using mpl_size_type = mpl_size_1::value_type; 
+
+// ----------------------------------------------------
+// N is a type argument where N::value must be a nonnegative number. Returns
+// mp_list<std::integral_constant<T, 0>, std::integral_constant<T, 1>, ... , 
+// std::integral_constant<T, N::value-1>> where T is the type of N::value.
+// ----------------------------------------------------
+template<typename N>
+using mpl_iota = boost::mp11::mp_iota<N>;
 
 }; // namespace MPL
 
