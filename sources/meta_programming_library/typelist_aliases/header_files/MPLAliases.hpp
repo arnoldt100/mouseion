@@ -134,7 +134,6 @@ using mpl_repeat_c = boost::mp11::mp_repeat_c<L,N>;
 template<template<class...> class F, class... L> 
 using mpl_transform = boost::mp11::mp_transform<F,L...>;
 
-
 // ----------------------------------------------------
 // mpl_find<L, V> returns the index at which the type V is located in the list
 // L.  It’s an alias for boost::mp_size_t<I>. If L does not contain V,
@@ -156,6 +155,13 @@ using mpl_size_type = mpl_size_1::value_type;
 // ----------------------------------------------------
 template<typename N>
 using mpl_iota = boost::mp11::mp_iota<N>;
+
+// ---------------------------------------------------
+// mp_apply<F, L> applies the metafunction F to the contents of the list L,
+// that is, mp_apply<F, L<T….> is an alias for F<T….> 
+// ---------------------------------------------------
+template< template<class...> class F, class L>
+using mpl_apply = boost::mp11::mp_apply<F,L>;
 
 }; // namespace MPL
 
