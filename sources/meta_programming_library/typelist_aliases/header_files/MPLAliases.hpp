@@ -31,6 +31,15 @@ namespace MPL
 template<typename ...T>
 using mpl_typelist = boost::mp11::mp_list<T...>;
 
+// ---------------------------------------------------
+// The alias for 
+// template <int I> 
+// using mp_int =std::integral_constant<int, N>
+//
+// ---------------------------------------------------
+template <int T>
+using mpl_int = boost::mp11::mp_int<T>;
+
 //-----------------------------------------------------
 // The alias to the the boost mp11 transformation type
 // that just returns the same type. It’s useful both as
