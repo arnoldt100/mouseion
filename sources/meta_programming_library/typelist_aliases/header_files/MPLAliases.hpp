@@ -77,6 +77,12 @@ using mpl_size_0 = mpl_size<mpl_typelist<>>;
 //-----------------------------------------------------
 using mpl_size_1 = mpl_size< mpl_typelist<int>>; 
 
+// ---------------------------------------------------
+// The alias for boost::mp11::mp_empty
+// ---------------------------------------------------
+template <typename L>
+using mpl_empty = boost::mp11::mp_empty<L>;
+
 //-----------------------------------------------------
 // The alias to boost mp11 to pop the first list 
 // element and return the remainder of the list.
