@@ -129,6 +129,14 @@ template <typename L,std::size_t I>
 using mpl_at_c = boost::mp11::mp_at_c<L,I>;
 
 // ----------------------------------------------------
+// mp_if_c<true, T, E...> is an alias for T. 
+// mp_if_c<false, T, E...> is an alias for E. 
+// Otherwise, the result is a substitution failure.
+// ----------------------------------------------------
+template <bool C, class T, class... E>
+using mpl_if_c = boost::mp11::mp_if_c<C,T,E...>;
+
+// ----------------------------------------------------
 // If Derived is derived from Base or if both are the same non-union class (in
 // both cases ignoring cv-qualification), provides the member constant value
 // equal to true. Otherwise value is false.
