@@ -62,7 +62,8 @@ using mpl_bool = boost::mp11::mp_bool<T>;
 using mpl_true_type = boost::mp11::mp_bool<true>;
 
 //-----------------------------------------------------
-// The alias to boost mp11 list size
+// The alias to boost mp11 mp_size which is the alias
+// template<std::size_t N> using mpl_size = std::integral_constant<std::size_t, N>;
 //-----------------------------------------------------
 template<typename L>
 using mpl_size = boost::mp11::mp_size<L>;
