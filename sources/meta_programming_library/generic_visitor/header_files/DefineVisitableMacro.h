@@ -2,7 +2,7 @@
 #define  DefineVistableMacro_INC
 
 #define DEFINE_VISITABLE() \
-    virtual ReturnType Accept(MPL::BaseVisitor & guest) \
+    ReturnType Accept(MPL::BaseVisitor & guest) override \
 { \
     return AcceptImpl( *this, guest); \
 } \
