@@ -27,19 +27,19 @@ function(verify_command_line_arguments_build_prerequisites_are_set)
 
     # Again verfying that variable 'command_line_arguments_logfilepath' is defined ... repeated
     # for consistency.
-    anansi_test_variable_is_defined("command_line_arguments_logfilepath" "${command_line_arguments_logfilepath}")
+    mouseion_test_variable_is_defined("command_line_arguments_logfilepath" "${command_line_arguments_logfilepath}")
 
     # Verify variable command_line_arguments_install_lib_directory is defined,
-    anansi_test_variable_is_defined("command_line_arguments_install_lib_directory" "${command_line_arguments_logfilepath}")
+    mouseion_test_variable_is_defined("command_line_arguments_install_lib_directory" "${command_line_arguments_logfilepath}")
 
     # Verify variable command_line_arguments_install_include_directory defined.
-    anansi_test_variable_is_defined("command_line_arguments_install_include_directory" "${command_line_arguments_logfilepath}")
+    mouseion_test_variable_is_defined("command_line_arguments_install_include_directory" "${command_line_arguments_logfilepath}")
 
     # Verify variable command_line_arguments_install_bin_directory defined.
-    anansi_test_variable_is_defined("command_line_arguments_install_bin_directory" "${command_line_arguments_logfilepath}")
+    mouseion_test_variable_is_defined("command_line_arguments_install_bin_directory" "${command_line_arguments_logfilepath}")
 
     # Verify variable command_line_arguments_cxx_standard defined.
-    anansi_test_variable_is_defined("command_line_arguments_cxx_standard" "${command_line_arguments_logfilepath}")
+    mouseion_test_variable_is_defined("command_line_arguments_cxx_standard" "${command_line_arguments_logfilepath}")
 
     set(my_message "Package \"command_line_arguments' build prerequisities\" are satisfied.")
     log_message_to_file( ${command_line_arguments_logfilepath} ${my_message})
