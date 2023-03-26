@@ -22,8 +22,9 @@ _numberOfArguments(0)
 }
 
 CommandLineArguments::CommandLineArguments( const int argc, char const * const *const & argv) :
-_numberOfArguments(argc)
+_numberOfArguments(static_cast<std::size_t>(argc))
 {
+    
     for (int ip=0; ip < argc; ++ip)
     {
         const std::string aArgument(argv[ip]); 

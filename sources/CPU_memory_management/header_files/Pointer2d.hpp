@@ -36,11 +36,19 @@ namespace MEMORY_MANAGEMENT
 
             Pointer2d(Pointer2d const & other) /* copy constructor */
             {
+                if (this != &other )
+                {
+
+                }
                 return;
             }
 
             Pointer2d(Pointer2d && other) /* copy-move constructor */
             {
+                if (this != &other )
+                {
+
+                }
                 return;
             }
 
@@ -74,9 +82,9 @@ namespace MEMORY_MANAGEMENT
             } 
 
             /* ====================  SATATIC       ======================================= */
-            static void copyPointer2d(std::size_t const & argc, T* const *const & in_ptr)
-            {
-            }
+            /// static void copyPointer2d(std::size_t const & argc, T* const *const & in_ptr)
+            /// {
+            /// }
 
             static void destroyPointer2d(std::size_t const & argc, T** & in_ptr)
             {
