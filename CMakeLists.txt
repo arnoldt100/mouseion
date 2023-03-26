@@ -76,6 +76,7 @@ project(mouseion)
 # Make available the project cmake modules.          -
 #                                                    -
 #-----------------------------------------------------
+include( ${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_functions/mouseion_test_variable.cmake)
 include( ${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_functions/mouseion_build_prerequisites.cmake )
 include( ${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_functions/enable_compile_warnings.cmake )
 
@@ -98,6 +99,19 @@ set(mouseion_install_include_directory $ENV{MOUSEION_INSTALL_INCLUDE_DIRECTORY})
 set(mouseion_install_lib_directory $ENV{MOUSEION_INSTALL_LIB_DIRECTORY})
 set(mouseion_boost_top_level $ENV{MOUSEION_INSTALL_LIB_DIRECTORY})
 set(mouseion_log_file $ENV{MOUSEION_LOG_FILE})
+
+#-----------------------------------------------------
+# Call the macro that enables building of            -
+# debugging_utilities target.                        -
+#                                                    -
+#-----------------------------------------------------
+include( ${CMAKE_CURRENT_SOURCE_DIR}/sources/debugging_utilities/cmake_macros_and_functions/debugging_utilities.cmake)
+enable_building_debugging_utilities_library( "${mouseion_install_lib_directory}"
+                                             "${mouseion_install_include_directory}"
+                                             "${mouseion_install_bin_directory}" 
+                                             "${mouseion_cxx_standard}"
+                                             "${mouseion_log_file}")
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/debugging_utilities)
 
 #-----------------------------------------------------
 # Here we define variables which indicate where      -
