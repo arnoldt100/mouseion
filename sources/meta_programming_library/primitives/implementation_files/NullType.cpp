@@ -26,11 +26,19 @@ NullType::NullType()
 
 NullType::NullType( NullType const & other)
 {
+    if ( this != &other)
+    {
+
+    }
     return;
 }		// -----  end of method NullType::NullType  -----
 
 NullType::NullType( NullType && other)
 {
+    if ( this != &other)
+    {
+
+    }
     return;
 }		// -----  end of method NullType::NullType  -----
 

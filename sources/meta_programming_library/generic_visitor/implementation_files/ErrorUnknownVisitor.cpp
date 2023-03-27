@@ -26,11 +26,19 @@ ErrorUnknownVisitor::ErrorUnknownVisitor()
 
 ErrorUnknownVisitor::ErrorUnknownVisitor( const ErrorUnknownVisitor & other)
 {
+    if ( this != & other)
+    {
+
+    }
     return;
 }		// -----  end of method ErrorUnknownVisitor::ErrorUnknownVisitor  -----
 
 ErrorUnknownVisitor::ErrorUnknownVisitor( ErrorUnknownVisitor && other)
 {
+    if ( this != & other)
+    {
+
+    }
     return;
 }		// -----  end of method ErrorUnknownVisitor::ErrorUnknownVisitor  -----
 

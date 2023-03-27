@@ -26,11 +26,19 @@ EmptyType::EmptyType()
 
 EmptyType::EmptyType( EmptyType const  & other)
 {
+    if ( this != &other)
+    {
+
+    }
     return;
 }		// -----  end of method EmptyType::EmptyType  -----
 
 EmptyType::EmptyType( EmptyType && other)
 {
+    if ( this != &other)
+    {
+
+    }
     return;
 }		// -----  end of method EmptyType::EmptyType  -----
 

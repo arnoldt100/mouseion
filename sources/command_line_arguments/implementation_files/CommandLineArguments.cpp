@@ -1,12 +1,17 @@
-/*
- * CommandLineArguments.cpp
- *
- *      Authors: Arnold N. Tharrington
- */
+//--------------------------------------------------------//
+//-------------------- System includes -------------------//
+//--------------------------------------------------------//
 #include <algorithm>
 
-#include "CommandLineArguments.h"
+//--------------------------------------------------------//
+//-------------------- External Library Files ------------//
+//--------------------------------------------------------//
 
+//--------------------------------------------------------//
+//--------------------- Package includes -----------------//
+//--------------------------------------------------------//
+#include "CommandLineArguments.h"
+#include "AssertMessage.h"
 namespace COMMANDLINE {
 
 //////////////////////////////////////////////////////////////////////////////
@@ -25,6 +30,7 @@ CommandLineArguments::CommandLineArguments( const int argc, char const * const *
 _numberOfArguments(static_cast<std::size_t>(argc))
 {
     
+    assertm(argc >= 0, "argc is negative");
     for (int ip=0; ip < argc; ++ip)
     {
         const std::string aArgument(argv[ip]); 

@@ -24,8 +24,21 @@ BaseVisitor::BaseVisitor()
     return;
 }
 
+BaseVisitor::BaseVisitor( BaseVisitor const & other)
+{
+    if ( this != &other)
+    {
+
+    }
+    return;
+}		// -----  end of method BaseVisitor::BaseVisitor  -----
+
 BaseVisitor::BaseVisitor( BaseVisitor && other)
 {
+    if ( this != &other)
+    {
+
+    }
     return;
 }		// -----  end of method BaseVisitor::BaseVisitor  -----
 
