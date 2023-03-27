@@ -1,7 +1,7 @@
 
 #  =====================================================================================
 # 
-#        Filename:  enable_compile_warnings.cmake
+#        Filename:  enable_mouseion_compile_warnings.cmake
 # 
 #     Description:  
 # 
@@ -14,13 +14,13 @@
 
  
 # ===  MACRO     ======================================================================
-#         Name:  enable_compile_warnings
+#         Name:  enable_mouseion_compile_warnings
 #  Description:  Enables compile warnings on target.
 # 
 #  Arguments: MY_TARGET; The target to enable the compile warnings.
 # =====================================================================================
 
-macro(enable_compile_warnings MY_TARGET)
+macro(enable_mouseion_compile_warnings MY_TARGET)
 
     target_compile_options(${MY_TARGET}
                            PRIVATE  $<$<CXX_COMPILER_ID:GNU>:'-Wall -fconcepts -Wextra'>

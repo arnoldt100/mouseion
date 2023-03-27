@@ -120,7 +120,7 @@ add_library( ${target} STATIC
 # Enable compile warnings.                           -
 #                                                    -
 #-----------------------------------------------------
-enable_compile_warnings(${target})
+enable_mouseion_compile_warnings(${target})
 
 #-----------------------------------------------------
 #                                                    -

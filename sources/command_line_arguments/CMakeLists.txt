@@ -138,7 +138,7 @@ target_link_libraries( ${target}
 # Enable compile warnings.                           -
 #                                                    -
 #-----------------------------------------------------
-enable_compile_warnings(${target})
+enable_mouseion_compile_warnings(${target})
 
 #-----------------------------------------------------
 # Here we set the properties on target               -
