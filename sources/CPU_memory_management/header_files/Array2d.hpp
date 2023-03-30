@@ -72,8 +72,7 @@ class Array2d
          *
          *--------------------------------------------------------------------------------------
          */
-        std::size_t computeRowMajorIndex(std::size_t const & matrix_row_size,
-                                         std::size_t const & matrix_column_size,
+        std::size_t computeRowMajorIndex(std::size_t const & matrix_column_size,
                                          std::size_t const row_index,
                                          std::size_t const column_index) const
         {
@@ -98,7 +97,6 @@ class Array2d
          *--------------------------------------------------------------------------------------
          */
         std::size_t computeColumnMajorIndex(std::size_t const & matrix_row_size,
-                                            std::size_t const & matrix_column_size,
                                             std::size_t const row_index,
                                             std::size_t const column_index) const
         {

@@ -46,11 +46,19 @@ namespace MPL
 
             GenerateScatteredHierarchy (const GenerateScatteredHierarchy & other)   // copy constructor
             {
+                if (this != &other)
+                {
+
+                }
                 return;
             }
 
             GenerateScatteredHierarchy (GenerateScatteredHierarchy && other)   // copy-move constructor
             {
+                if (this != &other)
+                {
+
+                }
                 return;
             }
 
@@ -115,11 +123,19 @@ namespace MPL
             
             GenerateScatteredHierarchy (const GenerateScatteredHierarchy & other)   // copy constructor
             {
+                if (this != &other)
+                {
+
+                }
                 return;
             }
 
             GenerateScatteredHierarchy (GenerateScatteredHierarchy && other)   // copy-move constructor
             {
+                if (this != &other)
+                {
+
+                }
                 return;
             }
 

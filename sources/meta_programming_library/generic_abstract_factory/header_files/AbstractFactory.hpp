@@ -50,11 +50,19 @@ class AbstractFactory : public GenerateScatteredHierarchy<Unit, mpl_size<TypeLis
 
         AbstractFactory (const AbstractFactory & other) // copy constructor
         {
+            if (this != &other)
+            {
+
+            }
             return;
         }
 
         AbstractFactory (AbstractFactory && other)  // copy-move constructor
         {
+            if (this != &other)
+            {
+
+            }
             return;
         }
 
