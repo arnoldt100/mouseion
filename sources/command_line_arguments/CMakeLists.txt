@@ -42,6 +42,7 @@
     #                                                    -
     #-----------------------------------------------------
     get_target_property(mm_include_dir memory_management memory_management_include)
+    get_target_property(my_debugging_utilities debugging_utilities debugging_utilities_include)
 
     #-----------------------------------------------------
     # Include various functions and macros.              -
@@ -125,14 +126,16 @@ target_sources(${target}
 #-----------------------------------------------------
 target_include_directories(${target} 
                            PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files
-                           PRIVATE ${mm_include_dir}  )
+                           PRIVATE ${mm_include_dir}
+                           PRIVATE ${my_debugging_utilities} ) 
 
 #-----------------------------------------------------
 # Set the list of libraries to link against.         -
 #                                                    -
 #-----------------------------------------------------
 target_link_libraries( ${target}
-                       PUBLIC memory_management )
+                       PUBLIC memory_management 
+                       PUBLIC debugging_utilities )
 
 #-----------------------------------------------------
 # Enable compile warnings.                           -
