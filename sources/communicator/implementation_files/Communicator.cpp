@@ -31,7 +31,11 @@ Communicator::~Communicator()
 
 Communicator::Communicator(Communicator&& other)
 {
-    *this = std::move(other);
+    if (this != &other)
+    {
+        *this = std::move(other);
+    }
+    return;
 }
 
 //============================= ACCESSORS ====================================
