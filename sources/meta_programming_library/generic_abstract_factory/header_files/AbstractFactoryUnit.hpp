@@ -52,6 +52,10 @@ class AbstractFactoryUnit
 
         AbstractFactoryUnit (AbstractFactoryUnit && other)   // copy-move constructor
         {
+            if (this != &other)
+            {
+
+            }
             return;
         }
 
