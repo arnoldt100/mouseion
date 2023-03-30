@@ -6,6 +6,7 @@
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
 #include <iostream>
+#include <typeinfo>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -15,6 +16,7 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "ErrorUnknownVisitor.h"
+#include "BaseVisitor.h"
 
 namespace MPL
 {
@@ -22,7 +24,6 @@ namespace MPL
 //--------------------------------------------------------//
 //-------------------- Forward Declarations --------------//
 //--------------------------------------------------------//
-class BaseVisitor;
 
 // =====================================================================================
 //        Class:  DefaultCatchAll
@@ -50,11 +51,19 @@ class DefaultCatchAll
 
         DefaultCatchAll (const DefaultCatchAll & other)   // copy constructor
         {
+            if (this != &other)
+            {
+
+            }
             return;
         }		// -----  end of method DefaultCatchAll::DefaultCatchAll  -----
 
         DefaultCatchAll (DefaultCatchAll && other)   // copy-move constructor
         {
+            if (this != &other)
+            {
+
+            }
             return;
         }		// -----  end of method DefaultCatchAll::DefaultCatchAll  -----
 
@@ -92,6 +101,8 @@ class DefaultCatchAll
         static R OnUnknownVisitor(Visited& v , BaseVisitor& bv )
         {
             std::cout << "I'm an unknown visitor: " << std::endl << std::flush;
+            std::cout << "The visitor type: " << typeid(bv).name() << std::flush;
+            std::cout << "The Visited type: " << typeid(v).name() << std::flush;
             throw ErrorUnknownVisitor();
             return R();
         }

@@ -19,26 +19,21 @@ namespace MPL {
 
 //============================= LIFECYCLE ====================================
 
-EmptyType::EmptyType()
-{
-    return;
-}
+EmptyType::EmptyType() { return; }
 
-EmptyType::EmptyType( EmptyType const  & other)
-{
-    return;
-}		// -----  end of method EmptyType::EmptyType  -----
+EmptyType::EmptyType(EmptyType const &other) {
+  if (this != &other) {
+  }
+  return;
+} // -----  end of method EmptyType::EmptyType  -----
 
-EmptyType::EmptyType( EmptyType && other)
-{
-    return;
-}		// -----  end of method EmptyType::EmptyType  -----
+EmptyType::EmptyType(EmptyType &&other) {
+  if (this != &other) {
+  }
+  return;
+} // -----  end of method EmptyType::EmptyType  -----
 
-
-EmptyType::~EmptyType()
-{
-    return;
-}
+EmptyType::~EmptyType() { return; }
 
 //============================= ACCESSORS ====================================
 
@@ -46,22 +41,16 @@ EmptyType::~EmptyType()
 
 //============================= OPERATORS ====================================
 
-EmptyType& EmptyType::operator= ( const EmptyType &other )
-{
-    if (this != &other)
-    {
-
-    }
-    return *this;
+EmptyType &EmptyType::operator=(const EmptyType &other) {
+  if (this != &other) {
+  }
+  return *this;
 } // assignment operator
 
-EmptyType& EmptyType::operator= ( EmptyType && other )
-{
-    if (this != &other)
-    {
-
-    }
-    return *this;
+EmptyType &EmptyType::operator=(EmptyType &&other) {
+  if (this != &other) {
+  }
+  return *this;
 } // assignment-move operator
 
 //////////////////////////////////////////////////////////////////////////////
@@ -79,7 +68,7 @@ EmptyType& EmptyType::operator= ( EmptyType && other )
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PRIVATE //////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////
-    
+
 //============================= LIFECYCLE ====================================
 
 //============================= ACCESSORS ====================================
@@ -87,6 +76,5 @@ EmptyType& EmptyType::operator= ( EmptyType && other )
 //============================= MUTATORS =====================================
 
 //============================= OPERATORS ====================================
-
 
 } // namespace MPL

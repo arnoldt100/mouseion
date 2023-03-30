@@ -1,7 +1,6 @@
 #ifndef  MOUSEION_BaseVisitable_INC
 #define  MOUSEION_BaseVisitable_INC
 
-
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
@@ -50,11 +49,19 @@ class BaseVisitable
 
         BaseVisitable (const BaseVisitable & other) // copy constructor
         {
+            if (this != &other)
+            {
+
+            }
             return;
         }
 
         BaseVisitable (BaseVisitable && other) // copy-move constructor
         {
+            if (this != &other)
+            {
+
+            }
             return;
         }
 

@@ -44,11 +44,19 @@ class DefaultFactoryError
 
         DefaultFactoryError(DefaultFactoryError const & other) // copy constructor
         {
+            if (this != &other)
+            {
+
+            }
             return;
         }		// -----  end of method DefaultFactoryError::DefaultFactoryError  -----
 
         DefaultFactoryError(DefaultFactoryError && other) // copy-move constructor
         {
+            if (this != &other)
+            {
+
+            }
             return;
         }		// -----  end of method DefaultFactoryError::DefaultFactoryError  -----
 

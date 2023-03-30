@@ -46,11 +46,19 @@ class Visitor
 
         Visitor (const Visitor & other) // copy constructor
         {
+            if (this != &other)
+            {
+
+            }
             return;
         }
 
         Visitor (Visitor && other)   // copy-move constructor
         {
+            if (this != &other)
+            {
+
+            }
             return;
         }
 
