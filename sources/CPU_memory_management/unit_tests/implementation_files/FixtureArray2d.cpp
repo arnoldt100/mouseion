@@ -88,15 +88,11 @@ FixtureArray2d::~FixtureArray2d()
     switch (  this->arrayLayoutType ) 
     {
         case ArrayLayoutType::column_major :	
-            my_array_factory.destroyColumnMajorArray(this->rowSize,
-                                                     this->columnSize,
-                                                     this->array2d_ptr);
+            my_array_factory.destroyColumnMajorArray(this->array2d_ptr);
             break;
 
         case ArrayLayoutType::row_major :	
-            my_array_factory.destroyRowMajorArray(this->rowSize,
-                                                  this->columnSize,
-                                                  this->array2d_ptr);
+            my_array_factory.destroyRowMajorArray(this->array2d_ptr);
             break;
 
     } // -----  end switch  ----- 

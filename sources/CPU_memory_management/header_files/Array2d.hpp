@@ -215,13 +215,9 @@ class Array2d
          *
          * Return: void
          *
-         * Arguments: number_rows; std::size_t; The number of rows of the 2d matrix.
-         *          : number_columns; std::size_t; The number of columns of the 2d matrix.
          *--------------------------------------------------------------------------------------
          */
-        void destroyRowMajorArray (std::size_t const & number_rows,
-                                   std::size_t const & number_columns,
-                                   T** & in_ptr) const;
+        void destroyRowMajorArray (T** & in_ptr) const;
 
         /*
          *--------------------------------------------------------------------------------------
@@ -231,13 +227,9 @@ class Array2d
          *
          * Return: void
          *
-         * Arguments: number_rows; std::size_t; The number of rows of the 2d matrix.
-         *          : number_columns; std::size_t; The number of columns of the 2d matrix.
          *--------------------------------------------------------------------------------------
          */
-        void destroyColumnMajorArray (std::size_t const & number_rows,
-                                      std::size_t const & number_columns,
-                                      T** & in_ptr) const;
+        void destroyColumnMajorArray ( T** & in_ptr) const;
 
          /* ====================  MUTATORS      ======================================= */
 
@@ -506,9 +498,7 @@ T* Array2d<T>::copyRowMajorArrayTo1dArray (std::size_t const & number_rows,
 
 
 template < typename T >
-void Array2d<T>::destroyColumnMajorArray (std::size_t const & number_rows,
-                                          std::size_t const & number_columns,
-                                          T** & in_ptr) const
+void Array2d<T>::destroyColumnMajorArray (T** & in_ptr) const
 {
     const Array1d<T> array_factory_1d;
     array_factory_1d.destroyArray(in_ptr[0]);
@@ -521,9 +511,7 @@ void Array2d<T>::destroyColumnMajorArray (std::size_t const & number_rows,
 
 
 template < typename T >
-void Array2d<T>::destroyRowMajorArray (std::size_t const & number_rows,
-                                       std::size_t const & number_columns,
-                                       T** & in_ptr) const
+void Array2d<T>::destroyRowMajorArray (T** & in_ptr) const
 {
     const Array1d<T> array_factory_1d;
     array_factory_1d.destroyArray(in_ptr[0]);
