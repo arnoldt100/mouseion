@@ -79,6 +79,7 @@ project(mouseion)
 include( ${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_functions/mouseion_test_variable.cmake)
 include( ${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_functions/mouseion_build_prerequisites.cmake )
 include( ${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_functions/enable_mouseion_compile_warnings.cmake )
+include( ${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_functions/enable_mouseion_debug_flags.cmake )
 
 #-----------------------------------------------------
 # Check that key environmental variables are set.    -
@@ -99,6 +100,7 @@ set(mouseion_install_include_directory $ENV{MOUSEION_INSTALL_INCLUDE_DIRECTORY})
 set(mouseion_install_lib_directory $ENV{MOUSEION_INSTALL_LIB_DIRECTORY})
 set(mouseion_boost_top_level $ENV{MOUSEION_INSTALL_LIB_DIRECTORY})
 set(mouseion_log_file $ENV{MOUSEION_LOG_FILE})
+set(mouseion_debug_valid_values ${MOUSEION_DEBUG_VALID_VALUES}  )
 
 #-----------------------------------------------------
 # Call the macro that enables building of            -
@@ -112,7 +114,6 @@ enable_building_debugging_utilities_library( "${mouseion_install_lib_directory}"
                                              "${mouseion_cxx_standard}"
                                              "${mouseion_log_file}")
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/debugging_utilities)
-
 #-----------------------------------------------------
 # Here we define variables which indicate where      -
 # to install the memory_management libraries,        -

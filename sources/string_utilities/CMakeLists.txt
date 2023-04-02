@@ -27,6 +27,7 @@
     # We get the path to the above header files.         -
     #-----------------------------------------------------
     get_target_property(my_mm_include memory_management memory_management_include)
+    get_target_property(my_debugging_utilities_include debugging_utilities  debugging_utilities_include )
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -118,10 +119,16 @@ add_library(${target} STATIC
             "")
 
 #-----------------------------------------------------
-# Enable compile warnings.                           -
-#                                                    -
+# Enable compile warnings.
+#
 #-----------------------------------------------------
 enable_mouseion_compile_warnings(${target})
+
+#-----------------------------------------------------
+# Enable debug flags
+#
+#-----------------------------------------------------
+enable_mouseion_debug_flags(${target})
 
 #-----------------------------------------------------
 #                                                    -
@@ -138,14 +145,16 @@ target_sources(${target}
 #-----------------------------------------------------
 target_include_directories(${target}  
                            PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files
-                           PRIVATE ${my_mm_include} )
+                           PRIVATE ${my_mm_include}
+                           PRIVATE ${my_debugging_utilities_include})
 
 #-----------------------------------------------------
 # Other dependencies.                                -
 #                                                    -
 #-----------------------------------------------------
 target_link_libraries(${target} 
-                      memory_management)
+                      memory_management
+                      debugging_utilities)
 
 
 #-----------------------------------------------------

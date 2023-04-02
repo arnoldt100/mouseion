@@ -1,16 +1,17 @@
-/*==================================================================================*/
-/*                                                                                  */
-/* Function name: convert_sequence_of_chars_to_vector_string                        */
-/*                                                                                  */
-/* Function arguments:                                                              */
-/*                                                                                  */
-/* Description:                                                                     */
-/*                                                                                  */
-/*                                                                                  */
-/*==================================================================================*/
-
-#include "convert_sequence_of_chars_to_vector_string.h"
+//--------------------------------------------------------//
+//-------------------- System includes -------------------//
+//--------------------------------------------------------//
 #include <algorithm>
+
+//--------------------------------------------------------//
+//-------------------- External Library Files ------------//
+//--------------------------------------------------------//
+
+//--------------------------------------------------------//
+//--------------------- Package includes -----------------//
+//--------------------------------------------------------//
+#include "convert_sequence_of_chars_to_vector_string.h"
+#include "AssertValidValueForType.hpp"
 
 
 namespace STRING_UTILITIES 
@@ -22,10 +23,16 @@ namespace STRING_UTILITIES
        int const * const end_offsets_ptr,
        const char * sequence_of_characters)
     {
+        #ifdef MOUSEION_DBG_VALID_VALUES
+        DEBUGGING::AssertValidValueForType::isArrayValidValuesForSize_t(length,start_offsets_ptr);
+        DEBUGGING::AssertValidValueForType::isArrayValidValuesForSize_t(length,end_offsets_ptr);
+        #endif
+
         std::vector<std::string> aVectorString;
 
         for (int ip=0; ip < length; ++ip)
         {
+
             const std::size_t starting_index = start_offsets_ptr[ip];
             const std::size_t ending_index = end_offsets_ptr[ip];
             std::size_t terminating_null_char_location = ending_index;

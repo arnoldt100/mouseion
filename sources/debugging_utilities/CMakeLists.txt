@@ -75,7 +75,8 @@
     #                                                    -
     #-----------------------------------------------------
     set (debugging_utilities_header_files
-        header_files/AssertMessage.h )
+         header_files/AssertMessage.h
+         header_files/AssertValidValueForType.hpp)
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -85,7 +86,8 @@
     #                                                    -
     #-----------------------------------------------------
     set (debugging_utilities_implementation_files
-        implementation_files/AssertMessage.cpp )
+         implementation_files/AssertMessage.cpp
+         implementation_files/AssertValidValueForType.cpp)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
