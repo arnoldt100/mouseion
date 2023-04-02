@@ -23,20 +23,23 @@ namespace STRING_UTILITIES
        int const * const end_offsets_ptr,
        const char * sequence_of_characters)
     {
+        #ifdef MOUSEION_DBG
+        const std::string invoker("STRING_UTILITIES::convert_sequence_of_chars_to_vector_string");
+        #endif
+
         #ifdef MOUSEION_DBG_VALID_VALUES
-        DEBUGGING::AssertValidValueForType::isArrayValidValuesForSize_t(length,start_offsets_ptr);
-        DEBUGGING::AssertValidValueForType::isArrayValidValuesForSize_t(length,end_offsets_ptr);
+        DEBUGGING::AssertValidValueForType::isValidValuesForArraySize_t(invoker,length,start_offsets_ptr);
+        DEBUGGING::AssertValidValueForType::isValidValuesForArraySize_t(invoker,length,end_offsets_ptr);
         #endif
 
         std::vector<std::string> aVectorString;
 
         for (int ip=0; ip < length; ++ip)
         {
-
-            const std::size_t starting_index = start_offsets_ptr[ip];
-            const std::size_t ending_index = end_offsets_ptr[ip];
-            std::size_t terminating_null_char_location = ending_index;
-            bool terminating_null_char_found = false;
+            const auto starting_index = static_cast<std::size_t>(start_offsets_ptr[ip]);
+            const auto ending_index = static_cast<std::size_t>(end_offsets_ptr[ip]);
+            auto terminating_null_char_location = ending_index;
+            auto terminating_null_char_found = false;
             for (std::size_t jp=starting_index; jp <= ending_index; ++jp )
             {
                 if ( (sequence_of_characters[jp] == '\0') && ( ! terminating_null_char_found ) )
@@ -45,7 +48,7 @@ namespace STRING_UTILITIES
                        terminating_null_char_found = true; 
                 } 
             }
-            std::size_t num_chars = terminating_null_char_location - starting_index; 
+            const auto num_chars = terminating_null_char_location - starting_index; 
             std::string aHostname(std::string(&(sequence_of_characters[starting_index]),num_chars));   
             aVectorString.push_back(aHostname);
         }

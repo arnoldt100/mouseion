@@ -10,6 +10,7 @@
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
 #include <limits>
+#include <string>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -85,9 +86,18 @@ class AssertValidValueForType
         }
 
         // ====================  STATIC        =======================================
-        static void isArrayValidValuesForSize_t(int const & length, int const * const array)
+        static void isValidValuesForArraySize_t(std::string const & invoker, int const & length, int const * const array)
         {
             // Assert that length is positive.
+            std::string message(invoker + ": The array has a non-positive length.");
+            assertm(length > 0, message.c_str());
+
+            // Assert that he values for array are positive.
+            for (auto ip=0; ip < length; ++ip )
+            {
+                message = std::string(invoker + ": Array element " + std::to_string(ip) + " has a non-positive value.");
+                assertm(array[ip] > 0, message.c_str());
+            }
             return;
         }
 
