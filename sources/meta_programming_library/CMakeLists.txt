@@ -15,22 +15,6 @@ set(mouseion_boost_top_level $ENV{MOUSEION_BOOST_TOP_LEVEL}  )
 # Make available the project cmake modules.          -
 #                                                    -
 #-----------------------------------------------------
-include( ${CMAKE_CURRENT_LIST_DIR}/generic_foreach_loop/cmake_macros_and_functions/generic_foreach_loop.cmake)
-include( ${CMAKE_CURRENT_LIST_DIR}/generic_object_factory/cmake_macros_and_functions/generic_object_factory.cmake)
-
-# ----------------------------------------------------
-# Here we define variables which indicate where
-# to install the foreach_loop libraries,
-# header files, and associated binariers.
-# 
-# ----------------------------------------------------
-
-enable_building_generic_object_factory_library("${mouseion_install_lib_directory}"
-                                               "${mouseion_install_include_directory}"
-                                               "${mouseion_install_bin_directory}"
-                                               "${mouseion_cmake_c_compiler}"
-                                               "${mouseion_cmake_cxx_compiler}"
-                                               "${mouseion_cxx_standard}")
 
 #-----------------------------------------------------
 # Add the subdirectory for creating the unit tests.
@@ -77,6 +61,7 @@ add_subdirectory(typelist_aliases)
 # This sectian builds the target typelist_aliases.
 # 
 # ----------------------------------------------------
+include( ${CMAKE_CURRENT_LIST_DIR}/generic_foreach_loop/cmake_macros_and_functions/generic_foreach_loop.cmake)
 enable_building_generic_foreach_loop_library("${mouseion_install_lib_directory}"
                                              "${mouseion_install_include_directory}"
                                              "${mouseion_install_bin_directory}"
@@ -107,7 +92,23 @@ add_subdirectory(generic_visitor)
 # (end section) 
 # ----------------------------------------------------
 
+# ----------------------------------------------------
+# This sectian builds the target generic_object_factory
+# 
+# ----------------------------------------------------
+include( ${CMAKE_CURRENT_LIST_DIR}/generic_object_factory/cmake_macros_and_functions/generic_object_factory.cmake)
+enable_building_generic_object_factory_library("${mouseion_install_lib_directory}"
+                                        "${mouseion_install_include_directory}"
+                                        "${mouseion_install_bin_directory}"
+                                        "${mouseion_cmake_c_compiler}"
+                                        "${mouseion_cmake_cxx_compiler}"
+                                        "${mouseion_cxx_standard}"
+                                        "${mouseion_log_file}")
+
 add_subdirectory(generic_object_factory)
+# ----------------------------------------------------
+# (end section) 
+# ----------------------------------------------------
 
 # ----------------------------------------------------
 # This sectian builds the target generic_class_generation.

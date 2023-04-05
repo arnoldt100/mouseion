@@ -5,40 +5,30 @@
 #-----------------------------------------------------
 function(verify_generic_object_factory_build_prerequisites_are_set)
 
-    #-----------------------------------------------------
-    # Verify environmental variable 
-    # generic_object_factory_install_bin_directory is 
-    # defined.
-    #-----------------------------------------------------
-    if (DEFINED generic_object_factory_install_bin_directory)
-        message("generic_object_factory_install_bin_directory=${generic_object_factory_install_bin_directory}")
-    else()
-        message( FATAL_ERROR "The variable generic_object_factory_install_bin_directory is not defined. This \
-        variable defines the location to install generic_object_factory binaries." )
+   # Ensure that variable "mpi_communicator_logfilepath" is defined.
+    if (NOT DEFINED generic_object_factory_logfilepath) 
+        message (FATAL_ERROR "generic_object_factory_logfilepath is not defined.")
     endif()
-
-    #-----------------------------------------------------
-    # Verify environmental variable
-    # generic_object_factory_install_include_directory is
-    # defined.
-    #-----------------------------------------------------
-    if ( DEFINED generic_object_factory_install_include_directory )
-        message("generic_object_factory_install_include_directory=${generic_object_factory_install_include_directory}")
-    else()
-        message( FATAL_ERROR "The variable generic_object_factory_install_include_directory is not defined. This \
-        variable defines the location to install mouseion header files." )
-    endif()
-
+    
     #-----------------------------------------------------
     # Verify environmental variable
     # generic_object_factory_install_lib_directory is 
     # defined.
     #-----------------------------------------------------
-    if ( DEFINED generic_object_factory_install_lib_directory )
-        message("generic_object_factory_install_lib_directory=${generic_object_factory_install_lib_directory}")
-    else()
-        message( FATAL_ERROR "The variable generic_object_factory_install_lib_directory is not defined. This \
-        variable defines the location to install mouseion libraries." )
-    endif()
+    mouseion_test_variable_is_defined("generic_object_factory_install_lib_directory" "${generic_object_factory_logfilepath}")
+    
+    #-----------------------------------------------------
+    # Verify environmental variable
+    # generic_object_factory_install_include_directory is
+    # defined.
+    #-----------------------------------------------------
+    mouseion_test_variable_is_defined("generic_object_factory_install_include_directory" "${generic_object_factory_logfilepath}")
+
+    #-----------------------------------------------------
+    # Verify environmental variable 
+    # generic_object_factory_install_bin_directory is 
+    # defined.
+    #-----------------------------------------------------
+    mouseion_test_variable_is_defined("generic_object_factory_install_bin_directory" "${generic_object_factory_logfilepath}")
 
 endfunction()
