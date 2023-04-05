@@ -31,4 +31,24 @@ function(verify_generic_object_factory_build_prerequisites_are_set)
     #-----------------------------------------------------
     mouseion_test_variable_is_defined("generic_object_factory_install_bin_directory" "${generic_object_factory_logfilepath}")
 
+    #-----------------------------------------------------
+    # Verify environmental variable 
+    # generic_object_factory_cmake_cxx_compiler is 
+    # defined.
+    #-----------------------------------------------------
+    mouseion_test_variable_is_defined("generic_object_factory_cmake_cxx_compiler" "${generic_object_factory_logfilepath}")
+    
+    #-----------------------------------------------------
+    # Verify environmental variable 
+    # generic_object_factory_cmake_c_compiler is 
+    # defined.
+    #-----------------------------------------------------
+    mouseion_test_variable_is_defined("generic_object_factory_cmake_c_compiler" "${generic_object_factory_logfilepath}")
+
+    #-----------------------------------------------------
+    # Verify environmental variable 
+    # generic_object_factory_cxx_standard is 
+    # defined.
+    #-----------------------------------------------------
+    mouseion_test_variable_is_defined("generic_object_factory_cxx_standard" "${generic_object_factory_logfilepath}")
 endfunction()
