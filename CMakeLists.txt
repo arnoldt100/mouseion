@@ -80,6 +80,7 @@ include( ${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_functions/mouseion_test_va
 include( ${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_functions/mouseion_build_prerequisites.cmake )
 include( ${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_functions/enable_mouseion_compile_warnings.cmake )
 include( ${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_functions/enable_mouseion_debug_flags.cmake )
+include( ${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_functions/mouseion_log_message.cmake )
 
 #-----------------------------------------------------
 # Check that key environmental variables are set.    -

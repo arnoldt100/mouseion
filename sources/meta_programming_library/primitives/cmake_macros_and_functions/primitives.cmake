@@ -28,7 +28,8 @@ macro ( enable_building_primitives_library install_lib_directory
         install_bin_directory
         cmake_c_compiler 
         cmake_cxx_compiler 
-        cxx_standard)
+        cxx_standard
+        logfilepath)
 
     set(primitives_install_lib_directory ${install_lib_directory})
     set(primitives_install_include_directory ${install_include_directory})
@@ -36,6 +37,7 @@ macro ( enable_building_primitives_library install_lib_directory
     set(primitives_cmake_cxx_compiler ${cmake_cxx_compiler})
     set(primitives_cmake_c_compiler ${cmake_c_compiler})
     set(primitives_cxx_standard ${cxx_standard})
+    set(primitives_logfilepath ${logfilepath})
 endmacro()
 
 

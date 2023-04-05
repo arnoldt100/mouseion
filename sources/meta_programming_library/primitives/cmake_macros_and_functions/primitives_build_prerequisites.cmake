@@ -5,17 +5,20 @@
 #-----------------------------------------------------
 function(verify_primitives_build_prerequisites_are_set)
 
+    # Ensure that variable "primitive_logfilepath" is defined.
+    if (NOT DEFINED primitives_logfilepath) 
+        message (FATAL_ERROR "Variable primitives_logfilepath is not defined.")
+    endif()
+    set(my_message "Verifying package \"primitives\" build prerequisities are satisfied.")
+    mouseion_log_message_to_file(${primitives_logfilepath} "---")
+    mouseion_log_message_to_file(${primitives_logfilepath} ${my_message})
+
     #-----------------------------------------------------
     # Verify environmental variable                      -
     # primitives_cmake_cxx_compiler is                   -
     # defined.                                           -
     #-----------------------------------------------------
-    if (DEFINED primitives_cmake_cxx_compiler)
-        message("primitives_cmake_cxx_compiler=${primitives_cmake_cxx_compiler}")
-    else()
-        message( FATAL_ERROR "The variable primitives_cmake_cxx_compiler is not defined. This \
-        variable defines the C++ compiler for compiling the primitives library." )
-    endif()
+    mouseion_test_variable_is_defined( "primitives_cmake_cxx_compiler" ${primitives_logfilepath})
 
     #-----------------------------------------------------
     # Verify environmental variable                      -
@@ -63,6 +66,11 @@ function(verify_primitives_build_prerequisites_are_set)
         message( FATAL_ERROR "The variable primitives_install_lib_directory is not defined. This \
         variable defines the location to install primitives libraries." )
     endif()
+
+
+    set(my_message "Package \"primitives\" build prerequisities are satisfied.")
+    mouseion_log_message_to_file(${primitives_logfilepath} ${my_message})
+    mouseion_log_message_to_file(${primitives_logfilepath} "---\n")
 
 endfunction()
 
