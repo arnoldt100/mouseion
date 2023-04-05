@@ -28,7 +28,8 @@ macro ( enable_building_generic_visitor_library install_lib_directory
         install_bin_directory
         cmake_c_compiler 
         cmake_cxx_compiler 
-        cxx_standard)
+        cxx_standard
+        logfilepath)
 
     set(generic_visitor_install_lib_directory ${install_lib_directory})
     set(generic_visitor_install_include_directory ${install_include_directory})
@@ -36,6 +37,7 @@ macro ( enable_building_generic_visitor_library install_lib_directory
     set(generic_visitor_cmake_cxx_compiler ${cmake_cxx_compiler})
     set(generic_visitor_cmake_c_compiler ${cmake_c_compiler})
     set(generic_visitor_cxx_standard ${cxx_standard})
+    set(generic_visitor_logfilepath ${logfilepath})
 endmacro()
 
 

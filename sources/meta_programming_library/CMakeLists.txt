@@ -17,7 +17,6 @@ set(mouseion_boost_top_level $ENV{MOUSEION_BOOST_TOP_LEVEL}  )
 #-----------------------------------------------------
 include( ${CMAKE_CURRENT_LIST_DIR}/generic_foreach_loop/cmake_macros_and_functions/generic_foreach_loop.cmake)
 include( ${CMAKE_CURRENT_LIST_DIR}/generic_object_factory/cmake_macros_and_functions/generic_object_factory.cmake)
-include( ${CMAKE_CURRENT_LIST_DIR}/generic_visitor/cmake_macros_and_functions/generic_visitor.cmake)
 
 # ----------------------------------------------------
 # Here we define variables which indicate where
@@ -32,14 +31,6 @@ enable_building_generic_object_factory_library("${mouseion_install_lib_directory
                                                "${mouseion_cmake_c_compiler}"
                                                "${mouseion_cmake_cxx_compiler}"
                                                "${mouseion_cxx_standard}")
-
-enable_building_generic_visitor_library("${mouseion_install_lib_directory}"
-                                        "${mouseion_install_include_directory}"
-                                        "${mouseion_install_bin_directory}"
-                                        "${mouseion_cmake_c_compiler}"
-                                        "${mouseion_cmake_cxx_compiler}"
-                                        "${mouseion_cxx_standard}")
-
 
 #-----------------------------------------------------
 # Add the subdirectory for creating the unit tests.
@@ -97,7 +88,25 @@ add_subdirectory(generic_foreach_loop)
 # ----------------------------------------------------
 # (end section) 
 # ----------------------------------------------------
+
+# ----------------------------------------------------
+# This sectian builds the target generic_visitor target
+# 
+# ----------------------------------------------------
+include( ${CMAKE_CURRENT_LIST_DIR}/generic_visitor/cmake_macros_and_functions/generic_visitor.cmake)
+enable_building_generic_visitor_library("${mouseion_install_lib_directory}"
+                                        "${mouseion_install_include_directory}"
+                                        "${mouseion_install_bin_directory}"
+                                        "${mouseion_cmake_c_compiler}"
+                                        "${mouseion_cmake_cxx_compiler}"
+                                        "${mouseion_cxx_standard}"
+                                        "${mouseion_log_file}")
+
 add_subdirectory(generic_visitor)
+# ----------------------------------------------------
+# (end section) 
+# ----------------------------------------------------
+
 add_subdirectory(generic_object_factory)
 
 # ----------------------------------------------------
