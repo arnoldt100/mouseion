@@ -17,7 +17,6 @@ set(mouseion_boost_top_level $ENV{MOUSEION_BOOST_TOP_LEVEL}  )
 #-----------------------------------------------------
 include( ${CMAKE_CURRENT_LIST_DIR}/generic_foreach_loop/cmake_macros_and_functions/generic_foreach_loop.cmake)
 include( ${CMAKE_CURRENT_LIST_DIR}/generic_object_factory/cmake_macros_and_functions/generic_object_factory.cmake)
-include( ${CMAKE_CURRENT_LIST_DIR}/typelist_aliases/cmake_macros_and_functions/typelist_aliases.cmake)
 include( ${CMAKE_CURRENT_LIST_DIR}/generic_visitor/cmake_macros_and_functions/generic_visitor.cmake)
 include( ${CMAKE_CURRENT_LIST_DIR}/generic_abstract_factory/cmake_macros_and_functions/generic_abstract_factory.cmake)
 
@@ -40,14 +39,6 @@ enable_building_generic_object_factory_library("${mouseion_install_lib_directory
                                                "${mouseion_cmake_c_compiler}"
                                                "${mouseion_cmake_cxx_compiler}"
                                                "${mouseion_cxx_standard}")
-
-enable_building_typelist_aliases_library("${mouseion_install_lib_directory}"
-                                         "${mouseion_install_include_directory}"
-                                         "${mouseion_install_bin_directory}"
-                                         "${mouseion_cmake_c_compiler}"
-                                         "${mouseion_cmake_cxx_compiler}"
-                                         "${mouseion_cxx_standard}"
-                                         "${mouseion_boost_top_level}")
 
 enable_building_generic_visitor_library("${mouseion_install_lib_directory}"
                                         "${mouseion_install_include_directory}"
@@ -86,7 +77,24 @@ add_subdirectory(primitives)
 # (End of section)
 # ----------------------------------------------------
 
+# ----------------------------------------------------
+# This sectian builds the target typelist_aliases.
+# 
+# ----------------------------------------------------
+include( ${CMAKE_CURRENT_LIST_DIR}/typelist_aliases/cmake_macros_and_functions/typelist_aliases.cmake)
+enable_building_typelist_aliases_library("${mouseion_install_lib_directory}"
+                                         "${mouseion_install_include_directory}"
+                                         "${mouseion_install_bin_directory}"
+                                         "${mouseion_cmake_c_compiler}"
+                                         "${mouseion_cmake_cxx_compiler}"
+                                         "${mouseion_cxx_standard}"
+                                         "${mouseion_boost_top_level}"
+                                         "${mouseion_log_file}")
 add_subdirectory(typelist_aliases)
+# ----------------------------------------------------
+# (end section) 
+# ----------------------------------------------------
+
 add_subdirectory(generic_foreach_loop)
 add_subdirectory(generic_visitor)
 add_subdirectory(generic_object_factory)

@@ -32,7 +32,8 @@ macro (enable_building_typelist_aliases_library
        cmake_c_compiler 
        cmake_cxx_compiler
        cxx_standard
-       boost_top_level)
+       boost_top_level
+       logfilepath)
 
     set(typelist_aliases_minimum_cmake_version ${minimum_cmake_version}) 
     set(typelist_aliases_cxx_standard ${cxx_standard})
@@ -42,4 +43,5 @@ macro (enable_building_typelist_aliases_library
     set(typelist_aliases_install_include_directory ${install_include_directory})
     set(typelist_aliases_install_lib_directory ${install_lib_directory})
     set(typelist_aliases_boost_top_level ${boost_top_level})
+    set(typelist_aliases_logfilepath ${logfilepath})
 endmacro()
