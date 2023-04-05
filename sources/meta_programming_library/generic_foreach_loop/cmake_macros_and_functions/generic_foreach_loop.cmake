@@ -28,13 +28,15 @@ macro ( enable_building_generic_foreach_loop_library install_lib_directory
         install_bin_directory
         cmake_c_compiler 
         cmake_cxx_compiler 
-        cxx_standard)
+        cxx_standard
+        logfilepath)
 
     set(generic_foreach_loop_install_lib_directory ${install_lib_directory})
     set(generic_foreach_loop_install_include_directory ${install_include_directory})
     set(generic_foreach_loop_install_bin_directory ${install_bin_directory})
-    set(generic_foreach_loop_cmake_cxx_compiler ${cmake_cxx_compiler})
     set(generic_foreach_loop_cmake_c_compiler ${cmake_c_compiler})
+    set(generic_foreach_loop_cmake_cxx_compiler ${cmake_cxx_compiler})
     set(generic_foreach_loop_cxx_standard ${cxx_standard})
+    set(generic_foreach_logfilepath ${logfilepath})
 endmacro()
 
