@@ -128,17 +128,6 @@ set(memory_management_cxx_standard ${mouseion_cxx_standard})
 
 #-----------------------------------------------------
 # Here we define variables which indicate where      -
-# to install the communicator libraries,             -
-# header files, and associated binaries.             -
-#                                                    -
-#-----------------------------------------------------
-set(communicator_install_lib_directory ${mouseion_install_lib_directory})
-set(communicator_install_include_directory ${mouseion_install_include_directory})
-set(communicator_install_bin_directory ${mouseion_install_bin_directory})
-set(communicator_cxx_standard ${mouseion_cxx_standard})
-
-#-----------------------------------------------------
-# Here we define variables which indicate where      -
 # to install the string_utilities libraries,         -
 # header files, and associated binaries.             -
 #                                                    -
@@ -180,6 +169,24 @@ enable_building_command_line_arguments_library( "${mouseion_install_lib_director
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/counter_classes)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/CPU_memory_management)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/string_utilities)
+
+# ----------------------------------------------------
+# This section builds target communicator. 
+# 
+# ----------------------------------------------------
+include( ${CMAKE_CURRENT_SOURCE_DIR}/sources/communicator/cmake_macros_and_functions/communicator.cmake)
+enable_building_communicator_library("${mouseion_install_lib_directory}" 
+                                     "${mouseion_install_include_directory}"
+                                     "${mouseion_install_bin_directory}"
+                                     "${mouseion_cmake_c_compiler}" 
+                                     "${mouseion_cmake_cxx_compiler}" 
+                                     "${mouseion_cxx_standard}"
+                                     "${mouseion_log_file}")
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/communicator)
+# ----------------------------------------------------
+# (End section)
+# 
+# ----------------------------------------------------
+
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/meta_programming_library)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/command_line_arguments)
