@@ -118,16 +118,6 @@ enable_building_debugging_utilities_library( "${mouseion_install_lib_directory}"
                                              "${mouseion_log_file}")
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/debugging_utilities)
 
-#-----------------------------------------------------
-# Here we define variables which indicate where      -
-# to install the memory_management libraries,        -
-# header files, and associated binaries.             -
-#                                                    -
-#-----------------------------------------------------
-set(memory_management_install_lib_directory ${mouseion_install_lib_directory})
-set(memory_management_install_include_directory ${mouseion_install_include_directory})
-set(memory_management_install_bin_directory ${mouseion_install_bin_directory})
-set(memory_management_cxx_standard ${mouseion_cxx_standard})
 
 #-----------------------------------------------------
 # Here we define variables which indicate where      -
@@ -170,7 +160,34 @@ enable_building_command_line_arguments_library( "${mouseion_install_lib_director
 #                                                    -
 #-----------------------------------------------------
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/counter_classes)
+
+# ----------------------------------------------------
+# This section builds target communicator. 
+# 
+# ----------------------------------------------------
+#-----------------------------------------------------
+# Here we define variables which indicate where      -
+# to install the memory_management libraries,        -
+# header files, and associated binaries.             -
+#                                                    -
+#-----------------------------------------------------
+set(memory_management_install_lib_directory ${mouseion_install_lib_directory})
+set(memory_management_install_include_directory ${mouseion_install_include_directory})
+set(memory_management_install_bin_directory ${mouseion_install_bin_directory})
+set(memory_management_cxx_standard ${mouseion_cxx_standard})
+include( ${CMAKE_CURRENT_SOURCE_DIR}/sources/CPU_memory_management/cmake_macros_and_functions/memory_management.cmake)
+enable_building_memory_management_library("${mouseion_install_lib_directory}" 
+                                          "${mouseion_install_include_directory}"
+                                          "${mouseion_install_bin_directory}"
+                                          "${mouseion_cmake_c_compiler}" 
+                                          "${mouseion_cmake_cxx_compiler}" 
+                                          "${mouseion_cxx_standard}"
+                                          "${mouseion_log_file}")
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/CPU_memory_management)
+# ----------------------------------------------------
+# (End section)
+# ----------------------------------------------------
+
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/string_utilities)
 
 # ----------------------------------------------------

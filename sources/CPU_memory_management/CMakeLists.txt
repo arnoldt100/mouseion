@@ -4,13 +4,12 @@
 #                                                                 @
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
-    include( cmake_macros_and_functions/project_properties.cmake )
 
     #-----------------------------------------------------
     # Define the project.                                -
     #                                                    -
     #-----------------------------------------------------
-    DEFINE_PROJECT_NAME()
+    set(my_project_name "memory_management")
     project(${my_project_name})
 
     #-----------------------------------------------------
