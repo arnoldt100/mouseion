@@ -38,6 +38,12 @@ function(verify_command_line_arguments_build_prerequisites_are_set)
     # Verify variable command_line_arguments_install_bin_directory defined.
     mouseion_test_variable_is_defined("command_line_arguments_install_bin_directory" "${command_line_arguments_logfilepath}")
 
+    # Verify variable command_line_arguments_cmake_c_compiler defined.
+    mouseion_test_variable_is_defined("command_line_arguments_cmake_c_compiler" "${command_line_arguments_logfilepath}")
+
+    # Verify variable command_line_arguments_cmake_cxx_compiler defined.
+    mouseion_test_variable_is_defined("command_line_arguments_cmake_cxx_compiler" "${command_line_arguments_logfilepath}")
+
     # Verify variable command_line_arguments_cxx_standard defined.
     mouseion_test_variable_is_defined("command_line_arguments_cxx_standard" "${command_line_arguments_logfilepath}")
 

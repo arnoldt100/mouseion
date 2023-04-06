@@ -151,6 +151,8 @@ include( ${CMAKE_CURRENT_SOURCE_DIR}/sources/command_line_arguments/cmake_macros
 enable_building_command_line_arguments_library( "${mouseion_install_lib_directory}"
                                                 "${mouseion_install_include_directory}"
                                                 "${mouseion_install_bin_directory}" 
+                                                "${mouseion_cmake_c_compiler}" 
+                                                "${mouseion_cmake_cxx_compiler}" 
                                                 "${mouseion_cxx_standard}"
                                                 "${mouseion_log_file}")
 

@@ -25,12 +25,16 @@
 macro ( enable_building_command_line_arguments_library install_lib_directory
         install_include_directory
         install_bin_directory 
+        cmake_c_compiler
+        cmake_cxx_compiler
         cxx_standard
         logfilepath)
 
     set(command_line_arguments_install_lib_directory "${install_lib_directory}")
     set(command_line_arguments_install_include_directory "${install_include_directory}")
     set(command_line_arguments_install_bin_directory "${install_bin_directory}" )
+    set(command_line_arguments_cmake_c_compiler "${cmake_c_compiler}" )
+    set(command_line_arguments_cmake_cxx_compiler "${cmake_cxx_compiler}" )
     set(command_line_arguments_cxx_standard "${cxx_standard}" )
     set(command_line_arguments_logfilepath "${logfilepath}")
 endmacro()
