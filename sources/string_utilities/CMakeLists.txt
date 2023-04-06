@@ -58,7 +58,7 @@
     # Verify key variables are set.                      -
     #                                                    -
     #-----------------------------------------------------
-    verify_key_environmental_are_set()
+    verify_string_utilities_build_prerequisites_are_set()
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @

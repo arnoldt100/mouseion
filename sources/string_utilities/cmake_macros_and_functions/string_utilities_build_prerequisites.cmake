@@ -1,49 +1,54 @@
 #-----------------------------------------------------
-# This function verifies the key environmental       -
-# variables are set.                                 -
-#                                                    -
-#                                                    -
+# This function verifies the key 
+# variables are set for the target string_utilities.
+#
 #-----------------------------------------------------
-function(verify_key_environmental_are_set)
+function(verify_string_utilities_build_prerequisites_are_set)
 
-    #-----------------------------------------------------
-    # Verify environmental variable                      -
-    # string_utilities_install_lib_directory             -
-    # defined.                                           -
-    #-----------------------------------------------------
-    if(DEFINED string_utilities_install_lib_directory)
-        set(log_message "string_utilities_install_lib_directory=${string_utilities_install_lib_directory}\n")
-        file(APPEND ${mouseion_log_file} "${log_message}")
-    else()
-        message( FATAL_ERROR "The variable string_utilities_install_lib_directory is not defined. This \
-        variable defines the directory to install the library string_utilities." )
+   # Ensure that variable "mpi_communicator_logfilepath" is defined.
+    if (NOT DEFINED string_utilities_logfilepath) 
+        message (FATAL_ERROR "string_utilities_logfilepath is not defined.")
     endif()
+    
+    #-----------------------------------------------------
+    # Verify environmental variable
+    # string_utilities_install_lib_directory is 
+    # defined.
+    #-----------------------------------------------------
+    mouseion_test_variable_is_defined("string_utilities_install_lib_directory" "${string_utilities_logfilepath}")
+    
+    #-----------------------------------------------------
+    # Verify environmental variable
+    # string_utilities_install_include_directory is
+    # defined.
+    #-----------------------------------------------------
+    mouseion_test_variable_is_defined("string_utilities_install_include_directory" "${string_utilities_logfilepath}")
 
     #-----------------------------------------------------
-    # Verify environmental variable                      -
-    # string_utilities_install_include_directory         -
-    # defined.                                           -
+    # Verify environmental variable 
+    # string_utilities_install_bin_directory is 
+    # defined.
     #-----------------------------------------------------
-    if(DEFINED string_utilities_install_include_directory)
-        set(log_message "string_utilities_install_include_directory=${string_utilities_install_include_directory}\n")
-        file(APPEND ${mouseion_log_file} "${log_message}")
-    else()
-        message( FATAL_ERROR "The variable string_utilities_install_include_directory is not defined. This \
-        variable defines the directory to install the header files for string_utilities." )
-    endif()
+    mouseion_test_variable_is_defined("string_utilities_install_bin_directory" "${string_utilities_logfilepath}")
 
     #-----------------------------------------------------
-    # Verify environmental variable                      -
-    # string_utilities_install_bin_directory             -
-    # defined.                                           -
+    # Verify environmental variable 
+    # string_utilities_cmake_cxx_compiler is 
+    # defined.
     #-----------------------------------------------------
-    if(DEFINED string_utilities_install_bin_directory)
-        set(log_message "string_utilities_install_bin_directory=${string_utilities_install_bin_directory}\n")
-        file(APPEND ${mouseion_log_file} "${log_message}")
-    else()
-        message( FATAL_ERROR "The variable string_utilities_install_bin_directory is not defined. This \
-        variable defines the directory to install the header files for string_utilities." )
-    endif()
+    mouseion_test_variable_is_defined("string_utilities_cmake_cxx_compiler" "${string_utilities_logfilepath}")
+    
+    #-----------------------------------------------------
+    # Verify environmental variable 
+    # string_utilities_cmake_c_compiler is 
+    # defined.
+    #-----------------------------------------------------
+    mouseion_test_variable_is_defined("string_utilities_cmake_c_compiler" "${string_utilities_logfilepath}")
 
-
+    #-----------------------------------------------------
+    # Verify environmental variable 
+    # string_utilities_cxx_standard is 
+    # defined.
+    #-----------------------------------------------------
+    mouseion_test_variable_is_defined("string_utilities_cxx_standard" "${string_utilities_logfilepath}")
 endfunction()

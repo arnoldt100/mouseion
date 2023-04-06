@@ -118,18 +118,6 @@ enable_building_debugging_utilities_library( "${mouseion_install_lib_directory}"
                                              "${mouseion_log_file}")
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/debugging_utilities)
 
-
-#-----------------------------------------------------
-# Here we define variables which indicate where      -
-# to install the string_utilities libraries,         -
-# header files, and associated binaries.             -
-#                                                    -
-#-----------------------------------------------------
-set(string_utilities_install_lib_directory ${mouseion_install_lib_directory})
-set(string_utilities_install_include_directory ${mouseion_install_include_directory})
-set(string_utilities_install_bin_directory ${mouseion_install_bin_directory})
-set(string_utilities_cxx_standard ${mouseion_cxx_standard})
-
 #-----------------------------------------------------
 # Here we define variables which indicate where      -
 # to install the counterclass libraries,             -
@@ -181,7 +169,28 @@ add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/CPU_memory_management)
 # (End section)
 # ----------------------------------------------------
 
+# ----------------------------------------------------
+# This section builds target string_utilities. 
+# 
+# ----------------------------------------------------
+#-----------------------------------------------------
+# Here we define variables which indicate where      -
+# to install the string_utilities libraries,         -
+# header files, and associated binaries.             -
+#                                                    -
+#-----------------------------------------------------
+include( ${CMAKE_CURRENT_SOURCE_DIR}/sources/string_utilities/cmake_macros_and_functions/string_utilities.cmake)
+enable_building_string_utilities_library("${mouseion_install_lib_directory}" 
+                                          "${mouseion_install_include_directory}"
+                                          "${mouseion_install_bin_directory}"
+                                          "${mouseion_cmake_c_compiler}" 
+                                          "${mouseion_cmake_cxx_compiler}" 
+                                          "${mouseion_cxx_standard}"
+                                          "${mouseion_log_file}")
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/string_utilities)
+# ----------------------------------------------------
+# (End section)
+# ----------------------------------------------------
 
 # ----------------------------------------------------
 # This section builds target communicator. 
