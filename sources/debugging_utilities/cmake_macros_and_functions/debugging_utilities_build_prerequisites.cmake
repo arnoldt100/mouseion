@@ -38,6 +38,12 @@ function(verify_debugging_utilities_build_prerequisites_are_set)
     # Verify variable debugging_utilities_install_bin_directory defined.
     mouseion_test_variable_is_defined("debugging_utilities_install_bin_directory" "${debugging_utilities_logfilepath}")
 
+    # Verify variable debugging_utilities_cmake_c_compiler defined.
+    mouseion_test_variable_is_defined("debugging_utilities_cmake_c_compiler" "${debugging_utilities_logfilepath}")
+
+    # Verify variable debugging_utilities_cmake_cxx_compiler defined.
+    mouseion_test_variable_is_defined("debugging_utilities_cmake_cxx_compiler" "${debugging_utilities_logfilepath}")
+
     # Verify variable debugging_utilities_cxx_standard defined.
     mouseion_test_variable_is_defined("debugging_utilities_cxx_standard" "${debugging_utilities_logfilepath}")
 
