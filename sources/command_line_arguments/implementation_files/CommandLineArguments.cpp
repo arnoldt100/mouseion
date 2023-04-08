@@ -50,7 +50,7 @@ CommandLineArguments::CommandLineArguments( const CommandLineArguments &other )
     if (this != &other)
     {
         this->_numberOfArguments=other._numberOfArguments;
-        this->_commandLineArguments = std::move(other._commandLineArguments);
+        this->_commandLineArguments = other._commandLineArguments;
     }
     return;
 }

@@ -1,7 +1,7 @@
 #ifndef COMMANDLINEARGUMENTS_INC
 #define COMMANDLINEARGUMENTS_INC
 
-//! @file CommandLineArguments.hpp
+//! @file CommandLineArguments.h
 //!
 //! Contains the class CommandLineArguments declarations.
 
@@ -18,7 +18,7 @@
 namespace COMMANDLINE
 {
 
-//!  CommandLineArguments is an abstration of the prgram's command line arguments.
+//!  CommandLineArguments is an abstration of the program's command line arguments.
 class CommandLineArguments
 {
     public:
@@ -49,7 +49,6 @@ class CommandLineArguments
         //!
         //! @param [in] str The argument to check for existence in the command line.
         //! @retval bool
-
         bool verifyArgumentInCommandLine( const std::string & str ) const;
 
         /* ====================  MUTATORS      ======================================= */
