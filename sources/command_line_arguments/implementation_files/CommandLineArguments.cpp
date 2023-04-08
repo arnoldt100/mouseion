@@ -88,7 +88,7 @@ void CommandLineArguments::reformCommandLineArguments(int & argc, char** & argv)
     return;
 }
 
-bool CommandLineArguments::findArgument( const std::string & str ) const
+bool CommandLineArguments::verifyArgumentInCommandLine( const std::string & str ) const
 {
     const auto search = std::find(std::begin(this->_commandLineArguments),
                              std::end(this->_commandLineArguments),
