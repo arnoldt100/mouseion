@@ -1,6 +1,9 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <utility>
+#include <cstring>
+#include <new>
 #include <algorithm>
 
 //--------------------------------------------------------//
@@ -11,7 +14,10 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "CommandLineArguments.h"
-#include "AssertMessage.h"
+#include "AssertValidValueForType.hpp"
+#include "Array1d.hpp" 
+#include "Pointer2d.hpp"
+
 namespace COMMANDLINE {
 
 //////////////////////////////////////////////////////////////////////////////
@@ -67,12 +73,16 @@ CommandLineArguments::~CommandLineArguments()
 //============================= ACCESSORS ====================================
 void CommandLineArguments::reformCommandLineArguments(int & argc, char** & argv) const
 {
-    argc = this->_numberOfArguments;
-    argv = new char*[argc];
-    for (int ip=0; ip < argc; ++ip)
+    // We declare some 1d pointer array factories.
+    MEMORY_MANAGEMENT::Array1d<char> my_array1d_char;
+    MEMORY_MANAGEMENT::Array1d<char*> my_array1d_charptr;
+
+    argc = static_cast<int>(this->_numberOfArguments);
+    argv = my_array1d_charptr.createArray(this->_numberOfArguments);
+    for (auto ip=static_cast<std::size_t>(0); ip < this->_numberOfArguments; ++ip)
     {
-        const int c_string_length = this->_commandLineArguments[ip].length() + 1;
-        argv[ip] = new char[c_string_length];
+        const auto c_string_length = this->_commandLineArguments[ip].length() + 1;
+        argv[ip] = my_array1d_char.createArray(c_string_length);
         strcpy(argv[ip],this->_commandLineArguments[ip].c_str());
     }
     return;

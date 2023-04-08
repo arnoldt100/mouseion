@@ -1,15 +1,3 @@
-/*
- * =====================================================================================
- *
- *       Filename:  CommandLineArguments.h
- *
- *    Description:  
- *
- *         Author:  Arnold N. Tharrington (), arnoldt@ornl.gov
- *   Organization:  ORNL-National Center of Computational Sciences
- *
- * =====================================================================================
- */
 
 #ifndef COMMANDLINEARGUMENTS_INC
 #define COMMANDLINEARGUMENTS_INC
@@ -17,16 +5,12 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
-#include <utility>
-#include <new>
-#include <cstring>
 #include <string>
 #include <vector>
 
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "Pointer2d.hpp"
 
 namespace COMMANDLINE
 {
