@@ -73,6 +73,9 @@ CommandLineArguments::~CommandLineArguments()
 //============================= ACCESSORS ====================================
 void CommandLineArguments::reformCommandLineArguments(int & argc, char** & argv) const
 {
+    // Ensure that argv is not pointing to valid memory (i.e. argv = nullptr).
+    assertm(argv == nullptr, "argv isn't set to nullptr.");
+
     // We declare some 1d pointer array factories.
     MEMORY_MANAGEMENT::Array1d<char> my_array1d_char;
     MEMORY_MANAGEMENT::Array1d<char*> my_array1d_charptr;

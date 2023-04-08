@@ -40,6 +40,10 @@ class CommandLineArguments
 
         //! Reforms the command line arguments as argc and argv.
         //!
+        //! The argv (type char**) will point to memory allocated inside
+        //! reformCommandLineArguments. Thus argv must not point to previoulsy
+        //! allocated memory otherwise we will have a memory leak.
+        //!
         //! @param [out] argc The number of command line arguments.
         //! @param [out] argv The command line arguments.
         void reformCommandLineArguments(int & argc, char** & argv) const;
