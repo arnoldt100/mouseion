@@ -177,14 +177,6 @@ std::string broadcast(std::string const & data_to_broadcast,
 
 }
 
-
-template<>
-RegistryAnansiMDStatus getGlobalStatusCustomReduction( RegistryAnansiMDStatus const & data_to_transform,
-                                    Communicator const & aCommunicator)
-{
-    return RegistryAnansiMDStatus::InitializingSimulationEnvironmentFailed;
-}
-
 template<>
 void resetHostName(std::shared_ptr<Communicator> & aCommunicator, std::string const & name)
 {

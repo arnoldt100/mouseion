@@ -21,7 +21,6 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "RegistryAnansiMDStatus.h"
 
 namespace COMMUNICATOR {
 
@@ -73,12 +72,6 @@ public:
     getGlobalStatus(const bool & data_to_reduce) const
     {
         return this->_getGlobalStatus(data_to_reduce);
-    }
-
-    template<typename T>
-    T getGlobalStatusCustomReduction( T const & data_to_transform) const
-    {
-        return this->_getGlobalStatusCustomReduction(data_to_transform);
     }
 
     std::string
@@ -270,37 +263,6 @@ T getGlobalStatus( T const & data_to_transform,
 template<>
 bool getGlobalStatus( bool const & data_to_transform,
                       Communicator const & aCommunicator);
-
-// ===  FUNCTION  ======================================================================
-//         Name:  getGlobalStatusCustomReduction
-//  Description:  Global reduction with a custome reducer.
-// 
-//   Parameters: data_to_transform - The data on this rank which is part of the 
-//                                   collective transformation.
-//
-//               aCommunicator - The communicator used in this data transformation. 
-//
-//        Return: The transformed data
-// =====================================================================================
-template<typename T>
-T getGlobalStatusCustomReduction( T const & data_to_transform,
-                                  Communicator const & aCommunicator);
-
-// ===  FUNCTION  ======================================================================
-//         Name:  getGlobalStatusCustomReduction
-//  Description:  A specialiaization for global reduction of MD status, 
-//                type RegistryAnansiMDStatus, with the custom reducer ISEReductionFunctor 
-//
-//   Parameters: data_to_transform - The data on this rank which is part of the 
-//                                   collective transformation.
-//
-//               aCommunicator - The communicator used in this data transformation. 
-//
-//        Return: The transformed data.
-// =====================================================================================
-template<>
-int getGlobalStatusCustomReduction( int const & data_to_transform,
-                                    Communicator const & aCommunicator);
 
 // ===  FUNCTION  ======================================================================
 //         Name:  broadcast
