@@ -21,7 +21,14 @@ namespace DEBUGGING {
 template<>
 void AssertValidValueForType::isValidValueForCast<std::size_t,int>(std::size_t const & value1)
 {
-    assertm(value1 <= std::numeric_limits<int>::max(), "Bad cast.");
+    assertm(value1 <= static_cast<std::size_t>(std::numeric_limits<int>::max()), "Bad cast of std:;size_t to int.");
+    return;
+}
+
+template<>
+void AssertValidValueForType::isValidValueForCast<int, std::size_t>(int const & value1)
+{
+    assertm(value1 >= 0, "Bad cast of int to std:;size_t.");
     return;
 }
 //============================= LIFECYCLE ====================================
