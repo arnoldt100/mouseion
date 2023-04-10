@@ -62,23 +62,23 @@ Communicator::formGlobalMap(std::string const & tag,
                             Communicator const  & aCommunicator)
 {
     MEMORY_MANAGEMENT::Array1d<char> my_char_array_factory;
-    MEMORY_MANAGEMENT::Array1d<int> my_int_array_factory;
+    MEMORY_MANAGEMENT::Array1d<std::size_t> my_int_array_factory;
 
     // Get the maximum length of tag with respect to the communicator group.
-    int tag_length = tag.length();
-    int tag_length_maximum = aCommunicator._getMaximum(tag_length);
+    auto tag_length = tag.length();
+    auto tag_length_maximum = aCommunicator._getMaximum(tag_length);
 
     // Form and c string with length tag_length + 1, and 
     // then copy the tag in a c string.
-    int tag_length_maximum_adj = tag_length_maximum  + 1;
+    auto tag_length_maximum_adj = tag_length_maximum  + 1;
 
     char* tag_ptr = my_char_array_factory.createArray(tag,
                                                       tag_length_maximum_adj);
 
     // Gather all the tags into a char* array.
     std::size_t offset_size;
-    int* start_offsets_ptr = nullptr;
-    int* end_offsets_ptr = nullptr;
+    std::size_t* start_offsets_ptr = nullptr;
+    std::size_t* end_offsets_ptr = nullptr;
     char* all_tags_ptr = aCommunicator._allGather(
                              tag_ptr,
                              static_cast<std::size_t> (tag_length_maximum_adj),
@@ -96,14 +96,13 @@ Communicator::formGlobalMap(std::string const & tag,
 
     // Form global map.
     std::size_t counter = 0;
-    std::map<std::string,std::size_t>::iterator it;
     std::map<std::string, std::size_t> aGlobalTagMap;
-    for (auto it = aHostnameVec.begin(); it != aHostnameVec.end(); ++it)
+    for (auto it : aHostnameVec )
     {
-        auto it2 = aGlobalTagMap.find(*it);
+        auto it2 = aGlobalTagMap.find(it);
         if (it2 == aGlobalTagMap.end())
         {
-                aGlobalTagMap[*it] = counter;
+                aGlobalTagMap[it] = counter;
                 ++counter;
         }
     }

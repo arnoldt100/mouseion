@@ -26,9 +26,9 @@ namespace STRING_UTILITIES
 /*==================================================================================*/
 std::vector<std::string> 
 convert_sequence_of_chars_to_vector_string(
-       int const & length,
-       int const * const start_offsets_ptr,
-       int const * const end_offsets_ptr,
+       std::size_t const & length,
+       std::size_t const * const start_offsets_ptr,
+       std::size_t const * const end_offsets_ptr,
        char const * sequence_of_characters );
 
 

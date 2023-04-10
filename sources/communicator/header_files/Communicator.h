@@ -133,8 +133,8 @@ private:
     virtual std::size_t
     _getSizeofCommunicator(const std::string & id) const=0;
 
-    virtual int
-    _getMaximum(int const aValue) const=0;
+    virtual std::size_t 
+    _getMaximum(std::size_t const aValue) const=0;
 
     virtual int 
     _getCommunicatorRank() const=0;
@@ -146,24 +146,24 @@ private:
     _allGather(char const * aCString,
                const std::size_t aLengthMaximum,
                std::size_t & offset_size, 
-               int* & start_offsets_ptr,
-               int* & end_offsets_ptr) const=0;
+               std::size_t* & start_offsets_ptr,
+               std::size_t* & end_offsets_ptr) const=0;
 
     virtual char*
     _gather(const std::size_t task_id_gather_data,
             char const * aCString,
             const std::size_t aLengthMaximum,
             std::size_t & offset_size, 
-            int* & start_offsets_ptr,
-            int* & end_offsets_ptr) const=0;
+            std::size_t* & start_offsets_ptr,
+            std::size_t* & end_offsets_ptr) const=0;
 
     virtual std::unique_ptr< char[] >
     _gather(const std::size_t task_id_gather_data,
             const std::unique_ptr<char[]> & aCString,
             const std::size_t aLengthMaximum,
             std::size_t & offset_size, 
-            std::unique_ptr<int[]> & start_offsets_ptr,
-            std::unique_ptr<int[]> & end_offsets_ptr) const=0;
+            std::unique_ptr<std::size_t[]> & start_offsets_ptr,
+            std::unique_ptr<std::size_t[]> & end_offsets_ptr) const=0;
 
     virtual std::vector<std::string>
     _gatherString(const std::string & data_to_gather,

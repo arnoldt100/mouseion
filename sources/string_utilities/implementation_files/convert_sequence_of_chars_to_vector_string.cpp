@@ -18,23 +18,14 @@ namespace STRING_UTILITIES
 {
     std::vector<std::string> 
     convert_sequence_of_chars_to_vector_string( 
-       int const & length,
-       int const * const start_offsets_ptr,
-       int const * const end_offsets_ptr,
+       std::size_t const & length,
+       std::size_t const * const start_offsets_ptr,
+       std::size_t const * const end_offsets_ptr,
        const char * sequence_of_characters)
     {
-        #ifdef MOUSEION_DBG
-        const std::string invoker("STRING_UTILITIES::convert_sequence_of_chars_to_vector_string");
-        #endif
-
-        #ifdef MOUSEION_DBG_VALID_VALUES
-        DEBUGGING::AssertValidValueForType::isValidValuesForArraySize_t(invoker,length,start_offsets_ptr);
-        DEBUGGING::AssertValidValueForType::isValidValuesForArraySize_t(invoker,length,end_offsets_ptr);
-        #endif
-
         std::vector<std::string> aVectorString;
 
-        for (int ip=0; ip < length; ++ip)
+        for (auto ip=static_cast<std::size_t>(0); ip < length; ++ip)
         {
             const auto starting_index = static_cast<std::size_t>(start_offsets_ptr[ip]);
             const auto ending_index = static_cast<std::size_t>(end_offsets_ptr[ip]);

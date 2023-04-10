@@ -101,6 +101,10 @@ class AssertValidValueForType
             return;
         }
 
+        template<typename OriginalType,
+                 typename FinalType>
+        static void isValidValueForCast(OriginalType const & value) ;
+
     protected:
         // ====================  METHODS       =======================================
 
