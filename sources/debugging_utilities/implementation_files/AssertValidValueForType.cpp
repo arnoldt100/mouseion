@@ -31,6 +31,7 @@ void AssertValidValueForType::isValidValueForCast<int, std::size_t>(int const & 
     assertm(value1 >= 0, "Bad cast of int to std:;size_t.");
     return;
 }
+
 //============================= LIFECYCLE ====================================
 
 //============================= ACCESSORS ====================================
