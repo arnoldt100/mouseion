@@ -50,9 +50,11 @@ public:
     bool
     sameCommunicatorRank( const int aRank) const
     {
-        int my_world_rank = this->getCommunicatorRank();
+        const int my_world_rank = this->getCommunicatorRank();
         return ( aRank == my_world_rank ? true : false);
     }
+
+    bool iAmMasterProcess() const;
 
     std::vector<std::string>
     gatherString(const std::string & data_to_gather,

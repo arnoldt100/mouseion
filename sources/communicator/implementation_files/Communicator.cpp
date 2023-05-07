@@ -39,6 +39,11 @@ Communicator::Communicator(Communicator&& other)
 }
 
 //============================= ACCESSORS ====================================
+bool Communicator::iAmMasterProcess() const
+{
+    const std::size_t my_world_rank = this->getCommunicatorRank();
+    return ( my_world_rank == MASTER_TASK_ID ? true : false);
+}
 
 //============================= MUTATORS =====================================
 
