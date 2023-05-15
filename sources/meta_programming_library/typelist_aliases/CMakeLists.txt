@@ -108,7 +108,8 @@ target_sources(${target}
 #                                                    -
 #-----------------------------------------------------
 target_include_directories(${target} 
-                           PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files )
+                           PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files
+                           PUBLIC ${typelist_aliases_boost_top_level}/include)
 
 #-----------------------------------------------------
 # Enable compile warnings.                           -
