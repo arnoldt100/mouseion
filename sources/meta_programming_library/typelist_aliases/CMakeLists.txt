@@ -100,7 +100,7 @@ add_library( ${target} STATIC
 #                                                    -
 #-----------------------------------------------------
 target_sources(${target}
-               PRIVATE ${typelist_aliases_header_files} ${typelist_aliases_implementation_files} )
+               PRIVATE ${typelist_aliases_header_files} ${typelist_aliases_implementation_file})
 
 #-----------------------------------------------------
 # Add the directory header_files to search for       -
@@ -122,6 +122,8 @@ enable_mouseion_compile_warnings(${target})
 #                                                    -
 #-----------------------------------------------------
 set_target_properties(${target} PROPERTIES
+                      LINKER_LANGUAGE CXX
+                      CXX_STANDARD ${typelist_aliases_cxx_standard}
                       typelist_aliases_include ${CMAKE_CURRENT_SOURCE_DIR}/header_files
                       PUBLIC_HEADER "${typelist_aliases_header_files}" )
 
