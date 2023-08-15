@@ -41,6 +41,12 @@ public:
     //===== DATA MEMBERS ===
 
     //===== ACCESSORS ======
+    void 
+    synchronizationPoint() const
+    {
+        return this->synchronizationPoint_();
+    }
+
     int 
     getCommunicatorRank() const
     {
@@ -132,6 +138,8 @@ protected:
 
 private:
     //===== ACCESSORS ======
+    virtual void synchronizationPoint_() const=0;
+
     virtual std::size_t
     _getSizeofCommunicator(const std::string & id) const=0;
 
