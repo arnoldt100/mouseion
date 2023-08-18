@@ -88,6 +88,12 @@ public:
         return this->_broadcastStdString(data_to_broadcast,bcast_rank);
     }
 
+    std::map<std::string,std::string>
+    broadcastStdMap(const std::map<std::string,std::string> & a_map, const std::size_t bcast_rank) const
+    {
+        return this->broadcastStdMap_(a_map,bcast_rank);
+    }
+
     //===== MUTATORS =======
     void
     initializeWorldCommunicator()
@@ -192,7 +198,11 @@ private:
     T _getGlobalStatusCustomReduction( T const & data_to_transform) const; 
 
     virtual std::string
-    _broadcastStdString(const std::string & data_to_broadcast, const std::size_t bcast_rank) const=0;
+    _broadcastStdString(const std::string & data_to_broadcast, 
+                        const std::size_t bcast_rank=COMMUNICATOR::MASTER_TASK_ID) const=0;
+
+    virtual std::map<std::string,std::string>
+    broadcastStdMap_( const std::map<std::string,std::string> & a_map, const std::size_t bcast_rank) const=0;
 
     //===== MUTATORS =======
     virtual void
