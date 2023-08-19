@@ -48,7 +48,7 @@ Communicator::synchronizationPoint() const
 int 
 Communicator::getCommunicatorRank() const
 {
-    return this->_getCommunicatorRank();
+    return this->getCommunicatorRank_();
 }
 
 bool Communicator::sameCommunicatorRank( const int aRank) const
@@ -67,20 +67,51 @@ std::vector<std::string>
 Communicator::gatherString(const std::string & data_to_gather,
                            const std::size_t task_id_gather_data) const
 {
-        return this->_gatherString(data_to_gather,task_id_gather_data);
+        return this->gatherString_(data_to_gather,task_id_gather_data);
 }
 
 std::vector<int>
 Communicator::gatherInt(const int & data_to_gather,
                         const std::size_t task_id_gather_data) const
 {
-    return this->_gatherInt(data_to_gather,task_id_gather_data);
+    return this->gatherInt_(data_to_gather,task_id_gather_data);
+}
+
+std::string
+Communicator::broadcastStdString(const std::string & data_to_broadcast, const std::size_t bcast_rank) const
+{
+    return this->broadcastStdString_(data_to_broadcast,bcast_rank);
+}
+
+std::map<std::string,std::string>
+Communicator::broadcastStdMap(const std::map<std::string,std::string> & a_map, const std::size_t bcast_rank) const
+{
+    return this->broadcastStdMap_(a_map,bcast_rank);
+}
+
+//============================= MUTATORS =====================================
+
+void
+Communicator::initializeWorldCommunicator()
+{
+    this->initializeWorldCommunicator_();
+    return;
+}
+
+void
+Communicator::resetName(const std::string & name)
+{
+    this->resetName_(name);
+    return;
 }
 
 
-
-
-//============================= MUTATORS =====================================
+void 
+Communicator::freeCommunicator()
+{
+    this->freeCommunicator_();
+    return;
+}
 
 //============================= OPERATORS ====================================
 
@@ -99,14 +130,14 @@ Communicator& Communicator::operator=(Communicator && other)
 //============================= STATIC FUNCTIONS =============================
 std::map<std::string, std::size_t>
 Communicator::formGlobalMap(std::string const & tag,
-                            Communicator const  & aCommunicator)
+                            Communicator const & aCommunicator)
 {
     MEMORY_MANAGEMENT::Array1d<char> my_char_array_factory;
     MEMORY_MANAGEMENT::Array1d<std::size_t> my_int_array_factory;
 
     // Get the maximum length of tag with respect to the communicator group.
     auto tag_length = tag.length();
-    auto tag_length_maximum = aCommunicator._getMaximum(tag_length);
+    auto tag_length_maximum = aCommunicator.getMaximum_(tag_length);
 
     // Form and c string with length tag_length + 1, and 
     // then copy the tag in a c string.
@@ -119,7 +150,7 @@ Communicator::formGlobalMap(std::string const & tag,
     std::size_t offset_size;
     std::size_t* start_offsets_ptr = nullptr;
     std::size_t* end_offsets_ptr = nullptr;
-    char* all_tags_ptr = aCommunicator._allGather(
+    char* all_tags_ptr = aCommunicator.allGather_(
                              tag_ptr,
                              static_cast<std::size_t> (tag_length_maximum_adj),
                              offset_size,
