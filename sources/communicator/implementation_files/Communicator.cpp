@@ -39,11 +39,46 @@ Communicator::Communicator(Communicator&& other)
 }
 
 //============================= ACCESSORS ====================================
+void 
+Communicator::synchronizationPoint() const
+{
+   return this->synchronizationPoint_();
+}
+
+int 
+Communicator::getCommunicatorRank() const
+{
+    return this->_getCommunicatorRank();
+}
+
+bool Communicator::sameCommunicatorRank( const int aRank) const
+{
+    const int my_world_rank = this->getCommunicatorRank();
+    return ( aRank == my_world_rank ? true : false);
+}
+
 bool Communicator::iAmMasterProcess() const
 {
     const std::size_t my_world_rank = this->getCommunicatorRank();
     return ( my_world_rank == MASTER_TASK_ID ? true : false);
 }
+
+std::vector<std::string>
+Communicator::gatherString(const std::string & data_to_gather,
+                           const std::size_t task_id_gather_data) const
+{
+        return this->_gatherString(data_to_gather,task_id_gather_data);
+}
+
+std::vector<int>
+Communicator::gatherInt(const int & data_to_gather,
+                        const std::size_t task_id_gather_data) const
+{
+    return this->_gatherInt(data_to_gather,task_id_gather_data);
+}
+
+
+
 
 //============================= MUTATORS =====================================
 

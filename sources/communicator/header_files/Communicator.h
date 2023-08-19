@@ -1,9 +1,4 @@
-/*
- * Communicator.h
- *
- *  Created on: Oct 15, 2018
- *      Authors: Arnold Tharrington
- */
+//! \file Communicator.h
 
 #ifndef COMMUNICATOR_HEADER_FILES_COMMUNICATOR_H_
 #define COMMUNICATOR_HEADER_FILES_COMMUNICATOR_H_
@@ -42,39 +37,23 @@ public:
 
     //===== ACCESSORS ======
     void 
-    synchronizationPoint() const
-    {
-        return this->synchronizationPoint_();
-    }
+    synchronizationPoint() const;
 
     int 
-    getCommunicatorRank() const
-    {
-        return this->_getCommunicatorRank();
-    }
+    getCommunicatorRank() const;
 
     bool
-    sameCommunicatorRank( const int aRank) const
-    {
-        const int my_world_rank = this->getCommunicatorRank();
-        return ( aRank == my_world_rank ? true : false);
-    }
+    sameCommunicatorRank( const int aRank) const;
 
     bool iAmMasterProcess() const;
 
     std::vector<std::string>
     gatherString(const std::string & data_to_gather,
-                 const std::size_t task_id_gather_data) const
-    {
-        return this->_gatherString(data_to_gather,task_id_gather_data);
-    }
+                 const std::size_t task_id_gather_data) const;
 
     std::vector<int>
     gatherInt(const int & data_to_gather,
-              const std::size_t task_id_gather_data) const
-    {
-        return this->_gatherInt(data_to_gather,task_id_gather_data);
-    }
+              const std::size_t task_id_gather_data) const;
 
     bool
     getGlobalStatus(const bool & data_to_reduce) const
