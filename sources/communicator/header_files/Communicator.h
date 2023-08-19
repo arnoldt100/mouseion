@@ -55,11 +55,11 @@ public:
     gatherInt(const int & data_to_gather,
               const std::size_t task_id_gather_data) const;
 
-    bool
-    getGlobalStatus(const bool & data_to_reduce) const
-    {
-        return this->_getGlobalStatus(data_to_reduce);
-    }
+    // bool
+    // getGlobalStatus(const bool & data_to_reduce) const
+    // {
+    //     return this->_getGlobalStatus(data_to_reduce);
+    // }
 
     std::string
     broadcastStdString(const std::string & data_to_broadcast, const std::size_t bcast_rank) const
@@ -168,10 +168,6 @@ private:
     virtual std::vector<int>
     _gatherInt(const int & data_to_gather,
                const std::size_t task_id_gather_data) const=0;
-
-    virtual bool
-    _getGlobalStatus(const bool & data_to_reduce) const=0;
-
 
     template<typename T>
     T _getGlobalStatusCustomReduction( T const & data_to_transform) const; 
