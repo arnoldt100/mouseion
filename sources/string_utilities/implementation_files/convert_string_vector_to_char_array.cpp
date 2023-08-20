@@ -14,7 +14,7 @@
 namespace STRING_UTILITIES
 {
 
-void convert_string_vector_to_char_array ()
+void convert_string_vector_to_char_array (const std::vector<std::string> & vec)
 {
     return ;
 }   // -----  end of function convert_string_vector_to_char_array  -----

@@ -102,7 +102,7 @@ private:
     virtual void synchronizationPoint_() const=0;
 
     virtual std::size_t
-    getSizeofCommunicator_(const std::string & id) const=0;
+    getSizeofCommunicator_() const=0;
 
     virtual std::size_t 
     getMaximum_(std::size_t const aValue) const=0;
@@ -165,8 +165,9 @@ private:
     virtual void
     resetName_(const std::string & name)=0;
 
-    //===== STATIC =======
-    // static constexpr std::size_t MAX_HOSTNAME_LENGTH=100;
+private:
+
+
 };
 
 } // namespace MPICOMMUNICATOR

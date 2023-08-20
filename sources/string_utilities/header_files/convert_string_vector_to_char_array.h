@@ -6,6 +6,8 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <string>
+#include <vector>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -19,8 +21,8 @@
 namespace STRING_UTILITIES
 {
 
-//! \brief Stud text for brief description
-void convert_string_vector_to_char_array ();
+//! \brief Converts a vector of strings to char array.
+void convert_string_vector_to_char_array (const std::vector<std::string> & vec);
 
 
 }; // namespace STRING_UTILITIES
