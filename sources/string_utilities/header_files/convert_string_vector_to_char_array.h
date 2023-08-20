@@ -22,7 +22,8 @@ namespace STRING_UTILITIES
 {
 
 //! \brief Converts a vector of strings to char array.
-void convert_string_vector_to_char_array (const std::vector<std::string> & vec);
+void convert_string_vector_to_char_array (
+    const std::vector<std::string> & vec);
 
 
 }; // namespace STRING_UTILITIES
