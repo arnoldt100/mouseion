@@ -74,6 +74,13 @@ cache_stdmap (const std::map<std::string,std::string> & a_map)
 
 }   // -----  end of function convert_string_vector_to_char_array  -----
 
+std::map<std::string,std::string> 
+reform_stdmap(const STRING_UTILITIES::VectorStringCache & key_cache,const STRING_UTILITIES::VectorStringCache & value_cache)
+{
+    std::map<std::string,std::string> a_map;
+    return a_map;
+}
+
 
 }; // namespace STRING_UTILITIES
 
