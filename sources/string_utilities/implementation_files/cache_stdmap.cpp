@@ -42,21 +42,10 @@ namespace
 }
 
 std::tuple<STRING_UTILITIES::VectorStringCache,STRING_UTILITIES::VectorStringCache>
-cache_stdmap (const std::map<std::string,std::string> & a_map,
-              const std::vector<std::string> & vec)
+cache_stdmap (const std::map<std::string,std::string> & a_map)
 {
     STRING_UTILITIES::VectorStringCache key_cache;
     STRING_UTILITIES::VectorStringCache value_cache;
-    
-    // Compute the total length needed for a char array to
-    // store the characters from the the vector string.
-    // Variable "total_nm_chars" stores the total number of characters in all
-    // elements of string vector "vec".
-    std::size_t total_nm_chars=count_total_chars_in_string_vector(vec);
-
-    // Array "nm_chars_ptr" stores the number of characters in each
-    // elements of string vector "vec".
-    std::unique_ptr<std::size_t[]> nm_chars = count_chars_in_each_string_vector(vec);
 
     // Form a vector of the keys and values of the map "a_map".
     std::vector<std::string> map_keys;
@@ -66,6 +55,8 @@ cache_stdmap (const std::map<std::string,std::string> & a_map,
         auto key = it->first;
         map_keys.push_back(key);
     }
+    std::size_t total_nm_chars1=count_total_chars_in_string_vector(map_keys);
+    std::unique_ptr<std::size_t[]> nm_chars1 = count_chars_in_each_string_vector(map_keys);
     // key_cache = STRING_UTILITIES::cache_stdmap(a_map, map_keys);
 
     std::vector<std::string> map_values;
@@ -75,27 +66,9 @@ cache_stdmap (const std::map<std::string,std::string> & a_map,
         auto value = it->second;
         map_values.push_back(value);
     }
+    std::size_t total_nm_chars2=count_total_chars_in_string_vector(map_values);
+    std::unique_ptr<std::size_t[]> nm_chars2 = count_chars_in_each_string_vector(map_values);
     // value_cache = STRING_UTILITIES::cache_stdmap(a_map,map_values);
-
-    // Array "chars_ptr" stores the all of characters in each
-    // element of string vector "vec", and chars_ptr array length is
-    // total_nm_chars + 1 to account for the null terminating char.
-    char* chars_ptr = new char [total_nm_chars + 1];
-    std::ptrdiff_t start_index=0;
-    std::ptrdiff_t end_index=0;
-    for (auto itr : vec)
-    {
-        std::size_t nm_chars = itr.size();
-        end_index = static_cast<std::ptrdiff_t>(start_index + nm_chars - 1);
-
-        for (std::ptrdiff_t ip = start_index; ip <= end_index; ++ip)
-        {
-
-        }
-        start_index = end_index + 1;
-    }
-
-    delete [] chars_ptr;
 
     return std::make_tuple(key_cache,value_cache);
 

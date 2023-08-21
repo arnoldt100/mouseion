@@ -25,8 +25,7 @@ namespace STRING_UTILITIES
 
 //! \brief Converts a vector of strings to char array.
 std::tuple<STRING_UTILITIES::VectorStringCache,STRING_UTILITIES::VectorStringCache>
-cache_stdmap ( const std::map<std::string,std::string> & a_map,
-               const std::vector<std::string> & vec);
+cache_stdmap ( const std::map<std::string,std::string> & a_map) ;
 
 
 }; // namespace STRING_UTILITIES
