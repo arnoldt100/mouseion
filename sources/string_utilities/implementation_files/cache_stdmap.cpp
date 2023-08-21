@@ -41,9 +41,12 @@ namespace
     }
 }
 
-STRING_UTILITIES::VectorStringCache cache_stdmap (const std::vector<std::string> & vec)
+std::tuple<STRING_UTILITIES::VectorStringCache,STRING_UTILITIES::VectorStringCache>
+cache_stdmap (const std::map<std::string,std::string> & a_map,
+              const std::vector<std::string> & vec)
 {
-    STRING_UTILITIES::VectorStringCache my_cache;
+    STRING_UTILITIES::VectorStringCache key_cache;
+    STRING_UTILITIES::VectorStringCache value_cache;
     
     // Compute the total length needed for a char array to
     // store the characters from the the vector string.
@@ -54,6 +57,25 @@ STRING_UTILITIES::VectorStringCache cache_stdmap (const std::vector<std::string>
     // Array "nm_chars_ptr" stores the number of characters in each
     // elements of string vector "vec".
     std::unique_ptr<std::size_t[]> nm_chars = count_chars_in_each_string_vector(vec);
+
+    // Form a vector of the keys and values of the map "a_map".
+    std::vector<std::string> map_keys;
+    for (auto it = a_map.begin(); it != a_map.end(); ++it)
+    {
+        // Reform the map object form the broadcasted keys and values.
+        auto key = it->first;
+        map_keys.push_back(key);
+    }
+    // key_cache = STRING_UTILITIES::cache_stdmap(a_map, map_keys);
+
+    std::vector<std::string> map_values;
+    // Form a vector of the keys and values of the map "a_map".
+    for (auto it = a_map.begin(); it != a_map.end(); ++it)
+    {
+        auto value = it->second;
+        map_values.push_back(value);
+    }
+    // value_cache = STRING_UTILITIES::cache_stdmap(a_map,map_values);
 
     // Array "chars_ptr" stores the all of characters in each
     // element of string vector "vec", and chars_ptr array length is
@@ -75,7 +97,7 @@ STRING_UTILITIES::VectorStringCache cache_stdmap (const std::vector<std::string>
 
     delete [] chars_ptr;
 
-    return my_cache;
+    return std::make_tuple(key_cache,value_cache);
 
 }   // -----  end of function convert_string_vector_to_char_array  -----
 

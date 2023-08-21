@@ -8,6 +8,8 @@
 //--------------------------------------------------------//
 #include <string>
 #include <vector>
+#include <map>
+#include <tuple>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -22,8 +24,9 @@ namespace STRING_UTILITIES
 {
 
 //! \brief Converts a vector of strings to char array.
-STRING_UTILITIES::VectorStringCache cache_stdmap (
-    const std::vector<std::string> & vec);
+std::tuple<STRING_UTILITIES::VectorStringCache,STRING_UTILITIES::VectorStringCache>
+cache_stdmap ( const std::map<std::string,std::string> & a_map,
+               const std::vector<std::string> & vec);
 
 
 }; // namespace STRING_UTILITIES
