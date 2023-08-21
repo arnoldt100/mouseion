@@ -25,10 +25,10 @@ namespace STRING_UTILITIES
 
 //! \brief Converts a vector of strings to char array.
 std::tuple<STRING_UTILITIES::VectorStringCache,STRING_UTILITIES::VectorStringCache>
-cache_stdmap ( const std::map<std::string,std::string> & a_map);
+cache_stdmap( const std::map<std::string,std::string> & a_map);
 
 std::map<std::string,std::string> 
-reform_stdmap(const STRING_UTILITIES::VectorStringCache & key_cache,const STRING_UTILITIES::VectorStringCache & value_cache);
+reform_stdmap(std::tuple<STRING_UTILITIES::VectorStringCache,STRING_UTILITIES::VectorStringCache> & a_tuple);
 
 }; // namespace STRING_UTILITIES
 
