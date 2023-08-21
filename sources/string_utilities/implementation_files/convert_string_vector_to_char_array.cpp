@@ -15,8 +15,10 @@
 namespace STRING_UTILITIES
 {
 
-void convert_string_vector_to_char_array (const std::vector<std::string> & vec)
+STRINGUTILITIES::VectorStringCache convert_string_vector_to_char_array (const std::vector<std::string> & vec)
 {
+    STRINGUTILITIES::VectorStringCache my_cache;
+    
     // Compute the total length needed for a char array to
     // store the characters from the the vector string.
 
@@ -28,13 +30,9 @@ void convert_string_vector_to_char_array (const std::vector<std::string> & vec)
         total_nm_chars += itr.size();
     }
 
-    // Variable "nm_chars_ptr" stores the number of characters in each
+    // Array "nm_chars_ptr" stores the number of characters in each
     // elements of string vector "vec".
     std::size_t* nm_chars_ptr = new std::size_t [total_nm_chars];
-    
-    // Variable "chars_ptr" stores the all of characters in each
-    // elements of string vector "vec".
-    char* chars_ptr = new char [total_nm_chars];
     std::size_t index = 0;
     for (auto itr : vec)
     {
@@ -42,12 +40,29 @@ void convert_string_vector_to_char_array (const std::vector<std::string> & vec)
         ++index;
     }
 
+    // Array "chars_ptr" stores the all of characters in each
+    // element of string vector "vec", and chars_ptr array length is
+    // total_nm_chars + 1 to account for the null terminating char.
+    char* chars_ptr = new char [total_nm_chars + 1];
+    std::ptrdiff_t start_index=0;
+    std::ptrdiff_t end_index=0;
+    for (auto itr : vec)
+    {
+        std::size_t nm_chars = itr.size();
+        end_index = static_cast<std::ptrdiff_t>(start_index + nm_chars - 1);
 
+        for (std::ptrdiff_t ip = start_index; ip <= end_index; ++ip)
+        {
+
+        }
+        start_index = end_index + 1;
+    }
 
     delete [] nm_chars_ptr;
     delete [] chars_ptr;
 
-    return ;
+    return my_cache;
+
 }   // -----  end of function convert_string_vector_to_char_array  -----
 
 

@@ -1,14 +1,11 @@
 #ifndef STRINGUTILITIES_VectorStringCache_INC
 #define STRINGUTILITIES_VectorStringCache_INC
 //! \file VectorStringCache.h
-//!
-//! \brief Brief description
-//!
-//! Detailed description
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <cstddef>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -53,6 +50,11 @@ class VectorStringCache
         // ====================  METHODS       =======================================
 
         // ====================  DATA MEMBERS  =======================================
+        std::size_t ncpvLength_;
+        std::size_t * numberCharactersPerVector_;
+
+        std::size_t caLength_; 
+        char* charactersArray_;
 
 }; // -----  end of class VectorStringCache  -----
 
