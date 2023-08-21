@@ -86,7 +86,7 @@
         header_files/convert_string_to_char_array.h
         header_files/copy_2d_char_array.h
         header_files/VectorStringCache.h
-        header_files/convert_sequence_of_chars_to_vector_string.h
+        header_files/cache_stdmap.h
         header_files/get_maximum_width_of_vector_string.h
         header_files/under_line_string.h )
 
@@ -103,7 +103,7 @@
         implementation_files/convert_string_to_char_array.cpp
         implementation_files/copy_2d_char_array.cpp
         implementation_files/VectorStringCache.cpp
-        implementation_files/convert_sequence_of_chars_to_vector_string.cpp 
+        implementation_files/cache_stdmap.cpp 
         implementation_files/get_maximum_width_of_vector_string.cpp
         implementation_files/under_line_string.cpp )
 
