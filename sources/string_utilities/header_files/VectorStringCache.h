@@ -1,5 +1,5 @@
-#ifndef STRINGUTILITIES_VectorStringCache_INC
-#define STRINGUTILITIES_VectorStringCache_INC
+#ifndef STRING_UTILITIES_VectorStringCache_INC
+#define STRING_UTILITIES_VectorStringCache_INC
 //! \file VectorStringCache.h
 
 //--------------------------------------------------------//
@@ -15,7 +15,7 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 
-namespace STRINGUTILITIES
+namespace STRING_UTILITIES
 {
 
 class VectorStringCache
@@ -59,6 +59,6 @@ class VectorStringCache
 }; // -----  end of class VectorStringCache  -----
 
 
-}; // namespace STRINGUTILITIES
+}; // namespace STRING_UTILITIES
 
-#endif // STRINGUTILITIES_VectorStringCache_INC
+#endif // STRING_UTILITIES_VectorStringCache_INC

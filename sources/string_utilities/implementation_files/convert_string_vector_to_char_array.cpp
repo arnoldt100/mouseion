@@ -12,33 +12,49 @@
 //--------------------------------------------------------//
 #include "convert_string_vector_to_char_array.h"
 
+
 namespace STRING_UTILITIES
 {
 
-STRINGUTILITIES::VectorStringCache convert_string_vector_to_char_array (const std::vector<std::string> & vec)
+namespace
 {
-    STRINGUTILITIES::VectorStringCache my_cache;
+    std::size_t count_total_chars_in_string_vector(const std::vector<std::string> & vec)
+    {
+        std::size_t total_nm_chars=0;
+        for (auto itr : vec)
+        {
+            total_nm_chars += itr.size();
+        }
+        return total_nm_chars;
+    }
+
+    std::unique_ptr<std::size_t[]> count_chars_in_each_string_vector(const std::vector<std::string> & vec)
+    {
+        std::unique_ptr<std::size_t[]> nm_chars_ptr = std::make_unique<std::size_t[]>(vec.size());
+        std::size_t index = 0;
+        for (auto itr : vec)
+        {
+            nm_chars_ptr[index] = itr.size();
+            ++index;
+        }
+        return nm_chars_ptr; 
+    }
+}
+
+STRING_UTILITIES::VectorStringCache convert_string_vector_to_char_array (const std::vector<std::string> & vec)
+{
+    STRING_UTILITIES::VectorStringCache my_cache;
     
     // Compute the total length needed for a char array to
     // store the characters from the the vector string.
 
     // Variable "total_nm_chars" stores the total number of characters in all
     // elements of string vector "vec".
-    std::size_t total_nm_chars=0;
-    for (auto itr : vec)
-    {
-        total_nm_chars += itr.size();
-    }
+    std::size_t total_nm_chars=count_total_chars_in_string_vector(vec);
 
     // Array "nm_chars_ptr" stores the number of characters in each
     // elements of string vector "vec".
-    std::size_t* nm_chars_ptr = new std::size_t [total_nm_chars];
-    std::size_t index = 0;
-    for (auto itr : vec)
-    {
-        nm_chars_ptr[index] = itr.size();
-        ++index;
-    }
+    std::unique_ptr<std::size_t[]> nm_chars = count_chars_in_each_string_vector(vec);
 
     // Array "chars_ptr" stores the all of characters in each
     // element of string vector "vec", and chars_ptr array length is
@@ -58,7 +74,6 @@ STRINGUTILITIES::VectorStringCache convert_string_vector_to_char_array (const st
         start_index = end_index + 1;
     }
 
-    delete [] nm_chars_ptr;
     delete [] chars_ptr;
 
     return my_cache;

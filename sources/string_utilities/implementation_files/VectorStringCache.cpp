@@ -14,7 +14,7 @@
 #include "Array1d.hpp"
 #include "VectorStringCache.h"
 
-namespace STRINGUTILITIES {
+namespace STRING_UTILITIES {
 
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PUBLIC ///////////////////////////////////////
@@ -124,4 +124,4 @@ VectorStringCache& VectorStringCache::operator= ( VectorStringCache && other )
 //============================= OPERATORS ====================================
 
 
-} // namespace STRINGUTILITIES
+} // namespace STRING_UTILITIES
