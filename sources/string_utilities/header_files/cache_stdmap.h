@@ -1,7 +1,7 @@
-#ifndef STRING_UTILITIES_convert_string_vector_to_char_array_INC
-#define STRING_UTILITIES_convert_string_vector_to_char_array_INC
+#ifndef STRING_UTILITIES_cache_stdmap_INC
+#define STRING_UTILITIES_cache_stdmap_INC
 
-//! \file convert_string_vector_to_char_array.h
+//! \file cache_stdmap.h
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
@@ -22,10 +22,10 @@ namespace STRING_UTILITIES
 {
 
 //! \brief Converts a vector of strings to char array.
-STRING_UTILITIES::VectorStringCache convert_string_vector_to_char_array (
+STRING_UTILITIES::VectorStringCache cache_stdmap (
     const std::vector<std::string> & vec);
 
 
 }; // namespace STRING_UTILITIES
 
-#endif // STRING_UTILITIES_convert_string_vector_to_char_array_INC
+#endif // STRING_UTILITIES_cache_stdmap_INC

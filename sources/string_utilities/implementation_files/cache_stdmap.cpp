@@ -10,7 +10,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "convert_string_vector_to_char_array.h"
+#include "cache_stdmap.h"
 
 
 namespace STRING_UTILITIES
@@ -41,13 +41,12 @@ namespace
     }
 }
 
-STRING_UTILITIES::VectorStringCache convert_string_vector_to_char_array (const std::vector<std::string> & vec)
+STRING_UTILITIES::VectorStringCache cache_stdmap (const std::vector<std::string> & vec)
 {
     STRING_UTILITIES::VectorStringCache my_cache;
     
     // Compute the total length needed for a char array to
     // store the characters from the the vector string.
-
     // Variable "total_nm_chars" stores the total number of characters in all
     // elements of string vector "vec".
     std::size_t total_nm_chars=count_total_chars_in_string_vector(vec);
