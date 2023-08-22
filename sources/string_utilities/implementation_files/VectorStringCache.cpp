@@ -76,6 +76,16 @@ VectorStringCache::VectorStringCache( VectorStringCache && other) :
 }		// -----  end of method VectorStringCache::VectorStringCache  -----
 
 //============================= ACCESSORS ====================================
+std::size_t VectorStringCache::getCharactersPerVectorArrayLength() const
+{
+    return this->ncpvLength_;
+}
+
+std::size_t VectorStringCache::getCharacterArrayLength() const
+{
+    return this->caLength_;
+}
+
 
 //============================= MUTATORS =====================================
 

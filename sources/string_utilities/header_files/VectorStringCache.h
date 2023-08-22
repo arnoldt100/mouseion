@@ -18,6 +18,7 @@
 namespace STRING_UTILITIES
 {
 
+//! \brief  Caches or stores a vector of strings.
 class VectorStringCache
 {
     public:
@@ -32,6 +33,15 @@ class VectorStringCache
         ~VectorStringCache ();  // destructor
 
         // ====================  ACCESSORS     =======================================
+        //! \brief Returns the length of the array that stores the number  
+        //!        of characters per element in the string vector.
+        std::size_t getCharactersPerVectorArrayLength() const;
+
+        //! \brief Returns the length of the array that stores all the characters
+        //!        in the vector of strings.
+        std::size_t getCharacterArrayLength() const;
+
+        //! \brief Returns the 
 
         // ====================  MUTATORS      =======================================
 
