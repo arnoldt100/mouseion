@@ -45,7 +45,8 @@ class VectorStringCache
         //!        in the vector of strings.
         std::size_t getCharacterArrayLength() const;
 
-        //! \brief Returns the 
+        //! \brief Returns the array of the number characters per vector element.
+        std::size_t* getArrayOfNumberCharactersPerVector() const;
 
         // ====================  MUTATORS      =======================================
 

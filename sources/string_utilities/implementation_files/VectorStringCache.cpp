@@ -42,11 +42,11 @@ VectorStringCache::VectorStringCache(const std::vector<std::string> & str_vec) :
 
 VectorStringCache::~VectorStringCache()
 {
-    MEMORY_MANAGEMENT::Array1d<std::size_t> int_factory;
-    int_factory.destroyArray(this->numberCharactersPerVector_);
+    MEMORY_MANAGEMENT::Array1d<std::size_t> int_array_factory;
+    int_array_factory.destroyArray(this->numberCharactersPerVector_);
 
-    MEMORY_MANAGEMENT::Array1d<char> char_factory;
-    char_factory.destroyArray(this->charactersArray_);
+    MEMORY_MANAGEMENT::Array1d<char> char_array_factor;
+    char_array_factor.destroyArray(this->charactersArray_);
 
     return;
 }
@@ -95,6 +95,16 @@ std::size_t VectorStringCache::getCharacterArrayLength() const
     return this->caLength_;
 }
 
+std::size_t* VectorStringCache::getArrayOfNumberCharactersPerVector() const
+{
+    MEMORY_MANAGEMENT::Array1d<std::size_t> int_array_factory;
+    std::size_t* out_ptr = int_array_factory.createArray(this->ncpvLength_);
+    for (auto ip=static_cast<std::size_t>(0); ip <this->ncpvLength_; ++ip )
+    {
+        out_ptr[ip] = this->numberCharactersPerVector_[ip];
+    }
+    return out_ptr;
+}
 
 //============================= MUTATORS =====================================
 
