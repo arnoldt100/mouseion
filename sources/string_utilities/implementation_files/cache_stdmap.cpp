@@ -28,7 +28,7 @@ namespace
         return total_nm_chars;
     }
 
-    std::unique_ptr<std::size_t[]> count_chars_in_each_string_vector(const std::vector<std::string> & vec)
+    std::unique_ptr<std::size_t[]> count_chars_in_each_string_vector_element(const std::vector<std::string> & vec)
     {
         std::unique_ptr<std::size_t[]> nm_chars_ptr = std::make_unique<std::size_t[]>(vec.size());
         std::size_t index = 0;
@@ -41,13 +41,28 @@ namespace
     }
 }
 
+//! \brief Takes an object of type std::map<std::string,std::string> and caches
+//! it to a VectorStringCache.
+//!
+//! This function "cache_stdmap" is used to unpack
+//! std::map<std::string,std::string> to to a convenient intermediate form to
+//! facilitate communication. An object of type
+//! std::map<std::string,std::string> is cached to an object of type
+//! std::tuple<VectorStringCache, VectorStringCache> and returned to the
+//! invoking function. The 0'th and 1'st tuple elements are respectively caches
+//! of the std::map key and values.
 std::tuple<STRING_UTILITIES::VectorStringCache,STRING_UTILITIES::VectorStringCache>
 cache_stdmap (const std::map<std::string,std::string> & a_map)
 {
-    STRING_UTILITIES::VectorStringCache key_cache;
-    STRING_UTILITIES::VectorStringCache value_cache;
 
-    // Form a vector of the keys and values of the map "a_map".
+    // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+    // Form string vectors of the keys and values of the
+    // map "a_map".
+    // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+    // ---------------------------------------------------
+    // Cache the std:map keys to a VectorStringCache.
+    // ---------------------------------------------------
     std::vector<std::string> map_keys;
     for (auto it = a_map.begin(); it != a_map.end(); ++it)
     {
@@ -55,10 +70,11 @@ cache_stdmap (const std::map<std::string,std::string> & a_map)
         auto key = it->first;
         map_keys.push_back(key);
     }
-    std::size_t total_nm_chars1=count_total_chars_in_string_vector(map_keys);
-    std::unique_ptr<std::size_t[]> nm_chars1 = count_chars_in_each_string_vector(map_keys);
-    key_cache = STRING_UTILITIES::VectorStringCache(map_keys);
+    STRING_UTILITIES::VectorStringCache key_cache(map_keys);
 
+    // ---------------------------------------------------
+    // Cache the std:map values to a VectorStringCache.
+    // ---------------------------------------------------
     std::vector<std::string> map_values;
     // Form a vector of the keys and values of the map "a_map".
     for (auto it = a_map.begin(); it != a_map.end(); ++it)
@@ -66,10 +82,11 @@ cache_stdmap (const std::map<std::string,std::string> & a_map)
         auto value = it->second;
         map_values.push_back(value);
     }
-    std::size_t total_nm_chars2=count_total_chars_in_string_vector(map_values);
-    std::unique_ptr<std::size_t[]> nm_chars2 = count_chars_in_each_string_vector(map_values);
-    value_cache = STRING_UTILITIES::VectorStringCache(map_values);
+    STRING_UTILITIES::VectorStringCache value_cache(map_values);
 
+    // ---------------------------------------------------
+    // Return the tuple of key_cache and value_cache.
+    // ---------------------------------------------------
     return std::make_tuple(key_cache,value_cache);
 
 }   // -----  end of function convert_string_vector_to_char_array  -----

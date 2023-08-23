@@ -48,6 +48,8 @@ class VectorStringCache
         //! \brief Returns the array of the number characters per vector element.
         std::size_t* getArrayOfNumberCharactersPerVector() const;
 
+        char* getArrayOfCharacters() const;
+
         // ====================  MUTATORS      =======================================
 
         // ====================  OPERATORS     =======================================
@@ -66,7 +68,7 @@ class VectorStringCache
 
         // ====================  DATA MEMBERS  =======================================
         std::size_t ncpvLength_;
-        std::size_t * numberCharactersPerVector_;
+        std::size_t * numberCharactersPerVectorElement_;
 
         std::size_t caLength_; 
         char* charactersArray_;
