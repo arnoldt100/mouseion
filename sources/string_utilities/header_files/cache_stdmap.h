@@ -23,9 +23,23 @@
 namespace STRING_UTILITIES
 {
 
-//! \brief Converts a vector of strings to char array.
+//! \brief Converts an object of type std::map<std::string,std::string> to
+//!        a tuple of type
+//!        std::tuple<STRING_UTILITIES::VectorStringCache,STRING_UTILITIES::VectorStringCache>
+//!
+//! This function is used to help convert a_map to a form that facilitates communicating them between
+//! MPI ranks - we need "a_map" expressed as contiguous data types.
+//! An object of type std::map<std::string,std::string> is transformed to a
+//! tuple of type
+//! std::tuple<STRING_UTILITIES::VectorStringCache,STRING_UTILITIES::VectorStringCache>
+//! where the 0'th and 1'st element of the tuple are respectively the key and
+//! values of the std::map<std::string,std::string>. This tuple is returned to the invoking
+//! function.
+//!
+//! \param[in] a_map The to be flattened.
+//! \returns std::tuple<STRING_UTILITIES::VectorStringCache,STRING_UTILITIES::VectorStringCache>
 std::tuple<STRING_UTILITIES::VectorStringCache,STRING_UTILITIES::VectorStringCache>
-cache_stdmap( const std::map<std::string,std::string> & a_map);
+cache_stdmap(const std::map<std::string,std::string> & a_map);
 
 std::map<std::string,std::string> 
 reform_stdmap(std::tuple<STRING_UTILITIES::VectorStringCache,STRING_UTILITIES::VectorStringCache> & a_tuple);

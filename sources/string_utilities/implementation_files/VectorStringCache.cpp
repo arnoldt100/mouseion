@@ -31,6 +31,15 @@ VectorStringCache::VectorStringCache() :
     return;
 }
 
+VectorStringCache::VectorStringCache(const std::vector<std::string> & str_vec) :
+    ncpvLength_(0),
+    numberCharactersPerVector_(nullptr),
+    caLength_(0),
+    charactersArray_(nullptr)
+{
+    return;
+}
+
 VectorStringCache::~VectorStringCache()
 {
     MEMORY_MANAGEMENT::Array1d<std::size_t> int_factory;

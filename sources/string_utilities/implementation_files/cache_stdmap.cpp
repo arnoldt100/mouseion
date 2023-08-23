@@ -57,7 +57,7 @@ cache_stdmap (const std::map<std::string,std::string> & a_map)
     }
     std::size_t total_nm_chars1=count_total_chars_in_string_vector(map_keys);
     std::unique_ptr<std::size_t[]> nm_chars1 = count_chars_in_each_string_vector(map_keys);
-    // key_cache = STRING_UTILITIES::cache_stdmap(a_map, map_keys);
+    key_cache = STRING_UTILITIES::VectorStringCache(map_keys);
 
     std::vector<std::string> map_values;
     // Form a vector of the keys and values of the map "a_map".
@@ -68,7 +68,7 @@ cache_stdmap (const std::map<std::string,std::string> & a_map)
     }
     std::size_t total_nm_chars2=count_total_chars_in_string_vector(map_values);
     std::unique_ptr<std::size_t[]> nm_chars2 = count_chars_in_each_string_vector(map_values);
-    // value_cache = STRING_UTILITIES::cache_stdmap(a_map,map_values);
+    value_cache = STRING_UTILITIES::VectorStringCache(map_values);
 
     return std::make_tuple(key_cache,value_cache);
 

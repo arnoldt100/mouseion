@@ -5,6 +5,8 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <vector>
+#include <string>
 #include <cstddef>
 
 //--------------------------------------------------------//
@@ -25,6 +27,8 @@ class VectorStringCache
         // ====================  LIFECYCLE     =======================================
 
         VectorStringCache ();   // constructor
+
+        VectorStringCache(const std::vector<std::string> & str_vec); 
 
         VectorStringCache (const VectorStringCache & other);   // copy constructor
 
