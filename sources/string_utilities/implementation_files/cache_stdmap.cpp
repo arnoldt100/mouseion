@@ -92,7 +92,7 @@ cache_stdmap (const std::map<std::string,std::string> & a_map)
 }   // -----  end of function convert_string_vector_to_char_array  -----
 
 std::map<std::string,std::string> 
-uncache_stdmap(std::tuple<STRING_UTILITIES::VectorStringCache,STRING_UTILITIES::VectorStringCache> & a_tuple)
+uncache_stdmap(const std::tuple<STRING_UTILITIES::VectorStringCache,STRING_UTILITIES::VectorStringCache> & a_tuple)
 {
     std::map<std::string,std::string> a_map;
     return a_map;

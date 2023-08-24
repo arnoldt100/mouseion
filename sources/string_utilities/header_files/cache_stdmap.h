@@ -53,7 +53,7 @@ cache_stdmap(const std::map<std::string,std::string> & a_map);
 //!
 //! \param[in] a_tuple The tuple to be converted back to std::map.
 std::map<std::string,std::string> 
-uncache_stdmap(std::tuple<STRING_UTILITIES::VectorStringCache,STRING_UTILITIES::VectorStringCache> & a_tuple);
+uncache_stdmap(const std::tuple<STRING_UTILITIES::VectorStringCache,STRING_UTILITIES::VectorStringCache> & a_tuple);
 
 }; // namespace STRING_UTILITIES
 
