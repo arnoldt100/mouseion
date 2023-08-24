@@ -43,7 +43,7 @@ VectorStringCache::VectorStringCache(const std::vector<std::string> & str_vec) :
     // Compute the total number of characters in all elements of the
     // string vector.
     // ---------------------------------------------------
-    for ( auto a_string : str_vec)
+    for (auto a_string : str_vec)
     {
         this->caLength_ += a_string.size();
     }
@@ -59,7 +59,7 @@ VectorStringCache::VectorStringCache(const std::vector<std::string> & str_vec) :
     MEMORY_MANAGEMENT::Array1d<std::size_t> int_array_factory;
     this->numberCharactersPerVectorElement_ = int_array_factory.createArray(this->ncpvLength_);
     std::size_t ip = 0;
-    for ( auto a_string : str_vec)
+    for (auto a_string : str_vec)
     {
         this->numberCharactersPerVectorElement_[ip] = a_string.size();
         ++ip;
@@ -70,8 +70,8 @@ VectorStringCache::VectorStringCache(const std::vector<std::string> & str_vec) :
     // ---------------------------------------------------
     MEMORY_MANAGEMENT::Array1d<char> char_array_factory;
     this->charactersArray_ = char_array_factory.createArray(this->caLength_);
-    std::size_t jp=0;
-    for ( auto a_string : str_vec)
+    std::size_t jp = 0;
+    for (auto a_string : str_vec)
     {
         for ( auto a_char : a_string)
         {

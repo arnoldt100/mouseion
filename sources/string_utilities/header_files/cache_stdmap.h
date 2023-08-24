@@ -36,13 +36,24 @@ namespace STRING_UTILITIES
 //! values of the std::map<std::string,std::string>. This tuple is returned to the invoking
 //! function.
 //!
-//! \param[in] a_map The to be flattened.
+//! \param[in] a_map The std::map to be flattened.
 //! \returns std::tuple<STRING_UTILITIES::VectorStringCache,STRING_UTILITIES::VectorStringCache>
 std::tuple<STRING_UTILITIES::VectorStringCache,STRING_UTILITIES::VectorStringCache>
 cache_stdmap(const std::map<std::string,std::string> & a_map);
 
+//! \brief Converts an object of type
+//! std::tuple<STRING_UTILITIES::VectorStringCache,STRING_UTILITIES::VectorStringCache>
+//! to
+//!        std::map<std::string,std::string>.
+//!
+//! This function is used to convert a tuple of type
+//! std::tuple<STRING_UTILITIES::VectorStringCache,STRING_UTILITIES::VectorStringCache>
+//! back to std::map<std::string,std::string>. The 0'th and 1'st elements of the
+//! tuple contain respectively the keys and value of the std::map.
+//!
+//! \param[in] a_tuple The tuple to be converted back to std::map.
 std::map<std::string,std::string> 
-reform_stdmap(std::tuple<STRING_UTILITIES::VectorStringCache,STRING_UTILITIES::VectorStringCache> & a_tuple);
+uncache_stdmap(std::tuple<STRING_UTILITIES::VectorStringCache,STRING_UTILITIES::VectorStringCache> & a_tuple);
 
 }; // namespace STRING_UTILITIES
 
