@@ -127,7 +127,7 @@ VectorStringCache::VectorStringCache( VectorStringCache && other) :
 }		// -----  end of method VectorStringCache::VectorStringCache  -----
 
 //============================= ACCESSORS ====================================
-std::size_t VectorStringCache::getCharactersPerVectorArrayLength() const
+std::size_t VectorStringCache::getNumberCharactersPerVectorArrayLength() const
 {
     return this->ncpvLength_;
 }
@@ -157,6 +157,12 @@ char* VectorStringCache::getArrayOfCharacters() const
         out_ptr[ip] = this->charactersArray_[ip];
     }
     return out_ptr;
+}
+
+std::vector<std::string> VectorStringCache::getStringVector() const
+{
+    std::vector<std::string> a_vec;
+    return a_vec;
 }
 
 //============================= MUTATORS =====================================
