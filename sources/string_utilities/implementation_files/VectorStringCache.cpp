@@ -175,9 +175,13 @@ std::vector<std::string> VectorStringCache::getStringVector() const
 
 VectorStringCache& VectorStringCache::operator= ( const VectorStringCache &other )
 {
+    MEMORY_MANAGEMENT::Array1d<std::size_t> int_array_factory;
+    MEMORY_MANAGEMENT::Array1d<char> char_array_factory;
+
     if (this != &other)
     {
-
+        int_array_factory.destroyArray(numberCharactersPerVectorElement_);
+        char_array_factory.destroyArray(charactersArray_);
     }
     return *this;
 } // assignment operator
