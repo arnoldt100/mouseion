@@ -87,8 +87,8 @@ VectorStringCache::~VectorStringCache()
     MEMORY_MANAGEMENT::Array1d<std::size_t> int_array_factory;
     int_array_factory.destroyArray(this->numberCharactersPerVectorElement_);
 
-    MEMORY_MANAGEMENT::Array1d<char> char_array_factor;
-    char_array_factor.destroyArray(this->charactersArray_);
+    MEMORY_MANAGEMENT::Array1d<char> char_array_factory;
+    char_array_factory.destroyArray(this->charactersArray_);
 
     return;
 }
@@ -99,13 +99,17 @@ VectorStringCache::VectorStringCache( VectorStringCache const & other) :
     caLength_(other.caLength_),
     charactersArray_(nullptr)
 {
+    MEMORY_MANAGEMENT::Array1d<std::size_t> int_array_factory;
+    MEMORY_MANAGEMENT::Array1d<char> char_array_factory;
     if (this != &other)
     {
+        this->numberCharactersPerVectorElement_ = int_array_factory.createArray(this->ncpvLength_);
         for (auto ip = static_cast<std::size_t>(0); ip < this->ncpvLength_; ++ip)
         {
             this->numberCharactersPerVectorElement_[ip] = other.numberCharactersPerVectorElement_[ip];
         }
 
+        this->charactersArray_ = char_array_factory.createArray(this->caLength_);
         for (auto jp=static_cast<std::size_t>(0); jp < this->caLength_; ++jp)
         {
             this->charactersArray_[jp] = other.charactersArray_[jp];
@@ -182,6 +186,7 @@ VectorStringCache& VectorStringCache::operator= ( VectorStringCache && other )
 {
     if (this != &other)
     {
+        this->ncpvLength_ = other.ncpvLength_;
 
     }
     return *this;
