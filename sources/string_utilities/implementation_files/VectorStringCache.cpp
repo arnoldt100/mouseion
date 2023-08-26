@@ -4,6 +4,7 @@
 //--------------------------------------------------------//
 #include <utility>
 #include <algorithm>
+#include <utility>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -177,21 +178,50 @@ VectorStringCache& VectorStringCache::operator= ( const VectorStringCache &other
 {
     MEMORY_MANAGEMENT::Array1d<std::size_t> int_array_factory;
     MEMORY_MANAGEMENT::Array1d<char> char_array_factory;
-
     if (this != &other)
     {
+        // Assign values to  class members elements "this->ncpvLength_" and
+        // "this->numberCharactersPerVectorElement_".
         int_array_factory.destroyArray(numberCharactersPerVectorElement_);
+        this->ncpvLength_ = other.ncpvLength_;
+        this->numberCharactersPerVectorElement_ = int_array_factory.createArray(this->ncpvLength_);
+        for ( std::size_t ip = 0; ip < this->ncpvLength_; ++ip)
+        {
+            this->numberCharactersPerVectorElement_[ip] = other.numberCharactersPerVectorElement_[ip];
+        }
+
+        // Assign values to class members elements "this->caLength_" and
+        // "this->charactersArray_".
         char_array_factory.destroyArray(charactersArray_);
+        this->caLength_ = other.caLength_;
+        this->charactersArray_ = char_array_factory.createArray(this->caLength_);
+        for ( std::size_t jp = 0; jp < this->caLength_; ++jp)
+        {
+            this->charactersArray_[jp] = other.charactersArray_[jp];
+        }
     }
     return *this;
 } // assignment operator
 
 VectorStringCache& VectorStringCache::operator= ( VectorStringCache && other )
 {
+    MEMORY_MANAGEMENT::Array1d<std::size_t> int_array_factory;
+    MEMORY_MANAGEMENT::Array1d<char> char_array_factory;
     if (this != &other)
     {
+        // Move values to  class members elements "this->ncpvLength_" and
+        // "this->numberCharactersPerVectorElement_".
         this->ncpvLength_ = other.ncpvLength_;
+        this->numberCharactersPerVectorElement_ =  std::move(other.numberCharactersPerVectorElement_);
+        int_array_factory.destroyArray(other.numberCharactersPerVectorElement_);
+        other.ncpvLength_ = 0;
 
+        // Move values to class members elements "this->caLength_" and
+        // "this->charactersArray_".
+        this->caLength_ = other.caLength_;
+        this->charactersArray_ = std::move(other.charactersArray_);
+        char_array_factory.destroyArray(other.charactersArray_);
+        other.caLength_ = 0;
     }
     return *this;
 } // assignment-move operator
