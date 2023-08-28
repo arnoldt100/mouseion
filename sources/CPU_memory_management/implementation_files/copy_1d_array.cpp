@@ -14,11 +14,6 @@
 namespace MEMORY_MANAGEMENT
 {
 
-void copy_1d_array ()
-{
-    return ;
-}   // -----  end of function copy_1d_array  -----
-
 
 }; // namespace MEMORY_MANAGEMENT
 

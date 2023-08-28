@@ -24,9 +24,6 @@ void copy_all_array_elements( std::size_t * & dest_numberCharactersPerVectorElem
                               std::size_t const * const & src_numberCharactersPerVectorElement,
                               const std::size_t & ncpvLength)
 {
-    MEMORY_MANAGEMENT::Array1d<std::size_t> int_array_factory;
-    int_array_factory.destroyArray(dest_numberCharactersPerVectorElement);
-    dest_numberCharactersPerVectorElement = int_array_factory.copyArray(src_numberCharactersPerVectorElement,ncpvLength);
 
     return;
 }
