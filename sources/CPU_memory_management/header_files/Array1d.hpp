@@ -1,15 +1,4 @@
-/*
- * =====================================================================================
- *
- *       Filename:  Array1d.hpp
- *
- *    Description:  
- *
- *         Author:  Arnold N. Tharrington (), arnoldt@ornl.gov
- *   Organization:  ORNL-National Center of Computational Sciences
- *
- * =====================================================================================
- */
+//! \file Array1d.hpp
 
 #ifndef  Array1d_INC
 #define  Array1d_INC
@@ -150,6 +139,25 @@ class Array1d
             return a_ptr;
         }/* -----  end of method Array1d<T>::createPointerArrayFromVector  ----- */
 
+        //! Creates a 1d array by copying from 1d array src_array.
+        //!
+        //! \param[in] src_array The array to copy from.
+        //! \param[in] len The length of src_array.
+        //! \return A 1d array that is a copy of dst_array.
+        T* copyArray(T const * const & src_array,
+                     const std::size_t & len) const
+        {
+            T* dst_array = nullptr;
+            if (len > 0)
+            {
+                dst_array = this->createArray(len);
+                for (std::size_t ip = 0; ip < len; ++ip)
+                {
+                    dst_array[ip] = src_array[ip];
+                }
+            }
+            return dst_array;
+        }
         /* ====================  MUTATORS      ======================================= */
 
         /* ====================  OPERATORS     ======================================= */

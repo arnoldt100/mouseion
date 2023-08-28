@@ -47,6 +47,7 @@
          header_files/Array2d.hpp
          header_files/Array1dChar.hpp
          header_files/CantorPairing.h
+         header_files/copy_1d_array.hpp
          header_files/MemoryExceptionDeletingNullPointer.hpp
          header_files/AllocatingArrayDimensionToNonPositiveSize.hpp
          header_files/PointerInitializationTraits.hpp
@@ -66,6 +67,7 @@
          implementation_files/Array2d.cpp
          implementation_files/Array1dChar.cpp
          implementation_files/CantorPairing.cpp
+         implementation_files/copy_1d_array.cpp
          implementation_files/MemoryExceptionDeletingNullPointer.cpp
          implementation_files/AllocatingArrayDimensionToNonPositiveSize.cpp
          implementation_files/PointerInitializationTraits.cpp

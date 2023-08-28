@@ -1,4 +1,3 @@
-
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
@@ -18,6 +17,21 @@
 #include "VectorStringCache.h"
 
 namespace STRING_UTILITIES {
+
+namespace {
+
+void copy_all_array_elements( std::size_t * & dest_numberCharactersPerVectorElement,
+                              std::size_t const * const & src_numberCharactersPerVectorElement,
+                              const std::size_t & ncpvLength)
+{
+    MEMORY_MANAGEMENT::Array1d<std::size_t> int_array_factory;
+    int_array_factory.destroyArray(dest_numberCharactersPerVectorElement);
+    dest_numberCharactersPerVectorElement = int_array_factory.copyArray(src_numberCharactersPerVectorElement,ncpvLength);
+
+    return;
+}
+
+};
 
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PUBLIC ///////////////////////////////////////
@@ -94,34 +108,35 @@ VectorStringCache::~VectorStringCache()
     return;
 }
 
-VectorStringCache::VectorStringCache( VectorStringCache const & other) :
+VectorStringCache::VectorStringCache(VectorStringCache const & other) :
     ncpvLength_(other.ncpvLength_),
-    numberCharactersPerVectorElement_(nullptr),
-    caLength_(other.caLength_),
-    charactersArray_(nullptr)
+    caLength_(other.caLength_)
 {
     MEMORY_MANAGEMENT::Array1d<std::size_t> int_array_factory;
     MEMORY_MANAGEMENT::Array1d<char> char_array_factory;
     if (this != &other)
     {
-        this->numberCharactersPerVectorElement_ = int_array_factory.createArray(this->ncpvLength_);
-        for (auto ip = static_cast<std::size_t>(0); ip < this->ncpvLength_; ++ip)
-        {
-            this->numberCharactersPerVectorElement_[ip] = other.numberCharactersPerVectorElement_[ip];
-        }
+        char_array_factory.destroyArray(charactersArray_);
 
-        this->charactersArray_ = char_array_factory.createArray(this->caLength_);
-        for (auto jp=static_cast<std::size_t>(0); jp < this->caLength_; ++jp)
+        copy_all_array_elements(this->numberCharactersPerVectorElement_,
+            other.numberCharactersPerVectorElement_,
+            other.ncpvLength_);
+
+        if (this->caLength_ > 0)
         {
-            this->charactersArray_[jp] = other.charactersArray_[jp];
+            this->charactersArray_ = char_array_factory.createArray(this->caLength_);
+            for (auto jp=static_cast<std::size_t>(0); jp < this->caLength_; ++jp)
+            {
+                this->charactersArray_[jp] = other.charactersArray_[jp];
+            }
         }
     }
     return;
 }
 
 VectorStringCache::VectorStringCache( VectorStringCache && other) :
-    ncpvLength_(other.ncpvLength_),
-    caLength_(other.caLength_)
+    ncpvLength_(std::move(other.ncpvLength_)),
+    caLength_(std::move(other.caLength_))
 {
     if (this != &other)
     {
@@ -178,26 +193,26 @@ VectorStringCache& VectorStringCache::operator= ( const VectorStringCache &other
 {
     MEMORY_MANAGEMENT::Array1d<std::size_t> int_array_factory;
     MEMORY_MANAGEMENT::Array1d<char> char_array_factory;
+    this->ncpvLength_ = other.ncpvLength_;
+    this->caLength_ = other.caLength_;
     if (this != &other)
     {
-        // Assign values to  class members elements "this->ncpvLength_" and
-        // "this->numberCharactersPerVectorElement_".
-        int_array_factory.destroyArray(numberCharactersPerVectorElement_);
-        this->ncpvLength_ = other.ncpvLength_;
-        this->numberCharactersPerVectorElement_ = int_array_factory.createArray(this->ncpvLength_);
-        for ( std::size_t ip = 0; ip < this->ncpvLength_; ++ip)
-        {
-            this->numberCharactersPerVectorElement_[ip] = other.numberCharactersPerVectorElement_[ip];
-        }
+
+        char_array_factory.destroyArray(charactersArray_);
+
+        copy_all_array_elements(this->numberCharactersPerVectorElement_,
+            other.numberCharactersPerVectorElement_,
+            other.ncpvLength_);
 
         // Assign values to class members elements "this->caLength_" and
         // "this->charactersArray_".
-        char_array_factory.destroyArray(charactersArray_);
-        this->caLength_ = other.caLength_;
-        this->charactersArray_ = char_array_factory.createArray(this->caLength_);
-        for ( std::size_t jp = 0; jp < this->caLength_; ++jp)
+        if (this->caLength_ > 0)
         {
-            this->charactersArray_[jp] = other.charactersArray_[jp];
+            this->charactersArray_ = char_array_factory.createArray(this->caLength_);
+            for ( std::size_t jp = 0; jp < this->caLength_; ++jp)
+            {
+                this->charactersArray_[jp] = other.charactersArray_[jp];
+            }
         }
     }
     return *this;
