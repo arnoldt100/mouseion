@@ -12,23 +12,12 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "copy_1d_array.hpp"
 #include "Array1d.hpp"
 #include "Array1dChar.hpp"
 #include "VectorStringCache.h"
 
 namespace STRING_UTILITIES {
-
-namespace {
-
-void copy_all_array_elements( std::size_t * & dest_numberCharactersPerVectorElement,
-                              std::size_t const * const & src_numberCharactersPerVectorElement,
-                              const std::size_t & ncpvLength)
-{
-
-    return;
-}
-
-};
 
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PUBLIC ///////////////////////////////////////
@@ -106,27 +95,26 @@ VectorStringCache::~VectorStringCache()
 }
 
 VectorStringCache::VectorStringCache(VectorStringCache const & other) :
-    ncpvLength_(other.ncpvLength_),
-    caLength_(other.caLength_)
+    ncpvLength_(0),
+    numberCharactersPerVectorElement_(nullptr),
+    caLength_(0),
+    charactersArray_(nullptr)
 {
-    MEMORY_MANAGEMENT::Array1d<std::size_t> int_array_factory;
-    MEMORY_MANAGEMENT::Array1d<char> char_array_factory;
     if (this != &other)
     {
-        char_array_factory.destroyArray(charactersArray_);
+        // Fill in the array "this->numberCharactersPerVectorElement_".
+        MEMORY_MANAGEMENT::Array1d<std::size_t> int_array_factory;
+        int_array_factory.destroyArray(this->numberCharactersPerVectorElement_);
+        std::tuple<std::size_t const * const, const std::size_t> src_tuple1 = std::make_tuple(other.numberCharactersPerVectorElement_,
+                                                                                              other.ncpvLength_);
+        std::tie(this->numberCharactersPerVectorElement_,this->ncpvLength_) = MEMORY_MANAGEMENT::copy_1d_array(src_tuple1);
 
-        copy_all_array_elements(this->numberCharactersPerVectorElement_,
-            other.numberCharactersPerVectorElement_,
-            other.ncpvLength_);
-
-        if (this->caLength_ > 0)
-        {
-            this->charactersArray_ = char_array_factory.createArray(this->caLength_);
-            for (auto jp=static_cast<std::size_t>(0); jp < this->caLength_; ++jp)
-            {
-                this->charactersArray_[jp] = other.charactersArray_[jp];
-            }
-        }
+        // Fill in the array "this->charactersArray_".
+        MEMORY_MANAGEMENT::Array1d<char> char_array_factory;
+        char_array_factory.destroyArray(this->charactersArray_);
+        std::tuple<char const * const, const std::size_t> src_tuple2 = std::make_tuple(other.charactersArray_,
+                                                                                             other.caLength_);
+        std::tie(this->charactersArray_,this->caLength_) = MEMORY_MANAGEMENT::copy_1d_array(src_tuple2);
     }
     return;
 }
@@ -188,41 +176,33 @@ std::vector<std::string> VectorStringCache::getStringVector() const
 
 VectorStringCache& VectorStringCache::operator= ( const VectorStringCache &other )
 {
-    MEMORY_MANAGEMENT::Array1d<std::size_t> int_array_factory;
-    MEMORY_MANAGEMENT::Array1d<char> char_array_factory;
-    this->ncpvLength_ = other.ncpvLength_;
-    this->caLength_ = other.caLength_;
     if (this != &other)
     {
+        // Fill in the array "this->numberCharactersPerVectorElement_".
+        MEMORY_MANAGEMENT::Array1d<std::size_t> int_array_factory;
+        int_array_factory.destroyArray(this->numberCharactersPerVectorElement_);
+        std::tuple<std::size_t const * const, const std::size_t> src_tuple1 = std::make_tuple(other.numberCharactersPerVectorElement_,
+                                                                                              other.ncpvLength_);
+        std::tie(this->numberCharactersPerVectorElement_,this->ncpvLength_) = MEMORY_MANAGEMENT::copy_1d_array(src_tuple1);
 
-        char_array_factory.destroyArray(charactersArray_);
+        // Fill in the array "this->charactersArray_".
+        MEMORY_MANAGEMENT::Array1d<char> char_array_factory;
+        char_array_factory.destroyArray(this->charactersArray_);
+        std::tuple<char const * const, const std::size_t> src_tuple2 = std::make_tuple(other.charactersArray_,
+                                                                                             other.caLength_);
+        std::tie(this->charactersArray_,this->caLength_) = MEMORY_MANAGEMENT::copy_1d_array(src_tuple2);
 
-        copy_all_array_elements(this->numberCharactersPerVectorElement_,
-            other.numberCharactersPerVectorElement_,
-            other.ncpvLength_);
-
-        // Assign values to class members elements "this->caLength_" and
-        // "this->charactersArray_".
-        if (this->caLength_ > 0)
-        {
-            this->charactersArray_ = char_array_factory.createArray(this->caLength_);
-            for ( std::size_t jp = 0; jp < this->caLength_; ++jp)
-            {
-                this->charactersArray_[jp] = other.charactersArray_[jp];
-            }
-        }
     }
     return *this;
 } // assignment operator
 
 VectorStringCache& VectorStringCache::operator= ( VectorStringCache && other )
 {
-    MEMORY_MANAGEMENT::Array1d<std::size_t> int_array_factory;
-    MEMORY_MANAGEMENT::Array1d<char> char_array_factory;
     if (this != &other)
     {
         // Move values to  class members elements "this->ncpvLength_" and
         // "this->numberCharactersPerVectorElement_".
+        MEMORY_MANAGEMENT::Array1d<std::size_t> int_array_factory;
         this->ncpvLength_ = other.ncpvLength_;
         this->numberCharactersPerVectorElement_ =  std::move(other.numberCharactersPerVectorElement_);
         int_array_factory.destroyArray(other.numberCharactersPerVectorElement_);
@@ -230,6 +210,7 @@ VectorStringCache& VectorStringCache::operator= ( VectorStringCache && other )
 
         // Move values to class members elements "this->caLength_" and
         // "this->charactersArray_".
+        MEMORY_MANAGEMENT::Array1d<char> char_array_factory;
         this->caLength_ = other.caLength_;
         this->charactersArray_ = std::move(other.charactersArray_);
         char_array_factory.destroyArray(other.charactersArray_);
