@@ -17,11 +17,11 @@
 //--------------------------------------------------------//
 #include "Array1d.hpp"
 
-namespace MEMORY_MANAGEMENT
-{
+namespace MEMORY_MANAGEMENT {
 
-namespace
-{
+namespace {
+
+namespace details {
 
 template<typename T>
 bool is_1d_array_properly_formed(std::tuple<T const * const, const std::size_t> & array_in)
@@ -39,9 +39,7 @@ bool is_1d_array_properly_formed(std::tuple<T const * const, const std::size_t> 
     return ret_value;
 }
 
-} // End of anonymous namespace;
-
-//! \brief Copies a tuple contianing a 1d array and its length and returns a tuple copy.
+//! \brief Copies a tuple containing a 1d array and its length and returns a tuple copy.
 //!
 //! The purpose of this function of to copy a 1d array. This function argument is a tuple
 //! of a pointer to a 1d array to be copied and its length. Returned is a copy of the
@@ -56,7 +54,7 @@ std::tuple<T*,std::size_t> copy_1d_array ( std::tuple<T const * const, const std
     // Initialize the return tuple to contain a 1d array pointing to a nullptr.
     std::tuple<T*, std::size_t> ret_tuple{nullptr,0};
 
-    if ( is_1d_array_properly_formed(array_in) ) 
+    if ( details::is_1d_array_properly_formed(array_in) ) 
     {
         MEMORY_MANAGEMENT::Array1d<T> array_factory;
         T const * const array_in_ptr = std::get<0>(array_in); // A pointer to 1d array to copied.
@@ -70,6 +68,32 @@ std::tuple<T*,std::size_t> copy_1d_array ( std::tuple<T const * const, const std
         ret_tuple = std::make_tuple(out_ptr,array_in_length);
     }
     return ret_tuple;
+}
+
+}; // End of namspace details.
+}; // End of anonymous namespace;
+
+//! \brief Copies a 1d array and its length.
+//!
+//! The purpose of this function of to copy a 1d array.
+//!
+//! \param[in] src_ptr The 1d array to be  copied.
+//! \param[in] src_ptr_length The length of src_ptr.
+//! \param[out] dst_ptr The 1d array to copy to.
+//! \param[out] dst_ptr_length The length of dst_ptr.
+template< typename T>
+void copy_1d_array(T const * const  & src_ptr, std::size_t const & src_ptr_length,
+                   T * & dst_ptr, std::size_t & dst_ptr_length)
+{
+    MEMORY_MANAGEMENT::Array1d<T> T_array_factory;
+    T_array_factory.destroyArray(dst_ptr);
+    dst_ptr_length = 0;
+
+    std::tuple<T const * const, const std::size_t> src_tuple = std::make_tuple(src_ptr,src_ptr_length);
+    std::tie(dst_ptr,dst_ptr_length) = details::copy_1d_array(src_tuple); 
+
+    return;
+
 }
 
 }; // namespace MEMORY_MANAGEMENT

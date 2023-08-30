@@ -103,18 +103,12 @@ VectorStringCache::VectorStringCache(VectorStringCache const & other) :
     if (this != &other)
     {
         // Fill in the array "this->numberCharactersPerVectorElement_".
-        MEMORY_MANAGEMENT::Array1d<std::size_t> int_array_factory;
-        int_array_factory.destroyArray(this->numberCharactersPerVectorElement_);
-        std::tuple<std::size_t const * const, const std::size_t> src_tuple1 = std::make_tuple(other.numberCharactersPerVectorElement_,
-                                                                                              other.ncpvLength_);
-        std::tie(this->numberCharactersPerVectorElement_,this->ncpvLength_) = MEMORY_MANAGEMENT::copy_1d_array(src_tuple1);
+        MEMORY_MANAGEMENT::copy_1d_array(other.numberCharactersPerVectorElement_,other.ncpvLength_,
+                                         this->numberCharactersPerVectorElement_,this->ncpvLength_);
 
         // Fill in the array "this->charactersArray_".
-        MEMORY_MANAGEMENT::Array1d<char> char_array_factory;
-        char_array_factory.destroyArray(this->charactersArray_);
-        std::tuple<char const * const, const std::size_t> src_tuple2 = std::make_tuple(other.charactersArray_,
-                                                                                             other.caLength_);
-        std::tie(this->charactersArray_,this->caLength_) = MEMORY_MANAGEMENT::copy_1d_array(src_tuple2);
+        MEMORY_MANAGEMENT::copy_1d_array(other.charactersArray_,other.caLength_,
+                                         this->charactersArray_,this->caLength_);
     }
     return;
 }
@@ -178,19 +172,12 @@ VectorStringCache& VectorStringCache::operator= ( const VectorStringCache &other
 {
     if (this != &other)
     {
-        // Fill in the array "this->numberCharactersPerVectorElement_".
-        MEMORY_MANAGEMENT::Array1d<std::size_t> int_array_factory;
-        int_array_factory.destroyArray(this->numberCharactersPerVectorElement_);
-        std::tuple<std::size_t const * const, const std::size_t> src_tuple1 = std::make_tuple(other.numberCharactersPerVectorElement_,
-                                                                                              other.ncpvLength_);
-        std::tie(this->numberCharactersPerVectorElement_,this->ncpvLength_) = MEMORY_MANAGEMENT::copy_1d_array(src_tuple1);
+        MEMORY_MANAGEMENT::copy_1d_array(other.numberCharactersPerVectorElement_,other.ncpvLength_,
+                                         this->numberCharactersPerVectorElement_,this->ncpvLength_);
 
         // Fill in the array "this->charactersArray_".
-        MEMORY_MANAGEMENT::Array1d<char> char_array_factory;
-        char_array_factory.destroyArray(this->charactersArray_);
-        std::tuple<char const * const, const std::size_t> src_tuple2 = std::make_tuple(other.charactersArray_,
-                                                                                             other.caLength_);
-        std::tie(this->charactersArray_,this->caLength_) = MEMORY_MANAGEMENT::copy_1d_array(src_tuple2);
+        MEMORY_MANAGEMENT::copy_1d_array(other.charactersArray_,other.caLength_,
+                                         this->charactersArray_,this->caLength_);
 
     }
     return *this;
