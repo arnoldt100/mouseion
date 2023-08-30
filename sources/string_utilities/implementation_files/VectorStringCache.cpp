@@ -136,10 +136,9 @@ std::size_t VectorStringCache::getCharacterArrayLength() const
     return this->caLength_;
 }
 
-std::size_t* VectorStringCache::getArrayOfNumberCharactersPerVector() const
+std::unique_ptr<std::size_t[]> VectorStringCache::getArrayOfNumberCharactersPerVector() const
 {
-    MEMORY_MANAGEMENT::Array1d<std::size_t> int_array_factory;
-    std::size_t* out_ptr = int_array_factory.createArray(this->ncpvLength_);
+    std::unique_ptr<std::size_t[]> out_ptr = std::make_unique<std::size_t[]>(this->ncpvLength_);
     for (auto ip=static_cast<std::size_t>(0); ip <this->ncpvLength_; ++ip )
     {
         out_ptr[ip] = this->numberCharactersPerVectorElement_[ip];
@@ -147,10 +146,9 @@ std::size_t* VectorStringCache::getArrayOfNumberCharactersPerVector() const
     return out_ptr;
 }
 
-char* VectorStringCache::getArrayOfCharacters() const
+std::unique_ptr<char[]> VectorStringCache::getArrayOfCharacters() const
 {
-    MEMORY_MANAGEMENT::Array1d<char> char_array_factory;
-    char* out_ptr = char_array_factory.createArray(this->caLength_);
+    std::unique_ptr<char[]> out_ptr = std::make_unique<char[]>(this->caLength_);
     for (auto ip=static_cast<std::size_t>(0); ip <this->caLength_; ++ip )
     {
         out_ptr[ip] = this->charactersArray_[ip];

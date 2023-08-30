@@ -8,6 +8,8 @@
 #include <vector>
 #include <string>
 #include <cstddef>
+#include <memory>
+
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -46,9 +48,9 @@ class VectorStringCache
         std::size_t getCharacterArrayLength() const;
 
         //! \brief Returns the array of the number characters per vector element.
-        std::size_t* getArrayOfNumberCharactersPerVector() const;
+        std::unique_ptr<std::size_t[]> getArrayOfNumberCharactersPerVector() const;
 
-        char* getArrayOfCharacters() const;
+        std::unique_ptr<char[]> getArrayOfCharacters() const;
 
         std::vector<std::string> getStringVector() const;
 
