@@ -85,9 +85,11 @@ template< typename T>
 void copy_1d_array(T const * const  & src_ptr, std::size_t const & src_ptr_length,
                    T * & dst_ptr, std::size_t & dst_ptr_length)
 {
-    MEMORY_MANAGEMENT::Array1d<T> T_array_factory;
-    T_array_factory.destroyArray(dst_ptr);
-    dst_ptr_length = 0;
+    if (dst_ptr != nullptr )
+    {
+        MEMORY_MANAGEMENT::Array1d<T> T_array_factory;
+        T_array_factory.destroyArray(dst_ptr);
+    }
 
     std::tuple<T const * const, const std::size_t> src_tuple = std::make_tuple(src_ptr,src_ptr_length);
     std::tie(dst_ptr,dst_ptr_length) = details::copy_1d_array(src_tuple); 
