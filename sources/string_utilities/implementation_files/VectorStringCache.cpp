@@ -3,7 +3,6 @@
 //--------------------------------------------------------//
 #include <utility>
 #include <algorithm>
-#include <utility>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -85,11 +84,27 @@ VectorStringCache::VectorStringCache(const std::vector<std::string> & str_vec) :
 
 VectorStringCache::~VectorStringCache()
 {
-    MEMORY_MANAGEMENT::Array1d<std::size_t> int_array_factory;
-    int_array_factory.destroyArray(this->numberCharactersPerVectorElement_);
+    if (numberCharactersPerVectorElement_ != nullptr )
+    {
+        MEMORY_MANAGEMENT::Array1d<std::size_t> int_array_factory;
+        std::cout << "Freeing ncpv memory at " << this->numberCharactersPerVectorElement_ << std::endl; 
+        int_array_factory.destroyArray(this->numberCharactersPerVectorElement_);
+        this->ncpvLength_ = 0;
+        std::cout << "Freed ncpv memory at " << this->numberCharactersPerVectorElement_ << std::endl; 
+        std::cout << std::endl; 
+        
+    }
 
-    MEMORY_MANAGEMENT::Array1d<char> char_array_factory;
-    char_array_factory.destroyArray(this->charactersArray_);
+    if (this->charactersArray_ != nullptr)
+    {
+        MEMORY_MANAGEMENT::Array1d<char> char_array_factory;
+        std::cout << "Freeing ca memory at " << this->charactersArray_ << std::endl; 
+        char_array_factory.destroyArray(this->charactersArray_);
+        this->caLength_ = 0;
+        // std::cout << "Freed ca memory at " << this->charactersArray_ << std::endl; 
+        std::cout << "Freed ca memory " << std::endl; 
+        std::cout << std::endl; 
+    }
 
     return;
 }
