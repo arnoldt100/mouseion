@@ -17,6 +17,7 @@
 // System includes.
 #include <new>
 #include <iostream>
+#include "MemoryExceptionDeletingNullPointer.hpp"
 
 namespace MEMORY_MANAGEMENT
 {
@@ -47,7 +48,9 @@ namespace MEMORY_MANAGEMENT
                  * Return type: A pointer T*
                  *--------------------------------------------------------------------------------------
                  */
-                T* createPointer();
+                T* createPointer() const;
+
+                void destroyPointer(T* & a_ptr) const;
 
                 /* ====================  MUTATORS      ======================================= */
 
@@ -97,7 +100,7 @@ namespace MEMORY_MANAGEMENT
      *--------------------------------------------------------------------------------------
      */
     template < typename T >
-    T* Pointer<T>::createPointer()
+    T* Pointer<T>::createPointer() const
     {
         T* aPointer_ptr = nullptr;
         try
@@ -115,6 +118,25 @@ namespace MEMORY_MANAGEMENT
         return aPointer_ptr;
     } /* -----  end of method Pointer<T>::createPointer  ----- */
 
+    template <typename T>
+    void Pointer<T>::destroyPointer(T* & a_ptr) const
+    {
+        try
+        {
+            if ( a_ptr == nullptr )
+            {
+                std::string error_message("Error in Pointer<T>::destroyPointer.");
+                throw MEMORY_MANAGEMENT::MemoryExceptionDeletingNullPointer<T>(error_message);
+            }
+            delete a_ptr;
+            a_ptr = nullptr;
+        }
+        catch ( MEMORY_MANAGEMENT::MemoryExceptionDeletingNullPointer<T> const & ExceptObj ) 
+        {
+            std::cout << ExceptObj.what() << std::endl;
+        }
+        return;
+    }
     //============================= MUTATORS =====================================
 
     //============================= OPERATORS ====================================

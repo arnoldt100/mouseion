@@ -91,12 +91,12 @@ class Array1d
                     throw MEMORY_MANAGEMENT::MemoryExceptionDeletingNullPointer<T>(error_message);
                 }
                 delete [] a_ptr;
+                a_ptr=nullptr;
             }
             catch ( MEMORY_MANAGEMENT::MemoryExceptionDeletingNullPointer<T> const & ExceptObj ) 
             {
                 std::cout << ExceptObj.what() << std::endl;
             }
-            a_ptr=nullptr;
             return;
         } /* -----  end of method destroyArray  ----- */
 
