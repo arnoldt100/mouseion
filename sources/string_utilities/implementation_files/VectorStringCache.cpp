@@ -120,7 +120,11 @@ VectorStringCache::VectorStringCache( VectorStringCache && other) :
     if (this != &other)
     {
         this->numberCharactersPerVectorElement_ = std::move(other.numberCharactersPerVectorElement_);
+        other.numberCharactersPerVectorElement_ = nullptr;
+        other.ncpvLength_ = 0;
         this->charactersArray_ = std::move(other.charactersArray_);
+        other.charactersArray_ = nullptr;
+        other.caLength_ = 0;
     }
     return;
 }		// -----  end of method VectorStringCache::VectorStringCache  -----
