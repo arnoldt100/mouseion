@@ -78,6 +78,13 @@ std::map<std::string,std::string>
 uncache_stdmap(const std::tuple<STRING_UTILITIES::VectorStringCache,STRING_UTILITIES::VectorStringCache> & a_tuple)
 {
     std::map<std::string,std::string> a_map;
+    std::vector<std::string> key_str_vector = std::get<0>(a_tuple).getStringVector();
+    std::vector<std::string> value_str_vector = std::get<1>(a_tuple).getStringVector();
+    for (auto ip = static_cast<std::size_t>(0); ip < key_str_vector.size(); ++ip)
+    {
+        a_map[key_str_vector[ip]] = value_str_vector[ip]; 
+
+    }
     return a_map;
 }   // -----  end of function uncache_stdmap  -----
 

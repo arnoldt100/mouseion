@@ -179,16 +179,28 @@ std::unique_ptr<char[]> VectorStringCache::getArrayOfCharacters() const
     return out_ptr;
 }
 
-std::vector<std::string> VectorStringCache::getKeyStringVector() const
+std::vector<std::string> VectorStringCache::getStringVector() const
 {
-    std::vector<std::string> a_vec;
-    return a_vec;
-}
+    std::vector<std::string> ret_value;
+    char const * src = this->charactersArray_.get();
+    for (auto ip = static_cast<std::size_t>(0); ip < this->ncpvLength_; ++ip)
+    {
+        // Get the number of characters in the next word.
+        const std::size_t nm_chars = this->numberCharactersPerVectorElement_[ip];
 
-std::vector<std::string> VectorStringCache::getValueStringVector() const
-{
-    std::vector<std::string> a_vec;
-    return a_vec;
+        // Increment the pointer src to the next starting position
+        // for the next set of characters and create a string with these
+        // characters.
+        if (ip > 0)
+        {
+            src += nm_chars;
+        }
+        const std::string tmp_string(src,nm_chars);
+
+        // Add the newly created string to  
+        ret_value.push_back(tmp_string);
+    }
+    return ret_value;
 }
 
 void VectorStringCache::printToStdOut() const

@@ -57,10 +57,7 @@ class VectorStringCache
         std::unique_ptr<char[]> getArrayOfCharacters() const;
 
         //! \brief Returns a string vector of the keys.
-        std::vector<std::string> getKeyStringVector() const;
-
-        //! \brief Returns a string vector of the values.
-        std::vector<std::string> getValueStringVector() const;
+        std::vector<std::string> getStringVector() const;
 
         //! \brief Prints contents to  stndard out.
         void printToStdOut() const;
