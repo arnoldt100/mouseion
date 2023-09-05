@@ -31,10 +31,6 @@ VectorStringCache::VectorStringCache() :
     caLength_(0),
     charactersArray_(nullptr)
 {
-    std::cout << "=========" << std::endl;
-    std::cout << "Default VectorStringCache cstr called, address is " << this << std::endl;
-    std::cout << "=========" << std::endl;
-    std::cout << std::endl;
     return;
 }
 
@@ -44,11 +40,6 @@ VectorStringCache::VectorStringCache(const std::vector<std::string> & str_vec) :
     caLength_(0),
     charactersArray_(nullptr)
 {
-    std::cout << "=========" << std::endl;
-    std::cout << "Standard VectorStringCache cstr called, address is " << this << std::endl;
-    std::cout << "=========" << std::endl;
-    std::cout << std::endl;
-
     // ---------------------------------------------------
     // Compute the total number of characters in all elements of the
     // string vector.
@@ -109,27 +100,15 @@ VectorStringCache::VectorStringCache(const std::size_t ncpv_length,
 
 VectorStringCache::~VectorStringCache()
 {
-    std::cout << "=========" << std::endl;
-    std::cout << "Standard VectorStringCache dstr called, address is " << this << std::endl;
-    std::cout << std::endl;
-
     if (numberCharactersPerVectorElement_ != nullptr)
     {
-        std::cout << "ncpv length is " << this->ncpvLength_ << std::endl;
         this->ncpvLength_ = 0;
-        std::cout << std::endl; 
     }
 
     if (this->charactersArray_ != nullptr)
     {
-        std::cout << "ca length is " << this->caLength_ << std::endl;
         this->caLength_ = 0;
-        std::cout << "Freed ca memory " << std::endl; 
-        std::cout << std::endl; 
     }
-    std::cout << "=========" << std::endl;
-    std::cout << std::endl;
-
     return;
 }
 
@@ -139,9 +118,6 @@ VectorStringCache::VectorStringCache(VectorStringCache const & other) :
     caLength_(0),
     charactersArray_(nullptr)
 {
-    std::cout << "=========" << std::endl;
-    std::cout << "Default VectorStringCache copy cstr called, address is " << this << std::endl;
-    std::cout << "other address is " << &other << std::endl;
     if (this != &other)
     {
         // Fill in the array "this->numberCharactersPerVectorElement_".
@@ -153,8 +129,6 @@ VectorStringCache::VectorStringCache(VectorStringCache const & other) :
         std::tie(this->charactersArray_,this->caLength_) = 
             MEMORY_MANAGEMENT::copy_1d_array(other.charactersArray_,other.caLength_);
     }
-    std::cout << "=========" << std::endl;
-    std::cout << std::endl;
     return;
 }
 
@@ -162,10 +136,6 @@ VectorStringCache::VectorStringCache( VectorStringCache && other) :
     ncpvLength_(std::move(other.ncpvLength_)),
     caLength_(std::move(other.caLength_))
 {
-    std::cout << "=========" << std::endl;
-    std::cout << "Default VectorStringCache move-copy cstr called, address is " << this << std::endl;
-    std::cout << "other address is " << &other << std::endl;
-    std::cout << std::endl;
     if (this != &other)
     {
         this->numberCharactersPerVectorElement_ = std::move(other.numberCharactersPerVectorElement_);
@@ -175,8 +145,6 @@ VectorStringCache::VectorStringCache( VectorStringCache && other) :
         other.charactersArray_ = nullptr;
         other.caLength_ = 0;
     }
-    std::cout << "=========" << std::endl;
-    std::cout << std::endl;
     return;
 }		// -----  end of method VectorStringCache::VectorStringCache  -----
 
@@ -256,10 +224,6 @@ void VectorStringCache::printToStdOut() const
 
 VectorStringCache& VectorStringCache::operator= ( const VectorStringCache &other )
 {
-    std::cout << "=========" << std::endl;
-    std::cout << "Default VectorStringCache move-copy cstr called, address is " << this << std::endl;
-    std::cout << "Default VectorStringCache assigment operator= called, address is " << this << std::endl;
-    std::cout << "other address is " << &other << std::endl;
     if (this != &other)
     {
         std::tie(this->numberCharactersPerVectorElement_,this->ncpvLength_) = 
@@ -271,16 +235,11 @@ VectorStringCache& VectorStringCache::operator= ( const VectorStringCache &other
             MEMORY_MANAGEMENT::copy_1d_array(other.charactersArray_,other.caLength_);
 
     }
-    std::cout << "=========" << std::endl;
-    std::cout << std::endl;
     return *this;
 } // assignment operator
 
 VectorStringCache& VectorStringCache::operator= ( VectorStringCache && other )
 {
-    std::cout << "=========" << std::endl;
-    std::cout << "Default VectorStringCache move-assigment operator= called, address is " << this << std::endl;
-    std::cout << "other address is " << &other << std::endl;
     if (this != &other)
     {
         // Move values to  class members elements "this->ncpvLength_" and
@@ -297,8 +256,6 @@ VectorStringCache& VectorStringCache::operator= ( VectorStringCache && other )
         this->charactersArray_ = std::move(other.charactersArray_);
         other.caLength_ = 0;
     }
-    std::cout << "=========" << std::endl;
-    std::cout << std::endl;
     return *this;
 } // assignment-move operator
 
