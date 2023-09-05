@@ -95,7 +95,25 @@ void copy_1d_array(T const * const  & src_ptr, std::size_t const & src_ptr_lengt
     std::tie(dst_ptr,dst_ptr_length) = details::copy_1d_array(src_tuple); 
 
     return;
+}
 
+//! \brief Copies a 1d array and its length.
+//!
+//! The purpose of this function of to copy a 1d array.
+//!
+//! \param[in] src_ptr The 1d array to be  copied.
+//! \param[in] src_ptr_length The length of src_ptr.
+//! \param[out] dst_ptr The 1d array to copy to.
+//! \param[out] dst_ptr_length The length of dst_ptr.
+template< typename T>
+std::tuple<std::unique_ptr<T[]>,std::size_t> copy_1d_array(std::unique_ptr<T[]> const & src_ptr, std::size_t const & src_ptr_length)
+{
+    std::tuple<std::unique_ptr<T[]>,std::size_t> ret_value{new T[src_ptr_length],src_ptr_length};
+    for (auto ip = static_cast<std::size_t>(0); ip < src_ptr_length; ++ip)
+    {
+      std::get<0>(ret_value)[ip] = src_ptr[ip]; 
+    }
+    return  std::move(ret_value);
 }
 
 }; // namespace MEMORY_MANAGEMENT

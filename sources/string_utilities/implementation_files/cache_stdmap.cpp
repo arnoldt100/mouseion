@@ -16,31 +16,6 @@
 namespace STRING_UTILITIES
 {
 
-namespace
-{
-    std::size_t count_total_chars_in_string_vector(const std::vector<std::string> & vec)
-    {
-        std::size_t total_nm_chars=0;
-        for (auto itr : vec)
-        {
-            total_nm_chars += itr.size();
-        }
-        return total_nm_chars;
-    }
-
-    std::unique_ptr<std::size_t[]> count_chars_in_each_string_vector_element(const std::vector<std::string> & vec)
-    {
-        std::unique_ptr<std::size_t[]> nm_chars_ptr = std::make_unique<std::size_t[]>(vec.size());
-        std::size_t index = 0;
-        for (auto itr : vec)
-        {
-            nm_chars_ptr[index] = itr.size();
-            ++index;
-        }
-        return nm_chars_ptr; 
-    }
-}
-
 //! \brief Takes an object of type std::map<std::string,std::string> and caches
 //! it to a VectorStringCache.
 //!
@@ -87,16 +62,24 @@ cache_stdmap (const std::map<std::string,std::string> & a_map)
     // ---------------------------------------------------
     // Return the tuple of key_cache and value_cache.
     // ---------------------------------------------------
-    return std::make_tuple(key_cache,value_cache);
+    return std::move(std::make_tuple(key_cache,value_cache));
 
-}   // -----  end of function convert_string_vector_to_char_array  -----
+}   // -----  end of function cache_stdmap  -----
 
+//! \brief Takes an object of type tuple::map<VectorStringCache,VectorStringCache> and uncaches
+//! it to a std::map<std::string,std::string>
+//!
+//! This function "uncache_stdmap" is used to unpack tuple::map<VectorStringCache,VectorStringCache>
+//! back to std::map<std::string,std::string>. The first tuple element is the VectorStringCache of the
+//! the keys which corresponds the the first element of std::map<std::string,std::string>. 
+//! The second tuple element is the VectorStringCache of the
+//! the values which corresponds the the second element of std::map<std::string,std::string>. 
 std::map<std::string,std::string> 
 uncache_stdmap(const std::tuple<STRING_UTILITIES::VectorStringCache,STRING_UTILITIES::VectorStringCache> & a_tuple)
 {
     std::map<std::string,std::string> a_map;
     return a_map;
-}
+}   // -----  end of function uncache_stdmap  -----
 
 
 }; // namespace STRING_UTILITIES

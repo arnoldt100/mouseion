@@ -10,7 +10,6 @@
 #include <cstddef>
 #include <memory>
 
-
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
 //--------------------------------------------------------//
@@ -30,7 +29,12 @@ class VectorStringCache
 
         VectorStringCache ();   // constructor
 
-        VectorStringCache(const std::vector<std::string> & str_vec); 
+        explicit VectorStringCache(const std::vector<std::string> & str_vec); 
+
+        VectorStringCache(std::size_t ncpv_length,
+                          std::unique_ptr<std::size_t[]> ncpv_array,
+                          std::size_t ca_length,
+                          std::unique_ptr<char[]> ca_array);
 
         VectorStringCache (const VectorStringCache & other);   // copy constructor
 
@@ -52,7 +56,14 @@ class VectorStringCache
 
         std::unique_ptr<char[]> getArrayOfCharacters() const;
 
-        std::vector<std::string> getStringVector() const;
+        //! \brief Returns a string vector of the keys.
+        std::vector<std::string> getKeyStringVector() const;
+
+        //! \brief Returns a string vector of the values.
+        std::vector<std::string> getValueStringVector() const;
+
+        //! \brief Prints contents to  stndard out.
+        void printToStdOut() const;
 
         // ====================  MUTATORS      =======================================
 
@@ -72,10 +83,10 @@ class VectorStringCache
 
         // ====================  DATA MEMBERS  =======================================
         std::size_t ncpvLength_;
-        std::size_t * numberCharactersPerVectorElement_;
+        std::unique_ptr<std::size_t[]> numberCharactersPerVectorElement_;
 
         std::size_t caLength_; 
-        char* charactersArray_;
+        std::unique_ptr<char[]> charactersArray_;
 
 }; // -----  end of class VectorStringCache  -----
 
