@@ -1,15 +1,38 @@
+//--------------------------------------------------------//
+//-------------------- System includes -------------------//
+//--------------------------------------------------------//
+#include <string>
+
+//--------------------------------------------------------//
+//-------------------- External Library Files ------------//
+//--------------------------------------------------------//
+
+//--------------------------------------------------------//
+//--------------------- Package includes -----------------//
+//--------------------------------------------------------//
 #include "test_string_utilities.h"
 
 BOOST_AUTO_TEST_SUITE( String_Utilities_Unit_Tests )
 
-BOOST_FIXTURE_TEST_CASE( test_stud_1, StringUtilitiesFixture )
+BOOST_AUTO_TEST_CASE( caching_std_map)
 {
-    BOOST_TEST( 2 < 1, "The test test_stud_1 is incorrect.");
+    bool caching_status;
+    std::string message;
+
+    caching_status = false;
+    message += "Stud message for caching_std_map.";
+    BOOST_TEST(caching_status, message);
 }
 
-BOOST_FIXTURE_TEST_CASE( test_stud_2, StringUtilitiesFixture )
+BOOST_AUTO_TEST_CASE( uncaching_std_map)
 {
-    BOOST_TEST(2 < 1, "The test test_stud_2 is incorrect.");
+    bool uncaching_status;
+    std::string message;
+
+    uncaching_status = false;
+    message += "Stud message for uncaching_std_map.";
+    BOOST_TEST(uncaching_status, message);
+
 }
 
 BOOST_AUTO_TEST_SUITE_END()
