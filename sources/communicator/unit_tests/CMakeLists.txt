@@ -39,7 +39,7 @@
     #                                                    -
     #-----------------------------------------------------
     set (communicator_unit_tests_header_files
-         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/test_mpi_communicator.h )
+         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/test_communicator.h )
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -49,7 +49,7 @@
     #                                                    -
     #-----------------------------------------------------
     set (communicator_unit_tests_implementation_files
-         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/test_mpi_communicator.cpp )
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/test_communicator.cpp )
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
