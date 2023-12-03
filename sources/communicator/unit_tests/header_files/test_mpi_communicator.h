@@ -1,49 +1,19 @@
-#ifndef  test_mpi_communicator_INC
-#define  test_mpi_communicator_INC
+#ifndef test_communicator_INC
+#define test_communicator_INC
 
+//--------------------------------------------------------//
+//-------------------- System includes -------------------//
+//--------------------------------------------------------//
 
-#define BOOST_TEST_MODULE MPI Communicator Tests
-
+//--------------------------------------------------------//
+//-------------------- External Library Files ------------//
+//--------------------------------------------------------//
 #include <boost/test/included/unit_test.hpp>
 
-#include <iostream>
-
-#include "MPIEnvironment.h"
-#include "MPICommunicatorFactory.h"
+//--------------------------------------------------------//
+//--------------------- Package includes -----------------//
+//--------------------------------------------------------//
 
 namespace utf = boost::unit_test;
 
-class MPICommFixture 
-{
-    public:
-        MPICommFixture() :
-            argc(utf::framework::master_test_suite().argc),
-            argv(utf::framework::master_test_suite().argv),
-            aMPIEnvironment(std::make_unique<COMMUNICATOR::MPIEnvironment>())
-        {
-            return; 
-        }
-
-        ~MPICommFixture()
-        {
-            return; 
-        }
-
-        void setup()
-        {
-            aMPIEnvironment->enableEnvironment();
-            std::cout << "setup of MPICommFixture." << std::endl;
-        }
-
-        void teardown()
-        {
-            aMPIEnvironment->disableEnvironment();
-            std::cout << "teardown of MPICommFixture." << std::endl;
-        }
-
-        int argc;
-        char** argv;
-        std::unique_ptr<COMMUNICATOR::MPIEnvironment> aMPIEnvironment;
-};
-
-#endif   // ----- #ifndef test_mpi_communicator_INC  ----- 
+#endif   // ----- #ifndef test_communicator_INC  ----- 

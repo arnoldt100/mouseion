@@ -1,30 +1,23 @@
-#include "test_mpi_communicator.h"
-BOOST_TEST_GLOBAL_FIXTURE( MPICommFixture );
+//--------------------------------------------------------//
+//-------------------- System includes -------------------//
+//--------------------------------------------------------//
+#include <string>
 
-BOOST_AUTO_TEST_SUITE( Test_Suite_MPI_COMMUNICATOR )
+//--------------------------------------------------------//
+//-------------------- External Library Files ------------//
+//--------------------------------------------------------//
 
-BOOST_AUTO_TEST_CASE( test_creation_and_freeing_mpi_communicator )
+//--------------------------------------------------------//
+//--------------------- Package includes -----------------//
+//--------------------------------------------------------//
+#include "test_communicator.h"
+
+BOOST_AUTO_TEST_SUITE( Test_Suite_Communicator )
+
+BOOST_AUTO_TEST_CASE( communicator_test )
 {
-    // Initialize the communicator via its mpi communicator
-    // factory.
-    ANANSI::MPICommunicatorFactory a_communicator_factory;
-    std::unique_ptr<COMMUNICATOR::Communicator> aMPICommunicator =  a_communicator_factory.createWorldCommunicator();
-    
-    // Now explicitly free the resources used by the communicator.
-    aMPICommunicator->freeCommunicator();
+    std::string message("Stud test for target 'communicator' which intentionally fails as the default behavior.");
+    bool status=false;
+    BOOST_TEST(status, message.c_str());
 }
-
-BOOST_AUTO_TEST_CASE( test_gather_string )
-{
-    // Initialize the communicator via its mpi communicator
-    // factory.
-    ANANSI::MPICommunicatorFactory a_communicator_factory;
-    std::unique_ptr<COMMUNICATOR::Communicator> aMPICommunicator;
-    aMPICommunicator = a_communicator_factory.createWorldCommunicator();
-
-
-    aMPICommunicator->freeCommunicator();
-}
-
 BOOST_AUTO_TEST_SUITE_END()
-
