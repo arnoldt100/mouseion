@@ -33,7 +33,7 @@
     
     #-----------------------------------------------------
     # Here we define the variable                        -
-    # communicator_unit_tests_header_files.          -
+    # communicator_unit_tests_header_files.              -
     # A list of header files is stored in                -
     # this variable.                                     -
     #                                                    -
@@ -43,7 +43,7 @@
 
     #-----------------------------------------------------
     # Here we define the variable                        -
-    # communicator_unit_tests_implementation_files.  -
+    # communicator_unit_tests_implementation_files.      -
     # A list of implementation files is stored in this   -
     # variable.                                          -
     #                                                    -
@@ -74,7 +74,7 @@
     #-----------------------------------------------------
     target_sources(${target}
         PRIVATE ${communicator_unit_tests_header_files}
-                ${communicator_unit_tests_implementation_files} )
+        PRIVATE ${communicator_unit_tests_implementation_files} )
 
     #-----------------------------------------------------
     # The libraries to use when linking to target.       -
@@ -82,7 +82,7 @@
     #-----------------------------------------------------
     target_link_libraries( ${target}
                            PUBLIC communicator
-                           ${Boost_LIBRARIES} )
+                           PUBLIC ${Boost_LIBRARIES} )
 
     #-----------------------------------------------------
     # Set the directories to look for  header_files.     -
@@ -96,7 +96,7 @@
 
     #-----------------------------------------------------
     # Here we set the properties on target               -
-    # communicator_unit_tests.                       -
+    # communicator_unit_tests.                           -
     #                                                    -
     #-----------------------------------------------------
     set_target_properties( ${target} PROPERTIES
