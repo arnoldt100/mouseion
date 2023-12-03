@@ -20,4 +20,6 @@ BOOST_AUTO_TEST_CASE( communicator_test )
     bool status=false;
     BOOST_TEST(status, message.c_str());
 }
+
+
 BOOST_AUTO_TEST_SUITE_END()

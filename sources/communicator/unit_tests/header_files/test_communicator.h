@@ -1,6 +1,8 @@
 #ifndef test_communicator_INC
 #define test_communicator_INC
 
+#define BOOST_TEST_MODULE Communicator
+
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
