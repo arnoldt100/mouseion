@@ -22,13 +22,11 @@ namespace ANANSI {
 
 FixtureCachingStdMapStringString::FixtureCachingStdMapStringString()
 {
-	// TODO Auto-generated constructor stub
     return;
 }
 
 FixtureCachingStdMapStringString::FixtureCachingStdMapStringString( FixtureCachingStdMapStringString const & other)
 {
-	// TODO Auto-generated constructor stub
     if (this != &other)
     {
         
@@ -38,7 +36,6 @@ FixtureCachingStdMapStringString::FixtureCachingStdMapStringString( FixtureCachi
 
 FixtureCachingStdMapStringString::FixtureCachingStdMapStringString( FixtureCachingStdMapStringString && other)
 {
-	// TODO Auto-generated constructor stub
     if (this != &other)
     {
     }
@@ -48,7 +45,6 @@ FixtureCachingStdMapStringString::FixtureCachingStdMapStringString( FixtureCachi
 
 FixtureCachingStdMapStringString::~FixtureCachingStdMapStringString()
 {
-	// TODO Auto-generated destructor stub
     return;
 }
 

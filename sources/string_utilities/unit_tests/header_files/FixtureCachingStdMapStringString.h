@@ -17,6 +17,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "VectorStringCache.h"
 
 namespace ANANSI
 {
@@ -32,7 +33,7 @@ class FixtureCachingStdMapStringString
 
         FixtureCachingStdMapStringString (FixtureCachingStdMapStringString && other);   // copy-move constructor
 
-        virtual ~FixtureCachingStdMapStringString ();  // destructor
+        ~FixtureCachingStdMapStringString ();  // destructor
 
         // ====================  ACCESSORS     =======================================
         FixtureCachingStdMapStringString * clone () const;

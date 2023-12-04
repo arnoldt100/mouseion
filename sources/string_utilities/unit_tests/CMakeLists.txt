@@ -83,7 +83,8 @@
 #                                                    -
 #-----------------------------------------------------
     target_sources(${target}
-        PRIVATE ${string_utilities_unit_tests_header_files} ${string_utilities_unit_tests_implementation_files} )
+        PRIVATE ${string_utilities_unit_tests_header_files} 
+        PRIVATE ${string_utilities_unit_tests_implementation_files} )
 
     #-----------------------------------------------------
     # Set the directories to look for  header_files.     -
@@ -91,7 +92,7 @@
     #-----------------------------------------------------
     get_target_property( su_include_dir string_utilities string_utilities_include )
     target_include_directories(${target} 
-                               PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/header_files
+                               PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files
                                PRIVATE ${su_include_dir}
                                PRIVATE ${Boost_INCLUDE_DIR} )
 
@@ -102,7 +103,7 @@
     #                                                    -
     #-----------------------------------------------------
     target_link_libraries(${target}
-                          PRIVATE string_utilities ${Boost_LIBRARIES} )
+                          PUBLIC string_utilities ${Boost_LIBRARIES} )
 
     #-----------------------------------------------------
     # Here we set the properties on target               -
