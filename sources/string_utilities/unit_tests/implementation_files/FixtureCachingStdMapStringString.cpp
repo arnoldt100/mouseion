@@ -1,7 +1,7 @@
-
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <utility>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -20,21 +20,27 @@ namespace ANANSI {
 
 //============================= LIFECYCLE ====================================
 
-FixtureCachingStdMapStringString::FixtureCachingStdMapStringString()
+FixtureCachingStdMapStringString::FixtureCachingStdMapStringString() :
+    experimentalVecStringCache{},
+    controlVecStringCache{}
 {
     return;
 }
 
-FixtureCachingStdMapStringString::FixtureCachingStdMapStringString( FixtureCachingStdMapStringString const & other)
+FixtureCachingStdMapStringString::FixtureCachingStdMapStringString( FixtureCachingStdMapStringString const & other) :
+    experimentalVecStringCache(other.experimentalVecStringCache),
+    controlVecStringCache(other.controlVecStringCache)
 {
     if (this != &other)
     {
-        
     }
     return;
 }
 
-FixtureCachingStdMapStringString::FixtureCachingStdMapStringString( FixtureCachingStdMapStringString && other)
+FixtureCachingStdMapStringString::FixtureCachingStdMapStringString( FixtureCachingStdMapStringString && other) :
+    experimentalVecStringCache(std::move(other.experimentalVecStringCache)),
+    controlVecStringCache(std::move(other.controlVecStringCache))
+
 {
     if (this != &other)
     {
@@ -63,6 +69,8 @@ FixtureCachingStdMapStringString& FixtureCachingStdMapStringString::operator= ( 
 {
     if (this != &other)
     {
+        this->experimentalVecStringCache = other.experimentalVecStringCache;
+        this->controlVecStringCache = other.controlVecStringCache;
     }
     return *this;
 } // assignment operator
@@ -71,7 +79,8 @@ FixtureCachingStdMapStringString& FixtureCachingStdMapStringString::operator= ( 
 {
     if (this != &other)
     {
-
+        this->experimentalVecStringCache = std::move(other.experimentalVecStringCache);
+        this->controlVecStringCache = std::move(other.controlVecStringCache);
     }
     return *this;
 } // assignment-move operator

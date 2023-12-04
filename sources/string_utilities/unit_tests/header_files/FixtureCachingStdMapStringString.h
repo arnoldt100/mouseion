@@ -9,6 +9,8 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <vector>
+#include <string>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -46,6 +48,10 @@ class FixtureCachingStdMapStringString
 
         FixtureCachingStdMapStringString& operator= ( FixtureCachingStdMapStringString && other ); // assignment-move operator
 
+        // ====================  DATA MEMBERS  =======================================
+        STRING_UTILITIES::VectorStringCache experimentalVecStringCache;
+        STRING_UTILITIES::VectorStringCache controlVecStringCache;
+
     protected:
         // ====================  METHODS       =======================================
 
@@ -55,6 +61,8 @@ class FixtureCachingStdMapStringString
         // ====================  METHODS       =======================================
 
         // ====================  DATA MEMBERS  =======================================
+
+        std::vector<std::string> vecString_;
 
 }; // -----  end of class FixtureCachingStdMapStringString  -----
 
