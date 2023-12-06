@@ -31,6 +31,12 @@ class FixtureCachingStdMapStringString
 
         FixtureCachingStdMapStringString ();   // constructor
 
+        FixtureCachingStdMapStringString (const std::vector<std::string> vec_string,
+                                          const std::size_t control_ncpv_length,
+                                          const std::unique_ptr<std::size_t[]> & control_ncpv,
+                                          const std::size_t control_ca_length,
+                                          const std::unique_ptr<char[]> & control_ca );   // constructor
+
         FixtureCachingStdMapStringString (const FixtureCachingStdMapStringString & other);   // copy constructor
 
         FixtureCachingStdMapStringString (FixtureCachingStdMapStringString && other);   // copy-move constructor
@@ -41,6 +47,9 @@ class FixtureCachingStdMapStringString
         FixtureCachingStdMapStringString * clone () const;
 
         // ====================  MUTATORS      =======================================
+        void setup();
+
+        void teardown();
 
         // ====================  OPERATORS     =======================================
 
@@ -49,6 +58,11 @@ class FixtureCachingStdMapStringString
         FixtureCachingStdMapStringString& operator= ( FixtureCachingStdMapStringString && other ); // assignment-move operator
 
         // ====================  DATA MEMBERS  =======================================
+        std::vector<std::string> myTestString;
+        std::size_t control_ncpvLength; 
+        std::size_t control_caLength;
+        std::unique_ptr<char[]> control_characterArray; 
+        std::unique_ptr<std::size_t[]> control_numberCharactersPerVectorElement;
         STRING_UTILITIES::VectorStringCache experimentalVecStringCache;
         STRING_UTILITIES::VectorStringCache controlVecStringCache;
 
@@ -58,12 +72,17 @@ class FixtureCachingStdMapStringString
         // ====================  DATA MEMBERS  =======================================
 
     private:
+        //=====================  MUTATORS      =====================================
+        void setupExperimentalVecStringCache_();
+
+        void setupControlVecStringCache_();
+
         // ====================  METHODS       =======================================
 
         // ====================  DATA MEMBERS  =======================================
 
         std::vector<std::string> vecString_;
-
+        
 }; // -----  end of class FixtureCachingStdMapStringString  -----
 
 

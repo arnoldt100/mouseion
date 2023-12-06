@@ -17,6 +17,8 @@
     #-----------------------------------------------------
     set(target ${my_project_name})
 
+    get_target_property( my_memory_management_include memory_management memory_management_include )
+
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
 # End of CMake preamble section.                                  @
@@ -94,6 +96,7 @@
     target_include_directories(${target} 
                                PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files
                                PRIVATE ${su_include_dir}
+                               PRIVATE ${memory_management_include}
                                PRIVATE ${Boost_INCLUDE_DIR} )
 
     #-----------------------------------------------------
@@ -103,7 +106,9 @@
     #                                                    -
     #-----------------------------------------------------
     target_link_libraries(${target}
-                          PUBLIC string_utilities ${Boost_LIBRARIES} )
+                          PUBLIC string_utilities 
+                          PUBLIC memory_management
+                          ${Boost_LIBRARIES} )
 
     #-----------------------------------------------------
     # Here we set the properties on target               -
