@@ -82,11 +82,20 @@ FixtureCachingStdMapStringString::FixtureCachingStdMapStringString( FixtureCachi
     {
         // Create a copy of the unique pointers control_ncpv and control_ca, and use
         // the copies to create the control VectorStringCache.  
+        std::tie(control_numberCharactersPerVectorElement,control_ncpvLength) = 
+            MEMORY_MANAGEMENT::copy_1d_array(other.control_numberCharactersPerVectorElement,other.control_ncpvLength);
+        std::tie(control_characterArray,control_caLength) = 
+            MEMORY_MANAGEMENT::copy_1d_array(other.control_characterArray,other.control_caLength);
     }
     return;
 }
 
 FixtureCachingStdMapStringString::FixtureCachingStdMapStringString( FixtureCachingStdMapStringString && other) :
+    myTestString(std::move(other.myTestString)),
+    control_ncpvLength(std::move(other.control_ncpvLength)),
+    control_caLength(std::move(other.control_caLength)),
+    control_characterArray(std::move(other.control_characterArray)),
+    control_numberCharactersPerVectorElement(std::move(other.control_numberCharactersPerVectorElement)),
     experimentalVecStringCache(std::move(other.experimentalVecStringCache)),
     controlVecStringCache(std::move(other.controlVecStringCache))
 
@@ -132,6 +141,9 @@ FixtureCachingStdMapStringString& FixtureCachingStdMapStringString::operator= ( 
 {
     if (this != &other)
     {
+        this->myTestString = other.myTestString;
+        this->control_ncpvLength = other.control_ncpvLength;
+        this->control_caLength = other.control_caLength;
         this->experimentalVecStringCache = other.experimentalVecStringCache;
         this->controlVecStringCache = other.controlVecStringCache;
     }
@@ -142,6 +154,9 @@ FixtureCachingStdMapStringString& FixtureCachingStdMapStringString::operator= ( 
 {
     if (this != &other)
     {
+        this->myTestString = std::move(other.myTestString);
+        this->control_ncpvLength = std::move(other.control_ncpvLength);
+        this->control_caLength = std::move(other.control_caLength);
         this->experimentalVecStringCache = std::move(other.experimentalVecStringCache);
         this->controlVecStringCache = std::move(other.controlVecStringCache);
     }
@@ -179,39 +194,43 @@ void FixtureCachingStdMapStringString::setupExperimentalVecStringCache_()
                          };
     this->experimentalVecStringCache = STRING_UTILITIES::VectorStringCache(this->myTestString);
 
-
     return;
 }
 
 void FixtureCachingStdMapStringString::setupControlVecStringCache_()
 {
-    this->control_ncpvLength = 3;
+    // We compute the lengths of arrays 'this->control_ncpvLength and
+    // 'this->control_characterArray' and allocate to the correct size.
+    this->control_ncpvLength = this->myTestString.size();
     this->control_numberCharactersPerVectorElement = 
         std::make_unique_for_overwrite<std::size_t[]>(this->control_ncpvLength);
-    this->control_numberCharactersPerVectorElement[0] = (this->myTestString[0]).size();
-    this->control_numberCharactersPerVectorElement[1] = (this->myTestString[1]).size();
-    this->control_numberCharactersPerVectorElement[2] = (this->myTestString[2]).size();
+
     this->control_caLength = 0;
-    for ( auto it = (this->myTestString).begin(); it != (this->myTestString).end(); ++it)
-    {
-        auto str_length = (*it).length();
-        this->control_ncpvLength += str_length;
-    }
-    this->control_ncpvLength += 1;
-
-    this->control_characterArray = std::make_unique_for_overwrite<char[]>(this->control_caLength);
-
     std::size_t jp = 0;
     for ( auto it = (this->myTestString).begin(); it != (this->myTestString).end(); ++it)
     {
         auto str_length = (*it).length();
-        for (auto ip=0; ip < str_length; ++ip)
-        {
-            this->control_characterArray[jp] = (*it)[ip];
-            ++jp;
-        }
+        this->control_caLength += str_length;
+        this->control_numberCharactersPerVectorElement[jp] = str_length;
+        ++jp;
     }
-    this->control_characterArray[jp] = '\0';
+    this->control_caLength += 1; // We need to  account for the '/0' termination character.
+    this->control_characterArray = std::make_unique_for_overwrite<char[]>(this->control_caLength);
+
+    // We now fill in the array 'this->control_characterArray'. Array
+    // 'this->control_characterArray' is filled in by copying the array
+    // 'this->myTestString' in sequential manner and we add the termination
+    // character '/0' at the end.
+    std::size_t mp = 0;
+    for ( auto it = (this->myTestString).begin(); it != (this->myTestString).end(); ++it)
+    {
+        for ( auto kp=0; kp < this->control_numberCharactersPerVectorElement[mp]; ++kp)
+        {
+            this->control_characterArray[mp] = (*it)[kp];
+        }
+        ++mp;
+    }
+    this->control_characterArray[mp] = '\0';
 
     return;
 }
