@@ -9,6 +9,7 @@
 #include <string>
 #include <cstddef>
 #include <memory>
+#include <tuple>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -54,7 +55,7 @@ class VectorStringCache
         //! \brief Returns the array of the number characters per vector element.
         std::unique_ptr<std::size_t[]> getArrayOfNumberCharactersPerVector() const;
 
-        std::unique_ptr<char[]> getArrayOfCharacters() const;
+        std::tuple<std::unique_ptr<char[]>, std::size_t> getArrayOfCharacters() const;
 
         //! \brief Returns a string vector of the keys.
         std::vector<std::string> getStringVector() const;

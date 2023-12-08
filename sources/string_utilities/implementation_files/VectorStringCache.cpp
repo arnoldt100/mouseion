@@ -26,19 +26,19 @@ namespace STRING_UTILITIES {
 //============================= LIFECYCLE ====================================
 
 VectorStringCache::VectorStringCache() :
-    ncpvLength_(0),
-    numberCharactersPerVectorElement_(nullptr),
-    caLength_(0),
-    charactersArray_(nullptr)
+    ncpvLength_{0},
+    numberCharactersPerVectorElement_{nullptr},
+    caLength_{0},
+    charactersArray_{nullptr}
 {
     return;
 }
 
 VectorStringCache::VectorStringCache(const std::vector<std::string> & str_vec) :
-    ncpvLength_(0),
-    numberCharactersPerVectorElement_(nullptr),
-    caLength_(0),
-    charactersArray_(nullptr)
+    ncpvLength_{0},
+    numberCharactersPerVectorElement_{nullptr},
+    caLength_{0},
+    charactersArray_{nullptr}
 {
     // ---------------------------------------------------
     // Compute the total number of characters in all elements of the
@@ -48,6 +48,7 @@ VectorStringCache::VectorStringCache(const std::vector<std::string> & str_vec) :
     {
         this->caLength_ += a_string.size();
     }
+    this->caLength_ += 1; //  We need to  account for the '/0' termination character.
 
     // ---------------------------------------------------
     // Compute the number of elements in vector "str_vec".
@@ -57,8 +58,6 @@ VectorStringCache::VectorStringCache(const std::vector<std::string> & str_vec) :
     // ---------------------------------------------------
     // Allocate array numberCharactersPerVectorElement_ and fill in.
     // ---------------------------------------------------
-    MEMORY_MANAGEMENT::Array1d<std::size_t> int_array_factory;
-
     this->numberCharactersPerVectorElement_ = std::make_unique<std::size_t[]>(this->ncpvLength_);
     std::size_t ip = 0;
     for (auto a_string : str_vec)
@@ -68,7 +67,8 @@ VectorStringCache::VectorStringCache(const std::vector<std::string> & str_vec) :
     }
 
     // ---------------------------------------------------
-    // Allocate array charactersArray_ and fill in.
+    // Allocate array charactersArray_ and fill in and we add the termination
+    // character '/0' at the end.
     // ---------------------------------------------------
     this->charactersArray_ = std::make_unique<char[]>(this->caLength_);
     std::size_t jp = 0;
@@ -80,6 +80,7 @@ VectorStringCache::VectorStringCache(const std::vector<std::string> & str_vec) :
             ++jp;
         }
     }
+    this->charactersArray_[jp] = '\0';
     return;
 }
 
@@ -88,10 +89,10 @@ VectorStringCache::VectorStringCache(const std::size_t ncpv_length,
                                      std::unique_ptr<std::size_t[]> ncpv_array,
                                      const std::size_t ca_length,
                                      std::unique_ptr<char[]> ca_array) :
-    ncpvLength_(ncpv_length),
-    numberCharactersPerVectorElement_(std::move(ncpv_array)),
-    caLength_(ca_length),
-    charactersArray_(std::move(ca_array))
+    ncpvLength_{ncpv_length},
+    numberCharactersPerVectorElement_{std::move(ncpv_array)},
+    caLength_{ca_length},
+    charactersArray_{std::move(ca_array)}
 {
   return;
 }
@@ -100,23 +101,14 @@ VectorStringCache::VectorStringCache(const std::size_t ncpv_length,
 
 VectorStringCache::~VectorStringCache()
 {
-    if (numberCharactersPerVectorElement_ != nullptr)
-    {
-        this->ncpvLength_ = 0;
-    }
-
-    if (this->charactersArray_ != nullptr)
-    {
-        this->caLength_ = 0;
-    }
     return;
 }
 
 VectorStringCache::VectorStringCache(VectorStringCache const & other) :
-    ncpvLength_(0),
-    numberCharactersPerVectorElement_(nullptr),
-    caLength_(0),
-    charactersArray_(nullptr)
+    ncpvLength_{0},
+    numberCharactersPerVectorElement_{nullptr},
+    caLength_{0},
+    charactersArray_{nullptr}
 {
     if (this != &other)
     {
@@ -134,7 +126,9 @@ VectorStringCache::VectorStringCache(VectorStringCache const & other) :
 
 VectorStringCache::VectorStringCache( VectorStringCache && other) :
     ncpvLength_(std::move(other.ncpvLength_)),
-    caLength_(std::move(other.caLength_))
+    numberCharactersPerVectorElement_{nullptr},
+    caLength_(std::move(other.caLength_)),
+    charactersArray_{nullptr}
 {
     if (this != &other)
     {
@@ -169,14 +163,15 @@ std::unique_ptr<std::size_t[]> VectorStringCache::getArrayOfNumberCharactersPerV
     return out_ptr;
 }
 
-std::unique_ptr<char[]> VectorStringCache::getArrayOfCharacters() const
+std::tuple<std::unique_ptr<char[]>, std::size_t> VectorStringCache::getArrayOfCharacters() const
 {
     std::unique_ptr<char[]> out_ptr = std::make_unique<char[]>(this->caLength_);
+    std::size_t tmp_ca_length = this->caLength_;
     for (auto ip=static_cast<std::size_t>(0); ip <this->caLength_; ++ip )
     {
         out_ptr[ip] = this->charactersArray_[ip];
     }
-    return out_ptr;
+    return std::tuple<std::unique_ptr<char[]>, std::size_t> (std::move(out_ptr),tmp_ca_length);
 }
 
 std::vector<std::string> VectorStringCache::getStringVector() const
@@ -220,10 +215,10 @@ void VectorStringCache::printToStdOut() const
     std::cout << std::endl; 
 
     std::cout << "this->caLength_ = " << this->caLength_ << std::endl;
-    for (auto ip = static_cast<std::size_t>(0); ip < this->caLength_; ++ip)
+    for (auto jp = static_cast<std::size_t>(0); jp < this->caLength_; ++jp)
     {
-        std::cout << "this->charactersArray_[" << ip << "] = "; 
-        std::cout << this->charactersArray_[ip] << std::endl;
+        std::cout << "this->charactersArray_[" << jp << "] = "; 
+        std::cout << this->charactersArray_[jp] << std::endl;
     }
     std::cout << std::endl; 
 
@@ -256,17 +251,17 @@ VectorStringCache& VectorStringCache::operator= ( VectorStringCache && other )
     {
         // Move values to  class members elements "this->ncpvLength_" and
         // "this->numberCharactersPerVectorElement_".
-        MEMORY_MANAGEMENT::Array1d<std::size_t> int_array_factory;
         this->ncpvLength_ = other.ncpvLength_;
         this->numberCharactersPerVectorElement_ =  std::move(other.numberCharactersPerVectorElement_);
         other.ncpvLength_ = 0;
+        other.numberCharactersPerVectorElement_ = nullptr;
 
         // Move values to class members elements "this->caLength_" and
         // "this->charactersArray_".
-        MEMORY_MANAGEMENT::Array1d<char> char_array_factory;
         this->caLength_ = other.caLength_;
         this->charactersArray_ = std::move(other.charactersArray_);
         other.caLength_ = 0;
+        other.charactersArray_ = nullptr;
     }
     return *this;
 } // assignment-move operator

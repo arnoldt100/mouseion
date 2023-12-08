@@ -21,8 +21,8 @@
 //--------------------------------------------------------//
 #include "VectorStringCache.h"
 
-namespace ANANSI
-{
+// namespace ANANSI
+// {
 
 class FixtureCachingStdMapStringString
 {
@@ -86,6 +86,6 @@ class FixtureCachingStdMapStringString
 }; // -----  end of class FixtureCachingStdMapStringString  -----
 
 
-}; // namespace ANANSI
+// }; // namespace ANANSI
 
 #endif // ANANSI_FixtureCachingStdMapStringString_INC

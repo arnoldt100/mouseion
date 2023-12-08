@@ -3,6 +3,7 @@
 //--------------------------------------------------------//
 #include <utility>
 #include <memory>
+#include <tuple>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -14,7 +15,7 @@
 #include "FixtureCachingStdMapStringString.h"
 #include "copy_1d_array.hpp"
 
-namespace ANANSI {
+// namespace ANANSI {
 
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PUBLIC ///////////////////////////////////////
@@ -193,7 +194,6 @@ void FixtureCachingStdMapStringString::setupExperimentalVecStringCache_()
                           std::string("abcdefghi")
                          };
     this->experimentalVecStringCache = STRING_UTILITIES::VectorStringCache(this->myTestString);
-
     return;
 }
 
@@ -222,20 +222,38 @@ void FixtureCachingStdMapStringString::setupControlVecStringCache_()
     // 'this->myTestString' in sequential manner and we add the termination
     // character '/0' at the end.
     std::size_t mp = 0;
+    std::size_t np = 0;
     for ( auto it = (this->myTestString).begin(); it != (this->myTestString).end(); ++it)
     {
         for ( auto kp=0; kp < this->control_numberCharactersPerVectorElement[mp]; ++kp)
         {
-            this->control_characterArray[mp] = (*it)[kp];
+            this->control_characterArray[np] = (*it)[kp];
+            ++np;
         }
         ++mp;
     }
-    this->control_characterArray[mp] = '\0';
+    this->control_characterArray[np] = '\0';
 
+    //We now create the controlVecStringCache.
+    std::size_t tmp_ncpv_length; 
+    std::unique_ptr<std::size_t[]> tmp_ncpv_array = std::make_unique_for_overwrite<std::size_t[]>(this->control_ncpvLength);
+    std::tie(tmp_ncpv_array,tmp_ncpv_length) = 
+        MEMORY_MANAGEMENT::copy_1d_array(this->control_numberCharactersPerVectorElement,
+                                         this->control_ncpvLength);
+    std::size_t tmp_ca_length;
+    std::unique_ptr<char[]> tmp_ca_array = std::make_unique_for_overwrite<char[]>(this->control_caLength);
+    std::tie(tmp_ca_array,tmp_ca_length) = 
+            MEMORY_MANAGEMENT::copy_1d_array(this->control_characterArray,
+                                             this->control_caLength); 
+    this->controlVecStringCache = STRING_UTILITIES::VectorStringCache(tmp_ncpv_length,
+                                                                      std::move(tmp_ncpv_array),
+                                                                      tmp_ca_length,
+                                                                      std::move(tmp_ca_array));
     return;
 }
 
 //============================= OPERATORS ====================================
 
 
-} // namespace ANANSI
+
+// } // namespace ANANSI
