@@ -71,6 +71,8 @@ class VectorStringCache
 
         VectorStringCache& operator= ( VectorStringCache && other ); // assignment-move operator
 
+        bool operator==( VectorStringCache const & other ) const;
+
     protected:
         // ====================  METHODS       =======================================
 

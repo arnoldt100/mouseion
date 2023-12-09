@@ -70,10 +70,12 @@
     #-----------------------------------------------------
     set (string_utilities_unit_tests_header_files
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/test_string_utilities.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/compare_VectorStringCache.h
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/FixtureCachingStdMapStringString.h)
 
     set (string_utilities_unit_tests_implementation_files
         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/test_string_utilities.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/compare_VectorStringCache.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/FixtureCachingStdMapStringString.cpp)
 
     add_executable( ${target}

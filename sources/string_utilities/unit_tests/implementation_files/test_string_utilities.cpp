@@ -13,18 +13,12 @@
 //--------------------------------------------------------//
 #include "FixtureCachingStdMapStringString.h"
 #include "test_string_utilities.h"
+#include "compare_VectorStringCache.h"
 
 BOOST_AUTO_TEST_SUITE( String_Utilities_Unit_Tests )
 
 BOOST_FIXTURE_TEST_CASE( caching_std_map, FixtureCachingStdMapStringString) 
 {
-
-    bool caching_status;
-    std::string message;
-
-    experimentalVecStringCache.printToStdOut();
-    controlVecStringCache.printToStdOut();
-
     std::unique_ptr<char[]> my_exp_ca_array;
     std::size_t my_exp_ca_array_length;
     std::tie(my_exp_ca_array,my_exp_ca_array_length) = experimentalVecStringCache.getArrayOfCharacters();
@@ -33,8 +27,10 @@ BOOST_FIXTURE_TEST_CASE( caching_std_map, FixtureCachingStdMapStringString)
     std::size_t my_control_ca_array_length;
     std::tie(my_control_ca_array,my_control_ca_array_length) = controlVecStringCache.getArrayOfCharacters();
 
-    caching_status = false;
-    message += "Stud message for caching_std_map.";
+    bool caching_status;
+    std::string message;
+    std::tie(caching_status,message) = ANANSI::compare_VectorStringCache(experimentalVecStringCache,
+                                                                         controlVecStringCache);
     BOOST_TEST(caching_status, message);
 }
 
