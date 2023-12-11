@@ -268,7 +268,44 @@ VectorStringCache& VectorStringCache::operator= ( VectorStringCache && other )
 
 bool VectorStringCache::operator==( VectorStringCache const & other ) const
 {
-    return false;
+    bool status_ncpv = (this->ncpvLength_ == other.ncpvLength_) ? true : false;
+    bool ncpv_elements_are_same = true; 
+    if (status_ncpv)
+    {
+        for (std::size_t ip=0; ip < this->ncpvLength_; ++ip)
+        {
+            if (this->numberCharactersPerVectorElement_[ip] != other.numberCharactersPerVectorElement_[ip]) 
+            {
+                ncpv_elements_are_same = false;
+                status_ncpv = false;
+            }
+        }
+    } 
+    else
+    {
+        ncpv_elements_are_same = false;
+    }
+
+    bool status_ca = (this->caLength_ == other.caLength_) ? true : false;
+    bool ca_elements_are_same = true; 
+    if (status_ca)
+    {
+        for (std::size_t ip=0; ip < this->caLength_; ++ip)
+        {
+            if (this->charactersArray_[ip] != other.charactersArray_[ip]) 
+            {
+                ca_elements_are_same = false;
+                status_ca = false;
+            }
+        }
+    }
+    else
+    {
+        ca_elements_are_same = false;
+    }
+
+    const bool objects_are_equal = ( ncpv_elements_are_same  &&  ca_elements_are_same ) ? true : false ;
+    return objects_are_equal;
 }
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PROTECTED ////////////////////////////////////
