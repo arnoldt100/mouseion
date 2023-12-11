@@ -30,7 +30,9 @@ FixtureCachingStdMapStringString::FixtureCachingStdMapStringString() :
     control_characterArray{},
     control_numberCharactersPerVectorElement{},
     experimentalVecStringCache{},
-    controlVecStringCache{}
+    controlVecStringCache{},
+    incorrectExperimentalVecStringCache1{},
+    incorrectExperimentalVecStringCache2{}
 {
     return;
 }
@@ -46,7 +48,9 @@ FixtureCachingStdMapStringString::FixtureCachingStdMapStringString(const std::ve
     control_characterArray{},
     control_numberCharactersPerVectorElement{},
     experimentalVecStringCache(vec_string),
-    controlVecStringCache{}
+    controlVecStringCache{},
+    incorrectExperimentalVecStringCache1{},
+    incorrectExperimentalVecStringCache2{}
 {
     // Create a copy of the unique pointers control_ncpv and control_ca, and use
     // the copies to create the control VectorStringCache.  
@@ -77,7 +81,9 @@ FixtureCachingStdMapStringString::FixtureCachingStdMapStringString( FixtureCachi
     control_characterArray{},
     control_numberCharactersPerVectorElement{},
     experimentalVecStringCache(other.experimentalVecStringCache),
-    controlVecStringCache(other.controlVecStringCache)
+    controlVecStringCache(other.controlVecStringCache),
+    incorrectExperimentalVecStringCache1(other.incorrectExperimentalVecStringCache1),
+    incorrectExperimentalVecStringCache2(other.incorrectExperimentalVecStringCache2)
 {
     if (this != &other)
     {
@@ -98,7 +104,9 @@ FixtureCachingStdMapStringString::FixtureCachingStdMapStringString( FixtureCachi
     control_characterArray(std::move(other.control_characterArray)),
     control_numberCharactersPerVectorElement(std::move(other.control_numberCharactersPerVectorElement)),
     experimentalVecStringCache(std::move(other.experimentalVecStringCache)),
-    controlVecStringCache(std::move(other.controlVecStringCache))
+    controlVecStringCache(std::move(other.controlVecStringCache)),
+    incorrectExperimentalVecStringCache1(std::move(other.incorrectExperimentalVecStringCache1)),
+    incorrectExperimentalVecStringCache2(std::move(other.incorrectExperimentalVecStringCache2))
 
 {
     if (this != &other)
@@ -124,7 +132,7 @@ FixtureCachingStdMapStringString * FixtureCachingStdMapStringString::clone() con
 void FixtureCachingStdMapStringString::setup()
 {
     // Setup experimentalVecStringCache
-    this->setupExperimentalVecStringCache_();
+    this->setupExperimentalVecStringCaches_();
 
     // Setup controlVecStringCache
     this->setupControlVecStringCache_();
@@ -147,6 +155,8 @@ FixtureCachingStdMapStringString& FixtureCachingStdMapStringString::operator= ( 
         this->control_caLength = other.control_caLength;
         this->experimentalVecStringCache = other.experimentalVecStringCache;
         this->controlVecStringCache = other.controlVecStringCache;
+        this->incorrectExperimentalVecStringCache1 = other.incorrectExperimentalVecStringCache1;
+        this->incorrectExperimentalVecStringCache2 = other.incorrectExperimentalVecStringCache2;
     }
     return *this;
 } // assignment operator
@@ -160,6 +170,8 @@ FixtureCachingStdMapStringString& FixtureCachingStdMapStringString::operator= ( 
         this->control_caLength = std::move(other.control_caLength);
         this->experimentalVecStringCache = std::move(other.experimentalVecStringCache);
         this->controlVecStringCache = std::move(other.controlVecStringCache);
+        this->incorrectExperimentalVecStringCache1 = std::move(other.incorrectExperimentalVecStringCache1);
+        this->incorrectExperimentalVecStringCache2 = std::move(other.incorrectExperimentalVecStringCache2);
     }
     return *this;
 } // assignment-move operator
@@ -186,14 +198,28 @@ FixtureCachingStdMapStringString& FixtureCachingStdMapStringString::operator= ( 
 
 //============================= MUTATORS =====================================
 
-void FixtureCachingStdMapStringString::setupExperimentalVecStringCache_()
+void FixtureCachingStdMapStringString::setupExperimentalVecStringCaches_()
 {
-    // The control data to form the experimental fixture.
+    // The data to form the experimental VectorStringCaches
     this->myTestString = {std::string("ABCDEFG"),
                           std::string("12345678"),
                           std::string("abcdefghi")
                          };
     this->experimentalVecStringCache = STRING_UTILITIES::VectorStringCache(this->myTestString);
+    
+    std::vector<std::string> myIncorectTestString1 = {std::string("ABCDEFG"), 
+                                                      std::string("12345679"),
+                                                      std::string("abcdefghi")};
+    this->incorrectExperimentalVecStringCache1 = 
+        STRING_UTILITIES::VectorStringCache(myIncorectTestString1);
+
+    std::vector<std::string> myIncorectTestString2 = {std::string("ABCDEFG"), 
+                                                      std::string("12345679"),
+                                                      std::string("abcdefghij")};
+
+    this->incorrectExperimentalVecStringCache2 = 
+        STRING_UTILITIES::VectorStringCache(myIncorectTestString2);
+
     return;
 }
 

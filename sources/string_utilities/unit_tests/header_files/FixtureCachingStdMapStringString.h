@@ -65,6 +65,8 @@ class FixtureCachingStdMapStringString
         std::unique_ptr<std::size_t[]> control_numberCharactersPerVectorElement;
         STRING_UTILITIES::VectorStringCache experimentalVecStringCache;
         STRING_UTILITIES::VectorStringCache controlVecStringCache;
+        STRING_UTILITIES::VectorStringCache incorrectExperimentalVecStringCache1;
+        STRING_UTILITIES::VectorStringCache incorrectExperimentalVecStringCache2;
 
     protected:
         // ====================  METHODS       =======================================
@@ -73,7 +75,7 @@ class FixtureCachingStdMapStringString
 
     private:
         //=====================  MUTATORS      =====================================
-        void setupExperimentalVecStringCache_();
+        void setupExperimentalVecStringCaches_();
 
         void setupControlVecStringCache_();
 

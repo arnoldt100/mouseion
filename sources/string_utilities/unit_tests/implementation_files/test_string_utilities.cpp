@@ -14,6 +14,7 @@
 #include "FixtureCachingStdMapStringString.h"
 #include "test_string_utilities.h"
 #include "compare_VectorStringCache.h"
+#include "compare_DifferentVectorStringCaches.h"
 
 BOOST_AUTO_TEST_SUITE( String_Utilities_Unit_Tests )
 
@@ -23,15 +24,27 @@ BOOST_FIXTURE_TEST_CASE( caching_std_map, FixtureCachingStdMapStringString)
     std::size_t my_exp_ca_array_length;
     std::tie(my_exp_ca_array,my_exp_ca_array_length) = experimentalVecStringCache.getArrayOfCharacters();
 
-    std::unique_ptr<char[]> my_control_ca_array;
-    std::size_t my_control_ca_array_length;
-    std::tie(my_control_ca_array,my_control_ca_array_length) = controlVecStringCache.getArrayOfCharacters();
+    // std::unique_ptr<char[]> my_control_ca_array;
+    // std::size_t my_control_ca_array_length;
+    // std::tie(my_control_ca_array,my_control_ca_array_length) = controlVecStringCache.getArrayOfCharacters();
 
     bool caching_status;
     std::string message;
-    std::tie(caching_status,message) = ANANSI::compare_VectorStringCache(experimentalVecStringCache,
+    std::tie(caching_status,message) = STRING_UTILITIES::compare_VectorStringCache(experimentalVecStringCache,
                                                                          controlVecStringCache);
     BOOST_TEST(caching_status, message);
+
+    bool caching_status1;
+    std::string message1;
+    std::tie(caching_status1,message1) = STRING_UTILITIES::compare_DifferentVectorStringCaches(incorrectExperimentalVecStringCache1,
+                                                                                     controlVecStringCache);
+    BOOST_TEST(!caching_status1, message1);
+
+    bool caching_status2;
+    std::string message2;
+    std::tie(caching_status2,message2) = STRING_UTILITIES::compare_DifferentVectorStringCaches(incorrectExperimentalVecStringCache2,
+                                                                                               controlVecStringCache);
+    BOOST_TEST(!caching_status2, message2);
 }
 
 BOOST_FIXTURE_TEST_CASE( uncaching_std_map, FixtureCachingStdMapStringString)
