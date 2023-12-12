@@ -15,6 +15,7 @@
 #include "test_string_utilities.h"
 #include "compare_VectorStringCache.h"
 #include "compare_DifferentVectorStringCaches.h"
+#include "verify_getStringVector.h"
 
 BOOST_AUTO_TEST_SUITE( String_Utilities_Unit_Tests )
 
@@ -23,10 +24,6 @@ BOOST_FIXTURE_TEST_CASE( caching_std_map, FixtureCachingStdMapStringString)
     std::unique_ptr<char[]> my_exp_ca_array;
     std::size_t my_exp_ca_array_length;
     std::tie(my_exp_ca_array,my_exp_ca_array_length) = experimentalVecStringCache.getArrayOfCharacters();
-
-    // std::unique_ptr<char[]> my_control_ca_array;
-    // std::size_t my_control_ca_array_length;
-    // std::tie(my_control_ca_array,my_control_ca_array_length) = controlVecStringCache.getArrayOfCharacters();
 
     bool caching_status;
     std::string message;
@@ -45,6 +42,7 @@ BOOST_FIXTURE_TEST_CASE( caching_std_map, FixtureCachingStdMapStringString)
     std::tie(caching_status2,message2) = STRING_UTILITIES::compare_DifferentVectorStringCaches(incorrectExperimentalVecStringCache2,
                                                                                                controlVecStringCache);
     BOOST_TEST(!caching_status2, message2);
+
 }
 
 BOOST_FIXTURE_TEST_CASE( uncaching_std_map, FixtureCachingStdMapStringString)
@@ -55,6 +53,16 @@ BOOST_FIXTURE_TEST_CASE( uncaching_std_map, FixtureCachingStdMapStringString)
     uncaching_status = false;
     message += "Stud message for uncaching_std_map.";
     BOOST_TEST(uncaching_status, message);
+}
+
+BOOST_FIXTURE_TEST_CASE(VectorStringCacheTests,FixtureCachingStdMapStringString)
+{
+    bool get_string_vec_status;
+    std::string message1;
+    std::tie(get_string_vec_status,message1) = STRING_UTILITIES::verify_getStringVector(experimentalVecStringCache,
+                                                                                        myTestString);
+    BOOST_TEST(get_string_vec_status, message1);
+
 }
 
 BOOST_AUTO_TEST_SUITE_END()

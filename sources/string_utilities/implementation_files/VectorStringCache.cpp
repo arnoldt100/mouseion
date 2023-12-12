@@ -178,6 +178,8 @@ std::vector<std::string> VectorStringCache::getStringVector() const
 {
     std::vector<std::string> ret_value;
     char const * src = this->charactersArray_.get();
+    std::cout << "src = " << src << std::endl;
+
     for (auto ip = static_cast<std::size_t>(0); ip < this->ncpvLength_; ++ip)
     {
         // Get the number of characters in the next word.
@@ -214,14 +216,21 @@ void VectorStringCache::printToStdOut() const
     }
     std::cout << std::endl; 
 
-    std::cout << "this->caLength_ = " << this->caLength_ << std::endl;
-    for (auto jp = static_cast<std::size_t>(0); jp < this->caLength_; ++jp)
+    std::size_t counter = 0;
+    for (auto ip = static_cast<std::size_t>(0); ip < this->ncpvLength_; ++ip)
     {
-        std::cout << "this->charactersArray_[" << jp << "] = "; 
-        std::cout << this->charactersArray_[jp] << std::endl;
+        std::cout << "Entry: " << ip << std::endl;
+        std::cout << "Character range: " << counter << " - " << counter + this->numberCharactersPerVectorElement_[ip] - 1 << std::endl;
+        for (auto jp=0; jp < this->numberCharactersPerVectorElement_[ip]; ++jp )
+        {
+            std::cout << this->charactersArray_[counter];
+            ++counter;
+        }
+        std::cout << std::endl; 
+        std::cout << std::endl; 
     }
-    std::cout << std::endl; 
 
+    std::cout << std::endl; 
     std::cout << line.c_str() << std::endl << std::endl;
     return;
 }
