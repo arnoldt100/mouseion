@@ -178,7 +178,6 @@ std::vector<std::string> VectorStringCache::getStringVector() const
 {
     std::vector<std::string> ret_value;
     char const * src = this->charactersArray_.get();
-    std::cout << "src = " << src << std::endl;
 
     for (auto ip = static_cast<std::size_t>(0); ip < this->ncpvLength_; ++ip)
     {
@@ -190,11 +189,9 @@ std::vector<std::string> VectorStringCache::getStringVector() const
         // characters.
         if (ip > 0)
         {
-            src += nm_chars-1;
+            src += nm_chars;
         }
-        std::cout << "src = " << src << std::endl;
         const std::string tmp_string(src,nm_chars);
-        std::cout << "src = " << tmp_string.c_str() << std::endl;
 
         // Add the newly created string to  
         ret_value.push_back(tmp_string);
