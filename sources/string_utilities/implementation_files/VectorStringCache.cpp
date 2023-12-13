@@ -190,9 +190,11 @@ std::vector<std::string> VectorStringCache::getStringVector() const
         // characters.
         if (ip > 0)
         {
-            src += nm_chars;
+            src += nm_chars-1;
         }
+        std::cout << "src = " << src << std::endl;
         const std::string tmp_string(src,nm_chars);
+        std::cout << "src = " << tmp_string.c_str() << std::endl;
 
         // Add the newly created string to  
         ret_value.push_back(tmp_string);
