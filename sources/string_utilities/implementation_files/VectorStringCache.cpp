@@ -178,7 +178,6 @@ std::vector<std::string> VectorStringCache::getStringVector() const
 {
     std::vector<std::string> ret_value;
     char const * src = this->charactersArray_.get();
-
     for (auto ip = static_cast<std::size_t>(0); ip < this->ncpvLength_; ++ip)
     {
         // Get the number of characters in the next word.
@@ -187,10 +186,16 @@ std::vector<std::string> VectorStringCache::getStringVector() const
         // Increment the pointer src to the next starting position
         // for the next set of characters and create a string with these
         // characters.
-        if (ip > 0)
+        std::size_t offset;
+        if (ip == 0)
         {
-            src += nm_chars;
+            offset = 0;
         }
+        else
+        {
+            offset = this->numberCharactersPerVectorElement_[ip-1];
+        }
+        src += offset;
         const std::string tmp_string(src,nm_chars);
 
         // Add the newly created string to  
