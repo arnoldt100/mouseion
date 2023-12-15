@@ -15,7 +15,6 @@
 #include "FixtureCachingStdMapStringString.h"
 #include "copy_1d_array.hpp"
 
-// namespace ANANSI {
 
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PUBLIC ///////////////////////////////////////
@@ -281,5 +280,3 @@ void FixtureCachingStdMapStringString::setupControlVecStringCache_()
 //============================= OPERATORS ====================================
 
 
-
-// } // namespace ANANSI
