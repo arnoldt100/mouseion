@@ -76,7 +76,7 @@
     #-----------------------------------------------------
     set (debugging_utilities_header_files
          header_files/AssertMessage.h
-	 header_files/GenericClassError.hpp
+         header_files/GenericErrorClass.hpp
          header_files/BaseException.h
          header_files/AssertValidValueForType.hpp)
 
@@ -89,7 +89,7 @@
     #-----------------------------------------------------
     set (debugging_utilities_implementation_files
          implementation_files/AssertMessage.cpp
-	 implementation_files/GenericClassError.cpp
+         implementation_files/GenericErrorClass.cpp
          implementation_files/BaseException.cpp
          implementation_files/AssertValidValueForType.cpp)
 
