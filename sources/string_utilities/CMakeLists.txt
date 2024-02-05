@@ -89,7 +89,8 @@
         header_files/VectorStringCache.h
         header_files/cache_stdmap.h
         header_files/get_maximum_width_of_vector_string.h
-        header_files/under_line_string.h )
+        header_files/under_line_string.h
+        header_files/count_words_in_string.h)
 
     #-----------------------------------------------------
     # Here we define a list of all implementation files  -
@@ -107,7 +108,8 @@
         implementation_files/VectorStringCache.cpp
         implementation_files/cache_stdmap.cpp 
         implementation_files/get_maximum_width_of_vector_string.cpp
-        implementation_files/under_line_string.cpp )
+        implementation_files/under_line_string.cpp 
+        implementation_files/count_words_in_string.cpp )
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
