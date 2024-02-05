@@ -1,7 +1,7 @@
-#ifndef STRING_UTILITIES_count_words_in_string_INC
-#define STRING_UTILITIES_count_words_in_string_INC
+#ifndef STRING_UTILITIES_words_in_string_are_positive_integers_INC
+#define STRING_UTILITIES_words_in_string_are_positive_integers_INC
 
-//! \file count_words_in_string.h
+//! \file words_in_string_are_positive_integers.h
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
@@ -20,16 +20,14 @@
 namespace STRING_UTILITIES
 {
 
-//! \brief Counts the number of words in a std::string.
+//! \brief Verifies all words in string are positive integers.
 //!
-//! \details Counts the number of words in a std::string with the words
-//!          being separated by whitespace. We limit this function to 
-//!          strings of length less than PTRDIFF_MAX to avoid 
-//!          potential problems where the number of words can't be
-//!          represented by PTRDIFF_MAX.
-int count_words_in_string ( const std::string & a_string );
+//! \details The string words are separated by whitespace, If every
+//!          is a positive integer, then true is returned. Otherwise
+//!          false is returned.
+bool words_in_string_are_positive_integers (const std::string a_string);
 
 
 }; // namespace STRING_UTILITIES
 
-#endif // STRING_UTILITIES_count_words_in_string_INC
+#endif // STRING_UTILITIES_words_in_string_are_positive_integers_INC
