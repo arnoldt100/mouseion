@@ -91,9 +91,10 @@
         header_files/get_maximum_width_of_vector_string.h
         header_files/under_line_string.h
         header_files/count_words_in_string.h
-	header_files/words_in_string_are_positive_integers.h
-	header_files/verify_N_integers_in_string.hpp
-	header_files/match_string_to_positive_integer.h)
+	    header_files/words_in_string_are_positive_integers.h
+	    header_files/verify_N_integers_in_string.hpp
+	    header_files/convert_string_to_int_array.hpp
+	    header_files/match_string_to_positive_integer.h)
 
     #-----------------------------------------------------
     # Here we define a list of all implementation files  -
@@ -113,8 +114,9 @@
         implementation_files/get_maximum_width_of_vector_string.cpp
         implementation_files/under_line_string.cpp 
         implementation_files/count_words_in_string.cpp
-	implementation_files/words_in_string_are_positive_integers.cpp
-	implementation_files/verify_N_integers_in_string.cpp
+        implementation_files/words_in_string_are_positive_integers.cpp
+        implementation_files/verify_N_integers_in_string.cpp
+        implementation_files/convert_string_to_int_array.cpp
         implementation_files/match_string_to_positive_integer.cpp)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
