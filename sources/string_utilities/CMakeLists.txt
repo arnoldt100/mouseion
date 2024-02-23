@@ -95,7 +95,8 @@
         header_files/verify_N_integers_in_string.hpp
         header_files/convert_string_to_int_array.hpp
         header_files/match_string_to_positive_integer.h
-        header_files/split_string_by_delimiter.h)
+        header_files/split_string_by_delimiter.h
+        header_files/check_string_for_banned_chars.h )
 
     #-----------------------------------------------------
     # Here we define a list of all implementation files  -
@@ -119,7 +120,8 @@
         implementation_files/verify_N_integers_in_string.cpp
         implementation_files/convert_string_to_int_array.cpp
         implementation_files/match_string_to_positive_integer.cpp
-        implementation_files/split_string_by_delimiter.cpp)
+        implementation_files/split_string_by_delimiter.cpp
+        implementation_files/check_string_for_banned_chars.cpp)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
