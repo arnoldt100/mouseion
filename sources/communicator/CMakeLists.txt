@@ -85,7 +85,8 @@
     set (communicator_header_files
          header_files/CommunicatorFactory.h
          header_files/Communicator.h
-         header_files/TaskStatus.h)
+         # header_files/TaskStatus.h 
+         )
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -97,7 +98,8 @@
     set (communicator_implementation_files
          implementation_files/CommunicatorFactory.cpp
          implementation_files/Communicator.cpp 
-         implementation_files/TaskStatus.cpp)
+         # implementation_files/TaskStatus.cpp
+         )
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @

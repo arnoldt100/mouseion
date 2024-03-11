@@ -77,7 +77,7 @@ public:
         return this->duplicateCommunicator_();
     }
 
-    // :TODO:05/21/2022 02:17:12 PM:: This needs tp return a communicator.
+    // :TODO:05/21/2022 02:17:12 PM:: This needs to return a communicator.
     void 
     createSubcommunicator(const std::string & tag)
     {
