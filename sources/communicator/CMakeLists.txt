@@ -84,7 +84,8 @@
     #-----------------------------------------------------
     set (communicator_header_files
          header_files/CommunicatorFactory.h
-         header_files/Communicator.h )
+         header_files/Communicator.h 
+         header_files/create_rectangular_communicator.h)
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -95,7 +96,8 @@
     #-----------------------------------------------------
     set (communicator_implementation_files
          implementation_files/CommunicatorFactory.cpp
-         implementation_files/Communicator.cpp )
+         implementation_files/Communicator.cpp
+         implementation_files/create_rectangular_communicator.cpp)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -133,6 +135,7 @@ target_sources(${target}
 #-----------------------------------------------------
 target_include_directories(${target} 
                            PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files
+                           PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/header_files/details
                            PRIVATE ${my_su_include}
                            PRIVATE ${my_mm_include}
                            PRIVATE ${my_cc_include})
