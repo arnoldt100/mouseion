@@ -84,7 +84,8 @@
     #-----------------------------------------------------
     set (communicator_header_files
          header_files/CommunicatorFactory.h
-         header_files/Communicator.h 
+         header_files/Communicator.h
+         header_files/CommunicatorEmbryo.h
          header_files/create_rectangular_communicator.h)
 
     #-----------------------------------------------------
@@ -97,6 +98,7 @@
     set (communicator_implementation_files
          implementation_files/CommunicatorFactory.cpp
          implementation_files/Communicator.cpp
+         implementation_files/CommunicatorEmbryo.cpp
          implementation_files/create_rectangular_communicator.cpp)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@

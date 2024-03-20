@@ -6,6 +6,7 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <memory>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -14,13 +15,13 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-
+#include "Communicator.h"
 
 namespace COMMUNICATOR
 {
 
-//! \brief Stud text for brief description
-void create_rectangular_communicator ();
+//! \brief Creates rectangular communicator.
+std::unique_ptr<COMMUNICATOR::Communicator> create_rectangular_communicator (std::unique_ptr<COMMUNICATOR::Communicator> a_communicator);
 
 
 }; // namespace COMMUNICATOR

@@ -14,9 +14,9 @@
 namespace COMMUNICATOR
 {
 
-void create_rectangular_communicator()
+std::unique_ptr<COMMUNICATOR::Communicator> create_rectangular_communicator(std::unique_ptr<COMMUNICATOR::Communicator> a_communicator)
 {
-    return;
+    return a_communicator;
 }   // -----  end of function create_rectangular_communicator  -----
 
 
