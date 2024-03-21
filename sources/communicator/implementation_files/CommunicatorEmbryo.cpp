@@ -69,6 +69,17 @@ CommunicatorEmbryo * CommunicatorEmbryo::clone() const
     return new CommunicatorEmbryo(*this);
 }
 
+CommunicatorEmbryo::communicator_types CommunicatorEmbryo::typeOfCommunicator() const
+{
+    return this->communicatorType_;
+}
+
+std::array<std::size_t,3> CommunicatorEmbryo::communicatorDimensions() const
+{
+    return this->communicatorSpatialDecomposition_;
+}
+
+
 //============================= MUTATORS =====================================
 
 //============================= OPERATORS ====================================

@@ -48,6 +48,10 @@ class CommunicatorEmbryo
         //! The clone method.
         CommunicatorEmbryo * clone () const;
 
+        communicator_types typeOfCommunicator() const;
+
+        std::array<std::size_t,3> communicatorDimensions() const;
+
         // ====================  MUTATORS      =======================================
 
         // ====================  OPERATORS     =======================================
