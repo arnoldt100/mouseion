@@ -21,7 +21,7 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "Communicator.h"
-
+#include "CommunicatorEmbryo.h"
 namespace COMMUNICATOR {
 
 class CommunicatorFactory 
@@ -42,14 +42,15 @@ public:
 
     std::unique_ptr<COMMUNICATOR::Communicator> createNullWorldCommunicator() const;
 
-    std::unique_ptr<COMMUNICATOR::Communicator>
-    	createCommunicator(std::unique_ptr<COMMUNICATOR::Communicator> const & other) const;
-
     std::unique_ptr<COMMUNICATOR::Communicator> 
     cloneCommunicator(std::unique_ptr<COMMUNICATOR::Communicator> const & other) const;
 
     std::unique_ptr<COMMUNICATOR::Communicator> 
     cloneCommunicator(std::shared_ptr<COMMUNICATOR::Communicator> const & other) const;
+
+    std::unique_ptr<COMMUNICATOR::Communicator>
+    	createCommunicator(std::unique_ptr<COMMUNICATOR::Communicator> const & other,
+                         CommunicatorEmbryo const & comm_embryo ) const;
 
     //===== MUTATORS =======
 
@@ -88,7 +89,8 @@ private:
     cloneCommunicator_(std::shared_ptr<COMMUNICATOR::Communicator> const & other) const=0;
 
     virtual std::unique_ptr<COMMUNICATOR::Communicator>
-    	createCommunicator_(std::unique_ptr<COMMUNICATOR::Communicator> const & other) const=0;
+    	createCommunicator_(std::unique_ptr<COMMUNICATOR::Communicator> const & other,
+                          CommunicatorEmbryo const & comm_embryo) const=0;
 
     //===== MUTATORS =======
 
