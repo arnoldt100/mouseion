@@ -139,14 +139,24 @@ class Array1d
             return a_ptr;
         }/* -----  end of method Array1d<T>::createPointerArrayFromVector  ----- */
  
-        template<typename Iteratible,
-                 std::size_t NDIMS, 
-                 typename SmartPointer>
-        SmartPointer create1DSmartPointerFromIterator(const Iteratible &  iterator) const
+        //! \brief Creates a 1d unique_ptr from an iterable object.
+        //!
+        //! \tparam Iterable_t The type of iterable object.
+        //! \tparam pointer_t The type of object managed by the unique_ptr.
+        //! \param iterator The iterable object which contains data to be copied to the
+        //!                 1D unique_ptr.
+        //! \returss A unique_ptr that manages a array of type pointer_t.
+        template<typename Iterable_t,typename pointer_t >
+        std::unique_ptr<pointer_t[]> create1DUniquePointerFromIterator(const Iterable_t & iterator) const
         {
-                SmartPointer value;
+                std::unique_ptr<pointer_t[]> value = std::make_unique<pointer_t[]>(iterator.size());
+                std::size_t ip = 0;
+                for ( const auto & nm : iterator )
+                {
+                    value[ip] = static_cast<pointer_t>(nm);  
+                    ++ip;
+                }
                 return value;
-
         }
 
         //! Creates a 1d array by copying from 1d array src_array.
