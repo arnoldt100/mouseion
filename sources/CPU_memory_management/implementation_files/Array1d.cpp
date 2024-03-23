@@ -13,3 +13,7 @@
 
 #include "Array1d.hpp"
 
+namespace MEMORY_MANAGEMENT
+{
+};
+

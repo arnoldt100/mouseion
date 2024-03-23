@@ -24,7 +24,7 @@ namespace MEMORY_MANAGEMENT
 /*
  * =====================================================================================
  *        Class:  Array1d
- *  Description: The primary class specializtion of the Array1d template. This
+ *  Description: The primary class specialization of the Array1d template. This
  *  class is noncopyable. 
  * =====================================================================================
  */
@@ -109,7 +109,7 @@ class Array1d
          *
          * Return: T* with the number of elements equal to the length of the vector. 
          *
-         * Argumnents: vec; type std::vector<T>; The vector which elements are copied to the
+         * Arguments: vec; type std::vector<T>; The vector which elements are copied to the
          *             pointer array
          *--------------------------------------------------------------------------------------
          */
@@ -138,6 +138,16 @@ class Array1d
 
             return a_ptr;
         }/* -----  end of method Array1d<T>::createPointerArrayFromVector  ----- */
+ 
+        template<typename Iteratible,
+                 std::size_t NDIMS, 
+                 typename SmartPointer>
+        SmartPointer create1DSmartPointerFromIterator(const Iteratible &  iterator) const
+        {
+                SmartPointer value;
+                return value;
+
+        }
 
         //! Creates a 1d array by copying from 1d array src_array.
         //!
