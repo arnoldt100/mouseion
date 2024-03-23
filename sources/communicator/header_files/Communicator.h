@@ -66,7 +66,8 @@ public:
     initializeWorldCommunicator();
 
     void
-    resetName(const std::string & name);
+    resetHostName(const std::string & name);
+
 
     void 
     freeCommunicator();
@@ -79,9 +80,11 @@ public:
 
     // :TODO:05/21/2022 02:17:12 PM:: This needs to return a communicator.
     void 
-    createSubcommunicator(const std::string & tag)
+    createCartesianCommunicator(const std::string & communicator_name,
+                                const std::vector<std::size_t> & cartesian_communicator_dimensions)
     {
-        this->createSubcommunicator_(tag);
+        this->createCartesianCommunicator_(communicator_name,
+                                           cartesian_communicator_dimensions);
     }
 
 
@@ -157,7 +160,8 @@ private:
 
     // :TODO:05/21/2022 02:17:12 PM:: This needs to return a communicator.
     virtual void
-    createSubcommunicator_(const std::string & tag)=0;
+    createCartesianCommunicator_(const std::string & communicator_name,
+                                 const std::vector<std::size_t> & cartesian_communicator_dimensions)=0;
 
     virtual void 
     freeCommunicator_()=0;

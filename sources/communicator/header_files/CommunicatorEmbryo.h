@@ -33,7 +33,8 @@ class CommunicatorEmbryo
         CommunicatorEmbryo ();   // constructor
 
         CommunicatorEmbryo(const communicator_types comm_type,
-                           const std::array<std::size_t,3> communicator_spatial_decomposition);
+                           const std::array<std::size_t,3> communicator_spatial_decomposition,
+                           const std::string communicator_name=std::string("Default"));
 
         //! The copy constructor.
         CommunicatorEmbryo (const CommunicatorEmbryo & other);   // copy constructor
@@ -51,6 +52,8 @@ class CommunicatorEmbryo
         communicator_types typeOfCommunicator() const;
 
         std::array<std::size_t,3> communicatorDimensions() const;
+
+        std::string communicatorName() const;
 
         // ====================  MUTATORS      =======================================
 
@@ -83,6 +86,9 @@ class CommunicatorEmbryo
         //! For rectangular coordinates a, b and c are respectively the x,
         //! y and z dimensions.
         std::array<std::size_t,3> communicatorSpatialDecomposition_;
+
+        //! \brief The name of the communicator.
+        std::string communicatorName_;
 
 
 }; // -----  End of class CommunicatorEmbryo  -----

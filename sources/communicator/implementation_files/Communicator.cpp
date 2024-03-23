@@ -99,7 +99,7 @@ Communicator::initializeWorldCommunicator()
 }
 
 void
-Communicator::resetName(const std::string & name)
+Communicator::resetHostName(const std::string & name)
 {
     this->resetName_(name);
     return;
@@ -158,8 +158,8 @@ Communicator::formGlobalMap(std::string const & tag,
                              end_offsets_ptr);
 
 
-    // Form vector string array of the hostnames.
-    std::vector<std::string> aHostnameVec =
+    // Form vector string array of all of the tags.
+    std::vector<std::string> aTagVec =
         STRING_UTILITIES::convert_sequence_of_chars_to_vector_string(offset_size,
                                                                      start_offsets_ptr,
                                                                      end_offsets_ptr,
@@ -168,7 +168,7 @@ Communicator::formGlobalMap(std::string const & tag,
     // Form global map.
     std::size_t counter = 0;
     std::map<std::string, std::size_t> aGlobalTagMap;
-    for (auto it : aHostnameVec )
+    for (auto it : aTagVec )
     {
         auto it2 = aGlobalTagMap.find(it);
         if (it2 == aGlobalTagMap.end())

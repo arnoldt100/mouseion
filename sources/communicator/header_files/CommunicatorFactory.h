@@ -50,7 +50,7 @@ public:
 
     std::unique_ptr<COMMUNICATOR::Communicator>
     	createCommunicator(std::unique_ptr<COMMUNICATOR::Communicator> const & other,
-                         CommunicatorEmbryo const & comm_embryo ) const;
+                           CommunicatorEmbryo const & comm_embryo ) const;
 
     //===== MUTATORS =======
 
