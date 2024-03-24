@@ -39,6 +39,12 @@ Communicator::Communicator(Communicator&& other)
 }
 
 //============================= ACCESSORS ====================================
+std::size_t
+Communicator::getSizeofCommunicator() const
+{
+    return this->getSizeofCommunicator_();
+}
+
 void 
 Communicator::synchronizationPoint() const
 {

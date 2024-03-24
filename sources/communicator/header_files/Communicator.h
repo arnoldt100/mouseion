@@ -36,6 +36,9 @@ public:
     //===== DATA MEMBERS ===
 
     //===== ACCESSORS ======
+    std::size_t
+    getSizeofCommunicator() const;
+
     void 
     synchronizationPoint() const;
 
