@@ -89,7 +89,8 @@
          header_files/CommunicatorFactory.h
          header_files/Communicator.h
          header_files/CommunicatorEmbryo.h
-         header_files/create_communicator_embryo.hpp)
+         header_files/create_communicator_embryo.hpp
+         header_files/is_communicator_type.hpp)
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -105,7 +106,8 @@
          implementation_files/CommunicatorFactory.cpp
          implementation_files/Communicator.cpp
          implementation_files/CommunicatorEmbryo.cpp
-         implementation_files/create_communicator_embryo.cpp)
+         implementation_files/create_communicator_embryo.cpp
+         implementation_files/is_communicator_type.cpp)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
