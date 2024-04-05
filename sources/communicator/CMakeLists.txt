@@ -84,6 +84,7 @@
     #-----------------------------------------------------
     set (communicator_header_files
          header_files/MasterProcess.h
+         header_files/CommunicatorRank.h
          header_files/CommunicatorFactory.h
          header_files/Communicator.h
          header_files/CommunicatorEmbryo.h
@@ -98,6 +99,7 @@
     #-----------------------------------------------------
     set (communicator_implementation_files
          implementation_files/MasterProcess.cpp
+         implementation_files/CommunicatorRank.cpp
          implementation_files/CommunicatorFactory.cpp
          implementation_files/Communicator.cpp
          implementation_files/CommunicatorEmbryo.cpp
