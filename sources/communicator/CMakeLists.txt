@@ -84,6 +84,7 @@
     #-----------------------------------------------------
     set (communicator_header_files
          header_files/MasterProcess.h
+         header_files/create_master_process_tag.hpp
          header_files/CommunicatorRank.h
          header_files/CommunicatorFactory.h
          header_files/Communicator.h
@@ -99,6 +100,7 @@
     #-----------------------------------------------------
     set (communicator_implementation_files
          implementation_files/MasterProcess.cpp
+         implementation_files/create_master_process_tag.cpp
          implementation_files/CommunicatorRank.cpp
          implementation_files/CommunicatorFactory.cpp
          implementation_files/Communicator.cpp
