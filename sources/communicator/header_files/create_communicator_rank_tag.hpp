@@ -1,7 +1,7 @@
-#ifndef COMMUNICATOR_create_master_process_tag_INC
-#define COMMUNICATOR_create_master_process_tag_INC
+#ifndef COMMUNICATOR_create_communicator_rank_tag_INC
+#define COMMUNICATOR_create_communicator_rank_tag_INC
 
-//! \file create_master_process_tag.hpp
+//! \file create_communicator_rank_tag.h
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
@@ -14,20 +14,21 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "MasterProcess.h"
 #include "is_communicator_type.hpp"
+#include "CommunicatorRank.h"
 
 namespace COMMUNICATOR
 {
 
 template< typename T > requires is_communicator_type<T>
-MasterProcess create_master_process_tag ( T const & my_communicator)
+CommunicatorRank create_communicator_rank_tag ( T const & my_communicator )
 {
-    const bool value = my_communicator->iAmMasterProcess();
-    MasterProcess my_master_process{value};
-    return my_master_process;
+    const std::size_t my_rank = my_communicator->getCommunicatorRank();
+    CommunicatorRank my_communicator_rank{my_rank};
+    return my_communicator_rank;
 }
+
 
 }; // namespace COMMUNICATOR
 
-#endif // COMMUNICATOR_create_master_process_tag_INC
+#endif // COMMUNICATOR_create_communicator_rank_tag_INC
