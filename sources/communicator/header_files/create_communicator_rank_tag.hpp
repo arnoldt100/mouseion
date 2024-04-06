@@ -24,7 +24,7 @@ template< typename T > requires is_communicator_type<T>
 CommunicatorRank create_communicator_rank_tag ( T const & my_communicator )
 {
     const std::size_t my_rank = my_communicator->getCommunicatorRank();
-    CommunicatorRank my_communicator_rank{my_rank};
+    CommunicatorRank my_communicator_rank{static_cast<CommunicatorRank::rank_t>(my_rank)};
     return my_communicator_rank;
 }
 

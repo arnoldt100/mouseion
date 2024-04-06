@@ -85,7 +85,7 @@ CommunicatorRank& CommunicatorRank::operator= ( CommunicatorRank && other )
     return *this;
 } // assignment-move operator
 
-CommunicatorRank::rank_t CommunicatorRank::operator()() const 
+CommunicatorRank::rank_t CommunicatorRank::operator()() const
 {
     return this->communicatorRank_;
 }

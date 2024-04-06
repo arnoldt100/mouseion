@@ -24,7 +24,7 @@ namespace COMMUNICATOR
 
 class CommunicatorRank
 {
-    private:
+    public:
         using rank_t = std::ptrdiff_t;
 
     public:
