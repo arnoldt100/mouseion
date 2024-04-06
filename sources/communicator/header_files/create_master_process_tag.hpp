@@ -15,12 +15,13 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "MasterProcess.h"
+#include "is_communicator_type.hpp"
 
 namespace COMMUNICATOR
 {
 
 //! \brief Stud text for brief description
-template< typename T >
+template< typename T > requires is_communicator_type<T>
 MasterProcess create_master_process_tag ( T const & my_communicator)
 {
     const bool value = my_communicator->iAmMasterProcess();
