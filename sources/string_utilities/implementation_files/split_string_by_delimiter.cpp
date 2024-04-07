@@ -23,6 +23,11 @@ std::vector<std::string> split_string_by_delimiter(  const std::string input,
                             input,
                             boost::is_any_of(delimiter.c_str()),
                             boost::token_compress_on);
+
+    for (auto & tmp : my_strings)
+    {
+    	boost::algorithm::trim(tmp);
+    }
     return my_strings;
 }   // -----  end of function split_string_by_delimiter  -----
 
