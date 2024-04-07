@@ -14,16 +14,19 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-
+#include "is_communicator_type.hpp"
+#include "CommunicatorSize.h"
 
 namespace COMMUNICATOR
 {
 
 //! \brief Stud text for brief description
-template< <+template_parameters+> >
-void create_communicator_size_tag ( <+argument_list+> )
+template< typename T > requires is_communicator_type<T>
+CommunicatorSize create_communicator_size_tag ( T const & my_communicator )
 {
-        return;
+    const std::size_t my_size = my_communicator->getSizeofCommunicator();
+    CommunicatorSize my_communicator_size{static_cast<CommunicatorSize::value_t>(my_size)};
+    return my_communicator_size;
 }
 
 }; // namespace COMMUNICATOR

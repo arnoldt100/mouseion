@@ -89,6 +89,7 @@
          header_files/create_communicator_size_tag.hpp
          header_files/create_communicator_embryo.hpp
          header_files/CommunicatorRank.h
+         header_files/CommunicatorSize.h
          header_files/CommunicatorFactory.h
          header_files/Communicator.h
          header_files/CommunicatorEmbryo.h
@@ -108,6 +109,7 @@
          implementation_files/create_communicator_size_tag.cpp
          implementation_files/create_communicator_embryo.cpp
          implementation_files/CommunicatorRank.cpp
+         implementation_files/CommunicatorSize.cpp
          implementation_files/CommunicatorFactory.cpp
          implementation_files/Communicator.cpp
          implementation_files/CommunicatorEmbryo.cpp
