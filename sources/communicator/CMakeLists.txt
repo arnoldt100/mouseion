@@ -86,11 +86,12 @@
          header_files/MasterProcess.h
          header_files/create_master_process_tag.hpp
          header_files/create_communicator_rank_tag.hpp
+         header_files/create_communicator_size_tag.hpp
+         header_files/create_communicator_embryo.hpp
          header_files/CommunicatorRank.h
          header_files/CommunicatorFactory.h
          header_files/Communicator.h
          header_files/CommunicatorEmbryo.h
-         header_files/create_communicator_embryo.hpp
          header_files/is_communicator_type.hpp)
 
     #-----------------------------------------------------
@@ -104,11 +105,12 @@
          implementation_files/MasterProcess.cpp
          implementation_files/create_master_process_tag.cpp
          implementation_files/create_communicator_rank_tag.cpp
+         implementation_files/create_communicator_size_tag.cpp
+         implementation_files/create_communicator_embryo.cpp
          implementation_files/CommunicatorRank.cpp
          implementation_files/CommunicatorFactory.cpp
          implementation_files/Communicator.cpp
          implementation_files/CommunicatorEmbryo.cpp
-         implementation_files/create_communicator_embryo.cpp
          implementation_files/is_communicator_type.cpp)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
